@@ -16,6 +16,8 @@
         <div class="nav-links">
             <button class="nav-btn active" data-target="vista-catalogo">Catálogo</button>
             <button class="nav-btn" data-target="vista-como-funciona">Cómo Funciona</button>
+            <button class="nav-btn" data-target="vista-faq">Preguntas Frecuentes</button>
+            <button class="nav-btn" data-target="vista-vendidos">Historial / Vendidos</button>
             <button class="nav-btn" data-target="vista-nosotros">Quiénes Somos</button>
         </div>
     </nav>
@@ -57,28 +59,79 @@
                     <div class="step-card">
                         <div class="step-number">1</div>
                         <h3>Elige tu producto</h3>
-                        <p>Revisa nuestro catálogo actualizado con fotos reales y especificaciones claras de estado.</p>
+                        <p>Revisa nuestro catálogo con fotos reales y especificaciones detalladas de su estado.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">2</div>
-                        <h3>Escríbenos al WhatsApp</h3>
-                        <p>Haz clic en el botón del producto para abrir un chat directo con nosotros y resolver dudas.</p>
+                        <h3>Coordina por WhatsApp</h3>
+                        <p>Escríbenos directamente desde el producto para acordar el día, la hora y el punto exacto de encuentro.</p>
                     </div>
                     <div class="step-card">
                         <div class="step-number">3</div>
-                        <h3>Entrega Presencial</h3>
-                        <p>Coordinamos un punto de encuentro seguro en Santiago para que revises el producto en persona.</p>
+                        <h3>Revisa y Prueba al Momento</h3>
+                        <p>Nos juntamos en un lugar seguro en Santiago, revisas el equipo con calma y puedes probarlo en el acto antes de pagar.</p>
                     </div>
                 </div>
             </section>
         </div>
 
-        <!-- VISTA 3: QUIÉNES SOMOS -->
+        <!-- VISTA 3: PREGUNTAS FRECUENTES (FAQ) -->
+        <div id="vista-faq" class="view-section">
+            <section class="info-page">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>📍 ¿Dónde realizan las entregas en Santiago?</h3>
+                        <p>Coordinamos entregas presenciales en estaciones de metro céntricas o puntos seguros y concurridos de Santiago (a convenir por interno vía WhatsApp).</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>🧪 ¿Se puede probar el producto al momento de la entrega?</h3>
+                        <p>¡Sí, totalmente! Queremos que compres con absoluta confianza. Puedes revisar el artículo en persona, conectarlo o probar su funcionamiento antes de concretar el pago.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>💰 ¿Qué medios de pago aceptan?</h3>
+                        <p>Aceptamos transferencia bancaria inmediata o pago en efectivo al momento de recibir y probar tu producto.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VISTA 4: HISTORIAL / PRODUCTOS VENDIDOS -->
+        <div id="vista-vendidos" class="view-section">
+            <section class="info-page">
+                <h2>Historial de Éxitos</h2>
+                <p class="subtitle" style="margin-bottom: 2rem;">Algunos de los artículos que ya se vendieron y entregaron con éxito a compradores felices.</p>
+                <div class="products-grid" style="padding: 0;">
+                    <div class="product-card sold-card">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60')">
+                            <span class="product-badge sold-badge">Vendido</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Consola Retro Portátil</h3>
+                            <p class="price" style="color: #6b7280;">$35.000</p>
+                            <p class="desc">Entregado con éxito en Santiago.</p>
+                        </div>
+                    </div>
+                    <div class="product-card sold-card">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1592840496694-26d035b52b48?w=500&auto=format&fit=crop&q=60')">
+                            <span class="product-badge sold-badge">Vendido</span>
+                        </div>
+                        <div class="product-info">
+                            <h3>Mouse Gamer Inalámbrico</h3>
+                            <p class="price" style="color: #6b7280;">$22.000</p>
+                            <p class="desc">Entregado con éxito en Santiago.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VISTA 5: QUIÉNES SOMOS -->
         <div id="vista-nosotros" class="view-section">
             <section class="info-page">
                 <div class="about-card">
                     <h2>Sobre Flipfinder</h2>
-                    <p>Nos dedicamos a buscar las mejores oportunidades en el mercado de segunda mano, seleccionando rigurosamente artículos en excelente estado (10/10 o impecables). Cada producto es probado a fondo para garantizar que te lleves calidad real a un precio justo, fomentando una compra segura, directa y transparente en Santiago.</p>
+                    <p>Nos dedicamos a buscar las mejores oportunidades en el mercado de segunda mano, seleccionando rigurosamente artículos en excelente estado (10/10 o impecables). Cada producto es probado previamente para garantizar que te lleves calidad real a un precio justo, fomentando una compra segura, directa y transparente en Santiago.</p>
                 </div>
             </section>
         </div>
@@ -97,6 +150,7 @@
                 price: "$45.000", 
                 category: "gaming",
                 desc: "Estado: 10/10. Probado y funcionando al 100%. Color negro carbón.", 
+                badge: "¡Última Unidad!",
                 image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500&auto=format&fit=crop&q=60" 
             },
             { 
@@ -105,6 +159,7 @@
                 price: "$55.000", 
                 category: "gaming",
                 desc: "Estado: Impecable. Gatillos adaptativos y joysticks sin drift.", 
+                badge: "Impecable 10/10",
                 image: "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=500&auto=format&fit=crop&q=60" 
             },
             { 
@@ -113,6 +168,7 @@
                 price: "$190.000", 
                 category: "gaming",
                 desc: "Incluye caja, accesorios originales y dock. Pantalla sin marcas.", 
+                badge: "Muy Cotizado",
                 image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b2e?w=500&auto=format&fit=crop&q=60" 
             },
             { 
@@ -121,6 +177,7 @@
                 price: "$25.000", 
                 category: "accesorios",
                 desc: "Muy buen estado, sonido envolvente y micrófono nítido.", 
+                badge: "Oferta",
                 image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=60" 
             },
             { 
@@ -129,6 +186,7 @@
                 price: "$15.000", 
                 category: "accesorios",
                 desc: "Nuevo y sellado, ideal para optimizar tu espacio de trabajo.", 
+                badge: "Nuevo / Sellado",
                 image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60" 
             },
             { 
@@ -137,6 +195,7 @@
                 price: "$12.000", 
                 category: "accesorios",
                 desc: "Aluminio resistente, plegable y con excelente ventilación.", 
+                badge: "Práctico",
                 image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=60" 
             }
         ];
@@ -148,7 +207,7 @@
         const viewSections = document.querySelectorAll('.view-section');
         let currentCategory = 'todos';
 
-        // Lógica de cambio de página con scroll hacia arriba automático
+        // Lógica de cambio de página con scroll automático
         navButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 navButtons.forEach(b => b.classList.remove('active'));
@@ -174,13 +233,15 @@
             }
             
             items.forEach(product => {
-                const mensaje = encodeURIComponent(`Hola! Me interesa el producto "${product.name}" (${product.price}) visto en Flipfinder. ¿Cómo coordinamos la entrega presencial?`);
+                const mensaje = encodeURIComponent(`Hola! Me interesa el producto "${product.name}" (${product.price}) visto en Flipfinder. ¿Cómo coordinamos la entrega presencial y su prueba?`);
                 const whatsappUrl = `https://wa.me/56958256823?text=${mensaje}`;
 
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
-                    <div class="product-img" style="background-image: url('${product.image}')"></div>
+                    <div class="product-img" style="background-image: url('${product.image}')">
+                        <span class="product-badge">${product.badge}</span>
+                    </div>
                     <div class="product-info">
                         <h3>${product.name}</h3>
                         <p class="price">${product.price}</p>
