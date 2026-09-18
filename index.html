@@ -9,22 +9,69 @@
 </head>
 <body>
     <div class="background-glow"></div>
+
+    <!-- Navegación -->
+    <nav class="navbar">
+        <div class="nav-brand">⚡ Flipfinder</div>
+        <div class="nav-links">
+            <a href="#catalogo">Catálogo</a>
+            <a href="#como-funciona">Cómo Funciona</a>
+            <a href="#nosotros">Quiénes Somos</a>
+        </div>
+    </nav>
     
     <header class="hero-container">
-        <div class="badge">🤝 Productos Seleccionados & Reventa</div>
+        <div class="badge">🤝 Reventa Confiable & Entrega Presencial</div>
         <h1>Flipfinder</h1>
-        <p class="subtitle">Encuentra artículos en excelente estado al mejor precio. ¡Compra directa y coordinamos la entrega presencial!</p>
+        <p class="subtitle">Encuentra artículos tecnológicos en excelente estado al mejor precio. ¡Compra directa y coordinamos cara a cara!</p>
         
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Busca un producto (ej. Consola, Control, Gadget)...">
+            <input type="text" id="searchInput" placeholder="Busca un producto (ej. Control, Switch, Audio)...">
+        </div>
+
+        <!-- Filtros por Categoría -->
+        <div class="categories-filter" id="categoriesFilter">
+            <button class="filter-btn active" data-category="todos">Todos</button>
+            <button class="filter-btn" data-category="gaming">Gaming</button>
+            <button class="filter-btn" data-category="accesorios">Accesorios & Audio</button>
         </div>
     </header>
 
-    <main class="store-container">
+    <main class="store-container" id="catalogo">
         <div class="products-grid" id="productsGrid">
             <!-- Los productos se cargarán dinámicamente aquí -->
         </div>
     </main>
+
+    <!-- Sección Cómo Funciona -->
+    <section class="info-section" id="como-funciona">
+        <h2>¿Cómo comprar en Flipfinder?</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Elige tu producto</h3>
+                <p>Revisa nuestro catálogo actualizado con fotos reales y especificaciones claras de estado.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Escríbenos al WhatsApp</h3>
+                <p>Haz clic en el botón del producto para abrir un chat directo con nosotros y resolver dudas.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Entrega Presencial</h3>
+                <p>Coordinamos un punto de encuentro seguro en Santiago para que revises el producto en persona.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Quiénes Somos -->
+    <section class="info-section" id="nosotros">
+        <div class="about-card">
+            <h2>Sobre Flipfinder</h2>
+            <p>Nos dedicamos a buscar las mejores oportunidades en el mercado de segunda mano, seleccionando rigurosamente artículos en excelente estado (10/10 o impecables). Cada producto es probado a fondo para garantizar que te lleves calidad real a un precio justo, fomentando una compra segura, directa y transparente.</p>
+        </div>
+    </section>
 
     <footer>
         <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
@@ -36,27 +83,31 @@
                 id: 1, 
                 name: "Control Xbox Series X/S Original", 
                 price: "$45.000", 
-                desc: "Estado: 10/10. Probado y funcionando al 100%. Entrega presencial.", 
+                category: "gaming",
+                desc: "Estado: 10/10. Probado y funcionando al 100%. Color negro carbón.", 
                 image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500&auto=format&fit=crop&q=60" 
             },
             { 
                 id: 2, 
                 name: "Control PlayStation 5 DualSense", 
                 price: "$55.000", 
-                desc: "Estado: Impecable. Gatillos adaptativos y joysticks perfectos.", 
+                category: "gaming",
+                desc: "Estado: Impecable. Gatillos adaptativos y joysticks sin drift.", 
                 image: "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=500&auto=format&fit=crop&q=60" 
             },
             { 
                 id: 3, 
                 name: "Nintendo Switch V2 Completa", 
                 price: "$190.000", 
-                desc: "Incluye caja y accesorios originales. Pantalla sin marcas.", 
+                category: "gaming",
+                desc: "Incluye caja, accesorios originales y dock. Pantalla sin marcas.", 
                 image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b2e?w=500&auto=format&fit=crop&q=60" 
             },
             { 
                 id: 4, 
                 name: "Audífonos Gamer HyperX Cloud Stinger", 
                 price: "$25.000", 
+                category: "accesorios",
                 desc: "Muy buen estado, sonido envolvente y micrófono nítido.", 
                 image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=60" 
             },
@@ -64,13 +115,15 @@
                 id: 5, 
                 name: "Gadget Tech Inteligente USB-C", 
                 price: "$15.000", 
-                desc: "En perfecto estado, ideal para optimizar tu espacio.", 
+                category: "accesorios",
+                desc: "Nuevo y sellado, ideal para optimizar tu espacio de trabajo.", 
                 image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60" 
             },
             { 
                 id: 6, 
                 name: "Soporte Ajustable para Notebook", 
                 price: "$12.000", 
+                category: "accesorios",
                 desc: "Aluminio resistente, plegable y con excelente ventilación.", 
                 image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=60" 
             }
@@ -78,6 +131,8 @@
 
         const searchInput = document.getElementById('searchInput');
         const productsGrid = document.getElementById('productsGrid');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        let currentCategory = 'todos';
 
         function displayProducts(items) {
             productsGrid.innerHTML = '';
@@ -105,12 +160,27 @@
             });
         }
 
+        function filterAndSearch() {
+            const term = searchInput.value.toLowerCase();
+            const filtered = products.filter(p => {
+                const matchesCategory = (currentCategory === 'todos' || p.category === currentCategory);
+                const matchesSearch = p.name.toLowerCase().includes(term) || p.desc.toLowerCase().includes(term);
+                return matchesCategory && matchesSearch;
+            });
+            displayProducts(filtered);
+        }
+
         displayProducts(products);
 
-        searchInput.addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            const filtered = products.filter(p => p.name.toLowerCase().includes(term) || p.desc.toLowerCase().includes(term));
-            displayProducts(filtered);
+        searchInput.addEventListener('input', filterAndSearch);
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentCategory = e.target.getAttribute('data-category');
+                filterAndSearch();
+            });
         });
     </script>
 </body>
