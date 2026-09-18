@@ -11,9 +11,9 @@
     <div class="background-glow"></div>
     
     <header class="hero-container">
-        <div class="badge">🔥 Tienda Online</div>
+        <div class="badge">🤝 Productos Seleccionados & Reventa</div>
         <h1>Flipfinder</h1>
-        <p class="subtitle">Encuentra el producto que buscas al mejor precio y contáctanos al instante para comprarlo.</p>
+        <p class="subtitle">Encuentra artículos en excelente estado al mejor precio. ¡Compra directa y coordinamos la entrega presencial!</p>
         
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Busca un producto (ej. Consola, Control, Gadget)...">
@@ -32,9 +32,9 @@
 
     <script>
         const products = [
-            { id: 1, name: "Control Xbox Series X/S Original", price: "$45.000", desc: "Repuesto y componentes originales en excelente estado.", image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500&auto=format&fit=crop&q=60" },
-            { id: 2, name: "Control PlayStation 5 DualSense", price: "$55.000", desc: "Color blanco original, gatillos adaptativos funcionando perfecto.", image: "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=500&auto=format&fit=crop&q=60" },
-            { id: 3, name: "Gadget Tech Inteligente USB-C", price: "$15.000", desc: "Accesorio tecnológico multifunción para optimizar tu espacio.", image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60" }
+            { id: 1, name: "Control Xbox Series X/S Original", price: "$45.000", desc: "En excelente estado, probado y funcionando al 100%. Entrega presencial.", image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500&auto=format&fit=crop&q=60" },
+            { id: 2, name: "Control PlayStation 5 DualSense", price: "$55.000", desc: "Impecable, gatillos y joysticks perfectos. Entrega presencial.", image: "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=500&auto=format&fit=crop&q=60" },
+            { id: 3, name: "Gadget Tech Inteligente USB-C", price: "$15.000", desc: "En perfecto estado, ideal para optimizar tu espacio. Entrega presencial.", image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60" }
         ];
 
         const searchInput = document.getElementById('searchInput');
@@ -48,8 +48,9 @@
             }
             
             items.forEach(product => {
-                const mensaje = encodeURIComponent(`Hola, me interesa comprar el producto: ${product.name} (${product.price})`);
-                const whatsappUrl = `https://wa.me/56900000000?text=${mensaje}`;
+                // Mensaje adaptado para entrega presencial (recuerda cambiar 56900000000 por tu número real de WhatsApp)
+                const mensaje = encodeURIComponent(`Hola! Me interesa el producto "${product.name}" (${product.price}) visto en Flipfinder. ¿Cómo coordinamos la entrega presencial?`);
+                const whatsappUrl = `https://wa.me/56958256823?text=${mensaje}`;
 
                 const card = document.createElement('div');
                 card.className = 'product-card';
@@ -59,7 +60,7 @@
                         <h3>${product.name}</h3>
                         <p class="price">${product.price}</p>
                         <p class="desc">${product.desc}</p>
-                        <a href="${whatsappUrl}" target="_blank" class="contact-btn">💬 Contactar para Comprar</a>
+                        <a href="${whatsappUrl}" target="_blank" class="contact-btn">🤝 Coordinar Entrega Presencial</a>
                     </div>
                 `;
                 productsGrid.appendChild(card);
