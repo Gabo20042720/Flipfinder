@@ -10,7 +10,7 @@
 <body>
     <div class="background-glow"></div>
 
-    <!-- Navegación por Secciones (Tabs) -->
+    <!-- Navegación Principal -->
     <nav class="navbar">
         <div class="nav-brand">⚡ Flipfinder</div>
         <div class="nav-links">
@@ -20,64 +20,69 @@
         </div>
     </nav>
     
-    <!-- VISTA 1: CATÁLOGO -->
-    <div id="vista-catalogo" class="view-section active-view">
-        <header class="hero-container">
-            <div class="badge">🤝 Reventa Confiable & Entrega Presencial</div>
-            <h1>Flipfinder</h1>
-            <p class="subtitle">Encuentra artículos tecnológicos en excelente estado al mejor precio. ¡Compra directa y coordinamos cara a cara!</p>
-            
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Busca un producto (ej. Control, Switch, Audio)...">
-            </div>
+    <!-- CONTENEDOR DE PÁGINAS -->
+    <div class="page-container">
 
-            <!-- Filtros por Categoría -->
-            <div class="categories-filter" id="categoriesFilter">
-                <button class="filter-btn active" data-category="todos">Todos</button>
-                <button class="filter-btn" data-category="gaming">Gaming</button>
-                <button class="filter-btn" data-category="accesorios">Accesorios & Audio</button>
-            </div>
-        </header>
-
-        <main class="store-container">
-            <div class="products-grid" id="productsGrid">
-                <!-- Los productos se cargarán dinámicamente aquí -->
-            </div>
-        </main>
-    </div>
-
-    <!-- VISTA 2: CÓMO FUNCIONA -->
-    <div id="vista-como-funciona" class="view-section">
-        <section class="info-page">
-            <h2>¿Cómo comprar en Flipfinder?</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">1</div>
-                    <h3>Elige tu producto</h3>
-                    <p>Revisa nuestro catálogo actualizado con fotos reales y especificaciones claras de estado.</p>
+        <!-- VISTA 1: CATÁLOGO -->
+        <div id="vista-catalogo" class="view-section active-view">
+            <header class="hero-container">
+                <div class="badge">🤝 Reventa Confiable & Entrega Presencial</div>
+                <h1>Flipfinder</h1>
+                <p class="subtitle">Encuentra artículos tecnológicos en excelente estado al mejor precio. ¡Compra directa y coordinamos cara a cara!</p>
+                
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Busca un producto (ej. Control, Switch, Audio)...">
                 </div>
-                <div class="step-card">
-                    <div class="step-number">2</div>
-                    <h3>Escríbenos al WhatsApp</h3>
-                    <p>Haz clic en el botón del producto para abrir un chat directo con nosotros y resolver dudas.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-number">3</div>
-                    <h3>Entrega Presencial</h3>
-                    <p>Coordinamos un punto de encuentro seguro en Santiago para que revises el producto en persona.</p>
-                </div>
-            </div>
-        </section>
-    </div>
 
-    <!-- VISTA 3: QUIÉNES SOMOS -->
-    <div id="vista-nosotros" class="view-section">
-        <section class="info-page">
-            <div class="about-card">
-                <h2>Sobre Flipfinder</h2>
-                <p>Nos dedicamos a buscar las mejores oportunidades en el mercado de segunda mano, seleccionando rigurosamente artículos en excelente estado (10/10 o impecables). Cada producto es probado a fondo para garantizar que te lleves calidad real a un precio justo, fomentando una compra segura, directa y transparente en Santiago.</p>
-            </div>
-        </section>
+                <!-- Filtros por Categoría -->
+                <div class="categories-filter" id="categoriesFilter">
+                    <button class="filter-btn active" data-category="todos">Todos</button>
+                    <button class="filter-btn" data-category="gaming">Gaming</button>
+                    <button class="filter-btn" data-category="accesorios">Accesorios & Audio</button>
+                </div>
+            </header>
+
+            <main class="store-container">
+                <div class="products-grid" id="productsGrid">
+                    <!-- Productos dinámicos -->
+                </div>
+            </main>
+        </div>
+
+        <!-- VISTA 2: CÓMO FUNCIONA -->
+        <div id="vista-como-funciona" class="view-section">
+            <section class="info-page">
+                <h2>¿Cómo comprar en Flipfinder?</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>Elige tu producto</h3>
+                        <p>Revisa nuestro catálogo actualizado con fotos reales y especificaciones claras de estado.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>Escríbenos al WhatsApp</h3>
+                        <p>Haz clic en el botón del producto para abrir un chat directo con nosotros y resolver dudas.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>Entrega Presencial</h3>
+                        <p>Coordinamos un punto de encuentro seguro en Santiago para que revises el producto en persona.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- VISTA 3: QUIÉNES SOMOS -->
+        <div id="vista-nosotros" class="view-section">
+            <section class="info-page">
+                <div class="about-card">
+                    <h2>Sobre Flipfinder</h2>
+                    <p>Nos dedicamos a buscar las mejores oportunidades en el mercado de segunda mano, seleccionando rigurosamente artículos en excelente estado (10/10 o impecables). Cada producto es probado a fondo para garantizar que te lleves calidad real a un precio justo, fomentando una compra segura, directa y transparente en Santiago.</p>
+                </div>
+            </section>
+        </div>
+
     </div>
 
     <footer>
@@ -143,7 +148,7 @@
         const viewSections = document.querySelectorAll('.view-section');
         let currentCategory = 'todos';
 
-        // Lógica para cambiar de vista por pestañas
+        // Lógica de cambio de página con scroll hacia arriba automático
         navButtons.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 navButtons.forEach(b => b.classList.remove('active'));
@@ -157,6 +162,7 @@
                         section.classList.remove('active-view');
                     }
                 });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
 
