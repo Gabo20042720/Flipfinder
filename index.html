@@ -32,9 +32,48 @@
 
     <script>
         const products = [
-            { id: 1, name: "Control Xbox Series X/S Original", price: "$45.000", desc: "En excelente estado, probado y funcionando al 100%. Entrega presencial.", image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500&auto=format&fit=crop&q=60" },
-            { id: 2, name: "Control PlayStation 5 DualSense", price: "$55.000", desc: "Impecable, gatillos y joysticks perfectos. Entrega presencial.", image: "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=500&auto=format&fit=crop&q=60" },
-            { id: 3, name: "Gadget Tech Inteligente USB-C", price: "$15.000", desc: "En perfecto estado, ideal para optimizar tu espacio. Entrega presencial.", image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60" }
+            { 
+                id: 1, 
+                name: "Control Xbox Series X/S Original", 
+                price: "$45.000", 
+                desc: "Estado: 10/10. Probado y funcionando al 100%. Color negro carbón.", 
+                image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500&auto=format&fit=crop&q=60" 
+            },
+            { 
+                id: 2, 
+                name: "Control PlayStation 5 DualSense", 
+                price: "$55.000", 
+                desc: "Estado: Impecable. Gatillos adaptativos y joysticks sin drift.", 
+                image: "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=500&auto=format&fit=crop&q=60" 
+            },
+            { 
+                id: 3, 
+                name: "Nintendo Switch V2 Completa", 
+                price: "$190.000", 
+                desc: "Incluye caja, accesorios originales y dock. Pantalla sin marcas.", 
+                image: "https://images.unsplash.com/photo-1578303512597-81e6cc155b2e?w=500&auto=format&fit=crop&q=60" 
+            },
+            { 
+                id: 4, 
+                name: "Audífonos Gamer HyperX Cloud Stinger", 
+                price: "$25.000", 
+                desc: "Muy buen estado, sonido envolvente y micrófono nítido.", 
+                image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=500&auto=format&fit=crop&q=60" 
+            },
+            { 
+                id: 5, 
+                name: "Gadget Tech Inteligente USB-C", 
+                price: "$15.000", 
+                desc: "Nuevo y sellado, ideal para optimizar tu espacio de trabajo.", 
+                image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60" 
+            },
+            { 
+                id: 6, 
+                name: "Soporte Ajustable para Notebook", 
+                price: "$12.000", 
+                desc: "Aluminio resistente, plegable y con excelente ventilación.", 
+                image: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop&q=60" 
+            }
         ];
 
         const searchInput = document.getElementById('searchInput');
@@ -48,7 +87,6 @@
             }
             
             items.forEach(product => {
-                // Mensaje configurado con tu número real
                 const mensaje = encodeURIComponent(`Hola! Me interesa el producto "${product.name}" (${product.price}) visto en Flipfinder. ¿Cómo coordinamos la entrega presencial?`);
                 const whatsappUrl = `https://wa.me/56958256823?text=${mensaje}`;
 
