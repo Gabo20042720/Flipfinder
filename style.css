@@ -11,30 +11,27 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
     overflow-x: hidden;
     position: relative;
 }
 
-/* Efecto de luz de fondo atractiva */
 .background-glow {
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-    filter: blur(140px);
+    filter: blur(150px);
     border-radius: 50%;
-    top: 20%;
+    top: 10%;
     z-index: -1;
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
 .hero-container {
     text-align: center;
     max-width: 700px;
-    padding: 2rem;
-    margin: auto;
+    padding: 3rem 1.5rem 1.5rem 1.5rem;
 }
 
 .badge {
@@ -45,32 +42,31 @@ body {
     border-radius: 50px;
     font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border: 1px solid rgba(99, 102, 241, 0.3);
 }
 
 h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 800;
     letter-spacing: -1px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     background: linear-gradient(to right, #ffffff, #9ca3af);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: #9ca3af;
-    line-height: 1.6;
-    margin-bottom: 2.5rem;
+    line-height: 1.5;
+    margin-bottom: 2rem;
 }
 
 .search-box {
-    display: flex;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 0.5rem;
+    padding: 0.4rem;
     border-radius: 12px;
     backdrop-filter: blur(10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -79,7 +75,7 @@ h1 {
 }
 
 .search-box input {
-    flex: 1;
+    width: 100%;
     background: transparent;
     border: none;
     outline: none;
@@ -92,24 +88,89 @@ h1 {
     color: #6b7280;
 }
 
-.search-box button {
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+/* Estilos de la tienda y tarjetas */
+.store-container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 2rem 1.5rem;
 }
 
-.search-box button:hover {
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+.product-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-info h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.price {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #818cf8;
+    margin-bottom: 0.75rem;
+}
+
+.desc {
+    font-size: 0.9rem;
+    color: #9ca3af;
+    line-height: 1.4;
+    margin-bottom: 1.25rem;
+}
+
+.contact-btn {
+    display: block;
+    width: 100%;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.contact-btn:hover {
     opacity: 0.9;
-    transform: translateY(-1px);
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #6b7280;
+    padding: 3rem;
 }
 
 footer {
-    padding: 1.5rem;
+    padding: 2rem;
     color: #4b5563;
     font-size: 0.85rem;
     text-align: center;

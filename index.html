@@ -3,27 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipfinder - Encuentra lo que buscas</title>
+    <title>Flipfinder - Tienda en Línea</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Fuente moderna de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="background-glow"></div>
     
     <header class="hero-container">
-        <div class="badge">🚀 Próximamente</div>
+        <div class="badge">🔥 Tienda Online</div>
         <h1>Flipfinder</h1>
-        <p class="subtitle">El buscador y explorador inteligente diseñado para ofrecerte una experiencia única, rápida y sin límites.</p>
+        <p class="subtitle">Encuentra el producto que buscas al mejor precio y contáctanos al instante para comprarlo.</p>
         
         <div class="search-box">
-            <input type="text" placeholder="¿Qué estás buscando hoy?">
-            <button>Explorar</button>
+            <input type="text" id="searchInput" placeholder="Busca un producto (ej. Consola, Control, Gadget)...">
         </div>
     </header>
+
+    <main class="store-container">
+        <div class="products-grid" id="productsGrid">
+            <!-- Los productos se cargarán aquí -->
+        </div>
+    </main>
 
     <footer>
         <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        // Lista de productos de ejemplo (puedes cambiarlos o agregar más)
+        const products = [
+            { id: 1, name: "Control Xbox Series X/S Original", price: "$45.000", desc: "Repuesto y componentes originales en excelente estado.", image: "https://images.unsplash.com/photo-1600080972464-8e5f35f63d08?w=500&auto=format&fit=crop&q=60" },
+            { id: 2, name: "Control PlayStation 5 DualSense", price: "$55.000", desc: "Color blanco original, gatillos adaptativos funcionando perfecto.", image: "https://images.unsplash.com/photo-1606318801954-d46d46d3360a?w=500&auto=format&fit=crop&q=60" },
+            { id: 3, name: "Gadget Tech Inteligente USB-C", price: "$15.000", desc: "Accesorio tecnológico multifunción para optimizar tu espacio.", image: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?w=500&auto=format&fit=crop&q=60" }
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const productsGrid = document.getElementById('productsGrid');
+
+        function displayProducts(items) {
+            productsGrid.innerHTML = '';
+            if(items.length === 0) {
+                productsGrid.innerHTML = '<p class="no-results">No se encontraron productos.</p>';
+                return;
+            }
+            
+            items.forEach(product => {
+                // Genera el enlace directo a WhatsApp (reemplaza el número por el tuyo si deseas)
+                const mensaje = encodeURIComponent(`Hola, me interesa comprar el producto: ${product.name} (${product.price})`);
+                const whatsappUrl = `https://wa.me/56900000000?text=${mensaje}`;
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-img" style="background-image: url('${product.image}')"></div>
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="price">${product.price}</p>
+                        <p class="desc">${product.desc}</p>
+                        <a href="${whatsappUrl}" target="_blank" class="contact-btn">💬 Contactar para Comprar</a>
+                    </div>
+                `;
+                productsGrid.appendChild(card);
+            });
+        }
+
+        // Mostrar todos al inicio
+        displayProducts(products);
+
+        // Filtrar en tiempo real con el buscador
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(term) || p.desc.toLowerCase().includes(term));
+            displayProducts(filtered);
+        });
+    </script>
 </body>
 </html>
