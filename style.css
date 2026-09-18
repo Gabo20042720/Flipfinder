@@ -51,9 +51,7 @@ h1 {
     font-weight: 800;
     letter-spacing: -1px;
     margin-bottom: 0.75rem;
-    background: linear-gradient(to right, #ffffff, #9ca3af);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
 }
 
 .subtitle {
@@ -88,7 +86,6 @@ h1 {
     color: #6b7280;
 }
 
-/* Estilos de la tienda y tarjetas */
 .store-container {
     width: 100%;
     max-width: 1100px;
