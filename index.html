@@ -183,6 +183,54 @@
             font-size: 1rem;
         }
 
+        /* Formulario de Despacho */
+        .shipping-form {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .shipping-form h3 {
+            font-size: 1rem;
+            color: #0f172a;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 4px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
         .btn-buy {
             display: block;
             width: 100%;
@@ -193,9 +241,11 @@
             border-radius: 10px;
             font-size: 1.1rem;
             font-weight: 700;
-            text-decoration: none;
+            border: none;
+            cursor: pointer;
             transition: all 0.2s ease;
             box-shadow: 0 4px 12px rgba(0, 132, 214, 0.3);
+            margin-top: 15px;
         }
 
         .btn-buy:hover {
@@ -249,7 +299,7 @@
     <div class="brand-header">FLIPFINDER</div>
 
     <div class="container">
-        <!-- Galería vinculada a las imágenes de img/ -->
+        <!-- Galería de imágenes -->
         <div class="product-gallery">
             <div class="main-img-container">
                 <img id="main-image" src="img/soporte1.jpeg" alt="Soporte Ergónomico de Aluminio para Laptop">
@@ -281,13 +331,51 @@
                     <li>Compatible con MacBooks y Laptops de hasta 15.6".</li>
                     <li>Estructura de aleación de aluminio y gomas antideslizantes.</li>
                     <li>Diseño ultra plegable: Incluye funda de transporte.</li>
-                    <li>Optimiza la ventilación y flujo de aire de tu equipo.</li>
                 </ul>
-            </div>
 
-            <div>
-                <!-- Enlace de Mercado Pago -->
-                <a href="https://mpago.la/1cQorp1" class="btn-buy" target="_blank">Comprar ahora — $12.990 CLP</a>
+                <!-- Formulario Formspree de Despacho -->
+                <form action="https://formspree.io/f/xljdzpnk" method="POST" class="shipping-form">
+                    <h3>📦 Datos para el Envío</h3>
+                    
+                    <!-- Redirección automática a Mercado Pago tras completar el envío -->
+                    <input type="hidden" name="_next" value="https://mpago.la/1cQorp1">
+                    <input type="hidden" name="_subject" value="¡Nuevo Pedido Flipfinder - Soporte Laptop!">
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre y Apellido</label>
+                        <input type="text" id="nombre" name="Nombre" placeholder="Ej: Juan Pérez" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="rut">RUT</label>
+                            <input type="text" id="rut" name="RUT" placeholder="12.345.678-K" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono / WhatsApp</label>
+                            <input type="tel" id="telefono" name="Telefono" placeholder="+56 9 1234 5678" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección de Entrega</label>
+                        <input type="text" id="direccion" name="Direccion" placeholder="Av. Providencia 1234, Dpto 502" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="comuna">Comuna</label>
+                            <input type="text" id="comuna" name="Comuna" placeholder="Ej: Providencia" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="region">Región</label>
+                            <input type="text" id="region" name="Region" placeholder="Ej: Región Metropolitana" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-buy">Continuar al Pago — $12.990 CLP</button>
+                </form>
+
                 <p class="shipping-info">🔒 Pago 100% seguro con Mercado Pago | Despacho rápido a todo Chile 🇨🇱</p>
             </div>
         </div>
