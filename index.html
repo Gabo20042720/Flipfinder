@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipfinder | Soporte de Aluminio Plegable para Notebook</title>
+    <title>Flipfinder | Soporte de Aluminio Plegable para Laptop</title>
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg: #0f172a;
-            --card-bg: #1e293b;
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
+            --primary: #0084d6;
+            --primary-hover: #006bb3;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
             --accent: #10b981;
         }
 
@@ -19,29 +19,39 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
             background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
+            color: var(--text-main);
+            line-height: 1.5;
             padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
         }
 
+        .brand-header {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 25px;
+            color: #0f172a;
+        }
+
         .container {
-            max-width: 900px;
+            max-width: 850px;
             width: 100%;
             background: var(--card-bg);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             display: grid;
             grid-template-columns: 1fr;
+            border: 1px solid #e2e8f0;
         }
 
         @media(min-width: 768px) {
@@ -51,53 +61,59 @@
         }
 
         .product-gallery {
-            padding: 20px;
+            padding: 30px;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: #0f172a;
+            background: #ffffff;
         }
 
         .product-gallery img {
             width: 100%;
-            max-width: 350px;
+            max-width: 320px;
             border-radius: 12px;
             object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .product-details {
-            padding: 30px;
+            padding: 35px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            background: #fafafa;
+            border-left: 1px solid #f1f5f9;
         }
 
         .badge {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--accent);
-            padding: 4px 12px;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
             width: fit-content;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         h1 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+            line-height: 1.25;
         }
 
         .price-box {
             margin: 15px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
         }
 
         .price {
             font-size: 2.2rem;
-            font-weight: bold;
+            font-weight: 800;
             color: var(--accent);
         }
 
@@ -105,7 +121,6 @@
             text-decoration: line-through;
             color: var(--text-muted);
             font-size: 1.1rem;
-            margin-left: 10px;
         }
 
         .description {
@@ -120,17 +135,19 @@
         }
 
         .features li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-size: 0.9rem;
             display: flex;
             align-items: center;
+            color: #334155;
         }
 
         .features li::before {
             content: "✓";
             color: var(--accent);
             font-weight: bold;
-            margin-right: 8px;
+            margin-right: 10px;
+            font-size: 1rem;
         }
 
         .btn-buy {
@@ -139,22 +156,23 @@
             background: var(--primary);
             color: white;
             text-align: center;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 16px;
+            border-radius: 10px;
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 700;
             text-decoration: none;
-            transition: background 0.3s ease;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(0, 132, 214, 0.3);
         }
 
         .btn-buy:hover {
             background: var(--primary-hover);
+            transform: translateY(-1px);
         }
 
         .shipping-info {
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
             margin-top: 12px;
         }
@@ -162,17 +180,19 @@
 </head>
 <body>
 
+    <div class="brand-header">FLIPFINDER</div>
+
     <div class="container">
-        <!-- Galería de Imagen -->
+        <!-- Imagen del Producto -->
         <div class="product-gallery">
-            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=800&auto=format&fit=crop" alt="Soporte de Aluminio Plegable para Laptop">
+            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=800&auto=format&fit=crop" alt="Soporte Ergonomico de Aluminio para Laptop">
         </div>
 
         <!-- Detalles del Producto -->
         <div class="product-details">
             <div>
-                <div class="badge">ENVÍO A TODO CHILE 🇨🇱</div>
-                <h1>Soporte Ergonomico de Aluminio para Laptop</h1>
+                <div class="badge">MÁS VENDIDO</div>
+                <h1>Soporte Ergónomico de Aluminio para Laptop</h1>
                 
                 <div class="price-box">
                     <span class="price">$12.990 CLP</span>
@@ -180,22 +200,22 @@
                 </div>
 
                 <p class="description">
-                    Mejora tu postura y protege tu laptop del sobrecalentamiento. Fabricado en aleación de aluminio ultrarresistente, portátil y totalmente ajustable para tu escritorio o espacio de trabajo.
+                    Mejora tu postura de trabajo o estudio y protege tu computadora del sobrecalentamiento con una estructura portátil de aluminio de alta resistencia.
                 </p>
 
                 <ul class="features">
-                    <li>Diseño ergonómico ajustable en 7 niveles de altura.</li>
-                    <li>Compatible con MacBooks y Laptops de 10" a 15.6".</li>
-                    <li>Aleación de aluminio de alta calidad y gomas antideslizantes.</li>
-                    <li>Plegable y portátil: Incluye funda de transporte.</li>
-                    <li>Optimiza la ventilación de tu equipo.</li>
+                    <li>Elevación ergonómica ajustable en 7 niveles.</li>
+                    <li>Compatible con MacBooks y Laptops de hasta 15.6".</li>
+                    <li>Estructura de aleación de aluminio y gomas antideslizantes.</li>
+                    <li>Diseño ultra plegable: Incluye funda de transporte.</li>
+                    <li>Optimiza la ventilación y flujo de aire de tu equipo.</li>
                 </ul>
             </div>
 
             <div>
                 <!-- Reemplaza el '#' con tu link de pago directo de Mercado Pago -->
-                <a href="#" class="btn-buy">COMPRAR AHORA</a>
-                <p class="shipping-info">🔒 Pago 100% seguro con Mercado Pago | Despacho a domicilio</p>
+                <a href="#" class="btn-buy">Comprar ahora — $12.990 CLP</a>
+                <p class="shipping-info">🔒 Pago 100% seguro con Mercado Pago | Despacho rápido a todo Chile 🇨🇱</p>
             </div>
         </div>
     </div>
