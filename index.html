@@ -32,39 +32,11 @@
             background: var(--bg-gradient);
             color: var(--text-main);
             line-height: 1.6;
-            padding: 15px;
+            padding: 20px 15px;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        /* BANNER DE ANUNCIO DE URGENCIA */
-        .announcement-bar {
-            width: 100%;
-            max-width: 960px;
-            background: #0f172a;
-            color: #ffffff;
-            text-align: center;
-            padding: 10px 15px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .countdown-timer {
-            background: var(--danger);
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
         }
 
         /* LOGO Y TÍTULO */
@@ -75,7 +47,7 @@
             background: linear-gradient(90deg, #1e293b, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
 
@@ -116,20 +88,6 @@
                 border-bottom: none;
                 border-right: 1px solid var(--border-color);
             }
-        }
-
-        .badge-discount {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--danger);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
-            z-index: 2;
         }
 
         .main-img-container {
@@ -212,7 +170,7 @@
         }
 
         .price-container {
-            margin: 15px 0 10px 0;
+            margin: 15px 0 20px 0;
             display: flex;
             align-items: baseline;
             gap: 12px;
@@ -230,85 +188,6 @@
             color: var(--text-muted);
             font-size: 1.1rem;
             font-weight: 500;
-        }
-
-        /* BARRA DE STOCK */
-        .stock-bar-container {
-            margin-bottom: 20px;
-        }
-
-        .stock-text {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--danger);
-            margin-bottom: 6px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .stock-progress {
-            width: 100%;
-            height: 8px;
-            background: #fee2e2;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .stock-fill {
-            width: 25%;
-            height: 100%;
-            background: var(--danger);
-            border-radius: 10px;
-            animation: pulse-bar 2s infinite;
-        }
-
-        @keyframes pulse-bar {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        /* SELECTOR DE COLOR */
-        .color-selector {
-            margin-bottom: 20px;
-        }
-
-        .color-selector label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-main);
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .color-options {
-            display: flex;
-            gap: 10px;
-        }
-
-        .color-btn {
-            border: 2px solid var(--border-color);
-            background: #ffffff;
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .color-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .color-btn.active {
-            border-color: var(--primary);
-            background: #eff6ff;
-            color: var(--primary);
         }
 
         .features {
@@ -445,42 +324,6 @@
             font-weight: 600;
         }
 
-        /* SECCIÓN DE VIDEO */
-        .video-section {
-            max-width: 960px;
-            width: 100%;
-            margin-top: 25px;
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 30px 20px;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            text-align: center;
-        }
-
-        .video-section h2 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--text-main);
-            font-weight: 800;
-        }
-
-        .video-container {
-            width: 100%;
-            max-width: 550px;
-            margin: 0 auto;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            background: #000000;
-        }
-
-        .video-container video {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
         /* ACCORDEÓN FAQ */
         .faq-section {
             max-width: 960px;
@@ -548,12 +391,6 @@
 </head>
 <body>
 
-    <!-- BARRA URGENCIA -->
-    <div class="announcement-bar">
-        <span>⚡ OFERTA EXCLUSIVA DE HOY: 35% OFF + ENVÍO RÁPIDO 🇨🇱</span>
-        <span class="countdown-timer" id="timer">02:14:32</span>
-    </div>
-
     <!-- LOGO O MARCA -->
     <div class="brand-header">FLIPFINDER</div>
 
@@ -563,7 +400,6 @@
         <!-- GALERÍA DE IMÁGENES INTERACTIVA -->
         <div class="product-gallery">
             <div class="main-img-container">
-                <span class="badge-discount">-35% OFF</span>
                 <img id="main-image" src="img/soporte1.jpeg" alt="Soporte Ergonómico de Aluminio Plegable para Laptop">
             </div>
             <div class="thumbnails">
@@ -584,30 +420,6 @@
                     <span class="original-price">$19.990 CLP</span>
                 </div>
 
-                <!-- BARRA DE STOCK LIMITADO -->
-                <div class="stock-bar-container">
-                    <div class="stock-text">
-                        <span>🔥 Alto volumen de ventas</span>
-                        <span>¡Sólo quedan 7 unidades!</span>
-                    </div>
-                    <div class="stock-progress">
-                        <div class="stock-fill"></div>
-                    </div>
-                </div>
-
-                <!-- SELECTOR DE COLOR -->
-                <div class="color-selector">
-                    <label>Color Seleccionado: <span id="color-label" style="color: var(--primary);">Plata Aleación</span></label>
-                    <div class="color-options">
-                        <button type="button" class="color-btn active" onclick="selectColor('Plata Aleación', this)">
-                            <span class="color-dot" style="background: #cbd5e1;"></span> Plata
-                        </button>
-                        <button type="button" class="color-btn" onclick="selectColor('Gris Espacial', this)">
-                            <span class="color-dot" style="background: #64748b;"></span> Gris Espacial
-                        </button>
-                    </div>
-                </div>
-
                 <!-- CARACTERÍSTICAS -->
                 <ul class="features">
                     <li>Elevación ajustable en 7 niveles de altura.</li>
@@ -622,7 +434,6 @@
                     
                     <input type="hidden" name="_next" value="https://mpago.la/1cQorp1">
                     <input type="hidden" name="_subject" value="¡Nuevo Pedido Flipfinder - Soporte Laptop!">
-                    <input type="hidden" id="selected-color-input" name="Color_Seleccionado" value="Plata Aleación">
 
                     <div class="form-group">
                         <label for="nombre">Nombre y Apellido</label>
@@ -669,17 +480,6 @@
         </div>
     </div>
 
-    <!-- SECCIÓN DE VIDEO -->
-    <div class="video-section">
-        <h2>Mira el Soporte en Acción 🎥</h2>
-        <div class="video-container">
-            <video controls="controls" poster="img/soporte1.jpeg">
-                <source src="demo.mp4" type="video/mp4">
-                Tu navegador no soporta el formato de video.
-            </video>
-        </div>
-    </div>
-
     <!-- PREGUNTAS FRECUENTES -->
     <div class="faq-section">
         <h2>Preguntas Frecuentes 💬</h2>
@@ -714,40 +514,6 @@
             document.querySelectorAll('.thumb').forEach(thumb => thumb.classList.remove('active'));
             element.classList.add('active');
         }
-
-        // SELECTOR DE COLOR
-        function selectColor(colorName, btnElement) {
-            document.getElementById('color-label').innerText = colorName;
-            document.getElementById('selected-color-input').value = colorName;
-            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
-            btnElement.classList.add('active');
-        }
-
-        // CONTADOR REGRESIVO DE OFERTA
-        function startTimer(duration, display) {
-            let timer = duration, hours, minutes, seconds;
-            setInterval(function () {
-                hours = parseInt(timer / 3600, 10);
-                minutes = parseInt((timer % 3600) / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-
-                hours = hours < 10 ? "0" + hours : hours;
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-
-                display.textContent = hours + ":" + minutes + ":" + seconds;
-
-                if (--timer < 0) {
-                    timer = duration;
-                }
-            }, 1000);
-        }
-
-        window.onload = function () {
-            let twoHours = (60 * 60 * 2) + (14 * 60) + 32;
-            let display = document.querySelector('#timer');
-            startTimer(twoHours, display);
-        };
 
         // ACCORDEÓN FAQ
         function toggleFaq(element) {
