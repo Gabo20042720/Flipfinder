@@ -43,7 +43,7 @@
         }
 
         .container {
-            max-width: 850px;
+            max-width: 900px;
             width: 100%;
             background: var(--card-bg);
             border-radius: 20px;
@@ -61,18 +61,51 @@
         }
 
         .product-gallery {
-            padding: 30px;
+            padding: 25px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             background: #ffffff;
+            gap: 15px;
         }
 
-        .product-gallery img {
+        .main-img-container {
             width: 100%;
-            max-width: 320px;
+            max-width: 350px;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .main-img-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             border-radius: 12px;
+            transition: opacity 0.2s ease;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .thumb {
+            width: 65px;
+            height: 65px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            cursor: pointer;
             object-fit: cover;
+            transition: all 0.2s ease;
+        }
+
+        .thumb:hover, .thumb.active {
+            border-color: var(--primary);
+            transform: scale(1.05);
         }
 
         .product-details {
@@ -176,6 +209,40 @@
             color: var(--text-muted);
             margin-top: 12px;
         }
+
+        /* Sección del Video Demostrativo */
+        .video-section {
+            max-width: 900px;
+            width: 100%;
+            margin-top: 30px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #0f172a;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -183,9 +250,16 @@
     <div class="brand-header">FLIPFINDER</div>
 
     <div class="container">
-        <!-- Imagen del Producto -->
+        <!-- Galería de Imágenes Interactivas -->
         <div class="product-gallery">
-            <img src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=800&auto=format&fit=crop" alt="Soporte Ergonomico de Aluminio para Laptop">
+            <div class="main-img-container">
+                <img id="main-image" src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=800&auto=format&fit=crop" alt="Soporte Ergónomico de Aluminio para Laptop">
+            </div>
+            <div class="thumbnails">
+                <img class="thumb active" src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=800&auto=format&fit=crop" onclick="changeImage(this.src, this)">
+                <img class="thumb" src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=800&auto=format&fit=crop" onclick="changeImage(this.src, this)">
+                <img class="thumb" src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=800&auto=format&fit=crop" onclick="changeImage(this.src, this)">
+            </div>
         </div>
 
         <!-- Detalles del Producto -->
@@ -213,12 +287,32 @@
             </div>
 
             <div>
-                <!-- Reemplaza el '#' con tu link de pago directo de Mercado Pago -->
-                <a href="#" class="btn-buy">Comprar ahora — $12.990 CLP</a>
+                <!-- Enlace de Mercado Pago Vinculado -->
+                <a href="https://mpago.la/1cQorp1" class="btn-buy" target="_blank">Comprar ahora — $12.990 CLP</a>
                 <p class="shipping-info">🔒 Pago 100% seguro con Mercado Pago | Despacho rápido a todo Chile 🇨🇱</p>
             </div>
         </div>
     </div>
+
+    <!-- Sección de Video (Listo para cuando tengas el archivo) -->
+    <div class="video-section">
+        <h2>Mira cómo funciona en acción 🎥</h2>
+        <div class="video-container">
+            <video controls poster="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=800&auto=format&fit=crop">
+                <source src="demo.mp4" type="video/mp4">
+                Tu navegador no soporta el formato de video.
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function changeImage(src, element) {
+            document.getElementById('main-image').src = src;
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(thumb => thumb.classList.remove('active'));
+            element.classList.add('active');
+        }
+    </script>
 
 </body>
 </html>
