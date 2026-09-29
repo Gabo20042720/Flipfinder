@@ -3,44 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipfinder - Gadgets & Desk Setup</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Flipfinder | Soporte de Aluminio Plegable para Notebook</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        @media(min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .product-gallery {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #0f172a;
+        }
+
+        .product-gallery img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .product-details {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .badge {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            width: fit-content;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .price-box {
+            margin: 15px 0;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-left: 10px;
+        }
+
+        .description {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .btn-buy {
+            display: block;
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-buy:hover {
+            background: var(--primary-hover);
+        }
+
+        .shipping-info {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Encabezado / Branding -->
-    <header>
-        <div class="logo">FLIPFINDER</div>
-    </header>
-
-    <!-- Ficha de Producto principal -->
-    <main class="product-container">
-        <div class="product-image">
-            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80" alt="Soporte Ergonómico de Madera para Escritorio">
+    <div class="container">
+        <!-- Galería de Imagen -->
+        <div class="product-gallery">
+            <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?q=80&w=800&auto=format&fit=crop" alt="Soporte de Aluminio Plegable para Laptop">
         </div>
 
+        <!-- Detalles del Producto -->
         <div class="product-details">
-            <span class="badge">Más vendido</span>
-            <h1>Soporte Ergonómico de Madera para Escritorio</h1>
-            <p class="price">$15.990 CLP</p>
-            
-            <p class="description">
-                Optimiza tu espacio de trabajo, mejora tu postura al trabajar o estudiar y mantén tus accesorios organizados con un acabado de madera premium.
-            </p>
+            <div>
+                <div class="badge">ENVÍO A TODO CHILE 🇨🇱</div>
+                <h1>Soporte Ergonomico de Aluminio para Laptop</h1>
+                
+                <div class="price-box">
+                    <span class="price">$12.990 CLP</span>
+                    <span class="original-price">$19.990 CLP</span>
+                </div>
 
-            <ul class="features">
-                <li>✓ Elevación ergonómica para reducir fatiga en el cuello</li>
-                <li>✓ Espacio inferior para guardar teclado, mouse y libretas</li>
-                <li>✓ Estructura de alta resistencia y diseño minimalista</li>
-                <li>✓ Despacho rápido a todo Chile</li>
-            </ul>
+                <p class="description">
+                    Mejora tu postura y protege tu laptop del sobrecalentamiento. Fabricado en aleación de aluminio ultrarresistente, portátil y totalmente ajustable para tu escritorio o espacio de trabajo.
+                </p>
 
-            <!-- Botón conectado directamente a tu link de Mercado Pago -->
-            <a href="https://mpago.la/2Dv1Yj7" target="_blank" class="btn-buy">
-                Comprar ahora — $15.990 CLP
-            </a>
+                <ul class="features">
+                    <li>Diseño ergonómico ajustable en 7 niveles de altura.</li>
+                    <li>Compatible con MacBooks y Laptops de 10" a 15.6".</li>
+                    <li>Aleación de aluminio de alta calidad y gomas antideslizantes.</li>
+                    <li>Plegable y portátil: Incluye funda de transporte.</li>
+                    <li>Optimiza la ventilación de tu equipo.</li>
+                </ul>
+            </div>
+
+            <div>
+                <!-- Reemplaza el '#' con tu link de pago directo de Mercado Pago -->
+                <a href="#" class="btn-buy">COMPRAR AHORA</a>
+                <p class="shipping-info">🔒 Pago 100% seguro con Mercado Pago | Despacho a domicilio</p>
+            </div>
         </div>
-    </main>
+    </div>
 
 </body>
 </html>
