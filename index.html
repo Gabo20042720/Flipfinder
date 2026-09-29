@@ -3,200 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipfinder | Soporte de Aluminio Plegable para Laptop</title>
+    <title>Flipfinder | Soporte de Aluminio Plegable Premium</title>
     <style>
         :root {
-            --primary: #0084d6;
-            --primary-hover: #006bb3;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
             --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.2);
+            --danger: #ef4444;
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --radius-lg: 24px;
+            --shadow-subtle: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg);
+            background: var(--bg-gradient);
             color: var(--text-main);
-            line-height: 1.5;
-            padding: 20px;
+            line-height: 1.6;
+            padding: 15px;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        /* BANNER DE ANUNCIO DE URGENCIA */
+        .announcement-bar {
+            width: 100%;
+            max-width: 960px;
+            background: #0f172a;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            min-height: 100vh;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .brand-header {
-            font-size: 1.8rem;
+        .countdown-timer {
+            background: var(--danger);
+            padding: 2px 8px;
+            border-radius: 6px;
             font-weight: 800;
-            letter-spacing: -0.5px;
-            margin-bottom: 25px;
-            color: #0f172a;
+            letter-spacing: 0.5px;
         }
 
+        /* LOGO Y TÍTULO */
+        .brand-header {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #1e293b, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
         .container {
-            max-width: 900px;
+            max-width: 960px;
             width: 100%;
             background: var(--card-bg);
-            border-radius: 20px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             display: grid;
             grid-template-columns: 1fr;
-            border: 1px solid #e2e8f0;
         }
 
-        @media(min-width: 768px) {
+        @media(min-width: 850px) {
             .container {
                 grid-template-columns: 1fr 1fr;
             }
         }
 
+        /* GALERÍA DE IMÁGENES */
         .product-gallery {
-            padding: 25px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             background: #ffffff;
-            gap: 15px;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @media(min-width: 850px) {
+            .product-gallery {
+                border-bottom: none;
+                border-right: 1px solid var(--border-color);
+            }
+        }
+
+        .badge-discount {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--danger);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+            z-index: 2;
         }
 
         .main-img-container {
+            position: relative;
             width: 100%;
-            max-width: 350px;
-            height: 320px;
+            max-width: 380px;
+            height: 340px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 15px;
+            overflow: hidden;
         }
 
         .main-img-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            border-radius: 12px;
-            transition: opacity 0.2s ease;
+            opacity: 1;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+
+        .main-img-container:hover img {
+            transform: scale(1.05);
         }
 
         .thumbnails {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             justify-content: center;
         }
 
         .thumb {
-            width: 65px;
-            height: 65px;
-            border-radius: 8px;
-            border: 2px solid #e2e8f0;
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
             cursor: pointer;
             object-fit: cover;
-            transition: all 0.2s ease;
+            padding: 4px;
+            background: #ffffff;
+            transition: all 0.25s ease;
         }
 
         .thumb:hover, .thumb.active {
             border-color: var(--primary);
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
 
+        /* DETALLES DE PRODUCTO Y FORMULARIO */
         .product-details {
-            padding: 35px;
+            padding: 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background: #fafafa;
-            border-left: 1px solid #f1f5f9;
         }
 
-        .badge {
-            background: #e0f2fe;
-            color: #0369a1;
-            padding: 6px 14px;
+        .badge-tag {
+            background: #dbeafe;
+            color: var(--primary);
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: 800;
             text-transform: uppercase;
             width: fit-content;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #0f172a;
-            line-height: 1.25;
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.2;
+            margin-bottom: 10px;
         }
 
-        .price-box {
-            margin: 15px 0;
+        .price-container {
+            margin: 15px 0 10px 0;
             display: flex;
             align-items: baseline;
-            gap: 10px;
+            gap: 12px;
         }
 
         .price {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 2.3rem;
+            font-weight: 900;
             color: var(--accent);
+            letter-spacing: -0.5px;
         }
 
         .original-price {
             text-decoration: line-through;
             color: var(--text-muted);
             font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .description {
-            color: var(--text-muted);
+        /* BARRA DE STOCK */
+        .stock-bar-container {
             margin-bottom: 20px;
-            font-size: 0.95rem;
+        }
+
+        .stock-text {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .stock-progress {
+            width: 100%;
+            height: 8px;
+            background: #fee2e2;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .stock-fill {
+            width: 25%;
+            height: 100%;
+            background: var(--danger);
+            border-radius: 10px;
+            animation: pulse-bar 2s infinite;
+        }
+
+        @keyframes pulse-bar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* SELECTOR DE COLOR */
+        .color-selector {
+            margin-bottom: 20px;
+        }
+
+        .color-selector label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .color-btn {
+            border: 2px solid var(--border-color);
+            background: #ffffff;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .color-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .color-btn.active {
+            border-color: var(--primary);
+            background: #eff6ff;
+            color: var(--primary);
         }
 
         .features {
             list-style: none;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
         }
 
         .features li {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-size: 0.88rem;
             display: flex;
             align-items: center;
             color: #334155;
+            font-weight: 500;
+        }
+
+        .features li:last-child {
+            margin-bottom: 0;
         }
 
         .features li::before {
             content: "✓";
             color: var(--accent);
-            font-weight: bold;
+            font-weight: 900;
             margin-right: 10px;
-            font-size: 1rem;
+            background: var(--accent-glow);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
         }
 
-        /* Formulario de Despacho */
+        /* FORMULARIO DE ENVÍO */
         .shipping-form {
             background: #ffffff;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
             padding: 20px;
-            border-radius: 12px;
-            margin-top: 15px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
         .shipping-form h3 {
             font-size: 1rem;
-            color: #0f172a;
+            color: var(--text-main);
             margin-bottom: 15px;
-            font-weight: 700;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .form-group {
@@ -205,24 +372,27 @@
 
         .form-group label {
             display: block;
-            font-size: 0.82rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 700;
             color: #475569;
             margin-bottom: 4px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
+            padding: 12px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
             font-size: 0.9rem;
             outline: none;
-            transition: border-color 0.2s;
+            background: #f8fafc;
+            transition: all 0.2s;
         }
 
         .form-group input:focus {
             border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
 
         .form-row {
@@ -231,60 +401,78 @@
             gap: 10px;
         }
 
+        @media(max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .btn-buy {
             display: block;
             width: 100%;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             text-align: center;
-            padding: 16px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 800;
             border: none;
             cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 132, 214, 0.3);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
             margin-top: 15px;
+            letter-spacing: 0.3px;
         }
 
         .btn-buy:hover {
-            background: var(--primary-hover);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
         }
 
-        .shipping-info {
-            text-align: center;
-            font-size: 0.82rem;
+        .btn-buy:active {
+            transform: translateY(0);
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+            font-size: 0.78rem;
             color: var(--text-muted);
-            margin-top: 12px;
+            font-weight: 600;
         }
 
+        /* SECCIÓN DE VIDEO */
         .video-section {
-            max-width: 900px;
+            max-width: 960px;
             width: 100%;
-            margin-top: 30px;
+            margin-top: 25px;
             background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-lg);
+            padding: 30px 20px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             text-align: center;
         }
 
         .video-section h2 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 15px;
-            color: #0f172a;
+            color: var(--text-main);
+            font-weight: 800;
         }
 
         .video-container {
             width: 100%;
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
-            background: #000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            background: #000000;
         }
 
         .video-container video {
@@ -292,54 +480,149 @@
             height: auto;
             display: block;
         }
+
+        /* ACCORDEÓN FAQ */
+        .faq-section {
+            max-width: 960px;
+            width: 100%;
+            margin-top: 25px;
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 30px 20px;
+            box-shadow: var(--shadow-subtle);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+        }
+
+        .faq-section h2 {
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 14px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-main);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-top: 0;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            margin-top: 8px;
+        }
+
+        .faq-item.open .faq-question::after {
+            content: "−";
+        }
+
+        .faq-question::after {
+            content: "+";
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
 
+    <!-- BARRA URGENCIA -->
+    <div class="announcement-bar">
+        <span>⚡ OFERTA EXCLUSIVA DE HOY: 35% OFF + ENVÍO RÁPIDO 🇨🇱</span>
+        <span class="countdown-timer" id="timer">02:14:32</span>
+    </div>
+
+    <!-- LOGO O MARCA -->
     <div class="brand-header">FLIPFINDER</div>
 
+    <!-- TARJETA PRINCIPAL -->
     <div class="container">
-        <!-- Galería de imágenes -->
+        
+        <!-- GALERÍA DE IMÁGENES INTERACTIVA -->
         <div class="product-gallery">
             <div class="main-img-container">
-                <img id="main-image" src="img/soporte1.jpeg" alt="Soporte Ergónomico de Aluminio para Laptop">
+                <span class="badge-discount">-35% OFF</span>
+                <img id="main-image" src="img/soporte1.jpeg" alt="Soporte Ergonómico de Aluminio Plegable para Laptop">
             </div>
             <div class="thumbnails">
-                <img class="thumb active" src="img/soporte1.jpeg" onclick="changeImage(this.src, this)">
-                <img class="thumb" src="img/soporte2.jpeg" onclick="changeImage(this.src, this)">
-                <img class="thumb" src="img/soporte3.jpeg" onclick="changeImage(this.src, this)">
+                <img class="thumb active" src="img/soporte1.jpeg" alt="Vista frontal del soporte de aluminio" onclick="changeImage(this.src, this)">
+                <img class="thumb" src="img/soporte2.jpeg" alt="Vista lateral con laptop apoyada" onclick="changeImage(this.src, this)">
+                <img class="thumb" src="img/soporte3.jpeg" alt="Vista del soporte plegado en su funda" onclick="changeImage(this.src, this)">
             </div>
         </div>
 
-        <!-- Detalles del Producto -->
+        <!-- DETALLES DE PRODUCTO & FORMULARIO -->
         <div class="product-details">
             <div>
-                <div class="badge">MÁS VENDIDO</div>
-                <h1>Soporte Ergónomico de Aluminio para Laptop</h1>
+                <div class="badge-tag">🔥 MÁS VENDIDO EN CHILE</div>
+                <h1>Soporte Ergonómico de Aluminio para Laptop</h1>
                 
-                <div class="price-box">
+                <div class="price-container">
                     <span class="price">$12.990 CLP</span>
                     <span class="original-price">$19.990 CLP</span>
                 </div>
 
-                <p class="description">
-                    Mejora tu postura de trabajo o estudio y protege tu computadora del sobrecalentamiento con una estructura portátil de aluminio de alta resistencia.
-                </p>
+                <!-- BARRA DE STOCK LIMITADO -->
+                <div class="stock-bar-container">
+                    <div class="stock-text">
+                        <span>🔥 Alto volumen de ventas</span>
+                        <span>¡Sólo quedan 7 unidades!</span>
+                    </div>
+                    <div class="stock-progress">
+                        <div class="stock-fill"></div>
+                    </div>
+                </div>
 
+                <!-- SELECTOR DE COLOR -->
+                <div class="color-selector">
+                    <label>Color Seleccionado: <span id="color-label" style="color: var(--primary);">Plata Aleación</span></label>
+                    <div class="color-options">
+                        <button type="button" class="color-btn active" onclick="selectColor('Plata Aleación', this)">
+                            <span class="color-dot" style="background: #cbd5e1;"></span> Plata
+                        </button>
+                        <button type="button" class="color-btn" onclick="selectColor('Gris Espacial', this)">
+                            <span class="color-dot" style="background: #64748b;"></span> Gris Espacial
+                        </button>
+                    </div>
+                </div>
+
+                <!-- CARACTERÍSTICAS -->
                 <ul class="features">
-                    <li>Elevación ergonómica ajustable en 7 niveles.</li>
-                    <li>Compatible con MacBooks y Laptops de hasta 15.6".</li>
-                    <li>Estructura de aleación de aluminio y gomas antideslizantes.</li>
-                    <li>Diseño ultra plegable: Incluye funda de transporte.</li>
+                    <li>Elevación ajustable en 7 niveles de altura.</li>
+                    <li>Compatible con MacBooks y Laptops hasta 15.6".</li>
+                    <li>Aleación de aluminio premium con almohadillas antideslizantes.</li>
+                    <li>Ultra liviano y plegable (Incluye funda de regalo).</li>
                 </ul>
 
-                <!-- Formulario Formspree de Despacho -->
+                <!-- FORMULARIO DE DESPACHO -->
                 <form action="https://formspree.io/f/xljdzpnk" method="POST" class="shipping-form">
-                    <h3>📦 Datos para el Envío</h3>
+                    <h3>📦 Datos para la Entrega</h3>
                     
-                    <!-- Redirección automática a Mercado Pago tras completar el envío -->
                     <input type="hidden" name="_next" value="https://mpago.la/1cQorp1">
                     <input type="hidden" name="_subject" value="¡Nuevo Pedido Flipfinder - Soporte Laptop!">
+                    <input type="hidden" id="selected-color-input" name="Color_Seleccionado" value="Plata Aleación">
 
                     <div class="form-group">
                         <label for="nombre">Nombre y Apellido</label>
@@ -349,7 +632,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="rut">RUT</label>
-                            <input type="text" id="rut" name="RUT" placeholder="12.345.678-K" required>
+                            <input type="text" id="rut" name="RUT" placeholder="12.345.678-K" required oninput="formatRUT(this)">
                         </div>
                         <div class="form-group">
                             <label for="telefono">Teléfono / WhatsApp</label>
@@ -374,30 +657,114 @@
                     </div>
 
                     <button type="submit" class="btn-buy">Continuar al Pago — $12.990 CLP</button>
+
+                    <div class="trust-badges">
+                        <span>🔒 Pago Seguro</span>
+                        <span>🇨🇱 Envío a todo Chile</span>
+                        <span>🛡️ Garantía 30 días</span>
+                    </div>
                 </form>
 
-                <p class="shipping-info">🔒 Pago 100% seguro con Mercado Pago | Despacho rápido a todo Chile 🇨🇱</p>
             </div>
         </div>
     </div>
 
-    <!-- Sección de Video -->
+    <!-- SECCIÓN DE VIDEO -->
     <div class="video-section">
-        <h2>Mira cómo funciona en acción 🎥</h2>
+        <h2>Mira el Soporte en Acción 🎥</h2>
         <div class="video-container">
-            <video controls poster="img/soporte1.jpeg">
+            <video controls="controls" poster="img/soporte1.jpeg">
                 <source src="demo.mp4" type="video/mp4">
                 Tu navegador no soporta el formato de video.
             </video>
         </div>
     </div>
 
+    <!-- PREGUNTAS FRECUENTES -->
+    <div class="faq-section">
+        <h2>Preguntas Frecuentes 💬</h2>
+        
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Cuánto tarda el envío?</div>
+            <div class="faq-answer">Los despachos dentro de la Región Metropolitana tardan de 24 a 48 horas hábiles. Para regiones, el tiempo aproximado es de 2 a 4 días hábiles.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Es compatible con mi laptop?</div>
+            <div class="faq-answer">Sí, es compatible universalmente con laptops y MacBooks de cualquier marca que tengan un tamaño de pantalla entre 10 y 15.6 pulgadas.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Soporta el peso de una laptop pesada?</div>
+            <div class="faq-answer">¡Absolutamente! La estructura de aleación de aluminio soporta hasta 15 kg de peso sin tambalearse ni perder estabilidad.</div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTERACTIVO -->
     <script>
+        // CAMBIAR IMAGEN DE GALERÍA
         function changeImage(src, element) {
-            document.getElementById('main-image').src = src;
-            const thumbs = document.querySelectorAll('.thumb');
-            thumbs.forEach(thumb => thumb.classList.remove('active'));
+            const mainImage = document.getElementById('main-image');
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = src;
+                mainImage.style.opacity = '1';
+            }, 150);
+            
+            document.querySelectorAll('.thumb').forEach(thumb => thumb.classList.remove('active'));
             element.classList.add('active');
+        }
+
+        // SELECTOR DE COLOR
+        function selectColor(colorName, btnElement) {
+            document.getElementById('color-label').innerText = colorName;
+            document.getElementById('selected-color-input').value = colorName;
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+
+        // CONTADOR REGRESIVO DE OFERTA
+        function startTimer(duration, display) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            let twoHours = (60 * 60 * 2) + (14 * 60) + 32;
+            let display = document.querySelector('#timer');
+            startTimer(twoHours, display);
+        };
+
+        // ACCORDEÓN FAQ
+        function toggleFaq(element) {
+            element.classList.toggle('open');
+        }
+
+        // FORMATO AUTOMÁTICO DE RUT CHILENO
+        function formatRUT(input) {
+            let valor = input.value.replace(/[^0-9kK]/g, '');
+            if (valor.length < 2) {
+                input.value = valor;
+                return;
+            }
+            let cuerpo = valor.slice(0, -1);
+            let dv = valor.slice(-1).toUpperCase();
+            cuerpo = cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            input.value = cuerpo + '-' + dv;
         }
     </script>
 
