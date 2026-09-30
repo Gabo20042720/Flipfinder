@@ -128,7 +128,7 @@
             transform: translateY(-2px);
         }
 
-        /* Galería Interactiva con 5 miniaturas */
+        /* Galería Interactiva */
         .gallery {
             text-align: center;
             margin-bottom: 40px;
@@ -197,7 +197,7 @@
             color: #666;
         }
 
-        /* Formulario Oculto */
+        /* Formulario Oculto & Estado de Seguimiento */
         .checkout-section {
             display: none;
             background-color: #ffffff;
@@ -255,6 +255,72 @@
 
         .btn-submit:hover {
             background-color: #0056b3;
+        }
+
+        /* Estilos del Módulo de Seguimiento de Pedido */
+        .tracking-card {
+            display: none;
+            text-align: left;
+            background: #fdfdfd;
+            border: 1px solid #e2e8f0;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .tracking-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .tracking-header h3 {
+            color: #28a745;
+            font-size: 1.7rem;
+            margin-bottom: 8px;
+        }
+
+        .order-id-badge {
+            display: inline-block;
+            background-color: #e2e8f0;
+            color: #334155;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 25px 0 10px 15px;
+            border-left: 3px solid #28a745;
+            padding-left: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 3px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #28a745;
+            border: 2px solid #fff;
+        }
+
+        .timeline-title {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #1e293b;
+        }
+
+        .timeline-desc {
+            font-size: 0.88rem;
+            color: #64748b;
         }
 
         footer {
@@ -315,7 +381,7 @@
                 <p>Cancelación pasiva de ruido para llamadas e interacciones fluidas.</p>
             </div>
             <div class="feature-card">
-                <h4>☁️️ Almohadillas Ergonómicas</h4>
+                <h4>☁️ Almohadillas Ergonómicas</h4>
                 <p>Diseñados para brindar máxima comodidad durante largas jornadas.</p>
             </div>
             <div class="feature-card">
@@ -324,18 +390,40 @@
             </div>
         </section>
 
-        <!-- Formulario Desplegable + Mensaje de Confirmación Nativo -->
+        <!-- Formulario Desplegable y Módulo de Seguimiento -->
         <section class="checkout-section" id="checkout-section">
-            <div id="thankyou-message" style="display: none; text-align: center; padding: 20px;">
-                <h3 style="color: #28a745; font-size: 1.8rem; margin-bottom: 10px;">🎉 ¡Pedido Recibido con Éxito!</h3>
-                <p style="font-size: 1.1rem; color: #444; margin-bottom: 15px;">
-                    Muchas gracias por tu compra. Hemos registrado tus datos de envío correctamente.
-                </p>
-                <p style="font-size: 0.95rem; color: #666;">
-                    Nos comunicaremos contigo vía <strong>WhatsApp</strong> para coordinar la entrega.
+            
+            <!-- Panel de Estado en Vivo del Pedido -->
+            <div id="thankyou-message" class="tracking-card">
+                <div class="tracking-header">
+                    <h3>🎉 ¡Pedido Confirmado con Éxito!</h3>
+                    <p>Tu orden ha sido registrada en nuestro sistema.</p>
+                    <div style="margin-top: 10px;">
+                        Número de Orden: <span class="order-id-badge" id="display-order-id">#FF-00000</span>
+                    </div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">✅ Compra Registrada</div>
+                        <div class="timeline-desc" id="display-order-time">Hoy a las --:--</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">🔄 En Proceso de Preparación</div>
+                        <div class="timeline-desc">Asignando paquete con el proveedor y courier de despacho.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">🚚 En Camino a la Dirección</div>
+                        <div class="timeline-desc">Recibirás un mensaje de WhatsApp cuando el repartidor esté cerca.</div>
+                    </div>
+                </div>
+
+                <p style="text-align: center; font-size: 0.9rem; color: #555; margin-top: 15px; background: #eef2f7; padding: 10px; border-radius: 6px;">
+                    📌 Dirección asignada: <strong id="display-order-address">---</strong>
                 </p>
             </div>
 
+            <!-- Formulario con Campos Ocultos de Registro -->
             <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-container">
                 <h3>Completa tus datos de envío</h3>
                 <p style="text-align: center; color: #666; font-size: 0.9rem;">
@@ -378,7 +466,11 @@
                 <label for="notes">Notas de entrega (Opcional)</label>
                 <input type="text" id="notes" name="Notas de Entrega" placeholder="Ej: Dejar en conserjería">
 
+                <!-- Campos Ocultos de Estado y Hora para Formspree -->
                 <input type="hidden" name="Producto" value="Audífonos Gamer Alto Rendimiento">
+                <input type="hidden" name="Estado_Pedido" value="Nuevo / En Proceso">
+                <input type="hidden" id="form-order-id" name="ID_Orden" value="">
+                <input type="hidden" id="form-order-time" name="Hora_Pedido" value="">
 
                 <button type="submit" id="submit-btn" class="btn-submit">Confirmar y Finalizar Compra</button>
             </form>
@@ -412,15 +504,26 @@
             formSection.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Intercepta el envío para procesar con AJAX sin redirigir a Formspree
+        // Intercepta el envío del formulario mediante AJAX
         var form = document.getElementById("checkout-form");
         form.addEventListener("submit", function(event) {
             event.preventDefault();
+
+            // Generar fecha, hora local y código de orden
+            var now = new Date();
+            var timeString = now.toLocaleDateString('es-CL') + ' ' + now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+            var randomOrderNum = '#FF-' + Math.floor(10000 + Math.random() * 90000);
+
+            // Asignar a campos ocultos para Formspree
+            document.getElementById('form-order-id').value = randomOrderNum;
+            document.getElementById('form-order-time').value = timeString;
+
             var btn = document.getElementById("submit-btn");
             btn.innerText = "Procesando pedido...";
             btn.disabled = true;
 
             var data = new FormData(event.target);
+
             fetch(event.target.action, {
                 method: form.method,
                 body: data,
@@ -429,6 +532,12 @@
                 }
             }).then(response => {
                 if (response.ok) {
+                    // Actualizar el módulo de seguimiento para el cliente
+                    document.getElementById('display-order-id').innerText = randomOrderNum;
+                    document.getElementById('display-order-time').innerText = 'Registrado hoy: ' + timeString;
+                    document.getElementById('display-order-address').innerText = document.getElementById('address').value + ', ' + document.getElementById('comuna').value;
+
+                    // Ocultar formulario y mostrar seguimiento en vivo
                     form.style.display = "none";
                     document.getElementById("thankyou-message").style.display = "block";
                 } else {
