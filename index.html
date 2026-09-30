@@ -120,26 +120,6 @@
             padding: 0 20px;
         }
 
-        /* Panel de Estadísticas en Vivo para el Dueño */
-        .live-stats-bar {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            color: white;
-            padding: 12px 20px;
-            border-radius: var(--radius);
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            font-size: 0.9rem;
-            box-shadow: var(--shadow);
-            border: 1px solid #334155;
-        }
-
-        .live-stat-item span {
-            color: #4ade80;
-            font-weight: 800;
-        }
-
         /* Banner de Confianza */
         .trust-bar {
             display: grid;
@@ -480,6 +460,39 @@
             border-radius: 6px;
         }
 
+        /* Estilo especial para el Panel Admin Secreto */
+        .admin-modal .modal-content {
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .admin-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .admin-stat-card {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .admin-stat-card h4 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .admin-stat-card p {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
         footer {
             background-color: var(--primary);
             color: #94a3b8;
@@ -487,6 +500,17 @@
             padding: 30px;
             margin-top: 60px;
             font-size: 0.88rem;
+        }
+
+        .admin-link {
+            background: none;
+            border: none;
+            color: #64748b;
+            font-size: 0.78rem;
+            cursor: pointer;
+            text-decoration: underline;
+            margin-top: 10px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -504,13 +528,6 @@
 
     <div class="container">
         
-        <!-- Panel de control de visitas en vivo (Visible solo para ti o simulación activa) -->
-        <div class="live-stats-bar">
-            <div class="live-stat-item">👁️ Visitas Totales: <span id="counter-total-views">1</span></div>
-            <div class="live-stat-item">🟢 En Línea Ahora: <span id="counter-online-users">1</span></div>
-            <div class="live-stat-item">👥 Registrados: <span id="counter-registered-users">0</span></div>
-        </div>
-
         <div class="trust-bar">
             <div class="trust-item">📦 Envíos Seguros a Todo Chile</div>
             <div class="trust-item">🔒 Pago Con Recaudación al Recibir</div>
@@ -662,24 +679,102 @@
         </div>
     </div>
 
+    <!-- Modal Panel Admin Privado (Protegido por Clave) -->
+    <div class="modal-overlay admin-modal" id="adminModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModal('adminModal')">&times;</button>
+            <h3 style="color:var(--primary); margin-bottom: 5px;">Panel de Administración Privado</h3>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom: 15px;">Estadísticas internas y usuarios registrados en tu tienda.</p>
+            
+            <div class="admin-stats-grid">
+                <div class="admin-stat-card">
+                    <h4>VISITAS TOTALES</h4>
+                    <p id="admin-total-views">0</p>
+                </div>
+                <div class="admin-stat-card">
+                    <h4>EN LÍNEA AHORA</h4>
+                    <p id="admin-online-users">1</p>
+                </div>
+                <div class="admin-stat-card">
+                    <h4>REGISTRADOS</h4>
+                    <p id="admin-registered-count">0</p>
+                </div>
+            </div>
+
+            <h4 style="font-size: 0.9rem; color:var(--primary); margin-top: 20px; margin-bottom: 8px;">Listado de Usuarios Registrados:</h4>
+            <div id="admin-users-list" style="max-height: 200px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; font-size: 0.85rem;">
+                <p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>
+            </div>
+            
+            <button onclick="cerrarModal('adminModal')" style="width:100%; margin-top:20px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Cerrar Panel</button>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Flipfinder Chile. Todos los derechos reservados.</p>
+        <button class="admin-link" onclick="solicitarAccesoAdmin()">🔒 Panel de Administración (Dueño)</button>
     </footer>
 
     <script>
         let carrito = [];
         let usuarioLogueado = null; 
 
-        // Sistema de Contador de Visitas en Vivo (LocalStorage de navegador + contador base)
+        // Sistema de Registro de Visitas y Usuarios (Privado / LocalStorage)
         window.addEventListener('DOMContentLoaded', () => {
             let vistas = localStorage.getItem('flipfinder_views');
             vistas = vistas ? parseInt(vistas) + 1 : 1;
             localStorage.setItem('flipfinder_views', vistas);
-            document.getElementById('counter-total-views').innerText = vistas;
 
-            let registrados = localStorage.getItem('flipfinder_reg_count') || 0;
-            document.getElementById('counter-registered-users').innerText = registrados;
+            // Cargar usuarios guardados en la memoria interna
+            cargarUsuariosAdminUI();
         });
+
+        function solicitarAccesoAdmin() {
+            let clave = prompt("Ingresa tu clave secreta de Administrador:");
+            // CLAVE ADMIN POR DEFECTO: "flipfinder2026" (puedes cambiarla aquí si lo deseas)
+            if (clave === "flipfinder2026") {
+                actualizarPanelAdmin();
+                abrirModal('adminModal');
+            } else if (clave !== null) {
+                alert("Clave incorrecta.");
+            }
+        }
+
+        function actualizarPanelAdmin() {
+            document.getElementById('admin-total-views').innerText = localStorage.getItem('flipfinder_views') || 1;
+            
+            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
+            document.getElementById('admin-registered-count').innerText = listaUsuarios.length;
+
+            let container = document.getElementById('admin-users-list');
+            if (listaUsuarios.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>';
+            } else {
+                let html = '<table style="width:100%; border-collapse: collapse;">';
+                html += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th></tr>';
+                listaUsuarios.forEach(u => {
+                    html += `<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 0;">${u.nombre}</td><td>${u.email}</td><td style="font-size:0.75rem; color:#64748b;">${u.fecha}</td></tr>`;
+                });
+                html += '</table>';
+                container.innerHTML = html;
+            }
+        }
+
+        function registrarUsuarioLocal(nombre, email) {
+            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
+            let fechaActual = new Date().toLocaleDateString('es-CL') + ' ' + new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+            
+            // Evitar duplicados por email
+            let existe = listaUsuarios.some(u => u.email === email);
+            if (!existe) {
+                listaUsuarios.push({ nombre: nombre, email: email, fecha: fechaActual });
+                localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
+            }
+        }
+
+        function cargarUsuariosAdminUI() {
+            // Inicializador silencioso
+        }
 
         function cambiarImagen(element) {
             var mainImage = document.getElementById('mainImage');
@@ -711,7 +806,10 @@
                 actualizarEstadoUsuario();
                 cerrarModal('registerModal');
 
-                // Envía el registro de usuario a tu correo mediante Formspree en segundo plano
+                // Guardar en el panel admin local privado
+                registrarUsuarioLocal(nombre, email);
+
+                // Notificar por Formspree a tu correo
                 document.getElementById('reg-hidden-name').value = nombre;
                 document.getElementById('reg-hidden-email').value = email;
                 let formData = new FormData(document.getElementById('form-registro-oculto'));
@@ -720,11 +818,6 @@
                     body: formData,
                     headers: { 'Accept': 'application/json' }
                 }).catch(err => console.log('Registro enviado'));
-
-                // Actualizar contador local de registrados
-                let regCount = parseInt(localStorage.getItem('flipfinder_reg_count') || 0) + 1;
-                localStorage.setItem('flipfinder_reg_count', regCount);
-                document.getElementById('counter-registered-users').innerText = regCount;
 
                 alert('¡Cuenta creada y sesión iniciada con éxito!');
             } else {
