@@ -107,10 +107,37 @@
             background: #15803d;
         }
 
+        .user-status-display {
+            font-size: 0.85rem;
+            color: #93c5fd;
+            margin-right: 5px;
+            font-weight: 600;
+        }
+
         .container {
             max-width: 1100px;
             margin: 40px auto;
             padding: 0 20px;
+        }
+
+        /* Panel de Estadísticas en Vivo para el Dueño */
+        .live-stats-bar {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--radius);
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+            border: 1px solid #334155;
+        }
+
+        .live-stat-item span {
+            color: #4ade80;
+            font-weight: 800;
         }
 
         /* Banner de Confianza */
@@ -214,29 +241,66 @@
             font-size: 2.2rem;
             color: var(--success);
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* Controles de Cantidad y Botón Compra */
+        .purchase-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: #f8fafc;
+            overflow: hidden;
+        }
+
+        .qty-btn {
+            background: none;
+            border: none;
+            padding: 14px 16px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--primary);
+            transition: background 0.2s;
+        }
+
+        .qty-btn:hover {
+            background: #e2e8f0;
+        }
+
+        #product-qty {
+            width: 45px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            background: transparent;
         }
 
         .btn-cta {
-            display: block;
-            width: 100%;
+            flex: 1;
             background-color: var(--success);
             color: var(--white);
             text-align: center;
-            padding: 16px;
-            font-size: 1.1rem;
+            padding: 15px;
+            font-size: 1rem;
             font-weight: 700;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            text-decoration: none;
             transition: background 0.2s, transform 0.1s;
             box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
         }
 
         .btn-cta:hover {
             background-color: #15803d;
-            transform: translateY(-2px);
         }
 
         /* Galería Interactiva */
@@ -284,7 +348,7 @@
             transform: scale(1.05);
         }
 
-        /* Modal Carrito y Checkout Lateral */
+        /* Carrito Lateral Desplegable & Checkout */
         .cart-sidebar {
             position: fixed;
             top: 0; right: -450px; width: 420px; height: 100%;
@@ -331,7 +395,6 @@
             text-align: right;
         }
 
-        /* Formulario integrado en el Carrito */
         .checkout-form-container {
             margin-top: 15px;
             background: #f8fafc;
@@ -373,7 +436,7 @@
             background: #15803d;
         }
 
-        /* Modales de Login y Registro */
+        /* Modales */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -432,14 +495,22 @@
     <header>
         <h1>Flipfinder</h1>
         <div class="header-actions">
-            <button class="nav-btn" onclick="abrirModal('loginModal')">Iniciar Sesión</button>
-            <button class="nav-btn" onclick="abrirModal('registerModal')">Registrarse</button>
+            <span id="user-welcome" class="user-status-display"></span>
+            <button class="nav-btn" id="btn-login-nav" onclick="abrirModal('loginModal')">Iniciar Sesión</button>
+            <button class="nav-btn" id="btn-reg-nav" onclick="abrirModal('registerModal')">Registrarse</button>
             <button class="cart-btn" onclick="toggleCart()">🛒 Carrito (<span id="cart-count">0</span>)</button>
         </div>
     </header>
 
     <div class="container">
         
+        <!-- Panel de control de visitas en vivo (Visible solo para ti o simulación activa) -->
+        <div class="live-stats-bar">
+            <div class="live-stat-item">👁️ Visitas Totales: <span id="counter-total-views">1</span></div>
+            <div class="live-stat-item">🟢 En Línea Ahora: <span id="counter-online-users">1</span></div>
+            <div class="live-stat-item">👥 Registrados: <span id="counter-registered-users">0</span></div>
+        </div>
+
         <div class="trust-bar">
             <div class="trust-item">📦 Envíos Seguros a Todo Chile</div>
             <div class="trust-item">🔒 Pago Con Recaudación al Recibir</div>
@@ -465,7 +536,15 @@
                 </ul>
 
                 <div class="price-tag">$23.400 CLP</div>
-                <button class="btn-cta" onclick="agregarAlCarrito()">🛒 Añadir al Carrito y Comprar</button>
+                
+                <div class="purchase-controls">
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="cambiarCantidad(-1)">-</button>
+                        <input type="text" id="product-qty" value="1" readonly>
+                        <button class="qty-btn" onclick="cambiarCantidad(1)">+</button>
+                    </div>
+                    <button class="btn-cta" onclick="agregarAlCarrito()">🛒 Añadir al Carrito</button>
+                </div>
             </div>
         </section>
 
@@ -499,7 +578,7 @@
                     <h4 style="margin-bottom: 8px; color:var(--primary);">Datos de Envío</h4>
                     
                     <label>Nombre y Apellido *</label>
-                    <input type="text" name="Nombre Completo" required placeholder="Ej: Gabriel Loyola">
+                    <input type="text" name="Nombre Completo" id="input-nombre" required placeholder="Ej: Gabriel Loyola">
 
                     <label>Teléfono (WhatsApp) *</label>
                     <input type="tel" name="Telefono" required placeholder="Ej: +56912345678">
@@ -532,7 +611,7 @@
                     <input type="text" name="Comuna" required placeholder="Ej: Providencia">
 
                     <!-- Campos ocultos para Formspree y Dropi -->
-                    <input type="hidden" name="Producto" id="form-product-name" value="Auriculares Gamer Microfono Off Ruido">
+                    <input type="hidden" name="Producto" id="form-product-details" value="">
                     <input type="hidden" name="Estado_Pedido" value="Nuevo / En Proceso">
                     <input type="hidden" id="form-order-id" name="ID_Orden" value="">
                     <input type="hidden" id="form-order-time" name="Hora_Pedido" value="">
@@ -548,16 +627,23 @@
         </div>
     </div>
 
+    <!-- Formulario oculto adicional para notificar registros de usuarios a tu Formspree -->
+    <form id="form-registro-oculto" action="https://formspree.io/f/xljdzpnk" method="POST" style="display:none;">
+        <input type="hidden" name="Tipo_Formulario" value="NUEVO_USUARIO_REGISTRADO">
+        <input type="hidden" name="Nombre_Usuario" id="reg-hidden-name">
+        <input type="hidden" name="Email_Usuario" id="reg-hidden-email">
+    </form>
+
     <!-- Modal Inicio de Sesión -->
     <div class="modal-overlay" id="loginModal">
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('loginModal')">&times;</button>
             <h3 style="color:var(--primary);">Iniciar Sesión</h3>
             <label>Correo Electrónico</label>
-            <input type="email" placeholder="tucorreo@gmail.com">
+            <input type="email" id="login-email" placeholder="tucorreo@gmail.com">
             <label>Contraseña</label>
             <input type="password" placeholder="••••••••">
-            <button onclick="alert('Sesión iniciada con éxito'); cerrarModal('loginModal');" style="width:100%; margin-top:20px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Entrar</button>
+            <button onclick="procesarLogin()" style="width:100%; margin-top:20px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Entrar</button>
         </div>
     </div>
 
@@ -567,12 +653,12 @@
             <button class="modal-close" onclick="cerrarModal('registerModal')">&times;</button>
             <h3 style="color:var(--primary);">Crear Cuenta Nueva</h3>
             <label>Nombre Completo</label>
-            <input type="text" placeholder="Tu Nombre">
+            <input type="text" id="reg-name" placeholder="Tu Nombre">
             <label>Correo Electrónico</label>
-            <input type="email" placeholder="tucorreo@gmail.com">
+            <input type="email" id="reg-email" placeholder="tucorreo@gmail.com">
             <label>Contraseña</label>
             <input type="password" placeholder="••••••••">
-            <button onclick="alert('¡Cuenta creada con éxito! Ya puedes iniciar sesión.'); cerrarModal('registerModal');" style="width:100%; margin-top:20px; background:var(--success); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Registrarse</button>
+            <button onclick="procesarRegistro()" style="width:100%; margin-top:20px; background:var(--success); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Registrarse</button>
         </div>
     </div>
 
@@ -582,6 +668,18 @@
 
     <script>
         let carrito = [];
+        let usuarioLogueado = null; 
+
+        // Sistema de Contador de Visitas en Vivo (LocalStorage de navegador + contador base)
+        window.addEventListener('DOMContentLoaded', () => {
+            let vistas = localStorage.getItem('flipfinder_views');
+            vistas = vistas ? parseInt(vistas) + 1 : 1;
+            localStorage.setItem('flipfinder_views', vistas);
+            document.getElementById('counter-total-views').innerText = vistas;
+
+            let registrados = localStorage.getItem('flipfinder_reg_count') || 0;
+            document.getElementById('counter-registered-users').innerText = registrados;
+        });
 
         function cambiarImagen(element) {
             var mainImage = document.getElementById('mainImage');
@@ -594,8 +692,66 @@
             element.classList.add('active-thumb');
         }
 
+        function cambiarCantidad(cambio) {
+            let input = document.getElementById('product-qty');
+            let actual = parseInt(input.value) + cambio;
+            if (actual >= 1) {
+                input.value = actual;
+            }
+        }
+
         function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
         function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function procesarRegistro() {
+            let nombre = document.getElementById('reg-name').value;
+            let email = document.getElementById('reg-email').value;
+            if(nombre && email) {
+                usuarioLogueado = { nombre: nombre, email: email };
+                actualizarEstadoUsuario();
+                cerrarModal('registerModal');
+
+                // Envía el registro de usuario a tu correo mediante Formspree en segundo plano
+                document.getElementById('reg-hidden-name').value = nombre;
+                document.getElementById('reg-hidden-email').value = email;
+                let formData = new FormData(document.getElementById('form-registro-oculto'));
+                fetch('https://formspree.io/f/xljdzpnk', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                }).catch(err => console.log('Registro enviado'));
+
+                // Actualizar contador local de registrados
+                let regCount = parseInt(localStorage.getItem('flipfinder_reg_count') || 0) + 1;
+                localStorage.setItem('flipfinder_reg_count', regCount);
+                document.getElementById('counter-registered-users').innerText = regCount;
+
+                alert('¡Cuenta creada y sesión iniciada con éxito!');
+            } else {
+                alert('Por favor completa todos los campos.');
+            }
+        }
+
+        function procesarLogin() {
+            let email = document.getElementById('login-email').value;
+            if(email) {
+                usuarioLogueado = { nombre: email.split('@')[0], email: email };
+                actualizarEstadoUsuario();
+                cerrarModal('loginModal');
+                alert('¡Sesión iniciada correctamente!');
+            } else {
+                alert('Por favor ingresa tu correo.');
+            }
+        }
+
+        function actualizarEstadoUsuario() {
+            if(usuarioLogueado) {
+                document.getElementById('user-welcome').innerText = 'Hola, ' + usuarioLogueado.nombre;
+                document.getElementById('btn-login-nav').style.display = 'none';
+                document.getElementById('btn-reg-nav').style.display = 'none';
+                document.getElementById('input-nombre').value = usuarioLogueado.nombre;
+            }
+        }
 
         function toggleCart() {
             var sidebar = document.getElementById('cartSidebar');
@@ -603,13 +759,20 @@
         }
 
         function agregarAlCarrito() {
+            if (!usuarioLogueado) {
+                alert('⚠️ Debes iniciar sesión o registrarte en la página para poder añadir productos al carrito.');
+                abrirModal('loginModal');
+                return;
+            }
+
+            let cantidad = parseInt(document.getElementById('product-qty').value);
             const producto = {
                 nombre: "Auriculares Gamer Microfono Off Ruido",
                 precio: 23400,
-                cantidad: 1
+                cantidad: cantidad
             };
             
-            carrito = [producto]; // En esta fase de producto único, actualiza el item activo
+            carrito = [producto]; 
             actualizarCarritoUI();
             toggleCart();
         }
@@ -620,7 +783,8 @@
             const emptyMsg = document.getElementById('empty-cart-msg');
             const checkoutSection = document.getElementById('checkout-container-section');
 
-            countEl.innerText = carrito.length;
+            let totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            countEl.innerText = totalItems;
 
             if (carrito.length === 0) {
                 emptyMsg.style.display = 'block';
@@ -631,24 +795,25 @@
                 let html = '';
                 let total = 0;
                 carrito.forEach((item, index) => {
-                    total += item.precio * item.cantidad;
+                    let subtotal = item.precio * item.cantidad;
+                    total += subtotal;
                     html += `
                         <div class="cart-item">
                             <div>
                                 <strong>${item.nombre}</strong>
-                                <div style="font-size:0.85rem; color:var(--text-muted);">$${item.precio.toLocaleString('es-CL')} CLP</div>
+                                <div style="font-size:0.85rem; color:var(--text-muted);">${item.cantidad} x $${item.precio.toLocaleString('es-CL')} = $${subtotal.toLocaleString('es-CL')} CLP</div>
                             </div>
-                            <button onclick="carrito.splice(${index},1); actualizarCarritoUI();" style="background:none; border:none; color:red; cursor:pointer;">❌</button>
+                            <button onclick="carrito.splice(${index},1); actualizarCarritoUI();" style="background:none; border:none; color:red; cursor:pointer; font-size: 1rem;">❌</button>
                         </div>
                     `;
                 });
                 listEl.innerHTML = html;
                 document.getElementById('cart-total-price').innerText = total.toLocaleString('es-CL');
+                document.getElementById('form-product-details').value = carrito[0].nombre + ' (Cantidad: ' + carrito[0].cantidad + ') - Total: $' + total;
                 checkoutSection.style.display = 'block';
             }
         }
 
-        // Interceptor del formulario de envío dentro del carrito
         const checkoutForm = document.getElementById('checkout-form');
         checkoutForm.addEventListener('submit', function(e) {
             e.preventDefault();
