@@ -42,13 +42,14 @@
             background-color: var(--bg-light);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Header Profesional */
+        /* Header Profesional y Responsivo */
         header {
             background-color: var(--primary);
             color: var(--white);
-            padding: 15px 30px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,10 +57,12 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             letter-spacing: 0.5px;
             font-weight: 800;
             background: linear-gradient(to right, #ffffff, #93c5fd);
@@ -69,17 +72,18 @@
 
         .header-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-btn {
             background: rgba(255, 255, 255, 0.1);
             color: var(--white);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 7px 14px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             cursor: pointer;
             transition: background 0.2s;
         }
@@ -92,9 +96,9 @@
             background: rgba(239, 68, 68, 0.2);
             color: #fca5a5;
             border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 5px 10px;
+            padding: 4px 8px;
             border-radius: 15px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
             transition: background 0.2s;
         }
@@ -107,14 +111,14 @@
             background: var(--success);
             color: var(--white);
             border: none;
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 20px;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             transition: background 0.2s;
         }
 
@@ -125,52 +129,63 @@
         .user-container {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .user-status-display {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             color: #93c5fd;
             font-weight: 600;
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .container {
             max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
-        /* Banner de Confianza */
+        /* Banner de Confianza Responsivo */
         .trust-bar {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-bottom: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 25px;
         }
 
         .trust-item {
             background: var(--white);
-            padding: 15px;
+            padding: 12px 10px;
             border-radius: var(--radius);
             text-align: center;
             box-shadow: var(--shadow);
-            font-size: 0.88rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: var(--text-main);
             border: 1px solid #e2e8f0;
         }
 
-        /* Hero / Sección Principal */
+        /* Hero / Sección Principal Adaptada a Móvil */
         .hero {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 25px;
             background: var(--white);
-            padding: 40px;
+            padding: 20px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr 1fr;
+                padding: 40px;
+            }
         }
 
         .hero-img-container {
@@ -179,8 +194,8 @@
 
         .main-product-img {
             width: 100%;
-            max-width: 420px;
-            height: 380px;
+            max-width: 380px;
+            height: 300px;
             object-fit: contain;
             border-radius: 10px;
             background-color: var(--white);
@@ -188,72 +203,98 @@
             transition: opacity 0.2s ease-in-out;
         }
 
+        @media (min-width: 768px) {
+            .main-product-img {
+                height: 380px;
+            }
+        }
+
         .badge-shipping {
             display: inline-block;
             background-color: #dcfce7;
             color: #15803d;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 20px;
-            font-size: 0.82rem;
+            font-size: 0.75rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             text-transform: uppercase;
         }
 
         .hero-details h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             line-height: 1.2;
         }
 
+        @media (min-width: 768px) {
+            .hero-details h2 {
+                font-size: 2rem;
+            }
+        }
+
         .courier-info {
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background-color: #f8fafc;
-            padding: 10px 14px;
+            padding: 10px 12px;
             border-radius: 8px;
             border-left: 4px solid var(--accent);
         }
 
         .hero-description {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             color: var(--text-muted);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .hero-features-list {
             list-style: none;
-            margin-bottom: 25px;
-            font-size: 0.9rem;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
             color: var(--text-main);
         }
 
         .hero-features-list li {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .price-tag {
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--success);
             font-weight: 800;
             margin-bottom: 15px;
         }
 
-        /* Controles de Cantidad y Botón Compra */
+        @media (min-width: 768px) {
+            .price-tag {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Controles de Cantidad y Botón Compra Adaptados */
         .purchase-controls {
             display: flex;
-            gap: 12px;
-            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        @media (min-width: 480px) {
+            .purchase-controls {
+                flex-direction: row;
+                align-items: center;
+            }
         }
 
         .quantity-selector {
             display: flex;
             align-items: center;
+            justify-content: center;
             border: 1px solid #cbd5e1;
             border-radius: 8px;
             background: #f8fafc;
@@ -263,7 +304,7 @@
         .qty-btn {
             background: none;
             border: none;
-            padding: 14px 16px;
+            padding: 12px 16px;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
@@ -285,12 +326,12 @@
         }
 
         .btn-cta {
-            flex: 1;
+            width: 100%;
             background-color: var(--success);
             color: var(--white);
             text-align: center;
-            padding: 15px;
-            font-size: 1rem;
+            padding: 14px;
+            font-size: 0.95rem;
             font-weight: 700;
             border: none;
             border-radius: 8px;
@@ -306,35 +347,35 @@
         /* Galería Interactiva */
         .gallery {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             background: var(--white);
-            padding: 30px;
+            padding: 20px;
             border-radius: var(--radius);
             box-shadow: var(--shadow);
         }
 
         .gallery h3 {
-            font-size: 1.4rem;
-            margin-bottom: 6px;
+            font-size: 1.2rem;
+            margin-bottom: 4px;
             color: var(--primary);
         }
 
         .gallery p {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 20px;
+            font-size: 0.82rem;
+            margin-bottom: 15px;
         }
 
         .gallery-grid {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .thumb-img {
-            width: 80px;
-            height: 80px;
+            width: 65px;
+            height: 65px;
             object-fit: cover;
             border-radius: 8px;
             border: 2px solid #e2e8f0;
@@ -343,15 +384,26 @@
             background-color: #fff;
         }
 
+        @media (min-width: 768px) {
+            .thumb-img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
         .thumb-img:hover, .thumb-img.active-thumb {
             border-color: var(--success);
             transform: scale(1.05);
         }
 
-        /* Carrito Lateral Desplegable & Checkout */
+        /* Carrito Lateral Desplegable Adaptado */
         .cart-sidebar {
             position: fixed;
-            top: 0; right: -450px; width: 420px; height: 100%;
+            top: 0; 
+            right: -100%; 
+            width: 100%; 
+            max-width: 420px; 
+            height: 100%;
             background: var(--white);
             box-shadow: -5px 0 25px rgba(0,0,0,0.15);
             z-index: 3000;
@@ -367,14 +419,14 @@
         .cart-header {
             background: var(--primary);
             color: var(--white);
-            padding: 20px;
+            padding: 18px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .cart-body {
-            padding: 20px;
+            padding: 15px 20px;
             overflow-y: auto;
             flex: 1;
         }
@@ -383,41 +435,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #e2e8f0;
+            gap: 10px;
         }
 
         .cart-total {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--success);
-            margin: 15px 0;
+            margin: 12px 0;
             text-align: right;
         }
 
         .checkout-form-container {
             margin-top: 15px;
             background: #f8fafc;
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             border: 1px solid #e2e8f0;
         }
 
         .checkout-form-container label {
             display: block;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 8px;
             color: var(--text-main);
         }
 
         .checkout-form-container input, .checkout-form-container select {
             width: 100%;
-            padding: 9px;
-            margin-top: 4px;
+            padding: 10px;
+            margin-top: 3px;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             font-size: 0.9rem;
+            background-color: #fff;
         }
 
         .btn-checkout-submit {
@@ -430,13 +484,14 @@
             border-radius: 6px;
             font-weight: 700;
             cursor: pointer;
+            font-size: 0.95rem;
         }
 
         .btn-checkout-submit:hover {
             background: #15803d;
         }
 
-        /* Modales */
+        /* Modales Adaptados */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -445,13 +500,14 @@
             z-index: 2000;
             justify-content: center;
             align-items: center;
+            padding: 15px;
         }
 
         .modal-content {
             background: var(--white);
-            padding: 30px;
+            padding: 20px;
             border-radius: var(--radius);
-            width: 90%;
+            width: 100%;
             max-width: 400px;
             box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
             position: relative;
@@ -459,56 +515,64 @@
 
         .modal-close {
             position: absolute;
-            top: 15px; right: 15px;
+            top: 12px; right: 15px;
             background: none; border: none;
-            font-size: 1.2rem; cursor: pointer;
+            font-size: 1.3rem; cursor: pointer;
             color: var(--text-muted);
         }
 
         .modal-content label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .modal-content input {
             width: 100%;
             padding: 10px;
-            margin-top: 5px;
+            margin-top: 4px;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
+            font-size: 0.9rem;
         }
 
-        /* Estilo especial para el Panel Admin Secreto */
+        /* Panel Admin Adaptado para Móvil y PC */
         .admin-modal .modal-content {
             max-width: 650px;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
+            padding: 20px 15px;
         }
 
         .admin-stats-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 20px 0;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        @media (min-width: 480px) {
+            .admin-stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .admin-stat-card {
             background: #f1f5f9;
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             text-align: center;
         }
 
         .admin-stat-card h4 {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .admin-stat-card p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--primary);
         }
@@ -517,19 +581,19 @@
             background-color: var(--primary);
             color: #94a3b8;
             text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-            font-size: 0.88rem;
+            padding: 25px 15px;
+            margin-top: 40px;
+            font-size: 0.82rem;
         }
 
         .admin-link {
             background: none;
             border: none;
-            color: #64748b;
+            color: #94a3b8;
             font-size: 0.78rem;
             cursor: pointer;
             text-decoration: underline;
-            margin-top: 10px;
+            margin-top: 12px;
             display: inline-block;
         }
     </style>
@@ -541,20 +605,20 @@
         <div class="header-actions">
             <div id="user-logged-box" class="user-container" style="display: none;">
                 <span id="user-welcome" class="user-status-display"></span>
-                <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+                <button class="logout-btn" onclick="cerrarSesion()">Salir</button>
             </div>
-            <button class="nav-btn" id="btn-login-nav" onclick="abrirModal('loginModal')">Iniciar Sesión</button>
-            <button class="nav-btn" id="btn-reg-nav" onclick="abrirModal('registerModal')">Registrarse</button>
-            <button class="cart-btn" onclick="toggleCart()">🛒 Carrito (<span id="cart-count">0</span>)</button>
+            <button class="nav-btn" id="btn-login-nav" onclick="abrirModal('loginModal')">Ingresar</button>
+            <button class="nav-btn" id="btn-reg-nav" onclick="abrirModal('registerModal')">Registro</button>
+            <button class="cart-btn" onclick="toggleCart()">🛒 (<span id="cart-count">0</span>)</button>
         </div>
     </header>
 
     <div class="container">
         
         <div class="trust-bar">
-            <div class="trust-item">📦 Envíos Seguros a Todo Chile</div>
-            <div class="trust-item">🔒 Pago Con Recaudación al Recibir</div>
-            <div class="trust-item">⚡ Despacho Rápido y Garantizado</div>
+            <div class="trust-item">📦 Envíos a Todo Chile</div>
+            <div class="trust-item">🔒 Pago Al Recibir</div>
+            <div class="trust-item">⚡ Despacho Rápido</div>
         </div>
 
         <section class="hero">
@@ -562,15 +626,15 @@
                 <img id="mainImage" class="main-product-img" src="img/foto1.jpg" alt="Auriculares Gamer Microfono Off Ruido">
             </div>
             <div class="hero-details">
-                <span class="badge-shipping">🚚 Producto Destacado de Temporada</span>
+                <span class="badge-shipping">🚚 Destacado de Temporada</span>
                 <h2>Auriculares Gamer Microfono Off Ruido</h2>
                 <div class="courier-info">
                     📦 Envíos asegurados por <strong>Starken, Blue Express, Veloces y Wiilog</strong>.
                 </div>
-                <p class="hero-description">¡Sumérgete en la experiencia de juego definitiva este verano! Disfruta de un rendimiento excepcional y comodidad absoluta.</p>
+                <p class="hero-description">¡Sumérgete en la experiencia de juego definitiva este verano! Rendimiento excepcional y comodidad absoluta.</p>
                 
                 <ul class="hero-features-list">
-                    <li>🎮 <strong>Compatibilidad:</strong> PS4, PS5, Xbox Series One, PC y laptop.</li>
+                    <li>🎮 <strong>Compatibilidad:</strong> PS4, PS5, Xbox, PC y laptop.</li>
                     <li>🎧 <strong>Audio Inmersivo:</strong> Sonido envolvente con graves profundos.</li>
                     <li>💡 <strong>Luz LED:</strong> Estilo RGB incorporado único y vibrante.</li>
                 </ul>
@@ -590,7 +654,7 @@
 
         <section class="gallery">
             <h3>Galería del Producto</h3>
-            <p>Haz clic en las miniaturas para ver cada detalle</p>
+            <p>Toca las miniaturas para ver cada detalle</p>
             <div class="gallery-grid">
                 <img class="thumb-img active-thumb" src="img/foto1.jpg" alt="Vista 1" onclick="cambiarImagen(this)">
                 <img class="thumb-img" src="img/foto2.jpg" alt="Vista 2" onclick="cambiarImagen(this)">
@@ -605,17 +669,17 @@
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h3>Tu Carrito de Compras</h3>
-            <button onclick="toggleCart()" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">&times;</button>
+            <button onclick="toggleCart()" style="background:none; border:none; color:white; font-size:1.4rem; cursor:pointer;">&times;</button>
         </div>
         <div class="cart-body" id="cartBody">
-            <p id="empty-cart-msg" style="color:var(--text-muted); text-align:center; margin-top:20px;">Tu carrito está vacío.</p>
+            <p id="empty-cart-msg" style="color:var(--text-muted); text-align:center; margin-top:30px;">Tu carrito está vacío.</p>
             <div id="cart-items-list"></div>
             
             <div id="checkout-container-section" style="display:none;">
                 <div class="cart-total">Total: $<span id="cart-total-price">0</span> CLP</div>
                 
                 <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-form-container">
-                    <h4 style="margin-bottom: 8px; color:var(--primary);">Datos de Envío</h4>
+                    <h4 style="margin-bottom: 8px; color:var(--primary); font-size:0.95rem;">Datos de Envío</h4>
                     
                     <label>Nombre y Apellido *</label>
                     <input type="text" name="Nombre Completo" id="input-nombre" required placeholder="Ej: Gabriel Loyola">
@@ -662,12 +726,12 @@
             
             <div id="success-order-msg" style="display:none; text-align:center; padding: 20px;">
                 <h3 style="color:var(--success); margin-bottom: 10px;">🎉 ¡Pedido Registrado!</h3>
-                <p style="font-size: 0.88rem; color:var(--text-muted);">Tu orden ha sido enviada correctamente. Guía de pedido: <strong id="assigned-order-id">#FF-000</strong></p>
+                <p style="font-size: 0.85rem; color:var(--text-muted);">Tu orden ha sido enviada correctamente. Guía: <strong id="assigned-order-id">#FF-000</strong></p>
             </div>
         </div>
     </div>
 
-    <!-- Formulario oculto adicional para notificar registros de usuarios a tu Formspree -->
+    <!-- Formulario oculto adicional para notificar registros de usuarios a Formspree -->
     <form id="form-registro-oculto" action="https://formspree.io/f/xljdzpnk" method="POST" style="display:none;">
         <input type="hidden" name="Tipo_Formulario" value="NUEVO_USUARIO_REGISTRADO">
         <input type="hidden" name="Nombre_Usuario" id="reg-hidden-name">
@@ -678,12 +742,12 @@
     <div class="modal-overlay" id="loginModal">
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('loginModal')">&times;</button>
-            <h3 style="color:var(--primary);">Iniciar Sesión</h3>
+            <h3 style="color:var(--primary); font-size: 1.15rem;">Iniciar Sesión</h3>
             <label>Correo Electrónico</label>
             <input type="email" id="login-email" placeholder="tucorreo@gmail.com">
             <label>Contraseña</label>
             <input type="password" placeholder="••••••••">
-            <button onclick="procesarLogin()" style="width:100%; margin-top:20px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Entrar</button>
+            <button onclick="procesarLogin()" style="width:100%; margin-top:18px; background:var(--primary); color:white; padding:11px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Entrar</button>
         </div>
     </div>
 
@@ -691,23 +755,23 @@
     <div class="modal-overlay" id="registerModal">
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('registerModal')">&times;</button>
-            <h3 style="color:var(--primary);">Crear Cuenta Nueva</h3>
+            <h3 style="color:var(--primary); font-size: 1.15rem;">Crear Cuenta Nueva</h3>
             <label>Nombre Completo</label>
             <input type="text" id="reg-name" placeholder="Tu Nombre">
             <label>Correo Electrónico</label>
             <input type="email" id="reg-email" placeholder="tucorreo@gmail.com">
             <label>Contraseña</label>
             <input type="password" placeholder="••••••••">
-            <button onclick="procesarRegistro()" style="width:100%; margin-top:20px; background:var(--success); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Registrarse</button>
+            <button onclick="procesarRegistro()" style="width:100%; margin-top:18px; background:var(--success); color:white; padding:11px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Registrarse</button>
         </div>
     </div>
 
-    <!-- Modal Panel Admin Privado (Protegido por Clave) -->
+    <!-- Modal Panel Admin Privado (Unificado y Adaptado para PC y Móvil) -->
     <div class="modal-overlay admin-modal" id="adminModal">
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('adminModal')">&times;</button>
-            <h3 style="color:var(--primary); margin-bottom: 5px;">Panel de Administración Privado</h3>
-            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom: 15px;">Estadísticas internas y gestión de usuarios registrados.</p>
+            <h3 style="color:var(--primary); margin-bottom: 4px; font-size: 1.15rem;">Panel de Administración</h3>
+            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom: 12px;">Gestión de estadísticas y usuarios registrados en la tienda.</p>
             
             <div class="admin-stats-grid">
                 <div class="admin-stat-card">
@@ -724,12 +788,12 @@
                 </div>
             </div>
 
-            <h4 style="font-size: 0.9rem; color:var(--primary); margin-top: 20px; margin-bottom: 8px;">Listado de Usuarios Registrados:</h4>
-            <div id="admin-users-list" style="max-height: 200px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px; font-size: 0.85rem;">
+            <h4 style="font-size: 0.85rem; color:var(--primary); margin-top: 15px; margin-bottom: 6px;">Listado de Usuarios Registrados:</h4>
+            <div id="admin-users-list" style="max-height: 200px; overflow-y: auto; overflow-x: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; font-size: 0.8rem;">
                 <p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>
             </div>
             
-            <button onclick="cerrarModal('adminModal')" style="width:100%; margin-top:20px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Cerrar Panel</button>
+            <button onclick="cerrarModal('adminModal')" style="width:100%; margin-top:15px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Cerrar Panel</button>
         </div>
     </div>
 
@@ -742,13 +806,11 @@
         let carrito = [];
         let usuarioLogueado = null; 
 
-        // Sistema de Registro de Visitas y Usuarios (Privado / LocalStorage)
         window.addEventListener('DOMContentLoaded', () => {
             let vistas = localStorage.getItem('flipfinder_views');
             vistas = vistas ? parseInt(vistas) + 1 : 1;
             localStorage.setItem('flipfinder_views', vistas);
 
-            // Revisar si había sesión activa guardada
             let sesionGuardada = localStorage.getItem('flipfinder_session');
             if (sesionGuardada) {
                 usuarioLogueado = JSON.parse(sesionGuardada);
@@ -776,14 +838,14 @@
             if (listaUsuarios.length === 0) {
                 container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>';
             } else {
-                let html = '<table style="width:100%; border-collapse: collapse;">';
+                let html = '<table style="width:100%; border-collapse: collapse; min-width: 320px;">';
                 html += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th><th style="text-align:center;">Acción</th></tr>';
                 listaUsuarios.forEach((u, index) => {
                     html += `<tr style="border-bottom:1px solid #e2e8f0;">
-                        <td style="padding:8px 0;">${u.nombre}</td>
-                        <td>${u.email}</td>
-                        <td style="font-size:0.75rem; color:#64748b;">${u.fecha}</td>
-                        <td style="text-align:center;"><button onclick="eliminarUsuario(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:1rem;" title="Eliminar usuario">❌</button></td>
+                        <td style="padding:6px 2px;">${u.nombre}</td>
+                        <td style="padding:6px 2px;">${u.email}</td>
+                        <td style="font-size:0.7rem; color:#64748b; padding:6px 2px;">${u.fecha}</td>
+                        <td style="text-align:center; padding:6px 2px;"><button onclick="eliminarUsuario(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:0.95rem;" title="Eliminar usuario">❌</button></td>
                     </tr>`;
                 });
                 html += '</table>';
@@ -795,11 +857,10 @@
             let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
             let usuarioEliminado = listaUsuarios[index];
             
-            if (confirm(`¿Estás seguro de eliminar al usuario ${usuarioEliminado.nombre} (${usuarioEliminado.email})?`)) {
+            if (confirm(`¿Estás seguro de eliminar a ${usuarioEliminado.nombre}?`)) {
                 listaUsuarios.splice(index, 1);
                 localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
                 
-                // Si el usuario eliminado era el que estaba en sesión actual, cerrar su sesión también
                 if (usuarioLogueado && usuarioLogueado.email === usuarioEliminado.email) {
                     cerrarSesion();
                 }
@@ -842,18 +903,16 @@
 
             let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
             
-            // Verificar si el correo ya existe
             let usuarioExistente = listaUsuarios.find(u => u.email === email);
             if (usuarioExistente) {
-                alert('⚠️ Este correo electrónico ya está registrado. Por favor, inicia sesión con él.');
+                alert('⚠️ Este correo ya está registrado. Inicia sesión con él.');
                 cerrarModal('registerModal');
                 abrirModal('loginModal');
                 document.getElementById('login-email').value = email;
                 return;
             }
 
-            // Registrar usuario único
-            let fechaActual = new Date().toLocaleDateString('es-CL') + ' ' + new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+            let fechaActual = new Date().toLocaleDateString('es-CL');
             listaUsuarios.push({ nombre: nombre, email: email, fecha: fechaActual });
             localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
 
@@ -862,7 +921,6 @@
             actualizarEstadoUsuario();
             cerrarModal('registerModal');
 
-            // Notificar por Formspree
             document.getElementById('reg-hidden-name').value = nombre;
             document.getElementById('reg-hidden-email').value = email;
             let formData = new FormData(document.getElementById('form-registro-oculto'));
@@ -872,7 +930,7 @@
                 headers: { 'Accept': 'application/json' }
             }).catch(err => console.log('Registro enviado'));
 
-            alert('¡Cuenta creada y sesión iniciada con éxito!');
+            alert('¡Cuenta creada e iniciada con éxito!');
         }
 
         function procesarLogin() {
@@ -920,7 +978,7 @@
 
         function agregarAlCarrito() {
             if (!usuarioLogueado) {
-                alert('⚠️ Debes iniciar sesión o registrarte en la página para poder añadir productos al carrito.');
+                alert('⚠️ Debes iniciar sesión o registrarte para añadir productos al carrito.');
                 abrirModal('loginModal');
                 return;
             }
@@ -960,10 +1018,10 @@
                     html += `
                         <div class="cart-item">
                             <div>
-                                <strong>${item.nombre}</strong>
-                                <div style="font-size:0.85rem; color:var(--text-muted);">${item.cantidad} x $${item.precio.toLocaleString('es-CL')} = $${subtotal.toLocaleString('es-CL')} CLP</div>
+                                <strong style="font-size:0.88rem;">${item.nombre}</strong>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">${item.cantidad} x $${item.precio.toLocaleString('es-CL')} = $${subtotal.toLocaleString('es-CL')} CLP</div>
                             </div>
-                            <button onclick="carrito.splice(${index},1); actualizarCarritoUI();" style="background:none; border:none; color:red; cursor:pointer; font-size: 1rem;">❌</button>
+                            <button onclick="carrito.splice(${index},1); actualizarCarritoUI();" style="background:none; border:none; color:red; cursor:pointer; font-size: 1.1rem;">❌</button>
                         </div>
                     `;
                 });
