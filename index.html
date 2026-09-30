@@ -88,6 +88,21 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        .logout-btn {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: rgba(239, 68, 68, 0.4);
+        }
+
         .cart-btn {
             background: var(--success);
             color: var(--white);
@@ -107,10 +122,15 @@
             background: #15803d;
         }
 
+        .user-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .user-status-display {
             font-size: 0.85rem;
             color: #93c5fd;
-            margin-right: 5px;
             font-weight: 600;
         }
 
@@ -519,7 +539,10 @@
     <header>
         <h1>Flipfinder</h1>
         <div class="header-actions">
-            <span id="user-welcome" class="user-status-display"></span>
+            <div id="user-logged-box" class="user-container" style="display: none;">
+                <span id="user-welcome" class="user-status-display"></span>
+                <button class="logout-btn" onclick="cerrarSesion()">Cerrar Sesión</button>
+            </div>
             <button class="nav-btn" id="btn-login-nav" onclick="abrirModal('loginModal')">Iniciar Sesión</button>
             <button class="nav-btn" id="btn-reg-nav" onclick="abrirModal('registerModal')">Registrarse</button>
             <button class="cart-btn" onclick="toggleCart()">🛒 Carrito (<span id="cart-count">0</span>)</button>
@@ -725,13 +748,16 @@
             vistas = vistas ? parseInt(vistas) + 1 : 1;
             localStorage.setItem('flipfinder_views', vistas);
 
-            // Cargar usuarios guardados en la memoria interna
-            cargarUsuariosAdminUI();
+            // Revisar si había sesión activa guardada
+            let sesionGuardada = localStorage.getItem('flipfinder_session');
+            if (sesionGuardada) {
+                usuarioLogueado = JSON.parse(sesionGuardada);
+                actualizarEstadoUsuario();
+            }
         });
 
         function solicitarAccesoAdmin() {
             let clave = prompt("Ingresa tu clave secreta de Administrador:");
-            // CLAVE ADMIN POR DEFECTO: "flipfinder2026" (puedes cambiarla aquí si lo deseas)
             if (clave === "flipfinder2026") {
                 actualizarPanelAdmin();
                 abrirModal('adminModal');
@@ -764,16 +790,11 @@
             let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
             let fechaActual = new Date().toLocaleDateString('es-CL') + ' ' + new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
             
-            // Evitar duplicados por email
             let existe = listaUsuarios.some(u => u.email === email);
             if (!existe) {
                 listaUsuarios.push({ nombre: nombre, email: email, fecha: fechaActual });
                 localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
             }
-        }
-
-        function cargarUsuariosAdminUI() {
-            // Inicializador silencioso
         }
 
         function cambiarImagen(element) {
@@ -803,13 +824,13 @@
             let email = document.getElementById('reg-email').value;
             if(nombre && email) {
                 usuarioLogueado = { nombre: nombre, email: email };
+                localStorage.setItem('flipfinder_session', JSON.stringify(usuarioLogueado));
                 actualizarEstadoUsuario();
                 cerrarModal('registerModal');
 
-                // Guardar en el panel admin local privado
                 registrarUsuarioLocal(nombre, email);
 
-                // Notificar por Formspree a tu correo
+                // Notificar por Formspree
                 document.getElementById('reg-hidden-name').value = nombre;
                 document.getElementById('reg-hidden-email').value = email;
                 let formData = new FormData(document.getElementById('form-registro-oculto'));
@@ -828,7 +849,9 @@
         function procesarLogin() {
             let email = document.getElementById('login-email').value;
             if(email) {
-                usuarioLogueado = { nombre: email.split('@')[0], email: email };
+                let nombreSimple = email.split('@')[0];
+                usuarioLogueado = { nombre: nombreSimple, email: email };
+                localStorage.setItem('flipfinder_session', JSON.stringify(usuarioLogueado));
                 actualizarEstadoUsuario();
                 cerrarModal('loginModal');
                 alert('¡Sesión iniciada correctamente!');
@@ -837,9 +860,20 @@
             }
         }
 
+        function cerrarSesion() {
+            usuarioLogueado = null;
+            localStorage.removeItem('flipfinder_session');
+            document.getElementById('user-logged-box').style.display = 'none';
+            document.getElementById('btn-login-nav').style.display = 'inline-block';
+            document.getElementById('btn-reg-nav').style.display = 'inline-block';
+            document.getElementById('input-nombre').value = '';
+            alert('Has cerrado sesión correctamente.');
+        }
+
         function actualizarEstadoUsuario() {
             if(usuarioLogueado) {
                 document.getElementById('user-welcome').innerText = 'Hola, ' + usuarioLogueado.nombre;
+                document.getElementById('user-logged-box').style.display = 'flex';
                 document.getElementById('btn-login-nav').style.display = 'none';
                 document.getElementById('btn-reg-nav').style.display = 'none';
                 document.getElementById('input-nombre').value = usuarioLogueado.nombre;
