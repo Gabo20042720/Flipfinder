@@ -482,7 +482,7 @@
 
         /* Estilo especial para el Panel Admin Secreto */
         .admin-modal .modal-content {
-            max-width: 600px;
+            max-width: 650px;
             max-height: 80vh;
             overflow-y: auto;
         }
@@ -707,7 +707,7 @@
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('adminModal')">&times;</button>
             <h3 style="color:var(--primary); margin-bottom: 5px;">Panel de Administración Privado</h3>
-            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom: 15px;">Estadísticas internas y usuarios registrados en tu tienda.</p>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom: 15px;">Estadísticas internas y gestión de usuarios registrados.</p>
             
             <div class="admin-stats-grid">
                 <div class="admin-stat-card">
@@ -777,12 +777,35 @@
                 container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>';
             } else {
                 let html = '<table style="width:100%; border-collapse: collapse;">';
-                html += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th></tr>';
-                listaUsuarios.forEach(u => {
-                    html += `<tr style="border-bottom:1px solid #e2e8f0;"><td style="padding:6px 0;">${u.nombre}</td><td>${u.email}</td><td style="font-size:0.75rem; color:#64748b;">${u.fecha}</td></tr>`;
+                html += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th><th style="text-align:center;">Acción</th></tr>';
+                listaUsuarios.forEach((u, index) => {
+                    html += `<tr style="border-bottom:1px solid #e2e8f0;">
+                        <td style="padding:8px 0;">${u.nombre}</td>
+                        <td>${u.email}</td>
+                        <td style="font-size:0.75rem; color:#64748b;">${u.fecha}</td>
+                        <td style="text-align:center;"><button onclick="eliminarUsuario(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:1rem;" title="Eliminar usuario">❌</button></td>
+                    </tr>`;
                 });
                 html += '</table>';
                 container.innerHTML = html;
+            }
+        }
+
+        function eliminarUsuario(index) {
+            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
+            let usuarioEliminado = listaUsuarios[index];
+            
+            if (confirm(`¿Estás seguro de eliminar al usuario ${usuarioEliminado.nombre} (${usuarioEliminado.email})?`)) {
+                listaUsuarios.splice(index, 1);
+                localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
+                
+                // Si el usuario eliminado era el que estaba en sesión actual, cerrar su sesión también
+                if (usuarioLogueado && usuarioLogueado.email === usuarioEliminado.email) {
+                    cerrarSesion();
+                }
+
+                actualizarPanelAdmin();
+                alert('Usuario eliminado correctamente.');
             }
         }
 
@@ -819,7 +842,7 @@
 
             let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
             
-            // Verificar si el correo ya existe para que sea único
+            // Verificar si el correo ya existe
             let usuarioExistente = listaUsuarios.find(u => u.email === email);
             if (usuarioExistente) {
                 alert('⚠️ Este correo electrónico ya está registrado. Por favor, inicia sesión con él.');
@@ -829,7 +852,7 @@
                 return;
             }
 
-            // Si es único, lo guardamos
+            // Registrar usuario único
             let fechaActual = new Date().toLocaleDateString('es-CL') + ' ' + new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
             listaUsuarios.push({ nombre: nombre, email: email, fecha: fechaActual });
             localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
