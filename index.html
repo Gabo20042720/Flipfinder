@@ -4,19 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO y Optimización General -->
-    <title>Flipfinder Chile - Tu Tienda Online de Oportunidades y Tecnología</title>
-    <meta name="description" content="Descubre las mejores ofertas, gadgets, tecnología y productos seleccionados en Flipfinder Chile. Compra fácil, segura y con envíos a todo el país.">
-    <meta name="keywords" content="flipfinder, flipfinder chile, tienda online chile, ofertas chile, productos exclusivos, compras online">
+    <!-- SEO y Optimización de Marca Forzada para Google -->
+    <title>Flipfinder Chile - Tienda Online de Auriculares Gamer y Tecnología</title>
+    <meta name="description" content="Compra online en Flipfinder Chile. Auriculares gamer de alto rendimiento, micrófonos con cancelación de ruido, envíos seguros a todo el país y pago al recibir.">
+    <meta name="keywords" content="flipfinder, flipfinder chile, tienda online chile, auriculares gamer, audifonos gamer chile, ofertas tecnologia">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://flipfinder.cl/">
 
-    <!-- Open Graph Redes Sociales -->
-    <meta property="og:title" content="Flipfinder Chile - Tu Tienda Online de Oportunidades">
-    <meta property="og:description" content="Descubre productos seleccionados y ofertas imperdibles con envíos directos a todo Chile.">
+    <!-- Open Graph Redes Sociales y Buscadores -->
+    <meta property="og:site_name" content="Flipfinder Chile">
+    <meta property="og:title" content="Flipfinder Chile - Auriculares Gamer y Tecnología">
+    <meta property="og:description" content="Descubre auriculares gamer de alto rendimiento, sonido envolvente y envíos directos a todo Chile con pago al recibir.">
     <meta property="og:image" content="https://flipfinder.cl/img/foto1.jpg">
     <meta property="og:url" content="https://flipfinder.cl/">
     <meta property="og:type" content="website">
+
+    <!-- Datos Estructurados Schema.org para corregir el buscador de Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Auriculares Gamer Microfono Off Ruido",
+      "image": "https://flipfinder.cl/img/foto1.jpg",
+      "description": "Auriculares gamer de alto rendimiento con micrófono de cancelación de ruido y luces LED RGB.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Flipfinder Chile"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://flipfinder.cl/",
+        "priceCurrency": "CLP",
+        "price": "23400",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
 
     <style>
         :root {
@@ -525,9 +548,7 @@
             font-size: 0.9rem;
         }
 
-        /* ==========================================
-           PANEL DEL DUEÑO INDEPENDIENTE (PC vs MÓVIL)
-           ========================================== */
+        /* Panel de Administración */
         .admin-modal .modal-content {
             max-width: 700px;
             max-height: 85vh;
@@ -561,11 +582,9 @@
             color: var(--primary);
         }
 
-        /* Estilo Panel PC (Tabla clásica) */
         .desktop-admin-view {
             display: block;
         }
-        /* Estilo Panel Móvil (Tarjetas independientes tipo App) */
         .mobile-admin-view {
             display: none;
         }
@@ -579,7 +598,6 @@
             }
         }
 
-        /* Diseño de Tarjetas para Móvil */
         .user-card-mobile {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
@@ -802,7 +820,7 @@
         </div>
     </div>
 
-    <!-- Modal Panel del Dueño (Con vistas separadas e independientes para PC y Móvil) -->
+    <!-- Modal Panel del Dueño -->
     <div class="modal-overlay admin-modal" id="adminModal">
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('adminModal')">&times;</button>
@@ -826,12 +844,10 @@
 
             <h4 style="font-size: 0.85rem; color:var(--primary); margin-top: 15px; margin-bottom: 8px;">Listado de Usuarios:</h4>
             
-            <!-- VISTA PC (Tabla clásica estructurada) -->
             <div id="desktop-users-container" class="desktop-admin-view" style="max-height: 220px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; font-size: 0.8rem;">
                 <p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>
             </div>
 
-            <!-- VISTA MÓVIL (Tarjetas independientes y adaptadas para celulares) -->
             <div id="mobile-users-container" class="mobile-admin-view" style="max-height: 240px; overflow-y: auto;">
                 <p style="color: var(--text-muted); text-align: center; font-size: 0.85rem;">No hay usuarios registrados aún.</p>
             </div>
@@ -884,15 +900,11 @@
                 desktopContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>';
                 mobileContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center; font-size: 0.85rem;">No hay usuarios registrados aún.</p>';
             } else {
-                // Generar contenido para PC (Tabla)
                 let htmlDesktop = '<table style="width:100%; border-collapse: collapse;">';
                 htmlDesktop += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th><th style="text-align:center;">Acción</th></tr>';
-                
-                // Generar contenido para Móvil (Tarjetas independientes)
                 let htmlMobile = '';
 
                 listaUsuarios.forEach((u, index) => {
-                    // Vista PC fila
                     htmlDesktop += `<tr style="border-bottom:1px solid #e2e8f0;">
                         <td style="padding:6px 4px;">${u.nombre}</td>
                         <td style="padding:6px 4px;">${u.email}</td>
@@ -900,7 +912,6 @@
                         <td style="text-align:center; padding:6px 4px;"><button onclick="eliminarUsuario(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:0.95rem;" title="Eliminar usuario">❌</button></td>
                     </tr>`;
 
-                    // Vista Móvil Tarjeta
                     htmlMobile += `<div class="user-card-mobile">
                         <div class="user-card-info">
                             <h5>👤 ${u.nombre}</h5>
