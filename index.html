@@ -168,7 +168,7 @@
             border: 1px solid #e2e8f0;
         }
 
-        /* Hero / Sección Principal Adaptada a Móvil */
+        /* Hero / Sección Principal */
         .hero {
             display: grid;
             grid-template-columns: 1fr;
@@ -277,7 +277,7 @@
             }
         }
 
-        /* Controles de Cantidad y Botón Compra Adaptados */
+        /* Controles de Compra */
         .purchase-controls {
             display: flex;
             flex-direction: column;
@@ -309,11 +309,6 @@
             font-weight: bold;
             cursor: pointer;
             color: var(--primary);
-            transition: background 0.2s;
-        }
-
-        .qty-btn:hover {
-            background: #e2e8f0;
         }
 
         #product-qty {
@@ -336,7 +331,6 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
             box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
         }
 
@@ -344,7 +338,7 @@
             background-color: #15803d;
         }
 
-        /* Galería Interactiva */
+        /* Galería */
         .gallery {
             text-align: center;
             margin-bottom: 30px;
@@ -380,8 +374,6 @@
             border-radius: 8px;
             border: 2px solid #e2e8f0;
             cursor: pointer;
-            transition: all 0.2s;
-            background-color: #fff;
         }
 
         @media (min-width: 768px) {
@@ -396,7 +388,7 @@
             transform: scale(1.05);
         }
 
-        /* Carrito Lateral Desplegable Adaptado */
+        /* Carrito Lateral */
         .cart-sidebar {
             position: fixed;
             top: 0; 
@@ -487,11 +479,7 @@
             font-size: 0.95rem;
         }
 
-        .btn-checkout-submit:hover {
-            background: #15803d;
-        }
-
-        /* Modales Adaptados */
+        /* Modales */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -537,9 +525,11 @@
             font-size: 0.9rem;
         }
 
-        /* Panel Admin Adaptado para Móvil y PC */
+        /* ==========================================
+           PANEL DEL DUEÑO INDEPENDIENTE (PC vs MÓVIL)
+           ========================================== */
         .admin-modal .modal-content {
-            max-width: 650px;
+            max-width: 700px;
             max-height: 85vh;
             overflow-y: auto;
             padding: 20px 15px;
@@ -547,15 +537,9 @@
 
         .admin-stats-grid {
             display: grid;
-            grid-template-columns: repeat(1, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin: 15px 0;
-        }
-
-        @media (min-width: 480px) {
-            .admin-stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
         }
 
         .admin-stat-card {
@@ -566,7 +550,7 @@
         }
 
         .admin-stat-card h4 {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-muted);
             margin-bottom: 4px;
         }
@@ -575,6 +559,58 @@
             font-size: 1.2rem;
             font-weight: 800;
             color: var(--primary);
+        }
+
+        /* Estilo Panel PC (Tabla clásica) */
+        .desktop-admin-view {
+            display: block;
+        }
+        /* Estilo Panel Móvil (Tarjetas independientes tipo App) */
+        .mobile-admin-view {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .desktop-admin-view {
+                display: none !important;
+            }
+            .mobile-admin-view {
+                display: block !important;
+            }
+        }
+
+        /* Diseño de Tarjetas para Móvil */
+        .user-card-mobile {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-card-info h5 {
+            font-size: 0.9rem;
+            color: var(--primary);
+            margin-bottom: 2px;
+        }
+
+        .user-card-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .btn-delete-mobile {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
         }
 
         footer {
@@ -766,20 +802,20 @@
         </div>
     </div>
 
-    <!-- Modal Panel Admin Privado (Unificado y Adaptado para PC y Móvil) -->
+    <!-- Modal Panel del Dueño (Con vistas separadas e independientes para PC y Móvil) -->
     <div class="modal-overlay admin-modal" id="adminModal">
         <div class="modal-content">
             <button class="modal-close" onclick="cerrarModal('adminModal')">&times;</button>
             <h3 style="color:var(--primary); margin-bottom: 4px; font-size: 1.15rem;">Panel de Administración</h3>
-            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom: 12px;">Gestión de estadísticas y usuarios registrados en la tienda.</p>
+            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom: 12px;">Estadísticas internas y control de cuentas registradas.</p>
             
             <div class="admin-stats-grid">
                 <div class="admin-stat-card">
-                    <h4>VISITAS TOTALES</h4>
+                    <h4>VISITAS</h4>
                     <p id="admin-total-views">0</p>
                 </div>
                 <div class="admin-stat-card">
-                    <h4>EN LÍNEA AHORA</h4>
+                    <h4>EN LÍNEA</h4>
                     <p id="admin-online-users">1</p>
                 </div>
                 <div class="admin-stat-card">
@@ -788,9 +824,16 @@
                 </div>
             </div>
 
-            <h4 style="font-size: 0.85rem; color:var(--primary); margin-top: 15px; margin-bottom: 6px;">Listado de Usuarios Registrados:</h4>
-            <div id="admin-users-list" style="max-height: 200px; overflow-y: auto; overflow-x: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; font-size: 0.8rem;">
+            <h4 style="font-size: 0.85rem; color:var(--primary); margin-top: 15px; margin-bottom: 8px;">Listado de Usuarios:</h4>
+            
+            <!-- VISTA PC (Tabla clásica estructurada) -->
+            <div id="desktop-users-container" class="desktop-admin-view" style="max-height: 220px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; font-size: 0.8rem;">
                 <p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>
+            </div>
+
+            <!-- VISTA MÓVIL (Tarjetas independientes y adaptadas para celulares) -->
+            <div id="mobile-users-container" class="mobile-admin-view" style="max-height: 240px; overflow-y: auto;">
+                <p style="color: var(--text-muted); text-align: center; font-size: 0.85rem;">No hay usuarios registrados aún.</p>
             </div>
             
             <button onclick="cerrarModal('adminModal')" style="width:100%; margin-top:15px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Cerrar Panel</button>
@@ -834,22 +877,43 @@
             let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
             document.getElementById('admin-registered-count').innerText = listaUsuarios.length;
 
-            let container = document.getElementById('admin-users-list');
+            let desktopContainer = document.getElementById('desktop-users-container');
+            let mobileContainer = document.getElementById('mobile-users-container');
+
             if (listaUsuarios.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>';
+                desktopContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>';
+                mobileContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center; font-size: 0.85rem;">No hay usuarios registrados aún.</p>';
             } else {
-                let html = '<table style="width:100%; border-collapse: collapse; min-width: 320px;">';
-                html += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th><th style="text-align:center;">Acción</th></tr>';
+                // Generar contenido para PC (Tabla)
+                let htmlDesktop = '<table style="width:100%; border-collapse: collapse;">';
+                htmlDesktop += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th><th style="text-align:center;">Acción</th></tr>';
+                
+                // Generar contenido para Móvil (Tarjetas independientes)
+                let htmlMobile = '';
+
                 listaUsuarios.forEach((u, index) => {
-                    html += `<tr style="border-bottom:1px solid #e2e8f0;">
-                        <td style="padding:6px 2px;">${u.nombre}</td>
-                        <td style="padding:6px 2px;">${u.email}</td>
-                        <td style="font-size:0.7rem; color:#64748b; padding:6px 2px;">${u.fecha}</td>
-                        <td style="text-align:center; padding:6px 2px;"><button onclick="eliminarUsuario(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:0.95rem;" title="Eliminar usuario">❌</button></td>
+                    // Vista PC fila
+                    htmlDesktop += `<tr style="border-bottom:1px solid #e2e8f0;">
+                        <td style="padding:6px 4px;">${u.nombre}</td>
+                        <td style="padding:6px 4px;">${u.email}</td>
+                        <td style="font-size:0.7rem; color:#64748b; padding:6px 4px;">${u.fecha}</td>
+                        <td style="text-align:center; padding:6px 4px;"><button onclick="eliminarUsuario(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:0.95rem;" title="Eliminar usuario">❌</button></td>
                     </tr>`;
+
+                    // Vista Móvil Tarjeta
+                    htmlMobile += `<div class="user-card-mobile">
+                        <div class="user-card-info">
+                            <h5>👤 ${u.nombre}</h5>
+                            <p>✉️ ${u.email}</p>
+                            <p style="font-size:0.7rem; color:#94a3b8;">📅 ${u.fecha}</p>
+                        </div>
+                        <button class="btn-delete-mobile" onclick="eliminarUsuario(${index})">Eliminar</button>
+                    </div>`;
                 });
-                html += '</table>';
-                container.innerHTML = html;
+
+                htmlDesktop += '</table>';
+                desktopContainer.innerHTML = htmlDesktop;
+                mobileContainer.innerHTML = htmlMobile;
             }
         }
 
@@ -857,7 +921,7 @@
             let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
             let usuarioEliminado = listaUsuarios[index];
             
-            if (confirm(`¿Estás seguro de eliminar a ${usuarioEliminado.nombre}?`)) {
+            if (confirm(`¿Estás seguro de eliminar al usuario ${usuarioEliminado.nombre}?`)) {
                 listaUsuarios.splice(index, 1);
                 localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
                 
