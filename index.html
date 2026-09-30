@@ -197,9 +197,9 @@
             color: #666;
         }
 
-        /* Formulario Desplegable */
+        /* Formulario Oculto hasta hacer clic en Comprar */
         .checkout-section {
-            display: none;
+            display: none; /* Inicialmente oculto */
             background-color: #ffffff;
             padding: 35px;
             border-radius: 12px;
@@ -210,7 +210,7 @@
         }
 
         .checkout-section.active {
-            display: block;
+            display: block !important; /* Se muestra con el clic */
         }
 
         .checkout-section h3 {
@@ -277,7 +277,7 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-img-container">
-                <img id="mainImage" class="main-product-img" src="img/producto-principal.jpg" alt="Audífonos Gamer High Performance" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80';">
+                <img id="mainImage" class="main-product-img" src="img/soporte1.jpeg" alt="Audífonos Gamer High Performance">
             </div>
             <div class="hero-details">
                 <span class="badge-shipping">🚚 Envíos a todo Chile</span>
@@ -291,15 +291,14 @@
             </div>
         </section>
 
-        <!-- Galería Interactiva con respaldo por si tus imágenes locales tienen otro nombre -->
+        <!-- Galería Interactiva apuntando a soporte1.jpeg, soporte2.jpeg, soporte3.jpeg -->
         <section class="gallery">
             <h3>Galería del Producto</h3>
             <p>Haz clic en cualquier imagen para ver los detalles arriba</p>
             <div class="gallery-grid">
-                <img class="thumb-img active-thumb" src="img/producto-principal.jpg" alt="Vista 1" onclick="cambiarImagen(this)" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&q=80';">
-                <img class="thumb-img" src="img/soporte1.jpeg" alt="Vista 2" onclick="cambiarImagen(this)" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&q=80';">
-                <img class="thumb-img" src="img/soporte2.jpeg" alt="Vista 3" onclick="cambiarImagen(this)" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1484704849700-f032a568e944?w=300&q=80';">
-                <img class="thumb-img" src="img/soporte3.jpg" alt="Vista 4" onclick="cambiarImagen(this)" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=300&q=80';">
+                <img class="thumb-img active-thumb" src="img/soporte1.jpeg" alt="Vista 1" onclick="cambiarImagen(this)">
+                <img class="thumb-img" src="img/soporte2.jpeg" alt="Vista 2" onclick="cambiarImagen(this)">
+                <img class="thumb-img" src="img/soporte3.jpeg" alt="Vista 3" onclick="cambiarImagen(this)">
             </div>
         </section>
 
@@ -396,7 +395,7 @@
             element.classList.add('active-thumb');
         }
 
-        // Función para desplegar el formulario
+        // Función para desplegar el formulario al hacer clic en Comprar
         function mostrarFormulario() {
             var formSection = document.getElementById('checkout-section');
             formSection.classList.add('active');
