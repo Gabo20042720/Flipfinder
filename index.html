@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipfinder - Audífonos Gamer</title>
+    <title>Flipfinder - Audífonos Gamer Alto Rendimiento</title>
     <style>
         * {
             box-sizing: border-box;
@@ -37,7 +37,7 @@
             padding: 0 20px;
         }
 
-        /* Hero / Visor del producto */
+        /* Hero / Visor del producto principal */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -128,7 +128,7 @@
             transform: translateY(-2px);
         }
 
-        /* Galería Interactiva */
+        /* Galería Interactiva con 5 miniaturas */
         .gallery {
             text-align: center;
             margin-bottom: 40px;
@@ -149,13 +149,13 @@
         .gallery-grid {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .thumb-img {
-            width: 90px;
-            height: 90px;
+            width: 85px;
+            height: 85px;
             object-fit: cover;
             border-radius: 8px;
             border: 2px solid #ddd;
@@ -197,9 +197,9 @@
             color: #666;
         }
 
-        /* Formulario Oculto hasta hacer clic en Comprar */
+        /* Formulario Oculto inicialmente */
         .checkout-section {
-            display: none; /* Inicialmente oculto */
+            display: none;
             background-color: #ffffff;
             padding: 35px;
             border-radius: 12px;
@@ -210,7 +210,7 @@
         }
 
         .checkout-section.active {
-            display: block !important; /* Se muestra con el clic */
+            display: block !important;
         }
 
         .checkout-section h3 {
@@ -277,11 +277,11 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-img-container">
-                <img id="mainImage" class="main-product-img" src="img/soporte1.jpeg" alt="Audífonos Gamer High Performance">
+                <img id="mainImage" class="main-product-img" src="img/foto1.jpg" alt="Audífonos Gamer Alto Rendimiento">
             </div>
             <div class="hero-details">
                 <span class="badge-shipping">🚚 Envíos a todo Chile</span>
-                <h2>Audífonos Gamer High Performance</h2>
+                <h2>Audífonos Gamer Alto Rendimiento</h2>
                 <div class="courier-logos">
                     📦 Despacho seguro por <strong>Starken, Blue Express, Veloces y Wiilog</strong>.
                 </div>
@@ -291,7 +291,7 @@
             </div>
         </section>
 
-        <!-- Galería Interactiva apuntando a soporte1.jpeg, soporte2.jpeg, soporte3.jpeg -->
+        <!-- Galería Interactiva apuntando a foto1.jpg hasta foto5.jpg -->
         <section class="gallery">
             <h3>Galería del Producto</h3>
             <p>Haz clic en cualquier imagen para ver los detalles arriba</p>
@@ -299,8 +299,8 @@
                 <img class="thumb-img active-thumb" src="img/foto1.jpg" alt="Vista 1" onclick="cambiarImagen(this)">
                 <img class="thumb-img" src="img/foto2.jpg" alt="Vista 2" onclick="cambiarImagen(this)">
                 <img class="thumb-img" src="img/foto3.jpg" alt="Vista 3" onclick="cambiarImagen(this)">
-                <img class="thumb-img" src="img/foto4.jpg" alt="Vista 3" onclick="cambiarImagen(this)">
-                <img class="thumb-img" src="img/foto5.jpg" alt="Vista 3" onclick="cambiarImagen(this)">
+                <img class="thumb-img" src="img/foto4.jpg" alt="Vista 4" onclick="cambiarImagen(this)">
+                <img class="thumb-img" src="img/foto5.jpg" alt="Vista 5" onclick="cambiarImagen(this)">
             </div>
         </section>
 
@@ -368,7 +368,7 @@
                 <label for="notes">Notas de entrega (Opcional)</label>
                 <input type="text" id="notes" name="Notas de Entrega" placeholder="Ej: Dejar en conserjería">
 
-                <input type="hidden" name="Producto" value="Audífonos Gamer High Performance">
+                <input type="hidden" name="Producto" value="Audífonos Gamer Alto Rendimiento">
 
                 <button type="submit" class="btn-submit">Confirmar y Finalizar Compra</button>
             </form>
@@ -380,7 +380,7 @@
     </footer>
 
     <script>
-        // Función para cambiar la imagen principal
+        // Función para cambiar la imagen principal al hacer clic en una miniatura
         function cambiarImagen(element) {
             var mainImage = document.getElementById('mainImage');
             mainImage.style.opacity = '0.3';
