@@ -67,19 +67,44 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .user-nav-btn {
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-btn {
             background: rgba(255, 255, 255, 0.1);
             color: var(--white);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 20px;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             cursor: pointer;
             transition: background 0.2s;
         }
 
-        .user-nav-btn:hover {
+        .nav-btn:hover {
             background: rgba(255, 255, 255, 0.2);
+        }
+
+        .cart-btn {
+            background: var(--success);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .cart-btn:hover {
+            background: #15803d;
         }
 
         .container {
@@ -88,7 +113,7 @@
             padding: 0 20px;
         }
 
-        /* Banner de Confianza / Trust Bar */
+        /* Banner de Confianza */
         .trust-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -108,7 +133,7 @@
             border: 1px solid #e2e8f0;
         }
 
-        /* Hero / Sección Principal del Producto */
+        /* Hero / Sección Principal */
         .hero {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -123,7 +148,6 @@
 
         .hero-img-container {
             text-align: center;
-            position: relative;
         }
 
         .main-product-img {
@@ -147,7 +171,6 @@
             font-weight: 700;
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .hero-details h2 {
@@ -259,150 +282,98 @@
         .thumb-img:hover, .thumb-img.active-thumb {
             border-color: var(--success);
             transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* Formulario de Checkout y Seguimiento */
-        .checkout-section {
-            display: none;
+        /* Modal Carrito y Checkout Lateral */
+        .cart-sidebar {
+            position: fixed;
+            top: 0; right: -450px; width: 420px; height: 100%;
             background: var(--white);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin: 40px auto;
-            max-width: 650px;
-            border-top: 6px solid var(--success);
+            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+            z-index: 3000;
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
 
-        .checkout-section.active {
-            display: block !important;
-            animation: fadeIn 0.3s ease-in-out;
+        .cart-sidebar.open {
+            right: 0;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .checkout-section h3 {
-            color: var(--primary);
-            text-align: center;
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-        }
-
-        .checkout-container label {
-            display: block;
-            margin-top: 16px;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: var(--text-main);
-            font-size: 0.92rem;
-        }
-
-        .checkout-container input[type="text"],
-        .checkout-container input[type="tel"],
-        .checkout-container select {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 1rem;
-            background: #f8fafc;
-            transition: border-color 0.2s;
-        }
-
-        .checkout-container input:focus, .checkout-container select:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: var(--white);
-        }
-
-        .btn-submit {
-            width: 100%;
-            margin-top: 25px;
-            padding: 16px;
-            background-color: var(--accent);
+        .cart-header {
+            background: var(--primary);
             color: var(--white);
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .btn-submit:hover {
-            background-color: #1d4ed8;
+        .cart-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
         }
 
-        /* Módulo de Seguimiento de Pedido */
-        .tracking-card {
-            display: none;
-            background: #fdfdfd;
-            border: 1px solid #e2e8f0;
-            padding: 25px;
-            border-radius: var(--radius);
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .tracking-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .tracking-header h3 {
+        .cart-total {
+            font-size: 1.2rem;
+            font-weight: 800;
             color: var(--success);
-            font-size: 1.6rem;
-            margin-bottom: 6px;
+            margin: 15px 0;
+            text-align: right;
         }
 
-        .order-id-badge {
-            display: inline-block;
-            background-color: #f1f5f9;
-            color: var(--primary);
-            padding: 4px 12px;
+        /* Formulario integrado en el Carrito */
+        .checkout-form-container {
+            margin-top: 15px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .checkout-form-container label {
+            display: block;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-top: 10px;
+            color: var(--text-main);
+        }
+
+        .checkout-form-container input, .checkout-form-container select {
+            width: 100%;
+            padding: 9px;
+            margin-top: 4px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .btn-checkout-submit {
+            width: 100%;
+            margin-top: 15px;
+            background: var(--success);
+            color: white;
+            padding: 12px;
+            border: none;
             border-radius: 6px;
             font-weight: 700;
-            font-size: 0.95rem;
-            border: 1px solid #cbd5e1;
+            cursor: pointer;
         }
 
-        .timeline {
-            position: relative;
-            margin: 25px 0 10px 15px;
-            border-left: 3px solid var(--success);
-            padding-left: 20px;
+        .btn-checkout-submit:hover {
+            background: #15803d;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -27px;
-            top: 3px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: var(--success);
-            border: 2px solid #fff;
-        }
-
-        .timeline-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: var(--primary);
-        }
-
-        .timeline-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Modal de Sesión / Cuenta */
+        /* Modales de Login y Registro */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -423,17 +394,27 @@
             position: relative;
         }
 
-        .modal-content h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-
         .modal-close {
             position: absolute;
             top: 15px; right: 15px;
             background: none; border: none;
             font-size: 1.2rem; cursor: pointer;
             color: var(--text-muted);
+        }
+
+        .modal-content label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
         }
 
         footer {
@@ -450,19 +431,21 @@
 
     <header>
         <h1>Flipfinder</h1>
-        <button class="user-nav-btn" onclick="abrirModalAuth()">👤 Mi Cuenta / Registrarse</button>
+        <div class="header-actions">
+            <button class="nav-btn" onclick="abrirModal('loginModal')">Iniciar Sesión</button>
+            <button class="nav-btn" onclick="abrirModal('registerModal')">Registrarse</button>
+            <button class="cart-btn" onclick="toggleCart()">🛒 Carrito (<span id="cart-count">0</span>)</button>
+        </div>
     </header>
 
     <div class="container">
         
-        <!-- Barra de Beneficios -->
         <div class="trust-bar">
             <div class="trust-item">📦 Envíos Seguros a Todo Chile</div>
             <div class="trust-item">🔒 Pago Con Recaudación al Recibir</div>
             <div class="trust-item">⚡ Despacho Rápido y Garantizado</div>
         </div>
 
-        <!-- Hero Section -->
         <section class="hero">
             <div class="hero-img-container">
                 <img id="mainImage" class="main-product-img" src="img/foto1.jpg" alt="Auriculares Gamer Microfono Off Ruido">
@@ -479,15 +462,13 @@
                     <li>🎮 <strong>Compatibilidad:</strong> PS4, PS5, Xbox Series One, PC y laptop.</li>
                     <li>🎧 <strong>Audio Inmersivo:</strong> Sonido envolvente con graves profundos.</li>
                     <li>💡 <strong>Luz LED:</strong> Estilo RGB incorporado único y vibrante.</li>
-                    <li>🎙 <strong>Micrófono:</strong> Cancelación de ruido para llamadas nítidas.</li>
                 </ul>
 
                 <div class="price-tag">$23.400 CLP</div>
-                <button class="btn-cta" onclick="mostrarFormulario()">🛒 Comprar Ahora</button>
+                <button class="btn-cta" onclick="agregarAlCarrito()">🛒 Añadir al Carrito y Comprar</button>
             </div>
         </section>
 
-        <!-- Galería Interactiva -->
         <section class="gallery">
             <h3>Galería del Producto</h3>
             <p>Haz clic en las miniaturas para ver cada detalle</p>
@@ -499,103 +480,99 @@
                 <img class="thumb-img" src="img/foto5.jpg" alt="Vista 5" onclick="cambiarImagen(this)">
             </div>
         </section>
-
-        <!-- Formulario y Estado del Pedido -->
-        <section class="checkout-section" id="checkout-section">
-            
-            <!-- Panel de Seguimiento (Oculto hasta completar compra) -->
-            <div id="thankyou-message" class="tracking-card">
-                <div class="tracking-header">
-                    <h3>🎉 ¡Pedido Registrado con Éxito!</h3>
-                    <p>Hemos procesado tu orden correctamente.</p>
-                    <div style="margin-top: 10px;">
-                        Número de Orden: <span class="order-id-badge" id="display-order-id">#FF-00000</span>
-                    </div>
-                </div>
-
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-title">✅ Pedido Recibido</div>
-                        <div class="timeline-desc" id="display-order-time">Hoy a las --:--</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-title">🔄 Preparación y Despacho</div>
-                        <div class="timeline-desc">Asignando guía de despacho con el courier en Chile.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-title">🚚 Entrega en Domicilio</div>
-                        <div class="timeline-desc">Recibirás tu paquete y cancelarás de forma segura.</div>
-                    </div>
-                </div>
-
-                <p style="text-align: center; font-size: 0.88rem; color: var(--text-muted); margin-top: 15px; background: #f1f5f9; padding: 10px; border-radius: 6px;">
-                    📌 Dirección de destino: <strong id="display-order-address">---</strong>
-                </p>
-            </div>
-
-            <!-- Formulario de Pedido -->
-            <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-container">
-                <h3>Completa tus datos de envío</h3>
-                <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 15px;">
-                    Envío directo a tu domicilio con pago seguro al recibir.
-                </p>
-
-                <label for="fullName">Nombre y Apellido *</label>
-                <input type="text" id="fullName" name="Nombre Completo" required placeholder="Ej: Gabriel Loyola">
-
-                <label for="phone">Teléfono (WhatsApp) *</label>
-                <input type="tel" id="phone" name="Telefono" required placeholder="Ej: +56912345678">
-
-                <label for="address">Dirección (Calle y Número / Depto) *</label>
-                <input type="text" id="address" name="Direccion" required placeholder="Ej: Av. Providencia 1234">
-
-                <label for="region">Región *</label>
-                <select id="region" name="Region" required>
-                    <option value="">Selecciona tu región</option>
-                    <option value="Región Metropolitana">Región Metropolitana</option>
-                    <option value="Valparaíso">Valparaíso</option>
-                    <option value="O'Higgins">O'Higgins</option>
-                    <option value="Biobío">Biobío</option>
-                    <option value="Araucanía">Araucanía</option>
-                    <option value="Antofagasta">Antofagasta</option>
-                    <option value="Coquimbo">Coquimbo</option>
-                    <option value="Los Lagos">Los Lagos</option>
-                    <option value="Maule">Maule</option>
-                    <option value="Tarapacá">Tarapacá</option>
-                    <option value="Atacama">Atacama</option>
-                    <option value="Aysén">Aysén</option>
-                    <option value="Magallanes">Magallanes</option>
-                    <option value="Arica y Parinacota">Arica y Parinacota</option>
-                    <option value="Los Ríos">Los Ríos</option>
-                    <option value="Ñuble">Ñuble</option>
-                </select>
-
-                <label for="comuna">Comuna *</label>
-                <input type="text" id="comuna" name="Comuna" required placeholder="Ej: Providencia">
-
-                <label for="notes">Notas de entrega (Opcional)</label>
-                <input type="text" id="notes" name="Notas de Entrega" placeholder="Ej: Dejar con conserje">
-
-                <!-- Campos ocultos técnicos para Formspree -->
-                <input type="hidden" name="Producto" value="Auriculares Gamer Microfono Off Ruido">
-                <input type="hidden" name="Estado_Pedido" value="Nuevo / En Proceso">
-                <input type="hidden" id="form-order-id" name="ID_Orden" value="">
-                <input type="hidden" id="form-order-time" name="Hora_Pedido" value="">
-
-                <button type="submit" id="submit-btn" class="btn-submit">Confirmar y Finalizar Compra</button>
-            </form>
-        </section>
     </div>
 
-    <!-- Modal Interactivo de Cuenta / Registro -->
-    <div class="modal-overlay" id="authModal">
+    <!-- Carrito Lateral Desplegable & Checkout -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito de Compras</h3>
+            <button onclick="toggleCart()" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">&times;</button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <p id="empty-cart-msg" style="color:var(--text-muted); text-align:center; margin-top:20px;">Tu carrito está vacío.</p>
+            <div id="cart-items-list"></div>
+            
+            <div id="checkout-container-section" style="display:none;">
+                <div class="cart-total">Total: $<span id="cart-total-price">0</span> CLP</div>
+                
+                <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-form-container">
+                    <h4 style="margin-bottom: 8px; color:var(--primary);">Datos de Envío</h4>
+                    
+                    <label>Nombre y Apellido *</label>
+                    <input type="text" name="Nombre Completo" required placeholder="Ej: Gabriel Loyola">
+
+                    <label>Teléfono (WhatsApp) *</label>
+                    <input type="tel" name="Telefono" required placeholder="Ej: +56912345678">
+
+                    <label>Dirección de Entrega *</label>
+                    <input type="text" name="Direccion" required placeholder="Ej: Av. Providencia 1234">
+
+                    <label>Región *</label>
+                    <select name="Region" required>
+                        <option value="">Selecciona tu región</option>
+                        <option value="Región Metropolitana">Región Metropolitana</option>
+                        <option value="Valparaíso">Valparaíso</option>
+                        <option value="O'Higgins">O'Higgins</option>
+                        <option value="Biobío">Biobío</option>
+                        <option value="Araucanía">Araucanía</option>
+                        <option value="Antofagasta">Antofagasta</option>
+                        <option value="Coquimbo">Coquimbo</option>
+                        <option value="Los Lagos">Los Lagos</option>
+                        <option value="Maule">Maule</option>
+                        <option value="Tarapacá">Tarapacá</option>
+                        <option value="Atacama">Atacama</option>
+                        <option value="Aysén">Aysén</option>
+                        <option value="Magallanes">Magallanes</option>
+                        <option value="Arica y Parinacota">Arica y Parinacota</option>
+                        <option value="Los Ríos">Los Ríos</option>
+                        <option value="Ñuble">Ñuble</option>
+                    </select>
+
+                    <label>Comuna *</label>
+                    <input type="text" name="Comuna" required placeholder="Ej: Providencia">
+
+                    <!-- Campos ocultos para Formspree y Dropi -->
+                    <input type="hidden" name="Producto" id="form-product-name" value="Auriculares Gamer Microfono Off Ruido">
+                    <input type="hidden" name="Estado_Pedido" value="Nuevo / En Proceso">
+                    <input type="hidden" id="form-order-id" name="ID_Orden" value="">
+                    <input type="hidden" id="form-order-time" name="Hora_Pedido" value="">
+
+                    <button type="submit" id="submit-btn" class="btn-checkout-submit">Registrar Pedido (Pago al Recibir)</button>
+                </form>
+            </div>
+            
+            <div id="success-order-msg" style="display:none; text-align:center; padding: 20px;">
+                <h3 style="color:var(--success); margin-bottom: 10px;">🎉 ¡Pedido Registrado!</h3>
+                <p style="font-size: 0.88rem; color:var(--text-muted);">Tu orden ha sido enviada correctamente. Guía de pedido: <strong id="assigned-order-id">#FF-000</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Inicio de Sesión -->
+    <div class="modal-overlay" id="loginModal">
         <div class="modal-content">
-            <button class="modal-close" onclick="cerrarModalAuth()">&times;</button>
-            <h3>Acceso de Clientes</h3>
-            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px;">Ingresa tu correo para ver el estado de tus compras anteriores en Flipfinder.</p>
-            <label style="font-size: 0.85rem; font-weight: 600;">Correo Electrónico</label>
-            <input type="text" id="clientEmail" placeholder="tucorreo@gmail.com" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 6px;">
-            <button onclick="simularLogin()" style="width: 100%; margin-top: 15px; background: var(--primary); color: white; padding: 10px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Ingresar / Consultar</button>
+            <button class="modal-close" onclick="cerrarModal('loginModal')">&times;</button>
+            <h3 style="color:var(--primary);">Iniciar Sesión</h3>
+            <label>Correo Electrónico</label>
+            <input type="email" placeholder="tucorreo@gmail.com">
+            <label>Contraseña</label>
+            <input type="password" placeholder="••••••••">
+            <button onclick="alert('Sesión iniciada con éxito'); cerrarModal('loginModal');" style="width:100%; margin-top:20px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Entrar</button>
+        </div>
+    </div>
+
+    <!-- Modal Registro -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModal('registerModal')">&times;</button>
+            <h3 style="color:var(--primary);">Crear Cuenta Nueva</h3>
+            <label>Nombre Completo</label>
+            <input type="text" placeholder="Tu Nombre">
+            <label>Correo Electrónico</label>
+            <input type="email" placeholder="tucorreo@gmail.com">
+            <label>Contraseña</label>
+            <input type="password" placeholder="••••••••">
+            <button onclick="alert('¡Cuenta creada con éxito! Ya puedes iniciar sesión.'); cerrarModal('registerModal');" style="width:100%; margin-top:20px; background:var(--success); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Registrarse</button>
         </div>
     </div>
 
@@ -604,6 +581,8 @@
     </footer>
 
     <script>
+        let carrito = [];
+
         function cambiarImagen(element) {
             var mainImage = document.getElementById('mainImage');
             mainImage.style.opacity = '0.3';
@@ -611,39 +590,68 @@
                 mainImage.src = element.src;
                 mainImage.style.opacity = '1';
             }, 150);
-
             document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
             element.classList.add('active-thumb');
         }
 
-        function mostrarFormulario() {
-            var formSection = document.getElementById('checkout-section');
-            formSection.classList.add('active');
-            formSection.scrollIntoView({ behavior: 'smooth' });
+        function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function toggleCart() {
+            var sidebar = document.getElementById('cartSidebar');
+            sidebar.classList.toggle('open');
         }
 
-        function abrirModalAuth() {
-            document.getElementById('authModal').style.display = 'flex';
+        function agregarAlCarrito() {
+            const producto = {
+                nombre: "Auriculares Gamer Microfono Off Ruido",
+                precio: 23400,
+                cantidad: 1
+            };
+            
+            carrito = [producto]; // En esta fase de producto único, actualiza el item activo
+            actualizarCarritoUI();
+            toggleCart();
         }
 
-        function cerrarModalAuth() {
-            document.getElementById('authModal').style.display = 'none';
-        }
+        function actualizarCarritoUI() {
+            const countEl = document.getElementById('cart-count');
+            const listEl = document.getElementById('cart-items-list');
+            const emptyMsg = document.getElementById('empty-cart-msg');
+            const checkoutSection = document.getElementById('checkout-container-section');
 
-        function simularLogin() {
-            var email = document.getElementById('clientEmail').value;
-            if(email.includes('@')) {
-                alert('¡Bienvenido! Sesión iniciada para: ' + email);
-                cerrarModalAuth();
+            countEl.innerText = carrito.length;
+
+            if (carrito.length === 0) {
+                emptyMsg.style.display = 'block';
+                listEl.innerHTML = '';
+                checkoutSection.style.display = 'none';
             } else {
-                alert('Por favor ingresa un correo electrónico válido.');
+                emptyMsg.style.display = 'none';
+                let html = '';
+                let total = 0;
+                carrito.forEach((item, index) => {
+                    total += item.precio * item.cantidad;
+                    html += `
+                        <div class="cart-item">
+                            <div>
+                                <strong>${item.nombre}</strong>
+                                <div style="font-size:0.85rem; color:var(--text-muted);">$${item.precio.toLocaleString('es-CL')} CLP</div>
+                            </div>
+                            <button onclick="carrito.splice(${index},1); actualizarCarritoUI();" style="background:none; border:none; color:red; cursor:pointer;">❌</button>
+                        </div>
+                    `;
+                });
+                listEl.innerHTML = html;
+                document.getElementById('cart-total-price').innerText = total.toLocaleString('es-CL');
+                checkoutSection.style.display = 'block';
             }
         }
 
-        // Interceptor del formulario para envío asíncrono y panel de seguimiento
-        var form = document.getElementById("checkout-form");
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
+        // Interceptor del formulario de envío dentro del carrito
+        const checkoutForm = document.getElementById('checkout-form');
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
 
             var now = new Date();
             var timeString = now.toLocaleDateString('es-CL') + ' ' + now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
@@ -652,32 +660,30 @@
             document.getElementById('form-order-id').value = randomOrderNum;
             document.getElementById('form-order-time').value = timeString;
 
-            var btn = document.getElementById("submit-btn");
-            btn.innerText = "Procesando pedido...";
+            var btn = document.getElementById('submit-btn');
+            btn.innerText = "Registrando pedido...";
             btn.disabled = true;
 
-            var data = new FormData(event.target);
+            var data = new FormData(checkoutForm);
 
-            fetch(event.target.action, {
-                method: form.method,
+            fetch(checkoutForm.action, {
+                method: checkoutForm.method,
                 body: data,
                 headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
-                    document.getElementById('display-order-id').innerText = randomOrderNum;
-                    document.getElementById('display-order-time').innerText = 'Registrado hoy: ' + timeString;
-                    document.getElementById('display-order-address').innerText = document.getElementById('address').value + ', ' + document.getElementById('comuna').value;
-
-                    form.style.display = "none";
-                    document.getElementById("thankyou-message").style.display = "block";
+                    document.getElementById('assigned-order-id').innerText = randomOrderNum;
+                    document.getElementById('checkout-container-section').style.display = 'none';
+                    document.getElementById('cart-items-list').style.display = 'none';
+                    document.getElementById('success-order-msg').style.display = 'block';
                 } else {
-                    alert("Ocurrió un error al procesar el pedido. Inténtalo de nuevo.");
-                    btn.innerText = "Confirmar y Finalizar Compra";
+                    alert("Hubo un error al registrar el pedido. Inténtalo de nuevo.");
+                    btn.innerText = "Registrar Pedido (Pago al Recibir)";
                     btn.disabled = false;
                 }
             }).catch(error => {
-                alert("Ocurrió un error de conexión.");
-                btn.innerText = "Confirmar y Finalizar Compra";
+                alert("Error de conexión.");
+                btn.innerText = "Registrar Pedido (Pago al Recibir)";
                 btn.disabled = false;
             });
         });
