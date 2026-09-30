@@ -97,7 +97,7 @@
         }
 
         .hero-details h2 {
-            font-size: 2.1rem;
+            font-size: 1.9rem;
             color: #111;
             margin-bottom: 12px;
         }
@@ -110,6 +110,23 @@
             padding: 8px 12px;
             border-radius: 6px;
             display: inline-block;
+        }
+
+        .hero-description {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .hero-features-list {
+            list-style: none;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .hero-features-list li {
+            margin-bottom: 6px;
         }
 
         .price-tag {
@@ -357,16 +374,25 @@
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-img-container">
-                <img id="mainImage" class="main-product-img" src="img/foto1.jpg" alt="Producto Destacado Flipfinder">
+                <img id="mainImage" class="main-product-img" src="img/foto1.jpg" alt="Auriculares Gamer Microfono Off Ruido">
             </div>
             <div class="hero-details">
                 <span class="badge-shipping">🚚 Envíos a todo Chile</span>
-                <h2>Audífonos Gamer Alto Rendimiento</h2>
+                <h2>Auriculares Gamer Microfono Off Ruido</h2>
                 <div class="courier-logos">
                     📦 Despacho seguro por <strong>Starken, Blue Express, Veloces y Wiilog</strong>.
                 </div>
-                <p>Aislamiento acústico de alta calidad, bajos profundos y micrófono envolvente integrado para streaming, llamadas y juegos online.</p>
-                <div class="price-tag">$19.990 CLP</div>
+                <p class="hero-description">¡Sumérgete en la experiencia de juego definitiva este verano! Experimenta el verano de una manera completamente nueva con nuestros Auriculares de Juego.</p>
+                
+                <ul class="hero-features-list">
+                    <li>🎮 <strong>Compatibilidad Versátil:</strong> PS4, PS5, Xbox Series One, PC y laptop.</li>
+                    <li>🎧 <strong>Audio Inmersivo:</strong> Sonido envolvente excepcional.</li>
+                    <li>💡 <strong>Luz LED:</strong> Luz LED RGB incorporada.</li>
+                    <li>🎙 <strong>Micrófono con Cancelación de Ruido:</strong> Comunicación nítida sin distracciones.</li>
+                    <li>🔌 <strong>Conector de Audio de 3.5 mm:</strong> Conectividad rápida y fácil.</li>
+                </ul>
+
+                <div class="price-tag">$23.400 CLP</div>
                 <button class="btn-cta" onclick="mostrarFormulario()">🛒 Comprar Ahora</button>
             </div>
         </section>
@@ -387,20 +413,20 @@
         <!-- Características -->
         <section class="features-grid">
             <div class="feature-card">
-                <h4>🎧 Sonido Envolvente</h4>
-                <p>Audio inmersivo con graves profundos para una experiencia completa.</p>
+                <h4>🎮 Compatibilidad Total</h4>
+                <p>Funciona sin problemas en consolas y computadoras.</p>
             </div>
             <div class="feature-card">
                 <h4>🎙 Micrófono Claro</h4>
-                <p>Cancelación pasiva de ruido para llamadas e interacciones fluidas.</p>
+                <p>Cancelación de ruido para partidas en línea óptimas.</p>
             </div>
             <div class="feature-card">
-                <h4>☁️️ Almohadillas Ergonómicas</h4>
-                <p>Diseñados para brindar máxima comodidad durante largas jornadas.</p>
+                <h4>💡 Luz LED RGB</h4>
+                <p>Estilo único y vibrante para tus sesiones de juego.</p>
             </div>
             <div class="feature-card">
-                <h4>🚚 Despacho Garantizado</h4>
-                <p>Entrega directa en tu domicilio a través de los principales couriers de Chile.</p>
+                <h4>🚚 Despacho a Domicilio</h4>
+                <p>Envíos seguros a todo Chile por couriers líderes.</p>
             </div>
         </section>
 
@@ -481,7 +507,7 @@
                 <input type="text" id="notes" name="Notas de Entrega" placeholder="Ej: Dejar en conserjería">
 
                 <!-- Campos Ocultos de Estado y Hora para Formspree -->
-                <input type="hidden" name="Producto" value="Audífonos Gamer Alto Rendimiento">
+                <input type="hidden" name="Producto" value="Auriculares Gamer Microfono Off Ruido">
                 <input type="hidden" name="Estado_Pedido" value="Nuevo / En Proceso">
                 <input type="hidden" id="form-order-id" name="ID_Orden" value="">
                 <input type="hidden" id="form-order-time" name="Hora_Pedido" value="">
@@ -518,17 +544,14 @@
             formSection.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Intercepta el envío del formulario mediante AJAX
         var form = document.getElementById("checkout-form");
         form.addEventListener("submit", function(event) {
             event.preventDefault();
 
-            // Generar fecha, hora local y código de orden
             var now = new Date();
             var timeString = now.toLocaleDateString('es-CL') + ' ' + now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
             var randomOrderNum = '#FF-' + Math.floor(10000 + Math.random() * 90000);
 
-            // Asignar a campos ocultos para Formspree
             document.getElementById('form-order-id').value = randomOrderNum;
             document.getElementById('form-order-time').value = timeString;
 
@@ -546,12 +569,10 @@
                 }
             }).then(response => {
                 if (response.ok) {
-                    // Actualizar el módulo de seguimiento para el cliente
                     document.getElementById('display-order-id').innerText = randomOrderNum;
                     document.getElementById('display-order-time').innerText = 'Registrado hoy: ' + timeString;
                     document.getElementById('display-order-address').innerText = document.getElementById('address').value + ', ' + document.getElementById('comuna').value;
 
-                    // Ocultar formulario y mostrar seguimiento en vivo
                     form.style.display = "none";
                     document.getElementById("thankyou-message").style.display = "block";
                 } else {
