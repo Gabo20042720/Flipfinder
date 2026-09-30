@@ -786,17 +786,6 @@
             }
         }
 
-        function registrarUsuarioLocal(nombre, email) {
-            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
-            let fechaActual = new Date().toLocaleDateString('es-CL') + ' ' + new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
-            
-            let existe = listaUsuarios.some(u => u.email === email);
-            if (!existe) {
-                listaUsuarios.push({ nombre: nombre, email: email, fecha: fechaActual });
-                localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
-            }
-        }
-
         function cambiarImagen(element) {
             var mainImage = document.getElementById('mainImage');
             mainImage.style.opacity = '0.3';
@@ -820,36 +809,57 @@
         function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
 
         function procesarRegistro() {
-            let nombre = document.getElementById('reg-name').value;
-            let email = document.getElementById('reg-email').value;
-            if(nombre && email) {
-                usuarioLogueado = { nombre: nombre, email: email };
-                localStorage.setItem('flipfinder_session', JSON.stringify(usuarioLogueado));
-                actualizarEstadoUsuario();
-                cerrarModal('registerModal');
-
-                registrarUsuarioLocal(nombre, email);
-
-                // Notificar por Formspree
-                document.getElementById('reg-hidden-name').value = nombre;
-                document.getElementById('reg-hidden-email').value = email;
-                let formData = new FormData(document.getElementById('form-registro-oculto'));
-                fetch('https://formspree.io/f/xljdzpnk', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                }).catch(err => console.log('Registro enviado'));
-
-                alert('¡Cuenta creada y sesión iniciada con éxito!');
-            } else {
+            let nombre = document.getElementById('reg-name').value.trim();
+            let email = document.getElementById('reg-email').value.trim().toLowerCase();
+            
+            if(!nombre || !email) {
                 alert('Por favor completa todos los campos.');
+                return;
             }
+
+            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
+            
+            // Verificar si el correo ya existe para que sea único
+            let usuarioExistente = listaUsuarios.find(u => u.email === email);
+            if (usuarioExistente) {
+                alert('⚠️ Este correo electrónico ya está registrado. Por favor, inicia sesión con él.');
+                cerrarModal('registerModal');
+                abrirModal('loginModal');
+                document.getElementById('login-email').value = email;
+                return;
+            }
+
+            // Si es único, lo guardamos
+            let fechaActual = new Date().toLocaleDateString('es-CL') + ' ' + new Date().toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+            listaUsuarios.push({ nombre: nombre, email: email, fecha: fechaActual });
+            localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
+
+            usuarioLogueado = { nombre: nombre, email: email };
+            localStorage.setItem('flipfinder_session', JSON.stringify(usuarioLogueado));
+            actualizarEstadoUsuario();
+            cerrarModal('registerModal');
+
+            // Notificar por Formspree
+            document.getElementById('reg-hidden-name').value = nombre;
+            document.getElementById('reg-hidden-email').value = email;
+            let formData = new FormData(document.getElementById('form-registro-oculto'));
+            fetch('https://formspree.io/f/xljdzpnk', {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).catch(err => console.log('Registro enviado'));
+
+            alert('¡Cuenta creada y sesión iniciada con éxito!');
         }
 
         function procesarLogin() {
-            let email = document.getElementById('login-email').value;
+            let email = document.getElementById('login-email').value.trim().toLowerCase();
             if(email) {
-                let nombreSimple = email.split('@')[0];
+                let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
+                let usuarioEncontrado = listaUsuarios.find(u => u.email === email);
+                
+                let nombreSimple = usuarioEncontrado ? usuarioEncontrado.nombre : email.split('@')[0];
+                
                 usuarioLogueado = { nombre: nombreSimple, email: email };
                 localStorage.setItem('flipfinder_session', JSON.stringify(usuarioLogueado));
                 actualizarEstadoUsuario();
