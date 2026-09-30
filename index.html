@@ -197,7 +197,7 @@
             color: #666;
         }
 
-        /* Formulario Oculto inicialmente */
+        /* Formulario Oculto */
         .checkout-section {
             display: none;
             background-color: #ffffff;
@@ -291,7 +291,7 @@
             </div>
         </section>
 
-        <!-- Galería Interactiva apuntando a foto1.jpg hasta foto5.jpg -->
+        <!-- Galería Interactiva (foto1.jpg a foto5.jpg) -->
         <section class="gallery">
             <h3>Galería del Producto</h3>
             <p>Haz clic en cualquier imagen para ver los detalles arriba</p>
@@ -315,7 +315,7 @@
                 <p>Cancelación pasiva de ruido para llamadas e interacciones fluidas.</p>
             </div>
             <div class="feature-card">
-                <h4>☁️ Almohadillas Ergonómicas</h4>
+                <h4>☁️️ Almohadillas Ergonómicas</h4>
                 <p>Diseñados para brindar máxima comodidad durante largas jornadas.</p>
             </div>
             <div class="feature-card">
@@ -324,8 +324,18 @@
             </div>
         </section>
 
-        <!-- Formulario Desplegable al hacer clic en Comprar -->
+        <!-- Formulario Desplegable + Mensaje de Confirmación Nativo -->
         <section class="checkout-section" id="checkout-section">
+            <div id="thankyou-message" style="display: none; text-align: center; padding: 20px;">
+                <h3 style="color: #28a745; font-size: 1.8rem; margin-bottom: 10px;">🎉 ¡Pedido Recibido con Éxito!</h3>
+                <p style="font-size: 1.1rem; color: #444; margin-bottom: 15px;">
+                    Muchas gracias por tu compra. Hemos registrado tus datos de envío correctamente.
+                </p>
+                <p style="font-size: 0.95rem; color: #666;">
+                    Nos comunicaremos contigo vía <strong>WhatsApp</strong> para coordinar la entrega.
+                </p>
+            </div>
+
             <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-container">
                 <h3>Completa tus datos de envío</h3>
                 <p style="text-align: center; color: #666; font-size: 0.9rem;">
@@ -370,7 +380,7 @@
 
                 <input type="hidden" name="Producto" value="Audífonos Gamer Alto Rendimiento">
 
-                <button type="submit" class="btn-submit">Confirmar y Finalizar Compra</button>
+                <button type="submit" id="submit-btn" class="btn-submit">Confirmar y Finalizar Compra</button>
             </form>
         </section>
     </div>
@@ -380,7 +390,6 @@
     </footer>
 
     <script>
-        // Función para cambiar la imagen principal al hacer clic en una miniatura
         function cambiarImagen(element) {
             var mainImage = document.getElementById('mainImage');
             mainImage.style.opacity = '0.3';
@@ -397,12 +406,42 @@
             element.classList.add('active-thumb');
         }
 
-        // Función para desplegar el formulario al hacer clic en Comprar
         function mostrarFormulario() {
             var formSection = document.getElementById('checkout-section');
             formSection.classList.add('active');
             formSection.scrollIntoView({ behavior: 'smooth' });
         }
+
+        // Intercepta el envío para procesar con AJAX sin redirigir a Formspree
+        var form = document.getElementById("checkout-form");
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+            var btn = document.getElementById("submit-btn");
+            btn.innerText = "Procesando pedido...";
+            btn.disabled = true;
+
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    form.style.display = "none";
+                    document.getElementById("thankyou-message").style.display = "block";
+                } else {
+                    alert("Ocurrió un error al procesar el pedido. Inténtalo de nuevo.");
+                    btn.innerText = "Confirmar y Finalizar Compra";
+                    btn.disabled = false;
+                }
+            }).catch(error => {
+                alert("Ocurrió un error de conexión.");
+                btn.innerText = "Confirmar y Finalizar Compra";
+                btn.disabled = false;
+            });
+        });
     </script>
 
 </body>
