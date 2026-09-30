@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO General y Optimización para Buscadores (Google) -->
-    <title>Flipfinder Chile - Tienda Online de Oportunidades y Productos Exclusivos</title>
-    <meta name="description" content="Descubre las mejores ofertas, gadgets, tecnología y productos seleccionados en Flipfinder Chile. Compra fácil, segura y con envíos a todo Chile.">
-    <meta name="keywords" content="flipfinder, flipfinder chile, tienda online chile, ofertas chile, productos exclusivos, compras online, e-commerce chile">
+    <!-- SEO y Optimización General -->
+    <title>Flipfinder Chile - Tu Tienda Online de Oportunidades y Tecnología</title>
+    <meta name="description" content="Descubre las mejores ofertas, gadgets, tecnología y productos seleccionados en Flipfinder Chile. Compra fácil, segura y con envíos a todo el país.">
+    <meta name="keywords" content="flipfinder, flipfinder chile, tienda online chile, ofertas chile, productos exclusivos, compras online">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://flipfinder.cl/">
 
-    <!-- Open Graph / Meta etiquetas para compartir en Redes Sociales (WhatsApp, Instagram, Facebook) -->
+    <!-- Open Graph Redes Sociales -->
     <meta property="og:title" content="Flipfinder Chile - Tu Tienda Online de Oportunidades">
     <meta property="og:description" content="Descubre productos seleccionados y ofertas imperdibles con envíos directos a todo Chile.">
     <meta property="og:image" content="https://flipfinder.cl/img/foto1.jpg">
@@ -19,6 +19,18 @@
     <meta property="og:type" content="website">
 
     <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #2563eb;
+            --success: #16a34a;
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --white: #ffffff;
+            --radius: 12px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -26,136 +38,181 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
             line-height: 1.6;
         }
 
+        /* Header Profesional */
         header {
-            background-color: #111111;
-            color: #ffffff;
-            padding: 18px 20px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         header h1 {
-            font-size: 1.8rem;
-            letter-spacing: 1px;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .user-nav-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .user-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .container {
-            max-width: 1000px;
-            margin: 30px auto;
+            max-width: 1100px;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* Hero / Visor del producto principal */
+        /* Banner de Confianza / Trust Bar */
+        .trust-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .trust-item {
+            background: var(--white);
+            padding: 15px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-main);
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Hero / Sección Principal del Producto */
         .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
-            background: #ffffff;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             margin-bottom: 40px;
+            align-items: center;
         }
 
         .hero-img-container {
-            flex: 1 1 400px;
             text-align: center;
+            position: relative;
         }
 
         .main-product-img {
             width: 100%;
             max-width: 420px;
-            height: 350px;
+            height: 380px;
             object-fit: contain;
             border-radius: 10px;
-            background-color: #fff;
-            border: 1px solid #eaeaea;
+            background-color: var(--white);
+            border: 1px solid #f1f5f9;
             transition: opacity 0.2s ease-in-out;
-        }
-
-        .hero-details {
-            flex: 1 1 400px;
         }
 
         .badge-shipping {
             display: inline-block;
-            background-color: #e8f5e9;
-            color: #2e7d32;
+            background-color: #dcfce7;
+            color: #15803d;
             padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.88rem;
-            font-weight: bold;
-            margin-bottom: 12px;
-            border: 1px solid #c8e6c9;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .hero-details h2 {
-            font-size: 1.9rem;
-            color: #111;
+            font-size: 2rem;
+            color: var(--primary);
             margin-bottom: 12px;
+            line-height: 1.2;
         }
 
-        .courier-logos {
+        .courier-info {
             font-size: 0.88rem;
-            color: #555;
+            color: var(--text-muted);
             margin-bottom: 15px;
-            background-color: #f8f9fa;
-            padding: 8px 12px;
-            border-radius: 6px;
-            display: inline-block;
+            background-color: #f8fafc;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
         }
 
         .hero-description {
             font-size: 0.95rem;
-            color: #555;
+            color: var(--text-muted);
             margin-bottom: 15px;
         }
 
         .hero-features-list {
             list-style: none;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 0.9rem;
-            color: #444;
+            color: var(--text-main);
         }
 
         .hero-features-list li {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .price-tag {
             font-size: 2.2rem;
-            color: #28a745;
-            font-weight: bold;
-            margin: 15px 0;
+            color: var(--success);
+            font-weight: 800;
+            margin-bottom: 20px;
         }
 
         .btn-cta {
-            display: inline-block;
+            display: block;
             width: 100%;
-            background-color: #28a745;
-            color: #ffffff;
+            background-color: var(--success);
+            color: var(--white);
             text-align: center;
             padding: 16px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 700;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
-            margin-top: 10px;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
         }
 
         .btn-cta:hover {
-            background-color: #218838;
+            background-color: #15803d;
             transform: translateY(-2px);
         }
 
@@ -163,17 +220,21 @@
         .gallery {
             text-align: center;
             margin-bottom: 40px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
 
         .gallery h3 {
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            color: #111;
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+            color: var(--primary);
         }
 
         .gallery p {
-            color: #666;
-            font-size: 0.92rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             margin-bottom: 20px;
         }
 
@@ -185,70 +246,49 @@
         }
 
         .thumb-img {
-            width: 85px;
-            height: 85px;
+            width: 80px;
+            height: 80px;
             object-fit: cover;
             border-radius: 8px;
-            border: 2px solid #ddd;
+            border: 2px solid #e2e8f0;
             cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-            transition: border-color 0.2s, transform 0.2s;
+            transition: all 0.2s;
             background-color: #fff;
         }
 
         .thumb-img:hover, .thumb-img.active-thumb {
-            border-color: #28a745;
+            border-color: var(--success);
             transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* Características */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .feature-card {
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        }
-
-        .feature-card h4 {
-            margin-bottom: 8px;
-            color: #111;
-            font-size: 1.05rem;
-        }
-
-        .feature-card p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Formulario Oculto & Estado de Seguimiento */
+        /* Formulario de Checkout y Seguimiento */
         .checkout-section {
             display: none;
-            background-color: #ffffff;
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             margin: 40px auto;
-            max-width: 600px;
-            border-top: 5px solid #28a745;
+            max-width: 650px;
+            border-top: 6px solid var(--success);
         }
 
         .checkout-section.active {
             display: block !important;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .checkout-section h3 {
-            color: #111;
+            color: var(--primary);
             text-align: center;
             font-size: 1.6rem;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .checkout-container label {
@@ -256,8 +296,8 @@
             margin-top: 16px;
             margin-bottom: 6px;
             font-weight: 600;
-            color: #444;
-            font-size: 0.95rem;
+            color: var(--text-main);
+            font-size: 0.92rem;
         }
 
         .checkout-container input[type="text"],
@@ -265,37 +305,44 @@
         .checkout-container select {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid #cccccc;
-            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
             font-size: 1rem;
+            background: #f8fafc;
+            transition: border-color 0.2s;
+        }
+
+        .checkout-container input:focus, .checkout-container select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--white);
         }
 
         .btn-submit {
             width: 100%;
             margin-top: 25px;
             padding: 16px;
-            background-color: #007bff;
-            color: #ffffff;
+            background-color: var(--accent);
+            color: var(--white);
             border: none;
             border-radius: 8px;
-            font-size: 1.15rem;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: background 0.2s;
         }
 
         .btn-submit:hover {
-            background-color: #0056b3;
+            background-color: #1d4ed8;
         }
 
-        /* Estilos del Módulo de Seguimiento de Pedido */
+        /* Módulo de Seguimiento de Pedido */
         .tracking-card {
             display: none;
-            text-align: left;
             background: #fdfdfd;
             border: 1px solid #e2e8f0;
             padding: 25px;
-            border-radius: 10px;
+            border-radius: var(--radius);
         }
 
         .tracking-header {
@@ -304,25 +351,26 @@
         }
 
         .tracking-header h3 {
-            color: #28a745;
-            font-size: 1.7rem;
-            margin-bottom: 8px;
+            color: var(--success);
+            font-size: 1.6rem;
+            margin-bottom: 6px;
         }
 
         .order-id-badge {
             display: inline-block;
-            background-color: #e2e8f0;
-            color: #334155;
+            background-color: #f1f5f9;
+            color: var(--primary);
             padding: 4px 12px;
             border-radius: 6px;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 0.95rem;
+            border: 1px solid #cbd5e1;
         }
 
         .timeline {
             position: relative;
             margin: 25px 0 10px 15px;
-            border-left: 3px solid #28a745;
+            border-left: 3px solid var(--success);
             padding-left: 20px;
         }
 
@@ -339,28 +387,62 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: #28a745;
+            background-color: var(--success);
             border: 2px solid #fff;
         }
 
         .timeline-title {
-            font-weight: bold;
-            font-size: 1rem;
-            color: #1e293b;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--primary);
         }
 
         .timeline-desc {
-            font-size: 0.88rem;
-            color: #64748b;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Modal de Sesión / Cuenta */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: none; border: none;
+            font-size: 1.2rem; cursor: pointer;
+            color: var(--text-muted);
         }
 
         footer {
-            background-color: #111111;
-            color: #888888;
+            background-color: var(--primary);
+            color: #94a3b8;
             text-align: center;
-            padding: 25px;
+            padding: 30px;
             margin-top: 60px;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
         }
     </style>
 </head>
@@ -368,28 +450,36 @@
 
     <header>
         <h1>Flipfinder</h1>
+        <button class="user-nav-btn" onclick="abrirModalAuth()">👤 Mi Cuenta / Registrarse</button>
     </header>
 
     <div class="container">
+        
+        <!-- Barra de Beneficios -->
+        <div class="trust-bar">
+            <div class="trust-item">📦 Envíos Seguros a Todo Chile</div>
+            <div class="trust-item">🔒 Pago Con Recaudación al Recibir</div>
+            <div class="trust-item">⚡ Despacho Rápido y Garantizado</div>
+        </div>
+
         <!-- Hero Section -->
         <section class="hero">
             <div class="hero-img-container">
                 <img id="mainImage" class="main-product-img" src="img/foto1.jpg" alt="Auriculares Gamer Microfono Off Ruido">
             </div>
             <div class="hero-details">
-                <span class="badge-shipping">🚚 Envíos a todo Chile</span>
+                <span class="badge-shipping">🚚 Producto Destacado de Temporada</span>
                 <h2>Auriculares Gamer Microfono Off Ruido</h2>
-                <div class="courier-logos">
-                    📦 Despacho seguro por <strong>Starken, Blue Express, Veloces y Wiilog</strong>.
+                <div class="courier-info">
+                    📦 Envíos asegurados por <strong>Starken, Blue Express, Veloces y Wiilog</strong>.
                 </div>
-                <p class="hero-description">¡Sumérgete en la experiencia de juego definitiva este verano! Experimenta el verano de una manera completamente nueva con nuestros Auriculares de Juego.</p>
+                <p class="hero-description">¡Sumérgete en la experiencia de juego definitiva este verano! Disfruta de un rendimiento excepcional y comodidad absoluta.</p>
                 
                 <ul class="hero-features-list">
-                    <li>🎮 <strong>Compatibilidad Versátil:</strong> PS4, PS5, Xbox Series One, PC y laptop.</li>
-                    <li>🎧 <strong>Audio Inmersivo:</strong> Sonido envolvente excepcional.</li>
-                    <li>💡 <strong>Luz LED:</strong> Luz LED RGB incorporada.</li>
-                    <li>🎙 <strong>Micrófono con Cancelación de Ruido:</strong> Comunicación nítida sin distracciones.</li>
-                    <li>🔌 <strong>Conector de Audio de 3.5 mm:</strong> Conectividad rápida y fácil.</li>
+                    <li>🎮 <strong>Compatibilidad:</strong> PS4, PS5, Xbox Series One, PC y laptop.</li>
+                    <li>🎧 <strong>Audio Inmersivo:</strong> Sonido envolvente con graves profundos.</li>
+                    <li>💡 <strong>Luz LED:</strong> Estilo RGB incorporado único y vibrante.</li>
+                    <li>🎙 <strong>Micrófono:</strong> Cancelación de ruido para llamadas nítidas.</li>
                 </ul>
 
                 <div class="price-tag">$23.400 CLP</div>
@@ -400,7 +490,7 @@
         <!-- Galería Interactiva -->
         <section class="gallery">
             <h3>Galería del Producto</h3>
-            <p>Haz clic en cualquier imagen para ver los detalles arriba</p>
+            <p>Haz clic en las miniaturas para ver cada detalle</p>
             <div class="gallery-grid">
                 <img class="thumb-img active-thumb" src="img/foto1.jpg" alt="Vista 1" onclick="cambiarImagen(this)">
                 <img class="thumb-img" src="img/foto2.jpg" alt="Vista 2" onclick="cambiarImagen(this)">
@@ -410,34 +500,14 @@
             </div>
         </section>
 
-        <!-- Características -->
-        <section class="features-grid">
-            <div class="feature-card">
-                <h4>🎮 Compatibilidad Total</h4>
-                <p>Funciona sin problemas en consolas y computadoras.</p>
-            </div>
-            <div class="feature-card">
-                <h4>🎙 Micrófono Claro</h4>
-                <p>Cancelación de ruido para partidas en línea óptimas.</p>
-            </div>
-            <div class="feature-card">
-                <h4>💡 Luz LED RGB</h4>
-                <p>Estilo único y vibrante para tus sesiones de juego.</p>
-            </div>
-            <div class="feature-card">
-                <h4>🚚 Despacho a Domicilio</h4>
-                <p>Envíos seguros a todo Chile por couriers líderes.</p>
-            </div>
-        </section>
-
-        <!-- Formulario Desplegable y Módulo de Seguimiento -->
+        <!-- Formulario y Estado del Pedido -->
         <section class="checkout-section" id="checkout-section">
             
-            <!-- Panel de Estado en Vivo del Pedido -->
+            <!-- Panel de Seguimiento (Oculto hasta completar compra) -->
             <div id="thankyou-message" class="tracking-card">
                 <div class="tracking-header">
-                    <h3>🎉 ¡Pedido Confirmado con Éxito!</h3>
-                    <p>Tu orden ha sido registrada en nuestro sistema.</p>
+                    <h3>🎉 ¡Pedido Registrado con Éxito!</h3>
+                    <p>Hemos procesado tu orden correctamente.</p>
                     <div style="margin-top: 10px;">
                         Número de Orden: <span class="order-id-badge" id="display-order-id">#FF-00000</span>
                     </div>
@@ -445,29 +515,29 @@
 
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="timeline-title">✅ Pedido Registrado</div>
+                        <div class="timeline-title">✅ Pedido Recibido</div>
                         <div class="timeline-desc" id="display-order-time">Hoy a las --:--</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-title">🔄 En Proceso de Preparación</div>
-                        <div class="timeline-desc">Asignando paquete con el proveedor y courier de despacho.</div>
+                        <div class="timeline-title">🔄 Preparación y Despacho</div>
+                        <div class="timeline-desc">Asignando guía de despacho con el courier en Chile.</div>
                     </div>
                     <div class="timeline-item">
-                        <div class="timeline-title">🚚 En Camino a la Dirección</div>
-                        <div class="timeline-desc">Recibirás un mensaje de WhatsApp cuando el repartidor esté cerca.</div>
+                        <div class="timeline-title">🚚 Entrega en Domicilio</div>
+                        <div class="timeline-desc">Recibirás tu paquete y cancelarás de forma segura.</div>
                     </div>
                 </div>
 
-                <p style="text-align: center; font-size: 0.9rem; color: #555; margin-top: 15px; background: #eef2f7; padding: 10px; border-radius: 6px;">
-                    📌 Dirección asignada: <strong id="display-order-address">---</strong>
+                <p style="text-align: center; font-size: 0.88rem; color: var(--text-muted); margin-top: 15px; background: #f1f5f9; padding: 10px; border-radius: 6px;">
+                    📌 Dirección de destino: <strong id="display-order-address">---</strong>
                 </p>
             </div>
 
-            <!-- Formulario con Campos Ocultos de Registro -->
+            <!-- Formulario de Pedido -->
             <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-container">
                 <h3>Completa tus datos de envío</h3>
-                <p style="text-align: center; color: #666; font-size: 0.9rem;">
-                    Ingresa tus datos de despacho para coordinar el envío de tu producto.
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 15px;">
+                    Envío directo a tu domicilio con pago seguro al recibir.
                 </p>
 
                 <label for="fullName">Nombre y Apellido *</label>
@@ -476,8 +546,8 @@
                 <label for="phone">Teléfono (WhatsApp) *</label>
                 <input type="tel" id="phone" name="Telefono" required placeholder="Ej: +56912345678">
 
-                <label for="address">Dirección de Entrega (Calle y Número) *</label>
-                <input type="text" id="address" name="Direccion" required placeholder="Ej: Av. Irarrázaval 1234, Dpto 402">
+                <label for="address">Dirección (Calle y Número / Depto) *</label>
+                <input type="text" id="address" name="Direccion" required placeholder="Ej: Av. Providencia 1234">
 
                 <label for="region">Región *</label>
                 <select id="region" name="Region" required>
@@ -501,12 +571,12 @@
                 </select>
 
                 <label for="comuna">Comuna *</label>
-                <input type="text" id="comuna" name="Comuna" required placeholder="Ej: Ñuñoa">
+                <input type="text" id="comuna" name="Comuna" required placeholder="Ej: Providencia">
 
                 <label for="notes">Notas de entrega (Opcional)</label>
-                <input type="text" id="notes" name="Notas de Entrega" placeholder="Ej: Dejar en conserjería">
+                <input type="text" id="notes" name="Notas de Entrega" placeholder="Ej: Dejar con conserje">
 
-                <!-- Campos Ocultos de Estado y Hora para Formspree -->
+                <!-- Campos ocultos técnicos para Formspree -->
                 <input type="hidden" name="Producto" value="Auriculares Gamer Microfono Off Ruido">
                 <input type="hidden" name="Estado_Pedido" value="Nuevo / En Proceso">
                 <input type="hidden" id="form-order-id" name="ID_Orden" value="">
@@ -517,24 +587,32 @@
         </section>
     </div>
 
+    <!-- Modal Interactivo de Cuenta / Registro -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModalAuth()">&times;</button>
+            <h3>Acceso de Clientes</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 15px;">Ingresa tu correo para ver el estado de tus compras anteriores en Flipfinder.</p>
+            <label style="font-size: 0.85rem; font-weight: 600;">Correo Electrónico</label>
+            <input type="text" id="clientEmail" placeholder="tucorreo@gmail.com" style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #cbd5e1; border-radius: 6px;">
+            <button onclick="simularLogin()" style="width: 100%; margin-top: 15px; background: var(--primary); color: white; padding: 10px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">Ingresar / Consultar</button>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Flipfinder. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Flipfinder Chile. Todos los derechos reservados.</p>
     </footer>
 
     <script>
         function cambiarImagen(element) {
             var mainImage = document.getElementById('mainImage');
             mainImage.style.opacity = '0.3';
-            
             setTimeout(function() {
                 mainImage.src = element.src;
                 mainImage.style.opacity = '1';
             }, 150);
 
-            var thumbs = document.querySelectorAll('.thumb-img');
-            thumbs.forEach(function(thumb) {
-                thumb.classList.remove('active-thumb');
-            });
+            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
             element.classList.add('active-thumb');
         }
 
@@ -544,6 +622,25 @@
             formSection.scrollIntoView({ behavior: 'smooth' });
         }
 
+        function abrirModalAuth() {
+            document.getElementById('authModal').style.display = 'flex';
+        }
+
+        function cerrarModalAuth() {
+            document.getElementById('authModal').style.display = 'none';
+        }
+
+        function simularLogin() {
+            var email = document.getElementById('clientEmail').value;
+            if(email.includes('@')) {
+                alert('¡Bienvenido! Sesión iniciada para: ' + email);
+                cerrarModalAuth();
+            } else {
+                alert('Por favor ingresa un correo electrónico válido.');
+            }
+        }
+
+        // Interceptor del formulario para envío asíncrono y panel de seguimiento
         var form = document.getElementById("checkout-form");
         form.addEventListener("submit", function(event) {
             event.preventDefault();
@@ -564,9 +661,7 @@
             fetch(event.target.action, {
                 method: form.method,
                 body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             }).then(response => {
                 if (response.ok) {
                     document.getElementById('display-order-id').innerText = randomOrderNum;
@@ -587,6 +682,5 @@
             });
         });
     </script>
-
 </body>
 </html>
