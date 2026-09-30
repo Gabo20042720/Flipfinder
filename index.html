@@ -3,536 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flipfinder | Soporte de Aluminio Plegable Premium</title>
+    <title>Flipfinder - Tienda Online</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --accent: #10b981;
-            --accent-glow: rgba(16, 185, 129, 0.2);
-            --danger: #ef4444;
-            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --radius-lg: 24px;
-            --shadow-subtle: 0 20px 40px -15px rgba(0, 0, 0, 0.07);
+        /* Estilos integrados para el formulario de Checkout COD */
+        .checkout-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 24px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--bg-gradient);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 20px 15px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* LOGO Y TÍTULO */
-        .brand-header {
-            font-size: 2rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(90deg, #1e293b, #2563eb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        /* CONTENEDOR PRINCIPAL */
-        .container {
-            max-width: 960px;
-            width: 100%;
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-
-        @media(min-width: 850px) {
-            .container {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* GALERÍA DE IMÁGENES */
-        .product-gallery {
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            background: #ffffff;
-            gap: 20px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        @media(min-width: 850px) {
-            .product-gallery {
-                border-bottom: none;
-                border-right: 1px solid var(--border-color);
-            }
-        }
-
-        .main-img-container {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            height: 340px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f8fafc;
-            border-radius: 16px;
-            padding: 15px;
-            overflow: hidden;
-        }
-
-        .main-img-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            opacity: 1;
-            transition: transform 0.3s ease, opacity 0.2s ease;
-        }
-
-        .main-img-container:hover img {
-            transform: scale(1.05);
-        }
-
-        .thumbnails {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-        }
-
-        .thumb {
-            width: 70px;
-            height: 70px;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            cursor: pointer;
-            object-fit: cover;
-            padding: 4px;
-            background: #ffffff;
-            transition: all 0.25s ease;
-        }
-
-        .thumb:hover, .thumb.active {
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-        }
-
-        /* DETALLES DE PRODUCTO Y FORMULARIO */
-        .product-details {
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .badge-tag {
-            background: #dbeafe;
-            color: var(--primary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            width: fit-content;
-            margin-bottom: 10px;
-            letter-spacing: 0.5px;
-        }
-
-        h1 {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.2;
-            margin-bottom: 10px;
-        }
-
-        .price-container {
-            margin: 15px 0 20px 0;
-            display: flex;
-            align-items: baseline;
-            gap: 12px;
-        }
-
-        .price {
-            font-size: 2.3rem;
-            font-weight: 900;
-            color: var(--accent);
-            letter-spacing: -0.5px;
-        }
-
-        .original-price {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .features {
-            list-style: none;
-            margin-bottom: 20px;
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 12px;
-        }
-
-        .features li {
-            margin-bottom: 8px;
-            font-size: 0.88rem;
-            display: flex;
-            align-items: center;
-            color: #334155;
-            font-weight: 500;
-        }
-
-        .features li:last-child {
-            margin-bottom: 0;
-        }
-
-        .features li::before {
-            content: "✓";
-            color: var(--accent);
-            font-weight: 900;
-            margin-right: 10px;
-            background: var(--accent-glow);
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-        }
-
-        /* FORMULARIO DE ENVÍO */
-        .shipping-form {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-        }
-
-        .shipping-form h3 {
-            font-size: 1rem;
-            color: var(--text-main);
-            margin-bottom: 15px;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #475569;
-            margin-bottom: 4px;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            font-size: 0.9rem;
-            outline: none;
-            background: #f8fafc;
-            transition: all 0.2s;
-        }
-
-        .form-group input:focus {
-            border-color: var(--primary);
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        @media(max-width: 480px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .btn-buy {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            text-align: center;
-            padding: 18px;
-            border-radius: 12px;
-            font-size: 1.15rem;
-            font-weight: 800;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
-            margin-top: 15px;
-            letter-spacing: 0.3px;
-        }
-
-        .btn-buy:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(37, 99, 235, 0.45);
-        }
-
-        .btn-buy:active {
-            transform: translateY(0);
-        }
-
-        .trust-badges {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 15px;
-            padding-top: 12px;
-            border-top: 1px dashed var(--border-color);
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-
-        /* ACCORDEÓN FAQ */
-        .faq-section {
-            max-width: 960px;
-            width: 100%;
-            margin-top: 25px;
-            background: var(--card-bg);
-            border-radius: var(--radius-lg);
-            padding: 30px 20px;
-            box-shadow: var(--shadow-subtle);
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            margin-bottom: 40px;
-        }
-
-        .faq-section h2 {
-            font-size: 1.4rem;
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--border-color);
-            padding: 14px 0;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-
-        .faq-question {
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--text-main);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, margin-top 0.3s ease;
-            font-size: 0.88rem;
-            color: var(--text-muted);
+        .checkout-section h3 {
             margin-top: 0;
+            color: #222222;
+            text-align: center;
+            font-size: 1.4rem;
         }
 
-        .faq-item.open .faq-answer {
-            max-height: 200px;
-            margin-top: 8px;
+        .checkout-container label {
+            display: block;
+            margin-top: 14px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333333;
+            font-size: 0.95rem;
         }
 
-        .faq-item.open .faq-question::after {
-            content: "−";
+        .checkout-container input[type="text"],
+        .checkout-container input[type="tel"],
+        .checkout-container select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
         }
 
-        .faq-question::after {
-            content: "+";
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--primary);
+        .checkout-container input:focus,
+        .checkout-container select:focus {
+            border-color: #0070f3;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 24px;
+            padding: 14px;
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838;
         }
     </style>
 </head>
 <body>
 
-    <!-- LOGO O MARCA -->
-    <div class="brand-header">FLIPFINDER</div>
+    <!-- Encabezado / Header -->
+    <header>
+        <h1>Flipfinder</h1>
+    </header>
 
-    <!-- TARJETA PRINCIPAL -->
-    <div class="container">
-        
-        <!-- GALERÍA DE IMÁGENES INTERACTIVA -->
-        <div class="product-gallery">
-            <div class="main-img-container">
-                <img id="main-image" src="img/soporte1.jpeg" alt="Soporte Ergonómico de Aluminio Plegable para Laptop">
-            </div>
-            <div class="thumbnails">
-                <img class="thumb active" src="img/soporte1.jpeg" alt="Vista frontal del soporte de aluminio" onclick="changeImage(this.src, this)">
-                <img class="thumb" src="img/soporte2.jpeg" alt="Vista lateral con laptop apoyada" onclick="changeImage(this.src, this)">
-                <img class="thumb" src="img/soporte3.jpeg" alt="Vista del soporte plegado en su funda" onclick="changeImage(this.src, this)">
-            </div>
-        </div>
+    <!-- Sección de Producto / Contenido Principal -->
+    <main>
+        <section class="product-details">
+            <h2>Audífonos Gamer / Producto Flipfinder</h2>
+            <p>Paga al recibir en la puerta de tu casa (Pago Contra Entrega en todo Chile).</p>
+        </section>
 
-        <!-- DETALLES DE PRODUCTO & FORMULARIO -->
-        <div class="product-details">
-            <div>
-                <div class="badge-tag">🔥 MÁS VENDIDO EN CHILE</div>
-                <h1>Soporte Ergonómico de Aluminio para Laptop</h1>
-                
-                <div class="price-container">
-                    <span class="price">$12.990 CLP</span>
-                    <span class="original-price">$19.990 CLP</span>
-                </div>
+        <!-- Formulario de Checkout Contra Entrega (COD) conectado a Formspree -->
+        <section class="checkout-section">
+            <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-container">
+                <h3>Completa tus datos para el envío</h3>
 
-                <!-- CARACTERÍSTICAS -->
-                <ul class="features">
-                    <li>Elevación ajustable en 7 niveles de altura.</li>
-                    <li>Compatible con MacBooks y Laptops hasta 15.6".</li>
-                    <li>Aleación de aluminio premium con almohadillas antideslizantes.</li>
-                    <li>Ultra liviano y plegable (Incluye funda de regalo).</li>
-                </ul>
+                <label for="fullName">Nombre y Apellido *</label>
+                <input type="text" id="fullName" name="Nombre Completo" required placeholder="Ej: Gabriel Loyola">
 
-                <!-- FORMULARIO DE DESPACHO -->
-                <form action="https://formspree.io/f/xljdzpnk" method="POST" class="shipping-form">
-                    <h3>📦 Datos para la Entrega</h3>
-                    
-                    <input type="hidden" name="_next" value="https://mpago.la/1cQorp1">
-                    <input type="hidden" name="_subject" value="¡Nuevo Pedido Flipfinder - Soporte Laptop!">
+                <label for="phone">Teléfono (WhatsApp) *</label>
+                <input type="tel" id="phone" name="Telefono" required placeholder="Ej: +56912345678">
 
-                    <div class="form-group">
-                        <label for="nombre">Nombre y Apellido</label>
-                        <input type="text" id="nombre" name="Nombre" placeholder="Ej: Juan Pérez" required>
-                    </div>
+                <label for="address">Dirección de Entrega (Calle y Número) *</label>
+                <input type="text" id="address" name="Direccion" required placeholder="Ej: Av. Irarrázaval 1234, Dpto 402">
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="rut">RUT</label>
-                            <input type="text" id="rut" name="RUT" placeholder="12.345.678-K" required oninput="formatRUT(this)">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Teléfono / WhatsApp</label>
-                            <input type="tel" id="telefono" name="Telefono" placeholder="+56 9 1234 5678" required>
-                        </div>
-                    </div>
+                <label for="region">Región *</label>
+                <select id="region" name="Region" required>
+                    <option value="">Selecciona tu región</option>
+                    <option value="Región Metropolitana">Región Metropolitana</option>
+                    <option value="Valparaíso">Valparaíso</option>
+                    <option value="O'Higgins">O'Higgins</option>
+                    <option value="Biobío">Biobío</option>
+                    <option value="Araucanía">Araucanía</option>
+                    <option value="Antofagasta">Antofagasta</option>
+                    <option value="Coquimbo">Coquimbo</option>
+                    <option value="Los Lagos">Los Lagos</option>
+                    <option value="Maule">Maule</option>
+                    <option value="Tarapacá">Tarapacá</option>
+                    <option value="Atacama">Atacama</option>
+                    <option value="Aysén">Aysén</option>
+                    <option value="Magallanes">Magallanes</option>
+                    <option value="Arica y Parinacota">Arica y Parinacota</option>
+                    <option value="Los Ríos">Los Ríos</option>
+                    <option value="Ñuble">Ñuble</option>
+                </select>
 
-                    <div class="form-group">
-                        <label for="direccion">Dirección de Entrega</label>
-                        <input type="text" id="direccion" name="Direccion" placeholder="Av. Providencia 1234, Dpto 502" required>
-                    </div>
+                <label for="comuna">Comuna *</label>
+                <input type="text" id="comuna" name="Comuna" required placeholder="Ej: Ñuñoa">
 
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="comuna">Comuna</label>
-                            <input type="text" id="comuna" name="Comuna" placeholder="Ej: Providencia" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="region">Región</label>
-                            <input type="text" id="region" name="Region" placeholder="Ej: Región Metropolitana" required>
-                        </div>
-                    </div>
+                <label for="notes">Notas o indicaciones adicionales (Opcional)</label>
+                <input type="text" id="notes" name="Notas de Entrega" placeholder="Ej: Timbre 402 / Dejar en conserjería">
 
-                    <button type="submit" class="btn-buy">Continuar al Pago — $12.990 CLP</button>
+                <!-- Campos de información interna para Dropi -->
+                <input type="hidden" name="Producto" value="Audífonos Gamer / Maxell">
+                <input type="hidden" name="Metodo de Pago" value="Pago Contra Entrega (COD)">
 
-                    <div class="trust-badges">
-                        <span>🔒 Pago Seguro</span>
-                        <span>🇨🇱 Envío a todo Chile</span>
-                        <span>🛡️ Garantía 30 días</span>
-                    </div>
-                </form>
+                <button type="submit" class="btn-submit">Realizar Pedido (Pago Contra Entrega)</button>
+            </form>
+        </section>
+    </main>
 
-            </div>
-        </div>
-    </div>
-
-    <!-- PREGUNTAS FRECUENTES -->
-    <div class="faq-section">
-        <h2>Preguntas Frecuentes 💬</h2>
-        
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Cuánto tarda el envío?</div>
-            <div class="faq-answer">Los despachos dentro de la Región Metropolitana tardan de 24 a 48 horas hábiles. Para regiones, el tiempo aproximado es de 2 a 4 días hábiles.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Es compatible con mi laptop?</div>
-            <div class="faq-answer">Sí, es compatible universalmente con laptops y MacBooks de cualquier marca que tengan un tamaño de pantalla entre 10 y 15.6 pulgadas.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Soporta el peso de una laptop pesada?</div>
-            <div class="faq-answer">¡Absolutamente! La estructura de aleación de aluminio soporta hasta 15 kg de peso sin tambalearse ni perder estabilidad.</div>
-        </div>
-    </div>
-
-    <!-- JAVASCRIPT INTERACTIVO -->
-    <script>
-        // CAMBIAR IMAGEN DE GALERÍA
-        function changeImage(src, element) {
-            const mainImage = document.getElementById('main-image');
-            mainImage.style.opacity = '0';
-            setTimeout(() => {
-                mainImage.src = src;
-                mainImage.style.opacity = '1';
-            }, 150);
-            
-            document.querySelectorAll('.thumb').forEach(thumb => thumb.classList.remove('active'));
-            element.classList.add('active');
-        }
-
-        // ACCORDEÓN FAQ
-        function toggleFaq(element) {
-            element.classList.toggle('open');
-        }
-
-        // FORMATO AUTOMÁTICO DE RUT CHILENO
-        function formatRUT(input) {
-            let valor = input.value.replace(/[^0-9kK]/g, '');
-            if (valor.length < 2) {
-                input.value = valor;
-                return;
-            }
-            let cuerpo = valor.slice(0, -1);
-            let dv = valor.slice(-1).toUpperCase();
-            cuerpo = cuerpo.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-            input.value = cuerpo + '-' + dv;
-        }
-    </script>
+    <footer>
+        <p>&copy; 2026 Flipfinder. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>
