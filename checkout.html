@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Checkout | FlipFinder</title>
 
   <style>
@@ -29,16 +30,16 @@
     }
 
     .logo {
-      font-size: 27px;
-      font-weight: 800;
       color: white;
       text-decoration: none;
+      font-size: 27px;
+      font-weight: 800;
     }
 
     .volver {
       color: white;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .contenedor {
@@ -63,7 +64,7 @@
       background: white;
       border-radius: 16px;
       padding: 28px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
     }
 
     .card h2 {
@@ -90,7 +91,6 @@
     label {
       font-size: 14px;
       font-weight: 700;
-      color: #333;
     }
 
     input,
@@ -183,11 +183,11 @@
 
     .boton-pago {
       width: 100%;
+      height: 52px;
       border: none;
+      border-radius: 10px;
       background: #16a34a;
       color: white;
-      height: 52px;
-      border-radius: 10px;
       font-size: 17px;
       font-weight: 800;
       cursor: pointer;
@@ -269,8 +269,12 @@
 
   <header>
     <a href="index.html" class="logo">FlipFinder</a>
-    <a href="index.html" class="volver">← Volver a la tienda</a>
+
+    <a href="index.html" class="volver">
+      ← Volver a la tienda
+    </a>
   </header>
+
 
   <main class="contenedor">
 
@@ -278,7 +282,10 @@
 
     <div class="checkout-grid">
 
-      <!-- DATOS DEL CLIENTE -->
+      <!-- ============================= -->
+      <!-- DATOS DE ENVÍO -->
+      <!-- ============================= -->
+
       <section class="card">
 
         <h2>Datos de envío</h2>
@@ -289,6 +296,7 @@
 
             <div class="campo">
               <label for="nombre">Nombre</label>
+
               <input
                 type="text"
                 id="nombre"
@@ -297,8 +305,10 @@
               >
             </div>
 
+
             <div class="campo">
               <label for="apellido">Apellido</label>
+
               <input
                 type="text"
                 id="apellido"
@@ -307,8 +317,10 @@
               >
             </div>
 
+
             <div class="campo">
               <label for="email">Correo electrónico</label>
+
               <input
                 type="email"
                 id="email"
@@ -317,8 +329,10 @@
               >
             </div>
 
+
             <div class="campo">
               <label for="telefono">Teléfono</label>
+
               <input
                 type="tel"
                 id="telefono"
@@ -327,8 +341,10 @@
               >
             </div>
 
+
             <div class="campo completo">
               <label for="direccion">Dirección</label>
+
               <input
                 type="text"
                 id="direccion"
@@ -337,8 +353,10 @@
               >
             </div>
 
+
             <div class="campo">
               <label for="comuna">Comuna</label>
+
               <input
                 type="text"
                 id="comuna"
@@ -347,10 +365,16 @@
               >
             </div>
 
+
             <div class="campo">
               <label for="region">Región</label>
+
               <select id="region" required>
-                <option value="">Selecciona una región</option>
+
+                <option value="">
+                  Selecciona una región
+                </option>
+
                 <option>Arica y Parinacota</option>
                 <option>Tarapacá</option>
                 <option>Antofagasta</option>
@@ -367,16 +391,23 @@
                 <option>Los Lagos</option>
                 <option>Aysén</option>
                 <option>Magallanes</option>
+
               </select>
             </div>
 
+
             <div class="campo completo">
-              <label for="referencia">Referencia de entrega</label>
+
+              <label for="referencia">
+                Referencia de entrega
+              </label>
+
               <input
                 type="text"
                 id="referencia"
                 placeholder="Ej: casa azul, portón negro..."
               >
+
             </div>
 
           </div>
@@ -386,10 +417,14 @@
       </section>
 
 
-      <!-- RESUMEN DEL PEDIDO -->
+      <!-- ============================= -->
+      <!-- RESUMEN -->
+      <!-- ============================= -->
+
       <section class="card">
 
         <h2>Resumen de tu pedido</h2>
+
 
         <div class="producto">
 
@@ -399,13 +434,18 @@
             onerror="this.style.display='none'"
           >
 
+
           <div class="producto-info">
 
-            <h3>Auriculares Gamer con Micrófono</h3>
+            <h3>
+              Auriculares Gamer con Micrófono
+            </h3>
+
 
             <div class="precio">
               $23.400
             </div>
+
 
             <div class="cantidad-box">
 
@@ -416,7 +456,11 @@
                 −
               </button>
 
-              <span id="cantidad">1</span>
+
+              <span id="cantidad">
+                1
+              </span>
+
 
               <button
                 type="button"
@@ -435,18 +479,41 @@
         <div class="resumen">
 
           <div class="fila">
-            <span>Subtotal</span>
-            <span id="subtotal">$23.400</span>
+
+            <span>
+              Subtotal
+            </span>
+
+            <span id="subtotal">
+              $23.400
+            </span>
+
           </div>
+
 
           <div class="fila">
-            <span>Envío</span>
-            <span>Gratis</span>
+
+            <span>
+              Envío
+            </span>
+
+            <span>
+              Gratis
+            </span>
+
           </div>
 
+
           <div class="fila total">
-            <span>Total</span>
-            <span id="total">$23.400</span>
+
+            <span>
+              Total
+            </span>
+
+            <span id="total">
+              $23.400
+            </span>
+
           </div>
 
         </div>
@@ -461,10 +528,12 @@
           Continuar con el pago
         </button>
 
+
         <div
           id="mensaje"
           class="mensaje"
         ></div>
+
 
         <div class="seguridad">
           🔒 Serás redirigido a Mercado Pago para realizar el pago de forma segura.
@@ -477,17 +546,19 @@
   </main>
 
 
-  <!-- Supabase -->
+  <!-- ================================= -->
+  <!-- SUPABASE -->
+  <!-- ================================= -->
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- Tu configuración existente -->
   <script src="./supabase-config.js"></script>
 
 
   <script>
 
     // ==========================================
-    // DATOS DEL PRODUCTO
+    // PRODUCTO
     // ==========================================
 
     const PRECIO = 23400;
@@ -496,12 +567,15 @@
 
 
     // ==========================================
-    // LEER CANTIDAD DESDE LA URL
+    // LEER CANTIDAD DE LA URL
     // ==========================================
 
-    const parametros = new URLSearchParams(window.location.search);
+    const parametros =
+      new URLSearchParams(window.location.search);
 
-    const cantidadURL = Number(parametros.get("cantidad"));
+    const cantidadURL =
+      Number(parametros.get("cantidad"));
+
 
     if (
       Number.isInteger(cantidadURL) &&
@@ -513,15 +587,17 @@
 
 
     // ==========================================
-    // FORMATO DE PESOS CHILENOS
+    // FORMATO CLP
     // ==========================================
 
     function formatoCLP(numero) {
+
       return new Intl.NumberFormat("es-CL", {
         style: "currency",
         currency: "CLP",
         maximumFractionDigits: 0
       }).format(numero);
+
     }
 
 
@@ -531,15 +607,21 @@
 
     function actualizarResumen() {
 
-      const subtotal = PRECIO * cantidad;
+      const subtotal =
+        PRECIO * cantidad;
 
-      document.getElementById("cantidad").textContent = cantidad;
 
-      document.getElementById("subtotal").textContent =
-        formatoCLP(subtotal);
+      document.getElementById("cantidad")
+        .textContent = cantidad;
 
-      document.getElementById("total").textContent =
-        formatoCLP(subtotal);
+
+      document.getElementById("subtotal")
+        .textContent = formatoCLP(subtotal);
+
+
+      document.getElementById("total")
+        .textContent = formatoCLP(subtotal);
+
     }
 
 
@@ -551,20 +633,25 @@
 
       cantidad += valor;
 
+
       if (cantidad < 1) {
         cantidad = 1;
       }
 
+
       if (cantidad > 20) {
         cantidad = 20;
       }
+
 
       localStorage.setItem(
         "flipfinder_carrito_cantidad",
         cantidad
       );
 
+
       actualizarResumen();
+
     }
 
 
@@ -574,34 +661,45 @@
 
     function mostrarMensaje(texto, tipo) {
 
-      const mensaje = document.getElementById("mensaje");
+      const mensaje =
+        document.getElementById("mensaje");
+
 
       mensaje.textContent = texto;
 
-      mensaje.className = "mensaje " + tipo;
+
+      mensaje.className =
+        "mensaje " + tipo;
+
     }
 
 
     function ocultarMensaje() {
 
-      const mensaje = document.getElementById("mensaje");
+      const mensaje =
+        document.getElementById("mensaje");
 
-      mensaje.className = "mensaje";
 
       mensaje.textContent = "";
+
+      mensaje.className =
+        "mensaje";
+
     }
 
 
     // ==========================================
-    // CONTINUAR CON MERCADO PAGO
+    // CONTINUAR CON EL PAGO
     // ==========================================
 
     async function continuarConPago() {
 
       ocultarMensaje();
 
+
       const formulario =
         document.getElementById("checkoutForm");
+
 
       // Validar formulario
       if (!formulario.checkValidity()) {
@@ -612,55 +710,99 @@
       }
 
 
-      const boton =
-        document.getElementById("botonPago");
+      // ==========================================
+      // DATOS DEL CLIENTE
+      // ==========================================
 
-
-      // Obtener datos
       const nombre =
-        document.getElementById("nombre").value.trim();
+        document.getElementById("nombre")
+          .value.trim();
+
 
       const apellido =
-        document.getElementById("apellido").value.trim();
+        document.getElementById("apellido")
+          .value.trim();
+
 
       const email =
-        document.getElementById("email").value.trim();
+        document.getElementById("email")
+          .value.trim();
+
 
       const telefono =
-        document.getElementById("telefono").value.trim();
+        document.getElementById("telefono")
+          .value.trim();
+
 
       const direccion =
-        document.getElementById("direccion").value.trim();
+        document.getElementById("direccion")
+          .value.trim();
+
 
       const comuna =
-        document.getElementById("comuna").value.trim();
+        document.getElementById("comuna")
+          .value.trim();
+
 
       const region =
-        document.getElementById("region").value.trim();
+        document.getElementById("region")
+          .value.trim();
+
 
       const referencia =
-        document.getElementById("referencia").value.trim();
+        document.getElementById("referencia")
+          .value.trim();
 
 
-      // Guardar datos localmente por ahora
+      // ==========================================
+      // GUARDAR PEDIDO LOCALMENTE
+      // ==========================================
+
       const pedido = {
-        producto: "Auriculares Gamer con Micrófono",
-        precio: PRECIO,
-        cantidad: cantidad,
-        total: PRECIO * cantidad,
+
+        producto:
+          "Auriculares Gamer con Micrófono",
+
+        precio:
+          PRECIO,
+
+        cantidad:
+          cantidad,
+
+        total:
+          PRECIO * cantidad,
 
         cliente: {
-          nombre: nombre,
-          apellido: apellido,
-          email: email,
-          telefono: telefono,
-          direccion: direccion,
-          comuna: comuna,
-          region: region,
-          referencia: referencia
+
+          nombre:
+            nombre,
+
+          apellido:
+            apellido,
+
+          email:
+            email,
+
+          telefono:
+            telefono,
+
+          direccion:
+            direccion,
+
+          comuna:
+            comuna,
+
+          region:
+            region,
+
+          referencia:
+            referencia
+
         },
 
-        fecha: new Date().toISOString()
+        fecha:
+          new Date().toISOString()
+
       };
 
 
@@ -670,10 +812,18 @@
       );
 
 
-      // Desactivar botón
+      // ==========================================
+      // BOTÓN
+      // ==========================================
+
+      const boton =
+        document.getElementById("botonPago");
+
+
       boton.disabled = true;
 
-      boton.textContent = "Preparando pago...";
+      boton.textContent =
+        "Preparando pago...";
 
 
       mostrarMensaje(
@@ -684,38 +834,71 @@
 
       try {
 
+        // ========================================
+        // VERIFICAR SUPABASE
+        // ========================================
+
         /*
-          Usamos la instancia de Supabase que ya
-          tienes configurada en supabase-config.js.
+          Tu supabase-config.js crea:
+
+          window.supabaseClient
+
+          Por eso usamos exactamente
+          window.supabaseClient aquí.
         */
 
         if (
-          typeof supabase === "undefined" ||
-          !supabase.functions
+          !window.supabaseClient ||
+          !window.supabaseClient.functions
         ) {
 
           throw new Error(
             "No se encontró la configuración de Supabase."
           );
+
         }
 
 
-        // Llamar a nuestra Edge Function
-        const { data, error } =
-          await supabase.functions.invoke(
+        // ========================================
+        // LLAMAR EDGE FUNCTION
+        // ========================================
+
+        const resultado =
+          await window.supabaseClient.functions.invoke(
             "crear-pago",
             {
+
               body: {
-                cantidad: cantidad,
-                email: email,
-                nombre: nombre,
-                apellido: apellido
+
+                cantidad:
+                  cantidad,
+
+                email:
+                  email,
+
+                nombre:
+                  nombre,
+
+                apellido:
+                  apellido
+
               }
+
             }
           );
 
 
-        // Error de Supabase
+        const data =
+          resultado.data;
+
+        const error =
+          resultado.error;
+
+
+        // ========================================
+        // ERROR DE SUPABASE
+        // ========================================
+
         if (error) {
 
           console.error(
@@ -723,53 +906,70 @@
             error
           );
 
+
           throw new Error(
             "No se pudo conectar con el servidor de pagos."
           );
+
         }
 
 
-        // Error devuelto por nuestra función
-        if (!data || !data.ok) {
+        // ========================================
+        // ERROR DE LA EDGE FUNCTION
+        // ========================================
+
+        if (
+          !data ||
+          !data.ok
+        ) {
 
           console.error(
             "Respuesta de crear-pago:",
             data
           );
 
+
           throw new Error(
             data?.error ||
             "No se pudo crear el pago."
           );
+
         }
 
 
-        // Verificar que Mercado Pago devolvió el link
+        // ========================================
+        // VERIFICAR LINK
+        // ========================================
+
         if (!data.init_point) {
 
           throw new Error(
             "Mercado Pago no devolvió el enlace de pago."
           );
+
         }
 
 
-        // Guardar datos del pago
+        // ========================================
+        // GUARDAR PREFERENCE ID
+        // ========================================
+
         localStorage.setItem(
           "flipfinder_preference_id",
           data.preference_id || ""
         );
 
 
-        // Todo correcto
+        // ========================================
+        // REDIRIGIR A MERCADO PAGO
+        // ========================================
+
         mostrarMensaje(
           "Pago preparado. Redirigiendo a Mercado Pago...",
           "info"
         );
 
 
-        /*
-          Redirigir al checkout de Mercado Pago
-        */
         setTimeout(() => {
 
           window.location.href =
@@ -777,8 +977,10 @@
 
         }, 500);
 
+      }
 
-      } catch (error) {
+
+      catch (error) {
 
         console.error(
           "Error al crear pago:",
@@ -797,7 +999,9 @@
 
         boton.textContent =
           "Continuar con el pago";
+
       }
+
     }
 
 
