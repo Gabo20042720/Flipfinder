@@ -24,9 +24,7 @@
 
 </head>
 
-
 <body>
-
 
     <!-- ================================
          HEADER
@@ -40,7 +38,6 @@
         >
             Flipfinder
         </a>
-
 
         <div class="header-actions">
 
@@ -60,7 +57,6 @@
         </div>
 
     </header>
-
 
 
     <!-- ================================
@@ -104,7 +100,6 @@
     </section>
 
 
-
     <!-- ================================
          PRODUCTO
     ================================= -->
@@ -120,9 +115,6 @@
 
             <div class="gallery">
 
-
-                <!-- IMAGEN PRINCIPAL -->
-
                 <div class="main-image">
 
                     <img
@@ -134,11 +126,7 @@
                 </div>
 
 
-
-                <!-- MINIATURAS -->
-
                 <div class="thumbnail-gallery">
-
 
                     <button
                         type="button"
@@ -209,11 +197,9 @@
 
                     </button>
 
-
                 </div>
 
             </div>
-
 
 
             <!-- ==========================
@@ -222,22 +208,15 @@
 
             <div class="product-info">
 
-
                 <span class="badge">
-
                     🚀 DESTACADO DE TEMPORADA
-
                 </span>
 
 
-
                 <h1>
-
                     Auriculares Gamer
                     con Micrófono
-
                 </h1>
-
 
 
                 <div class="shipping-info">
@@ -251,7 +230,6 @@
                 </div>
 
 
-
                 <p class="description">
 
                     ¡Sumérgete en la experiencia
@@ -263,11 +241,9 @@
                 </p>
 
 
-
                 <!-- CARACTERÍSTICAS -->
 
                 <div class="features">
-
 
                     <p>
 
@@ -324,9 +300,7 @@
 
                     </p>
 
-
                 </div>
-
 
 
                 <!-- PRECIO -->
@@ -342,7 +316,6 @@
                 </div>
 
 
-
                 <!-- CANTIDAD -->
 
                 <div class="quantity-title">
@@ -354,21 +327,16 @@
 
                 <div class="quantity-container">
 
-
                     <button
                         type="button"
                         onclick="cambiarCantidad(-1)"
                     >
-
                         −
-
                     </button>
 
 
                     <span id="quantity">
-
                         1
-
                     </span>
 
 
@@ -376,14 +344,10 @@
                         type="button"
                         onclick="cambiarCantidad(1)"
                     >
-
                         +
-
                     </button>
 
-
                 </div>
-
 
 
                 <!-- TOTAL -->
@@ -393,13 +357,10 @@
                     Total:
 
                     <strong id="total">
-
                         $23.400
-
                     </strong>
 
                 </div>
-
 
 
                 <!-- COMPRAR -->
@@ -409,23 +370,17 @@
                     class="buy-button"
                     onclick="irAlCheckout()"
                 >
-
                     🛒 Comprar ahora
-
                 </button>
 
 
                 <p class="payment-note">
-
                     🔒 Pago seguro mediante Mercado Pago
-
                 </p>
-
 
             </div>
 
         </section>
-
 
 
         <!-- ================================
@@ -438,11 +393,8 @@
             <div class="info-card">
 
                 <div class="info-icon">
-
                     📦
-
                 </div>
-
 
                 <div>
 
@@ -461,15 +413,11 @@
             </div>
 
 
-
             <div class="info-card">
 
                 <div class="info-icon">
-
                     🔒
-
                 </div>
-
 
                 <div>
 
@@ -487,15 +435,11 @@
             </div>
 
 
-
             <div class="info-card">
 
                 <div class="info-icon">
-
                     ⚡
-
                 </div>
-
 
                 <div>
 
@@ -519,7 +463,6 @@
     </main>
 
 
-
     <!-- ================================
          FOOTER
     ================================= -->
@@ -541,13 +484,10 @@
 
 
         <p>
-
             © 2026 FlipFinder
-
         </p>
 
     </footer>
-
 
 
     <!-- ================================
@@ -555,7 +495,6 @@
     ================================= -->
 
     <script>
-
 
         /* =================================
            PRODUCTO
@@ -575,13 +514,11 @@
         };
 
 
-
         /* =================================
            CANTIDAD
         ================================= */
 
         let cantidad = 1;
-
 
 
         /* =================================
@@ -594,7 +531,6 @@
                 numero.toLocaleString("es-CL");
 
         }
-
 
 
         /* =================================
@@ -628,7 +564,6 @@
         }
 
 
-
         /* =================================
            CAMBIAR CANTIDAD
         ================================= */
@@ -650,13 +585,11 @@
         }
 
 
-
         /* =================================
            CAMBIAR IMAGEN
         ================================= */
 
         function cambiarImagen(numero) {
-
 
             const imagen =
                 document.getElementById(
@@ -696,13 +629,11 @@
         }
 
 
-
         /* =================================
            IR AL CHECKOUT
         ================================= */
 
         function irAlCheckout() {
-
 
             const url =
 
@@ -729,15 +660,22 @@
         }
 
 
-
         /* =================================
            INICIAR
         ================================= */
 
         actualizarPagina();
 
-
     </script>
+
+
+    <!-- ============================================
+         SUPABASE
+    ============================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="./supabase-config.js"></script>
 
 
 </body>
