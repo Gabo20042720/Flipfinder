@@ -1,845 +1,813 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | FlipFinder</title>
 
-    <meta charset="UTF-8">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f6f8;
+      color: #222;
+    }
 
-    <title>FlipFinder | Finalizar compra</title>
+    header {
+      background: #111;
+      color: white;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 7%;
+    }
 
-    <style>
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: white;
+      text-decoration: none;
+    }
 
-        * {
-            box-sizing: border-box;
-        }
+    .volver {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f6f9;
-            color: #111827;
-        }
+    .contenedor {
+      width: 92%;
+      max-width: 1150px;
+      margin: 35px auto 70px;
+    }
 
-        .header {
-            background: #0d172b;
-            color: white;
-            height: 65px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-        }
+    h1 {
+      font-size: 32px;
+      margin-bottom: 28px;
+    }
 
-        .logo {
-            color: white;
-            text-decoration: none;
-            font-size: 21px;
-            font-weight: bold;
-        }
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 25px;
+      align-items: start;
+    }
 
-        .volver {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-        }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    }
 
-        .container {
-            width: 100%;
-            max-width: 1100px;
-            margin: 35px auto;
-            padding: 0 20px;
-        }
+    .card h2 {
+      font-size: 21px;
+      margin-bottom: 22px;
+    }
 
-        h1 {
-            font-size: 30px;
-            margin-bottom: 25px;
-        }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: 1.4fr 0.8fr;
-            gap: 25px;
-        }
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
 
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,.08);
-        }
+    .campo.completo {
+      grid-column: 1 / -1;
+    }
 
-        .card h2 {
-            margin-top: 0;
-        }
+    label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+    }
 
-        .producto {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-        }
+    input,
+    select {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #d7d9dd;
+      border-radius: 9px;
+      padding: 0 13px;
+      font-size: 15px;
+      outline: none;
+      background: white;
+    }
 
-        .producto img {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
+    input:focus,
+    select:focus {
+      border-color: #111;
+    }
 
-        .producto-nombre {
-            font-size: 19px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    .producto {
+      display: flex;
+      gap: 15px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #e5e5e5;
+    }
 
-        .precio {
-            color: #168a43;
-            font-size: 21px;
-            font-weight: bold;
-        }
+    .producto img {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #f5f5f5;
+    }
 
-        .cantidad {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 15px;
-        }
+    .producto-info {
+      flex: 1;
+    }
 
-        .cantidad button {
-            width: 35px;
-            height: 35px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-        }
+    .producto-info h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
 
-        .cantidad span {
-            min-width: 30px;
-            text-align: center;
-            font-weight: bold;
-        }
+    .precio {
+      font-size: 18px;
+      font-weight: 700;
+    }
 
-        .campo {
-            margin-bottom: 16px;
-        }
+    .cantidad-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
 
-        .campo label {
-            display: block;
-            margin-bottom: 7px;
-            font-size: 14px;
-            font-weight: bold;
-        }
+    .cantidad-box button {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 7px;
+      font-size: 19px;
+      cursor: pointer;
+    }
 
-        .campo input,
-        .campo select,
-        .campo textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-        }
+    .cantidad-box span {
+      min-width: 25px;
+      text-align: center;
+      font-weight: 700;
+    }
 
-        .fila {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+    .resumen {
+      margin-top: 22px;
+    }
 
-        .resumen {
-            margin-top: 20px;
-        }
+    .fila {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
 
-        .resumen-linea {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
+    .fila.total {
+      border-top: 1px solid #ddd;
+      padding-top: 18px;
+      margin-top: 18px;
+      font-size: 22px;
+      font-weight: 800;
+    }
 
-        .total {
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid #ddd;
-            padding-top: 18px;
-            margin-top: 18px;
-            font-size: 22px;
-            font-weight: bold;
-        }
+    .boton-pago {
+      width: 100%;
+      border: none;
+      background: #16a34a;
+      color: white;
+      height: 52px;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 22px;
+      transition: 0.2s;
+    }
 
-        .total strong {
-            color: #168a43;
-        }
+    .boton-pago:hover {
+      background: #12813b;
+    }
 
-        .seguridad {
-            background: #f3f4f6;
-            padding: 15px;
-            border-radius: 7px;
-            margin-top: 20px;
-            font-size: 14px;
-        }
+    .boton-pago:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
 
-        .boton {
-            width: 100%;
-            border: none;
-            background: #168a43;
-            color: white;
-            padding: 15px;
-            border-radius: 7px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+    .mensaje {
+      display: none;
+      margin-top: 15px;
+      padding: 13px;
+      border-radius: 9px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
 
-        .boton:hover {
-            background: #117337;
-        }
+    .mensaje.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
 
-        .footer {
-            margin-top: 50px;
-            padding: 30px;
-            background: #0d172b;
-            color: white;
-            text-align: center;
-            font-size: 13px;
-        }
+    .mensaje.info {
+      display: block;
+      background: #e0f2fe;
+      color: #075985;
+    }
 
-        #mensaje {
-            display: none;
-            background: #dcfce7;
-            color: #166534;
-            padding: 15px;
-            border-radius: 7px;
-            margin-bottom: 20px;
-        }
+    .seguridad {
+      margin-top: 16px;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+    }
 
-        @media (max-width: 800px) {
+    @media (max-width: 800px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
 
-            .grid {
-                grid-template-columns: 1fr;
-            }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
 
-            .fila {
-                grid-template-columns: 1fr;
-            }
+      .campo.completo {
+        grid-column: auto;
+      }
 
-            .header {
-                padding: 0 18px;
-            }
+      header {
+        padding: 0 5%;
+      }
 
-        }
+      .contenedor {
+        width: 94%;
+        margin-top: 25px;
+      }
 
-    </style>
+      .card {
+        padding: 20px;
+      }
 
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <header>
+    <a href="index.html" class="logo">FlipFinder</a>
+    <a href="index.html" class="volver">← Volver a la tienda</a>
+  </header>
 
-    <header class="header">
+  <main class="contenedor">
 
-        <a
-            href="index.html"
-            class="logo"
-        >
-            Flipfinder
-        </a>
+    <h1>Finalizar compra</h1>
 
-        <a
-            href="index.html"
-            class="volver"
-        >
-            ← Volver a la tienda
-        </a>
+    <div class="checkout-grid">
 
-    </header>
+      <!-- DATOS DEL CLIENTE -->
+      <section class="card">
+
+        <h2>Datos de envío</h2>
+
+        <form id="checkoutForm">
+
+          <div class="form-grid">
+
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input
+                type="text"
+                id="nombre"
+                placeholder="Tu nombre"
+                required
+              >
+            </div>
+
+            <div class="campo">
+              <label for="apellido">Apellido</label>
+              <input
+                type="text"
+                id="apellido"
+                placeholder="Tu apellido"
+                required
+              >
+            </div>
+
+            <div class="campo">
+              <label for="email">Correo electrónico</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="tucorreo@email.com"
+                required
+              >
+            </div>
+
+            <div class="campo">
+              <label for="telefono">Teléfono</label>
+              <input
+                type="tel"
+                id="telefono"
+                placeholder="+56 9 1234 5678"
+                required
+              >
+            </div>
+
+            <div class="campo completo">
+              <label for="direccion">Dirección</label>
+              <input
+                type="text"
+                id="direccion"
+                placeholder="Calle, número, departamento..."
+                required
+              >
+            </div>
+
+            <div class="campo">
+              <label for="comuna">Comuna</label>
+              <input
+                type="text"
+                id="comuna"
+                placeholder="Ej: Santiago"
+                required
+              >
+            </div>
+
+            <div class="campo">
+              <label for="region">Región</label>
+              <select id="region" required>
+                <option value="">Selecciona una región</option>
+                <option>Arica y Parinacota</option>
+                <option>Tarapacá</option>
+                <option>Antofagasta</option>
+                <option>Atacama</option>
+                <option>Coquimbo</option>
+                <option>Valparaíso</option>
+                <option>Metropolitana de Santiago</option>
+                <option>O'Higgins</option>
+                <option>Maule</option>
+                <option>Ñuble</option>
+                <option>Biobío</option>
+                <option>La Araucanía</option>
+                <option>Los Ríos</option>
+                <option>Los Lagos</option>
+                <option>Aysén</option>
+                <option>Magallanes</option>
+              </select>
+            </div>
+
+            <div class="campo completo">
+              <label for="referencia">Referencia de entrega</label>
+              <input
+                type="text"
+                id="referencia"
+                placeholder="Ej: casa azul, portón negro..."
+              >
+            </div>
+
+          </div>
+
+        </form>
+
+      </section>
 
 
-    <main class="container">
+      <!-- RESUMEN DEL PEDIDO -->
+      <section class="card">
 
-        <h1>
-            Finalizar compra
-        </h1>
+        <h2>Resumen de tu pedido</h2>
 
+        <div class="producto">
 
-        <div id="mensaje">
-            Datos preparados correctamente.
+          <img
+            src="img/auriculares-gamer.jpg"
+            alt="Auriculares Gamer"
+            onerror="this.style.display='none'"
+          >
+
+          <div class="producto-info">
+
+            <h3>Auriculares Gamer con Micrófono</h3>
+
+            <div class="precio">
+              $23.400
+            </div>
+
+            <div class="cantidad-box">
+
+              <button
+                type="button"
+                onclick="cambiarCantidad(-1)"
+              >
+                −
+              </button>
+
+              <span id="cantidad">1</span>
+
+              <button
+                type="button"
+                onclick="cambiarCantidad(1)"
+              >
+                +
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
 
 
-        <div class="grid">
-
-
-            <!-- DATOS -->
-
-            <section class="card">
-
-                <h2>
-                    Datos de envío
-                </h2>
-
-
-                <form id="formulario">
-
-
-                    <div class="fila">
-
-                        <div class="campo">
-
-                            <label>
-                                Nombre
-                            </label>
-
-                            <input
-                                id="nombre"
-                                type="text"
-                                required
-                                placeholder="Tu nombre"
-                            >
-
-                        </div>
-
-
-                        <div class="campo">
-
-                            <label>
-                                Apellido
-                            </label>
-
-                            <input
-                                id="apellido"
-                                type="text"
-                                required
-                                placeholder="Tu apellido"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label>
-                            Correo electrónico
-                        </label>
-
-                        <input
-                            id="email"
-                            type="email"
-                            required
-                            placeholder="tucorreo@email.com"
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label>
-                            Teléfono
-                        </label>
-
-                        <input
-                            id="telefono"
-                            type="tel"
-                            required
-                            placeholder="+56 9 1234 5678"
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label>
-                            Dirección
-                        </label>
-
-                        <input
-                            id="direccion"
-                            type="text"
-                            required
-                            placeholder="Calle y número"
-                        >
-
-                    </div>
-
-
-                    <div class="fila">
-
-                        <div class="campo">
-
-                            <label>
-                                Comuna
-                            </label>
-
-                            <input
-                                id="comuna"
-                                type="text"
-                                required
-                                placeholder="Tu comuna"
-                            >
-
-                        </div>
-
-
-                        <div class="campo">
-
-                            <label>
-                                Región
-                            </label>
-
-                            <select
-                                id="region"
-                                required
-                            >
-
-                                <option value="">
-                                    Seleccionar
-                                </option>
-
-                                <option>
-                                    Arica y Parinacota
-                                </option>
-
-                                <option>
-                                    Tarapacá
-                                </option>
-
-                                <option>
-                                    Antofagasta
-                                </option>
-
-                                <option>
-                                    Atacama
-                                </option>
-
-                                <option>
-                                    Coquimbo
-                                </option>
-
-                                <option>
-                                    Valparaíso
-                                </option>
-
-                                <option>
-                                    Metropolitana de Santiago
-                                </option>
-
-                                <option>
-                                    O'Higgins
-                                </option>
-
-                                <option>
-                                    Maule
-                                </option>
-
-                                <option>
-                                    Ñuble
-                                </option>
-
-                                <option>
-                                    Biobío
-                                </option>
-
-                                <option>
-                                    La Araucanía
-                                </option>
-
-                                <option>
-                                    Los Ríos
-                                </option>
-
-                                <option>
-                                    Los Lagos
-                                </option>
-
-                                <option>
-                                    Aysén
-                                </option>
-
-                                <option>
-                                    Magallanes
-                                </option>
-
-                            </select>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label>
-                            Referencia de entrega
-                        </label>
-
-                        <textarea
-                            id="referencia"
-                            rows="3"
-                            placeholder="Casa azul, departamento, etc."
-                        ></textarea>
-
-                    </div>
-
-
-                </form>
-
-            </section>
-
-
-
-            <!-- RESUMEN -->
-
-            <section class="card">
-
-                <h2>
-                    Resumen del pedido
-                </h2>
-
-
-                <div class="producto">
-
-                    <img
-                        src="img/foto1.jpg"
-                        alt="Auriculares Gamer"
-                    >
-
-
-                    <div>
-
-                        <div
-                            id="producto"
-                            class="producto-nombre"
-                        >
-                            Auriculares Gamer con Micrófono
-                        </div>
-
-
-                        <div
-                            id="precio"
-                            class="precio"
-                        >
-                            $23.400
-                        </div>
-
-
-                        <div class="cantidad">
-
-                            <button
-                                type="button"
-                                onclick="cambiarCantidad(-1)"
-                            >
-                                −
-                            </button>
-
-
-                            <span id="cantidad">
-                                1
-                            </span>
-
-
-                            <button
-                                type="button"
-                                onclick="cambiarCantidad(1)"
-                            >
-                                +
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="resumen">
-
-                    <div class="resumen-linea">
-
-                        <span>
-                            Subtotal
-                        </span>
-
-                        <strong id="subtotal">
-                            $23.400
-                        </strong>
-
-                    </div>
-
-
-                    <div class="resumen-linea">
-
-                        <span>
-                            Envío
-                        </span>
-
-                        <strong>
-                            Por confirmar
-                        </strong>
-
-                    </div>
-
-
-                    <div class="total">
-
-                        <span>
-                            Total
-                        </span>
-
-                        <strong id="total">
-                            $23.400
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-                <div class="seguridad">
-
-                    🔒
-
-                    <strong>
-                        Pago seguro
-                    </strong>
-
-                    <br>
-
-                    El pago será procesado mediante
-                    Mercado Pago.
-
-                </div>
-
-
-                <button
-                    type="button"
-                    class="boton"
-                    onclick="continuar()"
-                >
-                    Continuar con el pago
-                </button>
-
-            </section>
+        <div class="resumen">
+
+          <div class="fila">
+            <span>Subtotal</span>
+            <span id="subtotal">$23.400</span>
+          </div>
+
+          <div class="fila">
+            <span>Envío</span>
+            <span>Gratis</span>
+          </div>
+
+          <div class="fila total">
+            <span>Total</span>
+            <span id="total">$23.400</span>
+          </div>
 
         </div>
 
-    </main>
+
+        <button
+          type="button"
+          class="boton-pago"
+          id="botonPago"
+          onclick="continuarConPago()"
+        >
+          Continuar con el pago
+        </button>
+
+        <div
+          id="mensaje"
+          class="mensaje"
+        ></div>
+
+        <div class="seguridad">
+          🔒 Serás redirigido a Mercado Pago para realizar el pago de forma segura.
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
 
 
-    <footer class="footer">
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        <strong>
-            Flipfinder
-        </strong>
-
-        <p>
-            Productos seleccionados y ofertas.
-        </p>
-
-        <p>
-            © 2026 FlipFinder
-        </p>
-
-    </footer>
+  <!-- Tu configuración existente -->
+  <script src="./supabase-config.js"></script>
 
 
-    <script>
+  <script>
 
-        const parametros =
-            new URLSearchParams(
-                window.location.search
-            );
+    // ==========================================
+    // DATOS DEL PRODUCTO
+    // ==========================================
 
+    const PRECIO = 23400;
 
-        const nombreProducto =
-            parametros.get("producto")
-            || "Auriculares Gamer con Micrófono";
+    let cantidad = 1;
 
 
-        const precioProducto =
-            Number(
-                parametros.get("precio")
-            )
-            || 23400;
+    // ==========================================
+    // LEER CANTIDAD DESDE LA URL
+    // ==========================================
+
+    const parametros = new URLSearchParams(window.location.search);
+
+    const cantidadURL = Number(parametros.get("cantidad"));
+
+    if (
+      Number.isInteger(cantidadURL) &&
+      cantidadURL >= 1 &&
+      cantidadURL <= 20
+    ) {
+      cantidad = cantidadURL;
+    }
 
 
-        let cantidad =
-            Number(
-                parametros.get("cantidad")
-            )
-            || 1;
+    // ==========================================
+    // FORMATO DE PESOS CHILENOS
+    // ==========================================
+
+    function formatoCLP(numero) {
+      return new Intl.NumberFormat("es-CL", {
+        style: "currency",
+        currency: "CLP",
+        maximumFractionDigits: 0
+      }).format(numero);
+    }
 
 
-        if (cantidad < 1) {
-            cantidad = 1;
+    // ==========================================
+    // ACTUALIZAR RESUMEN
+    // ==========================================
+
+    function actualizarResumen() {
+
+      const subtotal = PRECIO * cantidad;
+
+      document.getElementById("cantidad").textContent = cantidad;
+
+      document.getElementById("subtotal").textContent =
+        formatoCLP(subtotal);
+
+      document.getElementById("total").textContent =
+        formatoCLP(subtotal);
+    }
+
+
+    // ==========================================
+    // CAMBIAR CANTIDAD
+    // ==========================================
+
+    function cambiarCantidad(valor) {
+
+      cantidad += valor;
+
+      if (cantidad < 1) {
+        cantidad = 1;
+      }
+
+      if (cantidad > 20) {
+        cantidad = 20;
+      }
+
+      localStorage.setItem(
+        "flipfinder_carrito_cantidad",
+        cantidad
+      );
+
+      actualizarResumen();
+    }
+
+
+    // ==========================================
+    // MENSAJES
+    // ==========================================
+
+    function mostrarMensaje(texto, tipo) {
+
+      const mensaje = document.getElementById("mensaje");
+
+      mensaje.textContent = texto;
+
+      mensaje.className = "mensaje " + tipo;
+    }
+
+
+    function ocultarMensaje() {
+
+      const mensaje = document.getElementById("mensaje");
+
+      mensaje.className = "mensaje";
+
+      mensaje.textContent = "";
+    }
+
+
+    // ==========================================
+    // CONTINUAR CON MERCADO PAGO
+    // ==========================================
+
+    async function continuarConPago() {
+
+      ocultarMensaje();
+
+      const formulario =
+        document.getElementById("checkoutForm");
+
+      // Validar formulario
+      if (!formulario.checkValidity()) {
+
+        formulario.reportValidity();
+
+        return;
+      }
+
+
+      const boton =
+        document.getElementById("botonPago");
+
+
+      // Obtener datos
+      const nombre =
+        document.getElementById("nombre").value.trim();
+
+      const apellido =
+        document.getElementById("apellido").value.trim();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const telefono =
+        document.getElementById("telefono").value.trim();
+
+      const direccion =
+        document.getElementById("direccion").value.trim();
+
+      const comuna =
+        document.getElementById("comuna").value.trim();
+
+      const region =
+        document.getElementById("region").value.trim();
+
+      const referencia =
+        document.getElementById("referencia").value.trim();
+
+
+      // Guardar datos localmente por ahora
+      const pedido = {
+        producto: "Auriculares Gamer con Micrófono",
+        precio: PRECIO,
+        cantidad: cantidad,
+        total: PRECIO * cantidad,
+
+        cliente: {
+          nombre: nombre,
+          apellido: apellido,
+          email: email,
+          telefono: telefono,
+          direccion: direccion,
+          comuna: comuna,
+          region: region,
+          referencia: referencia
+        },
+
+        fecha: new Date().toISOString()
+      };
+
+
+      localStorage.setItem(
+        "flipfinder_pedido",
+        JSON.stringify(pedido)
+      );
+
+
+      // Desactivar botón
+      boton.disabled = true;
+
+      boton.textContent = "Preparando pago...";
+
+
+      mostrarMensaje(
+        "Conectando con Mercado Pago...",
+        "info"
+      );
+
+
+      try {
+
+        /*
+          Usamos la instancia de Supabase que ya
+          tienes configurada en supabase-config.js.
+        */
+
+        if (
+          typeof supabase === "undefined" ||
+          !supabase.functions
+        ) {
+
+          throw new Error(
+            "No se encontró la configuración de Supabase."
+          );
         }
 
 
-        function dinero(numero) {
-
-            return "$" +
-                Number(numero).toLocaleString("es-CL");
-
-        }
-
-
-        function actualizar() {
-
-            const total =
-                precioProducto * cantidad;
-
-
-            document.getElementById(
-                "producto"
-            ).textContent =
-                nombreProducto;
-
-
-            document.getElementById(
-                "precio"
-            ).textContent =
-                dinero(precioProducto);
-
-
-            document.getElementById(
-                "cantidad"
-            ).textContent =
-                cantidad;
-
-
-            document.getElementById(
-                "subtotal"
-            ).textContent =
-                dinero(total);
-
-
-            document.getElementById(
-                "total"
-            ).textContent =
-                dinero(total);
-
-        }
-
-
-        function cambiarCantidad(valor) {
-
-            cantidad += valor;
-
-
-            if (cantidad < 1) {
-                cantidad = 1;
-            }
-
-
-            actualizar();
-
-        }
-
-
-        function continuar() {
-
-            const formulario =
-                document.getElementById(
-                    "formulario"
-                );
-
-
-            if (!formulario.checkValidity()) {
-
-                formulario.reportValidity();
-
-                return;
-
-            }
-
-
-            const pedido = {
-
-                producto: nombreProducto,
-
-                precio: precioProducto,
-
+        // Llamar a nuestra Edge Function
+        const { data, error } =
+          await supabase.functions.invoke(
+            "crear-pago",
+            {
+              body: {
                 cantidad: cantidad,
-
-                total:
-                    precioProducto * cantidad,
-
-                cliente: {
-
-                    nombre:
-                        document.getElementById(
-                            "nombre"
-                        ).value,
-
-                    apellido:
-                        document.getElementById(
-                            "apellido"
-                        ).value,
-
-                    email:
-                        document.getElementById(
-                            "email"
-                        ).value,
-
-                    telefono:
-                        document.getElementById(
-                            "telefono"
-                        ).value,
-
-                    direccion:
-                        document.getElementById(
-                            "direccion"
-                        ).value,
-
-                    comuna:
-                        document.getElementById(
-                            "comuna"
-                        ).value,
-
-                    region:
-                        document.getElementById(
-                            "region"
-                        ).value,
-
-                    referencia:
-                        document.getElementById(
-                            "referencia"
-                        ).value
-
-                }
-
-            };
+                email: email,
+                nombre: nombre,
+                apellido: apellido
+              }
+            }
+          );
 
 
-            localStorage.setItem(
-                "flipfinder_pedido",
-                JSON.stringify(pedido)
-            );
+        // Error de Supabase
+        if (error) {
 
+          console.error(
+            "Error de Supabase:",
+            error
+          );
 
-            document.getElementById(
-                "mensaje"
-            ).style.display =
-                "block";
-
+          throw new Error(
+            "No se pudo conectar con el servidor de pagos."
+          );
         }
 
 
-        actualizar();
+        // Error devuelto por nuestra función
+        if (!data || !data.ok) {
 
-    </script>
+          console.error(
+            "Respuesta de crear-pago:",
+            data
+          );
 
+          throw new Error(
+            data?.error ||
+            "No se pudo crear el pago."
+          );
+        }
+
+
+        // Verificar que Mercado Pago devolvió el link
+        if (!data.init_point) {
+
+          throw new Error(
+            "Mercado Pago no devolvió el enlace de pago."
+          );
+        }
+
+
+        // Guardar datos del pago
+        localStorage.setItem(
+          "flipfinder_preference_id",
+          data.preference_id || ""
+        );
+
+
+        // Todo correcto
+        mostrarMensaje(
+          "Pago preparado. Redirigiendo a Mercado Pago...",
+          "info"
+        );
+
+
+        /*
+          Redirigir al checkout de Mercado Pago
+        */
+        setTimeout(() => {
+
+          window.location.href =
+            data.init_point;
+
+        }, 500);
+
+
+      } catch (error) {
+
+        console.error(
+          "Error al crear pago:",
+          error
+        );
+
+
+        mostrarMensaje(
+          error.message ||
+          "Ocurrió un error al preparar el pago.",
+          "error"
+        );
+
+
+        boton.disabled = false;
+
+        boton.textContent =
+          "Continuar con el pago";
+      }
+    }
+
+
+    // ==========================================
+    // INICIAR
+    // ==========================================
+
+    actualizarResumen();
+
+  </script>
 
 </body>
-
 </html>
