@@ -5,22 +5,9 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FlipFinder | Checkout</title>
-
-    <meta
-        name="description"
-        content="Finaliza tu compra en FlipFinder."
-    >
-
-    <link
-        rel="stylesheet"
-        href="checkout.css"
-    >
+    <title>FlipFinder | Finalizar compra</title>
 
     <style>
 
@@ -36,8 +23,9 @@
         }
 
         .header {
-            height: 70px;
             background: #0d172b;
+            color: white;
+            height: 65px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -47,29 +35,29 @@
         .logo {
             color: white;
             text-decoration: none;
-            font-size: 22px;
+            font-size: 21px;
             font-weight: bold;
         }
 
-        .back-button {
+        .volver {
             color: white;
             text-decoration: none;
             font-size: 14px;
         }
 
-        .checkout-container {
+        .container {
             width: 100%;
             max-width: 1100px;
-            margin: 40px auto;
+            margin: 35px auto;
             padding: 0 20px;
         }
 
-        .checkout-title {
+        h1 {
             font-size: 30px;
             margin-bottom: 25px;
         }
 
-        .checkout-grid {
+        .grid {
             display: grid;
             grid-template-columns: 1.4fr 0.8fr;
             gap: 25px;
@@ -79,139 +67,124 @@
             background: white;
             border-radius: 10px;
             padding: 25px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
         }
 
         .card h2 {
             margin-top: 0;
-            margin-bottom: 20px;
-            font-size: 20px;
         }
 
-        .product-box {
+        .producto {
             display: flex;
+            gap: 20px;
             align-items: center;
-            gap: 18px;
-            border-bottom: 1px solid #e5e7eb;
             padding-bottom: 20px;
-            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
         }
 
-        .product-image {
-            width: 110px;
-            height: 110px;
+        .producto img {
+            width: 120px;
+            height: 120px;
             object-fit: contain;
-            border: 1px solid #e5e7eb;
+            border: 1px solid #ddd;
             border-radius: 8px;
-            background: white;
         }
 
-        .product-info {
-            flex: 1;
-        }
-
-        .product-name {
-            font-size: 18px;
+        .producto-nombre {
+            font-size: 19px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .product-price {
+        .precio {
             color: #168a43;
+            font-size: 21px;
             font-weight: bold;
-            font-size: 20px;
         }
 
-        .quantity-row {
+        .cantidad {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 15px;
         }
 
-        .quantity-row button {
-            width: 34px;
-            height: 34px;
-            border: 1px solid #d1d5db;
+        .cantidad button {
+            width: 35px;
+            height: 35px;
             background: white;
+            border: 1px solid #ccc;
             border-radius: 5px;
             cursor: pointer;
             font-size: 18px;
         }
 
-        .quantity-row button:hover {
-            background: #f3f4f6;
-        }
-
-        #cantidad {
+        .cantidad span {
             min-width: 30px;
             text-align: center;
             font-weight: bold;
         }
 
-        .form-group {
+        .campo {
             margin-bottom: 16px;
         }
 
-        .form-group label {
+        .campo label {
             display: block;
-            font-weight: bold;
             margin-bottom: 7px;
             font-size: 14px;
+            font-weight: bold;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .campo input,
+        .campo select,
+        .campo textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #d1d5db;
+            border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 14px;
-            outline: none;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: #168a43;
-        }
-
-        .form-row {
+        .fila {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
 
-        .summary-row {
+        .resumen {
+            margin-top: 20px;
+        }
+
+        .resumen-linea {
             display: flex;
             justify-content: space-between;
             margin-bottom: 15px;
-            font-size: 15px;
         }
 
-        .summary-total {
-            border-top: 1px solid #e5e7eb;
+        .total {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ddd;
             padding-top: 18px;
             margin-top: 18px;
-            font-size: 21px;
+            font-size: 22px;
             font-weight: bold;
         }
 
-        .summary-total strong {
+        .total strong {
             color: #168a43;
         }
 
-        .payment-box {
-            margin-top: 20px;
-            padding: 15px;
+        .seguridad {
             background: #f3f4f6;
+            padding: 15px;
             border-radius: 7px;
+            margin-top: 20px;
             font-size: 14px;
-            line-height: 1.5;
         }
 
-        .buy-button {
+        .boton {
             width: 100%;
             border: none;
             background: #168a43;
@@ -224,60 +197,36 @@
             margin-top: 20px;
         }
 
-        .buy-button:hover {
+        .boton:hover {
             background: #117337;
         }
 
-        .security {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .error-message {
-            display: none;
-            background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-            padding: 12px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .success-message {
-            display: none;
-            background: #dcfce7;
-            color: #166534;
-            border: 1px solid #bbf7d0;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
         .footer {
+            margin-top: 50px;
+            padding: 30px;
             background: #0d172b;
             color: white;
-            padding: 25px 30px;
-            margin-top: 50px;
             text-align: center;
             font-size: 13px;
         }
 
+        #mensaje {
+            display: none;
+            background: #dcfce7;
+            color: #166534;
+            padding: 15px;
+            border-radius: 7px;
+            margin-bottom: 20px;
+        }
+
         @media (max-width: 800px) {
 
-            .checkout-grid {
+            .grid {
                 grid-template-columns: 1fr;
             }
 
-            .form-row {
+            .fila {
                 grid-template-columns: 1fr;
-            }
-
-            .checkout-title {
-                font-size: 25px;
             }
 
             .header {
@@ -294,10 +243,6 @@
 <body>
 
 
-    <!-- ================================
-         HEADER
-    ================================= -->
-
     <header class="header">
 
         <a
@@ -309,7 +254,7 @@
 
         <a
             href="index.html"
-            class="back-button"
+            class="volver"
         >
             ← Volver a la tienda
         </a>
@@ -317,37 +262,22 @@
     </header>
 
 
+    <main class="container">
 
-    <!-- ================================
-         CHECKOUT
-    ================================= -->
-
-    <main class="checkout-container">
-
-        <h1 class="checkout-title">
+        <h1>
             Finalizar compra
         </h1>
 
 
-        <div
-            id="error-message"
-            class="error-message"
-        ></div>
+        <div id="mensaje">
+            Datos preparados correctamente.
+        </div>
 
 
-        <div
-            id="success-message"
-            class="success-message"
-        ></div>
+        <div class="grid">
 
 
-
-        <div class="checkout-grid">
-
-
-            <!-- ==========================
-                 DATOS DEL CLIENTE
-            =========================== -->
+            <!-- DATOS -->
 
             <section class="card">
 
@@ -356,40 +286,38 @@
                 </h2>
 
 
-                <form id="checkout-form">
+                <form id="formulario">
 
 
-                    <div class="form-row">
+                    <div class="fila">
 
-                        <div class="form-group">
+                        <div class="campo">
 
-                            <label for="nombre">
+                            <label>
                                 Nombre
                             </label>
 
                             <input
-                                type="text"
                                 id="nombre"
-                                name="nombre"
-                                placeholder="Tu nombre"
+                                type="text"
                                 required
+                                placeholder="Tu nombre"
                             >
 
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="campo">
 
-                            <label for="apellido">
+                            <label>
                                 Apellido
                             </label>
 
                             <input
-                                type="text"
                                 id="apellido"
-                                name="apellido"
-                                placeholder="Tu apellido"
+                                type="text"
                                 required
+                                placeholder="Tu apellido"
                             >
 
                         </div>
@@ -397,94 +325,85 @@
                     </div>
 
 
+                    <div class="campo">
 
-                    <div class="form-group">
-
-                        <label for="email">
+                        <label>
                             Correo electrónico
                         </label>
 
                         <input
-                            type="email"
                             id="email"
-                            name="email"
-                            placeholder="tucorreo@email.com"
+                            type="email"
                             required
+                            placeholder="tucorreo@email.com"
                         >
 
                     </div>
 
 
+                    <div class="campo">
 
-                    <div class="form-group">
-
-                        <label for="telefono">
+                        <label>
                             Teléfono
                         </label>
 
                         <input
-                            type="tel"
                             id="telefono"
-                            name="telefono"
-                            placeholder="+56 9 1234 5678"
+                            type="tel"
                             required
+                            placeholder="+56 9 1234 5678"
                         >
 
                     </div>
 
 
+                    <div class="campo">
 
-                    <div class="form-group">
-
-                        <label for="direccion">
+                        <label>
                             Dirección
                         </label>
 
                         <input
-                            type="text"
                             id="direccion"
-                            name="direccion"
-                            placeholder="Calle y número"
+                            type="text"
                             required
+                            placeholder="Calle y número"
                         >
 
                     </div>
 
 
+                    <div class="fila">
 
-                    <div class="form-row">
+                        <div class="campo">
 
-                        <div class="form-group">
-
-                            <label for="comuna">
+                            <label>
                                 Comuna
                             </label>
 
                             <input
-                                type="text"
                                 id="comuna"
-                                name="comuna"
-                                placeholder="Tu comuna"
+                                type="text"
                                 required
+                                placeholder="Tu comuna"
                             >
 
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="campo">
 
-                            <label for="region">
+                            <label>
                                 Región
                             </label>
 
                             <select
                                 id="region"
-                                name="region"
                                 required
                             >
 
                                 <option value="">
-                                    Seleccionar región
+                                    Seleccionar
                                 </option>
 
                                 <option>
@@ -558,21 +477,16 @@
                     </div>
 
 
+                    <div class="campo">
 
-                    <div class="form-group">
-
-                        <label for="referencia">
+                        <label>
                             Referencia de entrega
-                            <span style="font-weight: normal;">
-                                (opcional)
-                            </span>
                         </label>
 
                         <textarea
                             id="referencia"
-                            name="referencia"
                             rows="3"
-                            placeholder="Ej: casa azul, departamento 302..."
+                            placeholder="Casa azul, departamento, etc."
                         ></textarea>
 
                     </div>
@@ -584,46 +498,42 @@
 
 
 
-            <!-- ==========================
-                 RESUMEN DEL PEDIDO
-            =========================== -->
+            <!-- RESUMEN -->
 
-            <aside class="card">
+            <section class="card">
 
                 <h2>
-                    Resumen de tu pedido
+                    Resumen del pedido
                 </h2>
 
 
-                <div class="product-box">
+                <div class="producto">
 
                     <img
-                        id="producto-imagen"
-                        class="product-image"
                         src="img/foto1.jpg"
-                        alt="Producto"
+                        alt="Auriculares Gamer"
                     >
 
 
-                    <div class="product-info">
+                    <div>
 
                         <div
-                            id="producto-nombre"
-                            class="product-name"
+                            id="producto"
+                            class="producto-nombre"
                         >
-                            Producto
+                            Auriculares Gamer con Micrófono
                         </div>
 
 
                         <div
-                            id="producto-precio"
-                            class="product-price"
+                            id="precio"
+                            class="precio"
                         >
-                            $0
+                            $23.400
                         </div>
 
 
-                        <div class="quantity-row">
+                        <div class="cantidad">
 
                             <button
                                 type="button"
@@ -652,48 +562,50 @@
                 </div>
 
 
+                <div class="resumen">
 
-                <div class="summary-row">
+                    <div class="resumen-linea">
 
-                    <span>
-                        Producto
-                    </span>
+                        <span>
+                            Subtotal
+                        </span>
 
-                    <strong id="subtotal">
-                        $0
-                    </strong>
+                        <strong id="subtotal">
+                            $23.400
+                        </strong>
+
+                    </div>
+
+
+                    <div class="resumen-linea">
+
+                        <span>
+                            Envío
+                        </span>
+
+                        <strong>
+                            Por confirmar
+                        </strong>
+
+                    </div>
+
+
+                    <div class="total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="total">
+                            $23.400
+                        </strong>
+
+                    </div>
 
                 </div>
 
 
-                <div class="summary-row">
-
-                    <span>
-                        Envío
-                    </span>
-
-                    <strong>
-                        Por confirmar
-                    </strong>
-
-                </div>
-
-
-                <div class="summary-row summary-total">
-
-                    <span>
-                        Total
-                    </span>
-
-                    <strong id="total">
-                        $0
-                    </strong>
-
-                </div>
-
-
-
-                <div class="payment-box">
+                <div class="seguridad">
 
                     🔒
 
@@ -703,42 +615,26 @@
 
                     <br>
 
-                    El pago será procesado de forma
-                    segura mediante Mercado Pago.
+                    El pago será procesado mediante
+                    Mercado Pago.
 
                 </div>
-
 
 
                 <button
                     type="button"
-                    class="buy-button"
-                    onclick="continuarCompra()"
+                    class="boton"
+                    onclick="continuar()"
                 >
-
                     Continuar con el pago
-
                 </button>
 
-
-                <div class="security">
-
-                    🔐 Tus datos están protegidos.
-
-                </div>
-
-            </aside>
-
+            </section>
 
         </div>
 
     </main>
 
-
-
-    <!-- ================================
-         FOOTER
-    ================================= -->
 
     <footer class="footer">
 
@@ -757,26 +653,7 @@
     </footer>
 
 
-
-    <!-- ================================
-         SUPABASE
-    ================================= -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script src="./supabase-config.js"></script>
-
-
-
-    <!-- ================================
-         JAVASCRIPT
-    ================================= -->
-
     <script>
-
-        /* =================================
-           VARIABLES
-        ================================= */
 
         const parametros =
             new URLSearchParams(
@@ -804,18 +681,11 @@
 
 
         if (cantidad < 1) {
-
             cantidad = 1;
-
         }
 
 
-
-        /* =================================
-           FORMATO DE PRECIO
-        ================================= */
-
-        function formatoPrecio(numero) {
+        function dinero(numero) {
 
             return "$" +
                 Number(numero).toLocaleString("es-CL");
@@ -823,30 +693,22 @@
         }
 
 
+        function actualizar() {
 
-        /* =================================
-           ACTUALIZAR CHECKOUT
-        ================================= */
-
-        function actualizarCheckout() {
-
-            const subtotal =
-                precioProducto *
-                cantidad;
+            const total =
+                precioProducto * cantidad;
 
 
             document.getElementById(
-                "producto-nombre"
+                "producto"
             ).textContent =
                 nombreProducto;
 
 
             document.getElementById(
-                "producto-precio"
+                "precio"
             ).textContent =
-                formatoPrecio(
-                    precioProducto
-                );
+                dinero(precioProducto);
 
 
             document.getElementById(
@@ -858,25 +720,16 @@
             document.getElementById(
                 "subtotal"
             ).textContent =
-                formatoPrecio(
-                    subtotal
-                );
+                dinero(total);
 
 
             document.getElementById(
                 "total"
             ).textContent =
-                formatoPrecio(
-                    subtotal
-                );
+                dinero(total);
 
         }
 
-
-
-        /* =================================
-           CAMBIAR CANTIDAD
-        ================================= */
 
         function cambiarCantidad(valor) {
 
@@ -884,27 +737,20 @@
 
 
             if (cantidad < 1) {
-
                 cantidad = 1;
-
             }
 
 
-            actualizarCheckout();
+            actualizar();
 
         }
 
 
-
-        /* =================================
-           CONTINUAR COMPRA
-        ================================= */
-
-        function continuarCompra() {
+        function continuar() {
 
             const formulario =
                 document.getElementById(
-                    "checkout-form"
+                    "formulario"
                 );
 
 
@@ -917,64 +763,13 @@
             }
 
 
-            const nombre =
-                document.getElementById(
-                    "nombre"
-                ).value.trim();
-
-
-            const apellido =
-                document.getElementById(
-                    "apellido"
-                ).value.trim();
-
-
-            const email =
-                document.getElementById(
-                    "email"
-                ).value.trim();
-
-
-            const telefono =
-                document.getElementById(
-                    "telefono"
-                ).value.trim();
-
-
-            const direccion =
-                document.getElementById(
-                    "direccion"
-                ).value.trim();
-
-
-            const comuna =
-                document.getElementById(
-                    "comuna"
-                ).value.trim();
-
-
-            const region =
-                document.getElementById(
-                    "region"
-                ).value;
-
-
-            const referencia =
-                document.getElementById(
-                    "referencia"
-                ).value.trim();
-
-
             const pedido = {
 
-                producto:
-                    nombreProducto,
+                producto: nombreProducto,
 
-                precio:
-                    precioProducto,
+                precio: precioProducto,
 
-                cantidad:
-                    cantidad,
+                cantidad: cantidad,
 
                 total:
                     precioProducto * cantidad,
@@ -982,28 +777,44 @@
                 cliente: {
 
                     nombre:
-                        nombre,
+                        document.getElementById(
+                            "nombre"
+                        ).value,
 
                     apellido:
-                        apellido,
+                        document.getElementById(
+                            "apellido"
+                        ).value,
 
                     email:
-                        email,
+                        document.getElementById(
+                            "email"
+                        ).value,
 
                     telefono:
-                        telefono,
+                        document.getElementById(
+                            "telefono"
+                        ).value,
 
                     direccion:
-                        direccion,
+                        document.getElementById(
+                            "direccion"
+                        ).value,
 
                     comuna:
-                        comuna,
+                        document.getElementById(
+                            "comuna"
+                        ).value,
 
                     region:
-                        region,
+                        document.getElementById(
+                            "region"
+                        ).value,
 
                     referencia:
-                        referencia
+                        document.getElementById(
+                            "referencia"
+                        ).value
 
                 }
 
@@ -1016,34 +827,15 @@
             );
 
 
-            const success =
-                document.getElementById(
-                    "success-message"
-                );
-
-
-            success.style.display =
+            document.getElementById(
+                "mensaje"
+            ).style.display =
                 "block";
-
-
-            success.textContent =
-                "Datos guardados correctamente. El siguiente paso será conectar Mercado Pago.";
-
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
 
         }
 
 
-
-        /* =================================
-           INICIAR
-        ================================= */
-
-        actualizarCheckout();
+        actualizar();
 
     </script>
 
