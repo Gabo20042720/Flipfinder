@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FlipFinder | Checkout</title>
+
+    <meta
+        name="description"
+        content="Finaliza tu compra en FlipFinder."
+    >
+
+    <link
+        rel="stylesheet"
+        href="checkout.css"
+    >
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f6f9;
+            color: #111827;
+        }
+
+        .header {
+            height: 70px;
+            background: #0d172b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .back-button {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .checkout-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .checkout-title {
+            font-size: 30px;
+            margin-bottom: 25px;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .product-box {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-image {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            color: #168a43;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .quantity-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .quantity-row button {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .quantity-row button:hover {
+            background: #f3f4f6;
+        }
+
+        #cantidad {
+            min-width: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #168a43;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .summary-total {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 18px;
+            margin-top: 18px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .summary-total strong {
+            color: #168a43;
+        }
+
+        .payment-box {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f3f4f6;
+            border-radius: 7px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .buy-button {
+            width: 100%;
+            border: none;
+            background: #168a43;
+            color: white;
+            padding: 15px;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .buy-button:hover {
+            background: #117337;
+        }
+
+        .security {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .error-message {
+            display: none;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .success-message {
+            display: none;
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .footer {
+            background: #0d172b;
+            color: white;
+            padding: 25px 30px;
+            margin-top: 50px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        @media (max-width: 800px) {
+
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-title {
+                font-size: 25px;
+            }
+
+            .header {
+                padding: 0 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header class="header">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Flipfinder
+        </a>
+
+        <a
+            href="index.html"
+            class="back-button"
+        >
+            ← Volver a la tienda
+        </a>
+
+    </header>
+
+
+
+    <!-- ================================
+         CHECKOUT
+    ================================= -->
+
+    <main class="checkout-container">
+
+        <h1 class="checkout-title">
+            Finalizar compra
+        </h1>
+
+
+        <div
+            id="error-message"
+            class="error-message"
+        ></div>
+
+
+        <div
+            id="success-message"
+            class="success-message"
+        ></div>
+
+
+
+        <div class="checkout-grid">
+
+
+            <!-- ==========================
+                 DATOS DEL CLIENTE
+            =========================== -->
+
+            <section class="card">
+
+                <h2>
+                    Datos de envío
+                </h2>
+
+
+                <form id="checkout-form">
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="nombre">
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                name="nombre"
+                                placeholder="Tu nombre"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="apellido">
+                                Apellido
+                            </label>
+
+                            <input
+                                type="text"
+                                id="apellido"
+                                name="apellido"
+                                placeholder="Tu apellido"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="tucorreo@email.com"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="telefono">
+                            Teléfono
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telefono"
+                            name="telefono"
+                            placeholder="+56 9 1234 5678"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="direccion">
+                            Dirección
+                        </label>
+
+                        <input
+                            type="text"
+                            id="direccion"
+                            name="direccion"
+                            placeholder="Calle y número"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="comuna">
+                                Comuna
+                            </label>
+
+                            <input
+                                type="text"
+                                id="comuna"
+                                name="comuna"
+                                placeholder="Tu comuna"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="region">
+                                Región
+                            </label>
+
+                            <select
+                                id="region"
+                                name="region"
+                                required
+                            >
+
+                                <option value="">
+                                    Seleccionar región
+                                </option>
+
+                                <option>
+                                    Arica y Parinacota
+                                </option>
+
+                                <option>
+                                    Tarapacá
+                                </option>
+
+                                <option>
+                                    Antofagasta
+                                </option>
+
+                                <option>
+                                    Atacama
+                                </option>
+
+                                <option>
+                                    Coquimbo
+                                </option>
+
+                                <option>
+                                    Valparaíso
+                                </option>
+
+                                <option>
+                                    Metropolitana de Santiago
+                                </option>
+
+                                <option>
+                                    O'Higgins
+                                </option>
+
+                                <option>
+                                    Maule
+                                </option>
+
+                                <option>
+                                    Ñuble
+                                </option>
+
+                                <option>
+                                    Biobío
+                                </option>
+
+                                <option>
+                                    La Araucanía
+                                </option>
+
+                                <option>
+                                    Los Ríos
+                                </option>
+
+                                <option>
+                                    Los Lagos
+                                </option>
+
+                                <option>
+                                    Aysén
+                                </option>
+
+                                <option>
+                                    Magallanes
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="referencia">
+                            Referencia de entrega
+                            <span style="font-weight: normal;">
+                                (opcional)
+                            </span>
+                        </label>
+
+                        <textarea
+                            id="referencia"
+                            name="referencia"
+                            rows="3"
+                            placeholder="Ej: casa azul, departamento 302..."
+                        ></textarea>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+
+            <!-- ==========================
+                 RESUMEN DEL PEDIDO
+            =========================== -->
+
+            <aside class="card">
+
+                <h2>
+                    Resumen de tu pedido
+                </h2>
+
+
+                <div class="product-box">
+
+                    <img
+                        id="producto-imagen"
+                        class="product-image"
+                        src="img/foto1.jpg"
+                        alt="Producto"
+                    >
+
+
+                    <div class="product-info">
+
+                        <div
+                            id="producto-nombre"
+                            class="product-name"
+                        >
+                            Producto
+                        </div>
+
+
+                        <div
+                            id="producto-precio"
+                            class="product-price"
+                        >
+                            $0
+                        </div>
+
+
+                        <div class="quantity-row">
+
+                            <button
+                                type="button"
+                                onclick="cambiarCantidad(-1)"
+                            >
+                                −
+                            </button>
+
+
+                            <span id="cantidad">
+                                1
+                            </span>
+
+
+                            <button
+                                type="button"
+                                onclick="cambiarCantidad(1)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Producto
+                    </span>
+
+                    <strong id="subtotal">
+                        $0
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Envío
+                    </span>
+
+                    <strong>
+                        Por confirmar
+                    </strong>
+
+                </div>
+
+
+                <div class="summary-row summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="total">
+                        $0
+                    </strong>
+
+                </div>
+
+
+
+                <div class="payment-box">
+
+                    🔒
+
+                    <strong>
+                        Pago seguro
+                    </strong>
+
+                    <br>
+
+                    El pago será procesado de forma
+                    segura mediante Mercado Pago.
+
+                </div>
+
+
+
+                <button
+                    type="button"
+                    class="buy-button"
+                    onclick="continuarCompra()"
+                >
+
+                    Continuar con el pago
+
+                </button>
+
+
+                <div class="security">
+
+                    🔐 Tus datos están protegidos.
+
+                </div>
+
+            </aside>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer class="footer">
+
+        <strong>
+            Flipfinder
+        </strong>
+
+        <p>
+            Productos seleccionados y ofertas.
+        </p>
+
+        <p>
+            © 2026 FlipFinder
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================================
+         SUPABASE
+    ================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="./supabase-config.js"></script>
+
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        /* =================================
+           VARIABLES
+        ================================= */
+
+        const parametros =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const nombreProducto =
+            parametros.get("producto")
+            || "Auriculares Gamer con Micrófono";
+
+
+        const precioProducto =
+            Number(
+                parametros.get("precio")
+            )
+            || 23400;
+
+
+        let cantidad =
+            Number(
+                parametros.get("cantidad")
+            )
+            || 1;
+
+
+        if (cantidad < 1) {
+
+            cantidad = 1;
+
+        }
+
+
+
+        /* =================================
+           FORMATO DE PRECIO
+        ================================= */
+
+        function formatoPrecio(numero) {
+
+            return "$" +
+                Number(numero).toLocaleString("es-CL");
+
+        }
+
+
+
+        /* =================================
+           ACTUALIZAR CHECKOUT
+        ================================= */
+
+        function actualizarCheckout() {
+
+            const subtotal =
+                precioProducto *
+                cantidad;
+
+
+            document.getElementById(
+                "producto-nombre"
+            ).textContent =
+                nombreProducto;
+
+
+            document.getElementById(
+                "producto-precio"
+            ).textContent =
+                formatoPrecio(
+                    precioProducto
+                );
+
+
+            document.getElementById(
+                "cantidad"
+            ).textContent =
+                cantidad;
+
+
+            document.getElementById(
+                "subtotal"
+            ).textContent =
+                formatoPrecio(
+                    subtotal
+                );
+
+
+            document.getElementById(
+                "total"
+            ).textContent =
+                formatoPrecio(
+                    subtotal
+                );
+
+        }
+
+
+
+        /* =================================
+           CAMBIAR CANTIDAD
+        ================================= */
+
+        function cambiarCantidad(valor) {
+
+            cantidad += valor;
+
+
+            if (cantidad < 1) {
+
+                cantidad = 1;
+
+            }
+
+
+            actualizarCheckout();
+
+        }
+
+
+
+        /* =================================
+           CONTINUAR COMPRA
+        ================================= */
+
+        function continuarCompra() {
+
+            const formulario =
+                document.getElementById(
+                    "checkout-form"
+                );
+
+
+            if (!formulario.checkValidity()) {
+
+                formulario.reportValidity();
+
+                return;
+
+            }
+
+
+            const nombre =
+                document.getElementById(
+                    "nombre"
+                ).value.trim();
+
+
+            const apellido =
+                document.getElementById(
+                    "apellido"
+                ).value.trim();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const telefono =
+                document.getElementById(
+                    "telefono"
+                ).value.trim();
+
+
+            const direccion =
+                document.getElementById(
+                    "direccion"
+                ).value.trim();
+
+
+            const comuna =
+                document.getElementById(
+                    "comuna"
+                ).value.trim();
+
+
+            const region =
+                document.getElementById(
+                    "region"
+                ).value;
+
+
+            const referencia =
+                document.getElementById(
+                    "referencia"
+                ).value.trim();
+
+
+            const pedido = {
+
+                producto:
+                    nombreProducto,
+
+                precio:
+                    precioProducto,
+
+                cantidad:
+                    cantidad,
+
+                total:
+                    precioProducto * cantidad,
+
+                cliente: {
+
+                    nombre:
+                        nombre,
+
+                    apellido:
+                        apellido,
+
+                    email:
+                        email,
+
+                    telefono:
+                        telefono,
+
+                    direccion:
+                        direccion,
+
+                    comuna:
+                        comuna,
+
+                    region:
+                        region,
+
+                    referencia:
+                        referencia
+
+                }
+
+            };
+
+
+            localStorage.setItem(
+                "flipfinder_pedido",
+                JSON.stringify(pedido)
+            );
+
+
+            const success =
+                document.getElementById(
+                    "success-message"
+                );
+
+
+            success.style.display =
+                "block";
+
+
+            success.textContent =
+                "Datos guardados correctamente. El siguiente paso será conectar Mercado Pago.";
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+
+        /* =================================
+           INICIAR
+        ================================= */
+
+        actualizarCheckout();
+
+    </script>
+
+
+</body>
+
+</html>
