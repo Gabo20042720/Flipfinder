@@ -1,1150 +1,745 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO y Optimización de Marca Forzada para Google -->
-    <title>Flipfinder Chile - Tienda Online de Auriculares Gamer y Tecnología</title>
-    <meta name="description" content="Compra online en Flipfinder Chile. Auriculares gamer de alto rendimiento, micrófonos con cancelación de ruido, envíos seguros a todo el país y pago al recibir.">
-    <meta name="keywords" content="flipfinder, flipfinder chile, tienda online chile, auriculares gamer, audifonos gamer chile, ofertas tecnologia">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://flipfinder.cl/">
 
-    <!-- Open Graph Redes Sociales y Buscadores -->
-    <meta property="og:site_name" content="Flipfinder Chile">
-    <meta property="og:title" content="Flipfinder Chile - Auriculares Gamer y Tecnología">
-    <meta property="og:description" content="Descubre auriculares gamer de alto rendimiento, sonido envolvente y envíos directos a todo Chile con pago al recibir.">
-    <meta property="og:image" content="https://flipfinder.cl/img/foto1.jpg">
-    <meta property="og:url" content="https://flipfinder.cl/">
-    <meta property="og:type" content="website">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- Datos Estructurados Schema.org para corregir el buscador de Google -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "Auriculares Gamer Microfono Off Ruido",
-      "image": "https://flipfinder.cl/img/foto1.jpg",
-      "description": "Auriculares gamer de alto rendimiento con micrófono de cancelación de ruido y luces LED RGB.",
-      "brand": {
-        "@type": "Brand",
-        "name": "Flipfinder Chile"
-      },
-      "offers": {
-        "@type": "Offer",
-        "url": "https://flipfinder.cl/",
-        "priceCurrency": "CLP",
-        "price": "23400",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-    </script>
+    <title>FlipFinder | Auriculares Gamer</title>
 
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --success: #16a34a;
-            --bg-light: #f8fafc;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --white: #ffffff;
-            --radius: 12px;
-            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-        }
+    <meta
+        name="description"
+        content="Compra productos seleccionados en FlipFinder. Envíos a todo Chile."
+    >
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-        body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Header Profesional y Responsivo */
-        header {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 12px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        header h1 {
-            font-size: 1.35rem;
-            letter-spacing: 0.5px;
-            font-weight: 800;
-            background: linear-gradient(to right, #ffffff, #93c5fd);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.78rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .logout-btn {
-            background: rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            padding: 4px 8px;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .logout-btn:hover {
-            background: rgba(239, 68, 68, 0.4);
-        }
-
-        .cart-btn {
-            background: var(--success);
-            color: var(--white);
-            border: none;
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 0.82rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: background 0.2s;
-        }
-
-        .cart-btn:hover {
-            background: #15803d;
-        }
-
-        .user-container {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .user-status-display {
-            font-size: 0.78rem;
-            color: #93c5fd;
-            font-weight: 600;
-            max-width: 100px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        /* Banner de Confianza Responsivo */
-        .trust-bar {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .trust-item {
-            background: var(--white);
-            padding: 12px 10px;
-            border-radius: var(--radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-main);
-            border: 1px solid #e2e8f0;
-        }
-
-        /* Hero / Sección Principal */
-        .hero {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .hero {
-                grid-template-columns: 1fr 1fr;
-                padding: 40px;
-            }
-        }
-
-        .hero-img-container {
-            text-align: center;
-        }
-
-        .main-product-img {
-            width: 100%;
-            max-width: 380px;
-            height: 300px;
-            object-fit: contain;
-            border-radius: 10px;
-            background-color: var(--white);
-            border: 1px solid #f1f5f9;
-            transition: opacity 0.2s ease-in-out;
-        }
-
-        @media (min-width: 768px) {
-            .main-product-img {
-                height: 380px;
-            }
-        }
-
-        .badge-shipping {
-            display: inline-block;
-            background-color: #dcfce7;
-            color: #15803d;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .hero-details h2 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            line-height: 1.2;
-        }
-
-        @media (min-width: 768px) {
-            .hero-details h2 {
-                font-size: 2rem;
-            }
-        }
-
-        .courier-info {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            background-color: #f8fafc;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent);
-        }
-
-        .hero-description {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .hero-features-list {
-            list-style: none;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-            color: var(--text-main);
-        }
-
-        .hero-features-list li {
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .price-tag {
-            font-size: 1.8rem;
-            color: var(--success);
-            font-weight: 800;
-            margin-bottom: 15px;
-        }
-
-        @media (min-width: 768px) {
-            .price-tag {
-                font-size: 2.2rem;
-            }
-        }
-
-        /* Controles de Compra */
-        .purchase-controls {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        @media (min-width: 480px) {
-            .purchase-controls {
-                flex-direction: row;
-                align-items: center;
-            }
-        }
-
-        .quantity-selector {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            background: #f8fafc;
-            overflow: hidden;
-        }
-
-        .qty-btn {
-            background: none;
-            border: none;
-            padding: 12px 16px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            color: var(--primary);
-        }
-
-        #product-qty {
-            width: 45px;
-            text-align: center;
-            font-size: 1rem;
-            font-weight: 700;
-            border: none;
-            background: transparent;
-        }
-
-        .btn-cta {
-            width: 100%;
-            background-color: var(--success);
-            color: var(--white);
-            text-align: center;
-            padding: 14px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
-        }
-
-        .btn-cta:hover {
-            background-color: #15803d;
-        }
-
-        /* Galería */
-        .gallery {
-            text-align: center;
-            margin-bottom: 30px;
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        .gallery h3 {
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-            color: var(--primary);
-        }
-
-        .gallery p {
-            color: var(--text-muted);
-            font-size: 0.82rem;
-            margin-bottom: 15px;
-        }
-
-        .gallery-grid {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .thumb-img {
-            width: 65px;
-            height: 65px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #e2e8f0;
-            cursor: pointer;
-        }
-
-        @media (min-width: 768px) {
-            .thumb-img {
-                width: 80px;
-                height: 80px;
-            }
-        }
-
-        .thumb-img:hover, .thumb-img.active-thumb {
-            border-color: var(--success);
-            transform: scale(1.05);
-        }
-
-        /* Carrito Lateral */
-        .cart-sidebar {
-            position: fixed;
-            top: 0; 
-            right: -100%; 
-            width: 100%; 
-            max-width: 420px; 
-            height: 100%;
-            background: var(--white);
-            box-shadow: -5px 0 25px rgba(0,0,0,0.15);
-            z-index: 3000;
-            transition: right 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-sidebar.open {
-            right: 0;
-        }
-
-        .cart-header {
-            background: var(--primary);
-            color: var(--white);
-            padding: 18px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .cart-body {
-            padding: 15px 20px;
-            overflow-y: auto;
-            flex: 1;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #e2e8f0;
-            gap: 10px;
-        }
-
-        .cart-total {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--success);
-            margin: 12px 0;
-            text-align: right;
-        }
-
-        .checkout-form-container {
-            margin-top: 15px;
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .checkout-form-container label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 8px;
-            color: var(--text-main);
-        }
-
-        .checkout-form-container input, .checkout-form-container select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 3px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            background-color: #fff;
-        }
-
-        .btn-checkout-submit {
-            width: 100%;
-            margin-top: 15px;
-            background: var(--success);
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 0.95rem;
-        }
-
-        /* Modales */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
-
-        .modal-content {
-            background: var(--white);
-            padding: 20px;
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 12px; right: 15px;
-            background: none; border: none;
-            font-size: 1.3rem; cursor: pointer;
-            color: var(--text-muted);
-        }
-
-        .modal-content label {
-            display: block;
-            font-size: 0.82rem;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 4px;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-
-        /* Panel de Administración */
-        .admin-modal .modal-content {
-            max-width: 700px;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 20px 15px;
-        }
-
-        .admin-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .admin-stat-card {
-            background: #f1f5f9;
-            padding: 12px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .admin-stat-card h4 {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-
-        .admin-stat-card p {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .desktop-admin-view {
-            display: block;
-        }
-        .mobile-admin-view {
-            display: none;
-        }
-
-        @media (max-width: 600px) {
-            .desktop-admin-view {
-                display: none !important;
-            }
-            .mobile-admin-view {
-                display: block !important;
-            }
-        }
-
-        .user-card-mobile {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .user-card-info h5 {
-            font-size: 0.9rem;
-            color: var(--primary);
-            margin-bottom: 2px;
-        }
-
-        .user-card-info p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .btn-delete-mobile {
-            background: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
-        }
-
-        footer {
-            background-color: var(--primary);
-            color: #94a3b8;
-            text-align: center;
-            padding: 25px 15px;
-            margin-top: 40px;
-            font-size: 0.82rem;
-        }
-
-        .admin-link {
-            background: none;
-            border: none;
-            color: #94a3b8;
-            font-size: 0.78rem;
-            cursor: pointer;
-            text-decoration: underline;
-            margin-top: 12px;
-            display: inline-block;
-        }
-    </style>
 </head>
+
+
 <body>
 
-    <header>
-        <h1>Flipfinder</h1>
+
+    <!-- ================================
+         HEADER
+    ================================= -->
+
+    <header class="header">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Flipfinder
+        </a>
+
+
         <div class="header-actions">
-            <div id="user-logged-box" class="user-container" style="display: none;">
-                <span id="user-welcome" class="user-status-display"></span>
-                <button class="logout-btn" onclick="cerrarSesion()">Salir</button>
-            </div>
-            <button class="nav-btn" id="btn-login-nav" onclick="abrirModal('loginModal')">Ingresar</button>
-            <button class="nav-btn" id="btn-reg-nav" onclick="abrirModal('registerModal')">Registro</button>
-            <button class="cart-btn" onclick="toggleCart()">🛒 (<span id="cart-count">0</span>)</button>
+
+            <button
+                class="cart-button"
+                onclick="irAlCheckout()"
+            >
+
+                🛒
+
+                <span id="cart-count">
+                    1
+                </span>
+
+            </button>
+
         </div>
+
     </header>
 
-    <div class="container">
-        
-        <div class="trust-bar">
-            <div class="trust-item">📦 Envíos a Todo Chile</div>
-            <div class="trust-item">🔒 Pago Al Recibir</div>
-            <div class="trust-item">⚡ Despacho Rápido</div>
+
+
+    <!-- ================================
+         BARRA DE CONFIANZA
+    ================================= -->
+
+    <section class="trust-bar">
+
+        <div class="trust-item">
+
+            📦
+
+            <strong>
+                Envíos a Todo Chile
+            </strong>
+
         </div>
 
-        <section class="hero">
-            <div class="hero-img-container">
-                <img id="mainImage" class="main-product-img" src="img/foto1.jpg" alt="Auriculares Gamer Microfono Off Ruido">
-            </div>
-            <div class="hero-details">
-                <span class="badge-shipping">🚚 Destacado de Temporada</span>
-                <h2>Auriculares Gamer Microfono Off Ruido</h2>
-                <div class="courier-info">
-                    📦 Envíos asegurados por <strong>Starken, Blue Express, Veloces y Wiilog</strong>.
-                </div>
-                <p class="hero-description">¡Sumérgete en la experiencia de juego definitiva este verano! Rendimiento excepcional y comodidad absoluta.</p>
-                
-                <ul class="hero-features-list">
-                    <li>🎮 <strong>Compatibilidad:</strong> PS4, PS5, Xbox, PC y laptop.</li>
-                    <li>🎧 <strong>Audio Inmersivo:</strong> Sonido envolvente con graves profundos.</li>
-                    <li>💡 <strong>Luz LED:</strong> Estilo RGB incorporado único y vibrante.</li>
-                </ul>
 
-                <div class="price-tag">$23.400 CLP</div>
-                
-                <div class="purchase-controls">
-                    <div class="quantity-selector">
-                        <button class="qty-btn" onclick="cambiarCantidad(-1)">-</button>
-                        <input type="text" id="product-qty" value="1" readonly>
-                        <button class="qty-btn" onclick="cambiarCantidad(1)">+</button>
-                    </div>
-                    <button class="btn-cta" onclick="agregarAlCarrito()">🛒 Añadir al Carrito</button>
+        <div class="trust-item">
+
+            🔒
+
+            <strong>
+                Pago mediante Mercado Pago
+            </strong>
+
+        </div>
+
+
+        <div class="trust-item">
+
+            ⚡
+
+            <strong>
+                Despacho Rápido
+            </strong>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================
+         PRODUCTO
+    ================================= -->
+
+    <main class="container">
+
+        <section class="product-card">
+
+
+            <!-- ==========================
+                 GALERÍA
+            =========================== -->
+
+            <div class="gallery">
+
+
+                <!-- IMAGEN PRINCIPAL -->
+
+                <div class="main-image">
+
+                    <img
+                        id="main-product-image"
+                        src="img/foto1.jpg"
+                        alt="Auriculares Gamer con Micrófono"
+                    >
+
                 </div>
+
+
+
+                <!-- MINIATURAS -->
+
+                <div class="thumbnail-gallery">
+
+
+                    <button
+                        type="button"
+                        class="thumbnail active"
+                        onclick="cambiarImagen(1)"
+                    >
+
+                        <img
+                            src="img/foto1.jpg"
+                            alt="Auriculares Gamer - Foto 1"
+                        >
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="thumbnail"
+                        onclick="cambiarImagen(2)"
+                    >
+
+                        <img
+                            src="img/foto2.jpg"
+                            alt="Auriculares Gamer - Foto 2"
+                        >
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="thumbnail"
+                        onclick="cambiarImagen(3)"
+                    >
+
+                        <img
+                            src="img/foto3.jpg"
+                            alt="Auriculares Gamer - Foto 3"
+                        >
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="thumbnail"
+                        onclick="cambiarImagen(4)"
+                    >
+
+                        <img
+                            src="img/foto4.jpg"
+                            alt="Auriculares Gamer - Foto 4"
+                        >
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="thumbnail"
+                        onclick="cambiarImagen(5)"
+                    >
+
+                        <img
+                            src="img/foto5.jpg"
+                            alt="Auriculares Gamer - Foto 5"
+                        >
+
+                    </button>
+
+
+                </div>
+
             </div>
+
+
+
+            <!-- ==========================
+                 INFORMACIÓN
+            =========================== -->
+
+            <div class="product-info">
+
+
+                <span class="badge">
+
+                    🚀 DESTACADO DE TEMPORADA
+
+                </span>
+
+
+
+                <h1>
+
+                    Auriculares Gamer
+                    con Micrófono
+
+                </h1>
+
+
+
+                <div class="shipping-info">
+
+                    📦
+
+                    Envíos asegurados por
+                    Starken, Blue Express,
+                    Veloces y Wilog.
+
+                </div>
+
+
+
+                <p class="description">
+
+                    ¡Sumérgete en la experiencia
+                    de juego definitiva este verano!
+
+                    Rendimiento excepcional
+                    y comodidad absoluta.
+
+                </p>
+
+
+
+                <!-- CARACTERÍSTICAS -->
+
+                <div class="features">
+
+
+                    <p>
+
+                        🎮
+
+                        <strong>
+                            Compatibilidad:
+                        </strong>
+
+                        PS4, PS5, Xbox,
+                        PC y laptop.
+
+                    </p>
+
+
+                    <p>
+
+                        🎧
+
+                        <strong>
+                            Audio Inmersivo:
+                        </strong>
+
+                        Sonido envolvente
+                        con graves profundos.
+
+                    </p>
+
+
+                    <p>
+
+                        🎙️
+
+                        <strong>
+                            Micrófono:
+                        </strong>
+
+                        Comunicación clara
+                        durante tus partidas.
+
+                    </p>
+
+
+                    <p>
+
+                        💡
+
+                        <strong>
+                            Luz LED:
+                        </strong>
+
+                        Estilo RGB
+                        incorporado.
+
+                    </p>
+
+
+                </div>
+
+
+
+                <!-- PRECIO -->
+
+                <div class="price">
+
+                    $23.400
+
+                    <span>
+                        CLP
+                    </span>
+
+                </div>
+
+
+
+                <!-- CANTIDAD -->
+
+                <div class="quantity-title">
+
+                    Cantidad
+
+                </div>
+
+
+                <div class="quantity-container">
+
+
+                    <button
+                        type="button"
+                        onclick="cambiarCantidad(-1)"
+                    >
+
+                        −
+
+                    </button>
+
+
+                    <span id="quantity">
+
+                        1
+
+                    </span>
+
+
+                    <button
+                        type="button"
+                        onclick="cambiarCantidad(1)"
+                    >
+
+                        +
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- TOTAL -->
+
+                <div class="total">
+
+                    Total:
+
+                    <strong id="total">
+
+                        $23.400
+
+                    </strong>
+
+                </div>
+
+
+
+                <!-- COMPRAR -->
+
+                <button
+                    type="button"
+                    class="buy-button"
+                    onclick="irAlCheckout()"
+                >
+
+                    🛒 Comprar ahora
+
+                </button>
+
+
+                <p class="payment-note">
+
+                    🔒 Pago seguro mediante Mercado Pago
+
+                </p>
+
+
+            </div>
+
         </section>
 
-        <section class="gallery">
-            <h3>Galería del Producto</h3>
-            <p>Toca las miniaturas para ver cada detalle</p>
-            <div class="gallery-grid">
-                <img class="thumb-img active-thumb" src="img/foto1.jpg" alt="Vista 1" onclick="cambiarImagen(this)">
-                <img class="thumb-img" src="img/foto2.jpg" alt="Vista 2" onclick="cambiarImagen(this)">
-                <img class="thumb-img" src="img/foto3.jpg" alt="Vista 3" onclick="cambiarImagen(this)">
-                <img class="thumb-img" src="img/foto4.jpg" alt="Vista 4" onclick="cambiarImagen(this)">
-                <img class="thumb-img" src="img/foto5.jpg" alt="Vista 5" onclick="cambiarImagen(this)">
+
+
+        <!-- ================================
+             INFORMACIÓN DE CONFIANZA
+        ================================= -->
+
+        <section class="info-section">
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+
+                    📦
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Envíos a todo Chile
+                    </strong>
+
+                    <p>
+                        Realizamos despachos
+                        a distintas regiones
+                        del país.
+                    </p>
+
+                </div>
+
             </div>
+
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+
+                    🔒
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Pago seguro
+                    </strong>
+
+                    <p>
+                        Gestionamos tus pagos
+                        mediante Mercado Pago.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="info-card">
+
+                <div class="info-icon">
+
+                    ⚡
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Despacho rápido
+                    </strong>
+
+                    <p>
+                        Preparamos tu pedido
+                        después de confirmar
+                        el pago.
+                    </p>
+
+                </div>
+
+            </div>
+
+
         </section>
-    </div>
 
-    <!-- Carrito Lateral Desplegable & Checkout -->
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Tu Carrito de Compras</h3>
-            <button onclick="toggleCart()" style="background:none; border:none; color:white; font-size:1.4rem; cursor:pointer;">&times;</button>
+    </main>
+
+
+
+    <!-- ================================
+         FOOTER
+    ================================= -->
+
+    <footer class="footer">
+
+        <div>
+
+            <strong>
+                Flipfinder
+            </strong>
+
+            <p>
+                Productos seleccionados
+                y ofertas.
+            </p>
+
         </div>
-        <div class="cart-body" id="cartBody">
-            <p id="empty-cart-msg" style="color:var(--text-muted); text-align:center; margin-top:30px;">Tu carrito está vacío.</p>
-            <div id="cart-items-list"></div>
-            
-            <div id="checkout-container-section" style="display:none;">
-                <div class="cart-total">Total: $<span id="cart-total-price">0</span> CLP</div>
-                
-                <form id="checkout-form" action="https://formspree.io/f/xljdzpnk" method="POST" class="checkout-form-container">
-                    <h4 style="margin-bottom: 8px; color:var(--primary); font-size:0.95rem;">Datos de Envío</h4>
-                    
-                    <label>Nombre y Apellido *</label>
-                    <input type="text" name="Nombre Completo" id="input-nombre" required placeholder="Ej: Gabriel Loyola">
 
-                    <label>Teléfono (WhatsApp) *</label>
-                    <input type="tel" name="Telefono" required placeholder="Ej: +56912345678">
 
-                    <label>Dirección de Entrega *</label>
-                    <input type="text" name="Direccion" required placeholder="Ej: Av. Providencia 1234">
+        <p>
 
-                    <label>Región *</label>
-                    <select name="Region" required>
-                        <option value="">Selecciona tu región</option>
-                        <option value="Región Metropolitana">Región Metropolitana</option>
-                        <option value="Valparaíso">Valparaíso</option>
-                        <option value="O'Higgins">O'Higgins</option>
-                        <option value="Biobío">Biobío</option>
-                        <option value="Araucanía">Araucanía</option>
-                        <option value="Antofagasta">Antofagasta</option>
-                        <option value="Coquimbo">Coquimbo</option>
-                        <option value="Los Lagos">Los Lagos</option>
-                        <option value="Maule">Maule</option>
-                        <option value="Tarapacá">Tarapacá</option>
-                        <option value="Atacama">Atacama</option>
-                        <option value="Aysén">Aysén</option>
-                        <option value="Magallanes">Magallanes</option>
-                        <option value="Arica y Parinacota">Arica y Parinacota</option>
-                        <option value="Los Ríos">Los Ríos</option>
-                        <option value="Ñuble">Ñuble</option>
-                    </select>
+            © 2026 FlipFinder
 
-                    <label>Comuna *</label>
-                    <input type="text" name="Comuna" required placeholder="Ej: Providencia">
+        </p>
 
-                    <!-- Campos ocultos para Formspree y Dropi -->
-                    <input type="hidden" name="Producto" id="form-product-details" value="">
-                    <input type="hidden" name="Estado_Pedido" value="Nuevo / En Proceso">
-                    <input type="hidden" id="form-order-id" name="ID_Orden" value="">
-                    <input type="hidden" id="form-order-time" name="Hora_Pedido" value="">
-
-                    <button type="submit" id="submit-btn" class="btn-checkout-submit">Registrar Pedido (Pago al Recibir)</button>
-                </form>
-            </div>
-            
-            <div id="success-order-msg" style="display:none; text-align:center; padding: 20px;">
-                <h3 style="color:var(--success); margin-bottom: 10px;">🎉 ¡Pedido Registrado!</h3>
-                <p style="font-size: 0.85rem; color:var(--text-muted);">Tu orden ha sido enviada correctamente. Guía: <strong id="assigned-order-id">#FF-000</strong></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Formulario oculto adicional para notificar registros de usuarios a Formspree -->
-    <form id="form-registro-oculto" action="https://formspree.io/f/xljdzpnk" method="POST" style="display:none;">
-        <input type="hidden" name="Tipo_Formulario" value="NUEVO_USUARIO_REGISTRADO">
-        <input type="hidden" name="Nombre_Usuario" id="reg-hidden-name">
-        <input type="hidden" name="Email_Usuario" id="reg-hidden-email">
-    </form>
-
-    <!-- Modal Inicio de Sesión -->
-    <div class="modal-overlay" id="loginModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="cerrarModal('loginModal')">&times;</button>
-            <h3 style="color:var(--primary); font-size: 1.15rem;">Iniciar Sesión</h3>
-            <label>Correo Electrónico</label>
-            <input type="email" id="login-email" placeholder="tucorreo@gmail.com">
-            <label>Contraseña</label>
-            <input type="password" placeholder="••••••••">
-            <button onclick="procesarLogin()" style="width:100%; margin-top:18px; background:var(--primary); color:white; padding:11px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Entrar</button>
-        </div>
-    </div>
-
-    <!-- Modal Registro -->
-    <div class="modal-overlay" id="registerModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="cerrarModal('registerModal')">&times;</button>
-            <h3 style="color:var(--primary); font-size: 1.15rem;">Crear Cuenta Nueva</h3>
-            <label>Nombre Completo</label>
-            <input type="text" id="reg-name" placeholder="Tu Nombre">
-            <label>Correo Electrónico</label>
-            <input type="email" id="reg-email" placeholder="tucorreo@gmail.com">
-            <label>Contraseña</label>
-            <input type="password" placeholder="••••••••">
-            <button onclick="procesarRegistro()" style="width:100%; margin-top:18px; background:var(--success); color:white; padding:11px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Registrarse</button>
-        </div>
-    </div>
-
-    <!-- Modal Panel del Dueño -->
-    <div class="modal-overlay admin-modal" id="adminModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="cerrarModal('adminModal')">&times;</button>
-            <h3 style="color:var(--primary); margin-bottom: 4px; font-size: 1.15rem;">Panel de Administración</h3>
-            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom: 12px;">Estadísticas internas y control de cuentas registradas.</p>
-            
-            <div class="admin-stats-grid">
-                <div class="admin-stat-card">
-                    <h4>VISITAS</h4>
-                    <p id="admin-total-views">0</p>
-                </div>
-                <div class="admin-stat-card">
-                    <h4>EN LÍNEA</h4>
-                    <p id="admin-online-users">1</p>
-                </div>
-                <div class="admin-stat-card">
-                    <h4>REGISTRADOS</h4>
-                    <p id="admin-registered-count">0</p>
-                </div>
-            </div>
-
-            <h4 style="font-size: 0.85rem; color:var(--primary); margin-top: 15px; margin-bottom: 8px;">Listado de Usuarios:</h4>
-            
-            <div id="desktop-users-container" class="desktop-admin-view" style="max-height: 220px; overflow-y: auto; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 8px; font-size: 0.8rem;">
-                <p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>
-            </div>
-
-            <div id="mobile-users-container" class="mobile-admin-view" style="max-height: 240px; overflow-y: auto;">
-                <p style="color: var(--text-muted); text-align: center; font-size: 0.85rem;">No hay usuarios registrados aún.</p>
-            </div>
-            
-            <button onclick="cerrarModal('adminModal')" style="width:100%; margin-top:15px; background:var(--primary); color:white; padding:10px; border:none; border-radius:6px; font-weight:600; cursor:pointer;">Cerrar Panel</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Flipfinder Chile. Todos los derechos reservados.</p>
-        <button class="admin-link" onclick="solicitarAccesoAdmin()">🔒 Panel de Administración (Dueño)</button>
     </footer>
 
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
     <script>
-        let carrito = [];
-        let usuarioLogueado = null; 
 
-        window.addEventListener('DOMContentLoaded', () => {
-            let vistas = localStorage.getItem('flipfinder_views');
-            vistas = vistas ? parseInt(vistas) + 1 : 1;
-            localStorage.setItem('flipfinder_views', vistas);
 
-            let sesionGuardada = localStorage.getItem('flipfinder_session');
-            if (sesionGuardada) {
-                usuarioLogueado = JSON.parse(sesionGuardada);
-                actualizarEstadoUsuario();
-            }
-        });
+        /* =================================
+           PRODUCTO
+        ================================= */
 
-        function solicitarAccesoAdmin() {
-            let clave = prompt("Ingresa tu clave secreta de Administrador:");
-            if (clave === "flipfinder2026") {
-                actualizarPanelAdmin();
-                abrirModal('adminModal');
-            } else if (clave !== null) {
-                alert("Clave incorrecta.");
-            }
+        const producto = {
+
+            nombre:
+                "Auriculares Gamer con Micrófono",
+
+            precio:
+                23400,
+
+            imagen:
+                "img/foto1.jpg"
+
+        };
+
+
+
+        /* =================================
+           CANTIDAD
+        ================================= */
+
+        let cantidad = 1;
+
+
+
+        /* =================================
+           FORMATO DE PRECIO
+        ================================= */
+
+        function formatoPrecio(numero) {
+
+            return "$" +
+                numero.toLocaleString("es-CL");
+
         }
 
-        function actualizarPanelAdmin() {
-            document.getElementById('admin-total-views').innerText = localStorage.getItem('flipfinder_views') || 1;
-            
-            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
-            document.getElementById('admin-registered-count').innerText = listaUsuarios.length;
 
-            let desktopContainer = document.getElementById('desktop-users-container');
-            let mobileContainer = document.getElementById('mobile-users-container');
 
-            if (listaUsuarios.length === 0) {
-                desktopContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center;">No hay usuarios registrados aún.</p>';
-                mobileContainer.innerHTML = '<p style="color: var(--text-muted); text-align: center; font-size: 0.85rem;">No hay usuarios registrados aún.</p>';
-            } else {
-                let htmlDesktop = '<table style="width:100%; border-collapse: collapse;">';
-                htmlDesktop += '<tr style="border-bottom:1px solid #cbd5e1; text-align:left;"><th>Nombre</th><th>Correo</th><th>Fecha</th><th style="text-align:center;">Acción</th></tr>';
-                let htmlMobile = '';
+        /* =================================
+           ACTUALIZAR PÁGINA
+        ================================= */
 
-                listaUsuarios.forEach((u, index) => {
-                    htmlDesktop += `<tr style="border-bottom:1px solid #e2e8f0;">
-                        <td style="padding:6px 4px;">${u.nombre}</td>
-                        <td style="padding:6px 4px;">${u.email}</td>
-                        <td style="font-size:0.7rem; color:#64748b; padding:6px 4px;">${u.fecha}</td>
-                        <td style="text-align:center; padding:6px 4px;"><button onclick="eliminarUsuario(${index})" style="background:none; border:none; color:red; cursor:pointer; font-size:0.95rem;" title="Eliminar usuario">❌</button></td>
-                    </tr>`;
+        function actualizarPagina() {
 
-                    htmlMobile += `<div class="user-card-mobile">
-                        <div class="user-card-info">
-                            <h5>👤 ${u.nombre}</h5>
-                            <p>✉️ ${u.email}</p>
-                            <p style="font-size:0.7rem; color:#94a3b8;">📅 ${u.fecha}</p>
-                        </div>
-                        <button class="btn-delete-mobile" onclick="eliminarUsuario(${index})">Eliminar</button>
-                    </div>`;
-                });
+            const total =
+                producto.precio *
+                cantidad;
 
-                htmlDesktop += '</table>';
-                desktopContainer.innerHTML = htmlDesktop;
-                mobileContainer.innerHTML = htmlMobile;
-            }
+
+            document.getElementById(
+                "quantity"
+            ).textContent =
+                cantidad;
+
+
+            document.getElementById(
+                "cart-count"
+            ).textContent =
+                cantidad;
+
+
+            document.getElementById(
+                "total"
+            ).textContent =
+                formatoPrecio(total);
+
         }
 
-        function eliminarUsuario(index) {
-            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
-            let usuarioEliminado = listaUsuarios[index];
-            
-            if (confirm(`¿Estás seguro de eliminar al usuario ${usuarioEliminado.nombre}?`)) {
-                listaUsuarios.splice(index, 1);
-                localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
-                
-                if (usuarioLogueado && usuarioLogueado.email === usuarioEliminado.email) {
-                    cerrarSesion();
+
+
+        /* =================================
+           CAMBIAR CANTIDAD
+        ================================= */
+
+        function cambiarCantidad(valor) {
+
+            cantidad += valor;
+
+
+            if (cantidad < 1) {
+
+                cantidad = 1;
+
+            }
+
+
+            actualizarPagina();
+
+        }
+
+
+
+        /* =================================
+           CAMBIAR IMAGEN
+        ================================= */
+
+        function cambiarImagen(numero) {
+
+
+            const imagen =
+                document.getElementById(
+                    "main-product-image"
+                );
+
+
+            imagen.src =
+                "img/foto" +
+                numero +
+                ".jpg";
+
+
+            const miniaturas =
+                document.querySelectorAll(
+                    ".thumbnail"
+                );
+
+
+            miniaturas.forEach(
+                function(thumbnail) {
+
+                    thumbnail.classList.remove(
+                        "active"
+                    );
+
                 }
+            );
 
-                actualizarPanelAdmin();
-                alert('Usuario eliminado correctamente.');
-            }
+
+            miniaturas[
+                numero - 1
+            ].classList.add(
+                "active"
+            );
+
         }
 
-        function cambiarImagen(element) {
-            var mainImage = document.getElementById('mainImage');
-            mainImage.style.opacity = '0.3';
-            setTimeout(function() {
-                mainImage.src = element.src;
-                mainImage.style.opacity = '1';
-            }, 150);
-            document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active-thumb'));
-            element.classList.add('active-thumb');
+
+
+        /* =================================
+           IR AL CHECKOUT
+        ================================= */
+
+        function irAlCheckout() {
+
+
+            const url =
+
+                "checkout.html" +
+
+                "?producto=" +
+
+                encodeURIComponent(
+                    producto.nombre
+                ) +
+
+                "&precio=" +
+
+                producto.precio +
+
+                "&cantidad=" +
+
+                cantidad;
+
+
+            window.location.href =
+                url;
+
         }
 
-        function cambiarCantidad(cambio) {
-            let input = document.getElementById('product-qty');
-            let actual = parseInt(input.value) + cambio;
-            if (actual >= 1) {
-                input.value = actual;
-            }
-        }
 
-        function abrirModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function cerrarModal(id) { document.getElementById(id).style.display = 'none'; }
 
-        function procesarRegistro() {
-            let nombre = document.getElementById('reg-name').value.trim();
-            let email = document.getElementById('reg-email').value.trim().toLowerCase();
-            
-            if(!nombre || !email) {
-                alert('Por favor completa todos los campos.');
-                return;
-            }
+        /* =================================
+           INICIAR
+        ================================= */
 
-            let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
-            
-            let usuarioExistente = listaUsuarios.find(u => u.email === email);
-            if (usuarioExistente) {
-                alert('⚠️ Este correo ya está registrado. Inicia sesión con él.');
-                cerrarModal('registerModal');
-                abrirModal('loginModal');
-                document.getElementById('login-email').value = email;
-                return;
-            }
+        actualizarPagina();
 
-            let fechaActual = new Date().toLocaleDateString('es-CL');
-            listaUsuarios.push({ nombre: nombre, email: email, fecha: fechaActual });
-            localStorage.setItem('flipfinder_users_list', JSON.stringify(listaUsuarios));
 
-            usuarioLogueado = { nombre: nombre, email: email };
-            localStorage.setItem('flipfinder_session', JSON.stringify(usuarioLogueado));
-            actualizarEstadoUsuario();
-            cerrarModal('registerModal');
-
-            document.getElementById('reg-hidden-name').value = nombre;
-            document.getElementById('reg-hidden-email').value = email;
-            let formData = new FormData(document.getElementById('form-registro-oculto'));
-            fetch('https://formspree.io/f/xljdzpnk', {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            }).catch(err => console.log('Registro enviado'));
-
-            alert('¡Cuenta creada e iniciada con éxito!');
-        }
-
-        function procesarLogin() {
-            let email = document.getElementById('login-email').value.trim().toLowerCase();
-            if(email) {
-                let listaUsuarios = JSON.parse(localStorage.getItem('flipfinder_users_list') || '[]');
-                let usuarioEncontrado = listaUsuarios.find(u => u.email === email);
-                
-                let nombreSimple = usuarioEncontrado ? usuarioEncontrado.nombre : email.split('@')[0];
-                
-                usuarioLogueado = { nombre: nombreSimple, email: email };
-                localStorage.setItem('flipfinder_session', JSON.stringify(usuarioLogueado));
-                actualizarEstadoUsuario();
-                cerrarModal('loginModal');
-                alert('¡Sesión iniciada correctamente!');
-            } else {
-                alert('Por favor ingresa tu correo.');
-            }
-        }
-
-        function cerrarSesion() {
-            usuarioLogueado = null;
-            localStorage.removeItem('flipfinder_session');
-            document.getElementById('user-logged-box').style.display = 'none';
-            document.getElementById('btn-login-nav').style.display = 'inline-block';
-            document.getElementById('btn-reg-nav').style.display = 'inline-block';
-            document.getElementById('input-nombre').value = '';
-            alert('Has cerrado sesión correctamente.');
-        }
-
-        function actualizarEstadoUsuario() {
-            if(usuarioLogueado) {
-                document.getElementById('user-welcome').innerText = 'Hola, ' + usuarioLogueado.nombre;
-                document.getElementById('user-logged-box').style.display = 'flex';
-                document.getElementById('btn-login-nav').style.display = 'none';
-                document.getElementById('btn-reg-nav').style.display = 'none';
-                document.getElementById('input-nombre').value = usuarioLogueado.nombre;
-            }
-        }
-
-        function toggleCart() {
-            var sidebar = document.getElementById('cartSidebar');
-            sidebar.classList.toggle('open');
-        }
-
-        function agregarAlCarrito() {
-            if (!usuarioLogueado) {
-                alert('⚠️ Debes iniciar sesión o registrarte para añadir productos al carrito.');
-                abrirModal('loginModal');
-                return;
-            }
-
-            let cantidad = parseInt(document.getElementById('product-qty').value);
-            const producto = {
-                nombre: "Auriculares Gamer Microfono Off Ruido",
-                precio: 23400,
-                cantidad: cantidad
-            };
-            
-            carrito = [producto]; 
-            actualizarCarritoUI();
-            toggleCart();
-        }
-
-        function actualizarCarritoUI() {
-            const countEl = document.getElementById('cart-count');
-            const listEl = document.getElementById('cart-items-list');
-            const emptyMsg = document.getElementById('empty-cart-msg');
-            const checkoutSection = document.getElementById('checkout-container-section');
-
-            let totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
-            countEl.innerText = totalItems;
-
-            if (carrito.length === 0) {
-                emptyMsg.style.display = 'block';
-                listEl.innerHTML = '';
-                checkoutSection.style.display = 'none';
-            } else {
-                emptyMsg.style.display = 'none';
-                let html = '';
-                let total = 0;
-                carrito.forEach((item, index) => {
-                    let subtotal = item.precio * item.cantidad;
-                    total += subtotal;
-                    html += `
-                        <div class="cart-item">
-                            <div>
-                                <strong style="font-size:0.88rem;">${item.nombre}</strong>
-                                <div style="font-size:0.8rem; color:var(--text-muted);">${item.cantidad} x $${item.precio.toLocaleString('es-CL')} = $${subtotal.toLocaleString('es-CL')} CLP</div>
-                            </div>
-                            <button onclick="carrito.splice(${index},1); actualizarCarritoUI();" style="background:none; border:none; color:red; cursor:pointer; font-size: 1.1rem;">❌</button>
-                        </div>
-                    `;
-                });
-                listEl.innerHTML = html;
-                document.getElementById('cart-total-price').innerText = total.toLocaleString('es-CL');
-                document.getElementById('form-product-details').value = carrito[0].nombre + ' (Cantidad: ' + carrito[0].cantidad + ') - Total: $' + total;
-                checkoutSection.style.display = 'block';
-            }
-        }
-
-        const checkoutForm = document.getElementById('checkout-form');
-        checkoutForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            var now = new Date();
-            var timeString = now.toLocaleDateString('es-CL') + ' ' + now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
-            var randomOrderNum = '#FF-' + Math.floor(10000 + Math.random() * 90000);
-
-            document.getElementById('form-order-id').value = randomOrderNum;
-            document.getElementById('form-order-time').value = timeString;
-
-            var btn = document.getElementById('submit-btn');
-            btn.innerText = "Registrando pedido...";
-            btn.disabled = true;
-
-            var data = new FormData(checkoutForm);
-
-            fetch(checkoutForm.action, {
-                method: checkoutForm.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    document.getElementById('assigned-order-id').innerText = randomOrderNum;
-                    document.getElementById('checkout-container-section').style.display = 'none';
-                    document.getElementById('cart-items-list').style.display = 'none';
-                    document.getElementById('success-order-msg').style.display = 'block';
-                } else {
-                    alert("Hubo un error al registrar el pedido. Inténtalo de nuevo.");
-                    btn.innerText = "Registrar Pedido (Pago al Recibir)";
-                    btn.disabled = false;
-                }
-            }).catch(error => {
-                alert("Error de conexión.");
-                btn.innerText = "Registrar Pedido (Pago al Recibir)";
-                btn.disabled = false;
-            });
-        });
     </script>
+
+
 </body>
+
 </html>

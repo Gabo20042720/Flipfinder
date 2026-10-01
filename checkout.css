@@ -1,0 +1,671 @@
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #f5f6f8;
+
+    color: #151515;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.checkout-header {
+
+    height: 76px;
+
+    background: #0d172b;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    color: white;
+}
+
+
+.logo {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+
+.secure {
+
+    font-size: 14px;
+
+    color: #dbeafe;
+}
+
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL
+========================================== */
+
+.checkout-container {
+
+    width: 92%;
+
+    max-width: 1150px;
+
+    margin: 40px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(320px, 0.8fr);
+
+    gap: 35px;
+
+    align-items: start;
+}
+
+
+/* ==========================================
+   SECCIONES
+========================================== */
+
+.checkout-section {
+
+    background: white;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #e5e7eb;
+}
+
+
+.checkout-section h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 22px;
+
+    font-size: 21px;
+}
+
+
+/* ==========================================
+   FORMULARIOS
+========================================== */
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+}
+
+
+.input-group {
+
+    margin-bottom: 16px;
+}
+
+
+.input-group label {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #374151;
+}
+
+
+.input-group input {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: .2s;
+}
+
+
+.input-group input:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, .1);
+}
+
+
+/* ==========================================
+   MÉTODO DE PAGO
+========================================== */
+
+.payment-method {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    border: 2px solid #16a34a;
+
+    background: #f0fdf4;
+
+    border-radius: 10px;
+
+    padding: 17px;
+
+    cursor: pointer;
+}
+
+
+.payment-icon {
+
+    width: 45px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: white;
+
+    border-radius: 9px;
+
+    font-size: 22px;
+}
+
+
+.payment-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    flex: 1;
+}
+
+
+.payment-info strong {
+
+    font-size: 16px;
+}
+
+
+.payment-info span {
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+.payment-check {
+
+    width: 25px;
+
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: #16a34a;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+.payment-description {
+
+    margin-top: 12px;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    padding-left: 5px;
+}
+
+
+/* ==========================================
+   TÉRMINOS
+========================================== */
+
+.terms {
+
+    padding: 20px 25px;
+}
+
+
+.checkbox-container {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    color: #555;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    cursor: pointer;
+}
+
+
+.checkbox-container input {
+
+    margin-top: 4px;
+
+    width: 16px;
+
+    height: 16px;
+}
+
+
+.checkbox-container a {
+
+    color: #2563eb;
+
+    text-decoration: none;
+}
+
+
+/* ==========================================
+   BOTÓN CONTINUAR
+========================================== */
+
+.continue-button {
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #16a34a;
+
+    color: white;
+
+    padding: 17px 20px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    transition: .2s;
+}
+
+
+.continue-button:hover {
+
+    background: #15803d;
+
+    transform: translateY(-1px);
+}
+
+
+.back-link {
+
+    display: block;
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: #64748b;
+
+    text-decoration: none;
+
+    font-size: 14px;
+}
+
+
+.back-link:hover {
+
+    color: #111827;
+}
+
+
+/* ==========================================
+   RESUMEN
+========================================== */
+
+.order-summary {
+
+    background: white;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    padding: 25px;
+
+    position: sticky;
+
+    top: 20px;
+}
+
+
+.order-summary h2 {
+
+    margin-top: 0;
+
+    text-transform: uppercase;
+
+    font-size: 24px;
+}
+
+
+/* ==========================================
+   PRODUCTO DEL RESUMEN
+========================================== */
+
+.product-summary {
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: center;
+
+    margin: 25px 0;
+}
+
+
+.product-summary-image {
+
+    width: 75px;
+
+    height: 75px;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    background: #f1f5f9;
+
+    flex-shrink: 0;
+}
+
+
+.product-summary-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.product-summary-info {
+
+    flex: 1;
+}
+
+
+.product-summary-info h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 15px;
+
+    line-height: 1.4;
+}
+
+
+.product-summary-info p {
+
+    margin: 4px 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+}
+
+
+.product-summary-info p:last-child {
+
+    color: #111827;
+
+    font-weight: 700;
+}
+
+
+/* ==========================================
+   LÍNEAS
+========================================== */
+
+.summary-line {
+
+    height: 1px;
+
+    background: #e5e7eb;
+
+    margin: 18px 0;
+}
+
+
+/* ==========================================
+   FILAS
+========================================== */
+
+.summary-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin: 13px 0;
+
+    color: #555;
+
+    font-size: 15px;
+}
+
+
+.summary-row strong {
+
+    color: #111827;
+}
+
+
+/* ==========================================
+   TOTAL
+========================================== */
+
+.summary-total {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 19px;
+
+    margin-top: 20px;
+}
+
+
+.summary-total strong {
+
+    font-size: 26px;
+
+    color: #16a34a;
+}
+
+
+/* ==========================================
+   SEGURIDAD
+========================================== */
+
+.secure-box {
+
+    margin-top: 25px;
+
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    gap: 12px;
+
+    font-size: 14px;
+}
+
+
+.secure-box p {
+
+    margin: 5px 0 0;
+
+    color: #64748b;
+
+    line-height: 1.4;
+
+    font-size: 12px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 850px) {
+
+    .checkout-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .order-summary {
+
+        position: static;
+
+        grid-row: 1;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .checkout-header {
+
+        padding: 0 20px;
+
+    }
+
+
+    .secure {
+
+        font-size: 12px;
+
+    }
+
+
+    .checkout-container {
+
+        width: 94%;
+
+        margin: 20px auto;
+
+    }
+
+
+    .checkout-section {
+
+        padding: 20px;
+
+    }
+
+
+    .form-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+
+    }
+
+
+    .order-summary {
+
+        padding: 20px;
+
+    }
+
+}
