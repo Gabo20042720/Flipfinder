@@ -1,683 +1,947 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+  <title>FlipFinder | Auriculares Gamer</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  <meta
+    name="description"
+    content="Compra productos seleccionados en FlipFinder. Envíos a todo Chile."
+  >
 
-    <title>FlipFinder | Auriculares Gamer</title>
-
-    <meta
-        name="description"
-        content="Compra productos seleccionados en FlipFinder. Envíos a todo Chile."
-    >
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- ================================
-         HEADER
-    ================================= -->
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
 
-    <header class="header">
 
-        <a
-            href="index.html"
-            class="logo"
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header class="header">
+
+    <a href="index.html" class="logo" aria-label="FlipFinder inicio">
+
+      <span class="logo-mark">F</span>
+
+      <span>
+        Flip<span>Finder</span>
+      </span>
+
+    </a>
+
+
+    <nav class="nav" aria-label="Navegación principal">
+
+      <a class="active" href="index.html">
+        Inicio
+      </a>
+
+      <a href="#producto">
+        Producto
+      </a>
+
+      <a href="#beneficios">
+        Beneficios
+      </a>
+
+      <a href="#contacto">
+        Contacto
+      </a>
+
+    </nav>
+
+
+    <div class="header-actions">
+
+      <button
+        class="icon-button"
+        type="button"
+        aria-label="Buscar"
+      >
+        ⌕
+      </button>
+
+
+      <button
+        class="icon-button"
+        type="button"
+        aria-label="Mi cuenta"
+      >
+        ♙
+      </button>
+
+
+      <button
+        class="cart-button"
+        type="button"
+        onclick="irAlCheckout()"
+        aria-label="Ir al carrito"
+      >
+
+        <span>🛒</span>
+
+        <span class="cart-label">
+          Carrito
+        </span>
+
+        <span
+          id="cart-count"
+          class="cart-count"
         >
-            Flipfinder
-        </a>
+          1
+        </span>
 
-        <div class="header-actions">
+      </button>
 
-            <button
-                class="cart-button"
-                onclick="irAlCheckout()"
-            >
+    </div>
 
-                🛒
+  </header>
 
-                <span id="cart-count">
-                    1
-                </span>
 
-            </button>
+
+  <!-- =========================
+       BARRA SUPERIOR
+  ========================== -->
+
+  <div class="top-strip">
+
+    <span>
+      ⚡ OFERTA ESPECIAL
+    </span>
+
+    <span>
+      Auriculares Gamer + micrófono
+    </span>
+
+    <strong>
+      Envíos a todo Chile
+    </strong>
+
+  </div>
+
+
+
+  <main>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section
+      class="hero"
+      id="producto"
+    >
+
+      <div class="hero-copy">
+
+        <div class="eyebrow">
+
+          <span></span>
+
+          PRODUCTO DESTACADO
+
+        </div>
+
+
+        <h1>
+
+          Potencia tu juego.
+
+          <br>
+
+          <em>
+            Escucha todo.
+          </em>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+          Auriculares Gamer con Micrófono
+          diseñados para disfrutar un sonido
+          inmersivo, comunicación clara y
+          máxima comodidad.
+
+        </p>
+
+
+        <div class="hero-price">
+
+          <span>
+            Precio especial
+          </span>
+
+          <strong>
+            $23.400
+          </strong>
+
+          <small>
+            CLP
+          </small>
 
         </div>
 
-    </header>
+
+        <div class="hero-actions">
+
+          <button
+            class="primary-button"
+            type="button"
+            onclick="irAlCheckout()"
+          >
+
+            Comprar ahora
+
+            <span>
+              →
+            </span>
+
+          </button>
 
 
-    <!-- ================================
-         BARRA DE CONFIANZA
-    ================================= -->
-
-    <section class="trust-bar">
-
-        <div class="trust-item">
-
-            📦
-
-            <strong>
-                Envíos a Todo Chile
-            </strong>
-
-        </div>
-
-
-        <div class="trust-item">
-
-            🔒
-
-            <strong>
-                Pago mediante Mercado Pago
-            </strong>
+          <a
+            class="secondary-link"
+            href="#detalles"
+          >
+            Ver detalles ↓
+          </a>
 
         </div>
 
 
-        <div class="trust-item">
+        <div class="mini-trust">
 
-            ⚡
+          <div>
 
-            <strong>
-                Despacho Rápido
-            </strong>
+            <span>
+              ✓
+            </span>
+
+            <b>
+              Pago seguro
+            </b>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              ✓
+            </span>
+
+            <b>
+              Envío a Chile
+            </b>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              ✓
+            </span>
+
+            <b>
+              Compra protegida
+            </b>
+
+          </div>
 
         </div>
+
+      </div>
+
+
+
+      <!-- PRODUCTO PRINCIPAL -->
+
+      <div class="hero-visual">
+
+        <div class="glow-ring"></div>
+
+
+        <div class="product-frame">
+
+          <div class="product-orb"></div>
+
+
+          <img
+            id="main-product-image"
+            src="img/foto1.jpg"
+            alt="Auriculares Gamer con Micrófono"
+          >
+
+
+          <div class="floating-tag tag-top">
+            GAMER
+          </div>
+
+
+          <div class="floating-tag tag-bottom">
+            RGB • MIC • BASS
+          </div>
+
+        </div>
+
+      </div>
 
     </section>
 
 
-    <!-- ================================
-         PRODUCTO
-    ================================= -->
 
-    <main class="container">
+    <!-- =========================
+         BENEFICIOS
+    ========================== -->
 
-        <section class="product-card">
+    <section
+      class="trust-grid"
+      id="beneficios"
+    >
 
+      <article class="trust-card">
 
-            <!-- ==========================
-                 GALERÍA
-            =========================== -->
-
-            <div class="gallery">
-
-                <div class="main-image">
-
-                    <img
-                        id="main-product-image"
-                        src="img/foto1.jpg"
-                        alt="Auriculares Gamer con Micrófono"
-                    >
-
-                </div>
-
-
-                <div class="thumbnail-gallery">
-
-                    <button
-                        type="button"
-                        class="thumbnail active"
-                        onclick="cambiarImagen(1)"
-                    >
-
-                        <img
-                            src="img/foto1.jpg"
-                            alt="Auriculares Gamer - Foto 1"
-                        >
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="thumbnail"
-                        onclick="cambiarImagen(2)"
-                    >
-
-                        <img
-                            src="img/foto2.jpg"
-                            alt="Auriculares Gamer - Foto 2"
-                        >
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="thumbnail"
-                        onclick="cambiarImagen(3)"
-                    >
-
-                        <img
-                            src="img/foto3.jpg"
-                            alt="Auriculares Gamer - Foto 3"
-                        >
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="thumbnail"
-                        onclick="cambiarImagen(4)"
-                    >
-
-                        <img
-                            src="img/foto4.jpg"
-                            alt="Auriculares Gamer - Foto 4"
-                        >
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="thumbnail"
-                        onclick="cambiarImagen(5)"
-                    >
-
-                        <img
-                            src="img/foto5.jpg"
-                            alt="Auriculares Gamer - Foto 5"
-                        >
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- ==========================
-                 INFORMACIÓN
-            =========================== -->
-
-            <div class="product-info">
-
-                <span class="badge">
-                    🚀 DESTACADO DE TEMPORADA
-                </span>
-
-
-                <h1>
-                    Auriculares Gamer
-                    con Micrófono
-                </h1>
-
-
-                <div class="shipping-info">
-
-                    📦
-
-                    Envíos asegurados por
-                    Starken, Blue Express,
-                    Veloces y Wilog.
-
-                </div>
-
-
-                <p class="description">
-
-                    ¡Sumérgete en la experiencia
-                    de juego definitiva este verano!
-
-                    Rendimiento excepcional
-                    y comodidad absoluta.
-
-                </p>
-
-
-                <!-- CARACTERÍSTICAS -->
-
-                <div class="features">
-
-                    <p>
-
-                        🎮
-
-                        <strong>
-                            Compatibilidad:
-                        </strong>
-
-                        PS4, PS5, Xbox,
-                        PC y laptop.
-
-                    </p>
-
-
-                    <p>
-
-                        🎧
-
-                        <strong>
-                            Audio Inmersivo:
-                        </strong>
-
-                        Sonido envolvente
-                        con graves profundos.
-
-                    </p>
-
-
-                    <p>
-
-                        🎙️
-
-                        <strong>
-                            Micrófono:
-                        </strong>
-
-                        Comunicación clara
-                        durante tus partidas.
-
-                    </p>
-
-
-                    <p>
-
-                        💡
-
-                        <strong>
-                            Luz LED:
-                        </strong>
-
-                        Estilo RGB
-                        incorporado.
-
-                    </p>
-
-                </div>
-
-
-                <!-- PRECIO -->
-
-                <div class="price">
-
-                    $23.400
-
-                    <span>
-                        CLP
-                    </span>
-
-                </div>
-
-
-                <!-- CANTIDAD -->
-
-                <div class="quantity-title">
-
-                    Cantidad
-
-                </div>
-
-
-                <div class="quantity-container">
-
-                    <button
-                        type="button"
-                        onclick="cambiarCantidad(-1)"
-                    >
-                        −
-                    </button>
-
-
-                    <span id="quantity">
-                        1
-                    </span>
-
-
-                    <button
-                        type="button"
-                        onclick="cambiarCantidad(1)"
-                    >
-                        +
-                    </button>
-
-                </div>
-
-
-                <!-- TOTAL -->
-
-                <div class="total">
-
-                    Total:
-
-                    <strong id="total">
-                        $23.400
-                    </strong>
-
-                </div>
-
-
-                <!-- COMPRAR -->
-
-                <button
-                    type="button"
-                    class="buy-button"
-                    onclick="irAlCheckout()"
-                >
-                    🛒 Comprar ahora
-                </button>
-
-
-                <p class="payment-note">
-                    🔒 Pago seguro mediante Mercado Pago
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ================================
-             INFORMACIÓN DE CONFIANZA
-        ================================= -->
-
-        <section class="info-section">
-
-
-            <div class="info-card">
-
-                <div class="info-icon">
-                    📦
-                </div>
-
-                <div>
-
-                    <strong>
-                        Envíos a todo Chile
-                    </strong>
-
-                    <p>
-                        Realizamos despachos
-                        a distintas regiones
-                        del país.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <div class="info-icon">
-                    🔒
-                </div>
-
-                <div>
-
-                    <strong>
-                        Pago seguro
-                    </strong>
-
-                    <p>
-                        Gestionamos tus pagos
-                        mediante Mercado Pago.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="info-card">
-
-                <div class="info-icon">
-                    ⚡
-                </div>
-
-                <div>
-
-                    <strong>
-                        Despacho rápido
-                    </strong>
-
-                    <p>
-                        Preparamos tu pedido
-                        después de confirmar
-                        el pago.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </section>
-
-    </main>
-
-
-    <!-- ================================
-         FOOTER
-    ================================= -->
-
-    <footer class="footer">
+        <div class="trust-icon">
+          🚚
+        </div>
 
         <div>
 
-            <strong>
-                Flipfinder
-            </strong>
+          <strong>
+            Envíos a todo Chile
+          </strong>
 
-            <p>
-                Productos seleccionados
-                y ofertas.
-            </p>
+          <p>
+            Despachos seguros y rápidos.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="trust-card">
+
+        <div class="trust-icon">
+          🔐
+        </div>
+
+        <div>
+
+          <strong>
+            Pago seguro
+          </strong>
+
+          <p>
+            Procesamos tu pago con Mercado Pago.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="trust-card">
+
+        <div class="trust-icon">
+          ⚡
+        </div>
+
+        <div>
+
+          <strong>
+            Despacho rápido
+          </strong>
+
+          <p>
+            Preparamos tu pedido tras confirmar el pago.
+          </p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- =========================
+         PRODUCTO
+    ========================== -->
+
+    <section
+      class="product-section"
+      id="detalles"
+    >
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            CONOCE EL PRODUCTO
+          </span>
+
+          <h2>
+            Todo lo que necesitas
+            para jugar mejor.
+          </h2>
 
         </div>
 
 
         <p>
-            © 2026 FlipFinder
+
+          Diseño cómodo, sonido envolvente
+          y micrófono integrado en un solo equipo.
+
         </p>
 
-    </footer>
+      </div>
 
 
-    <!-- ================================
-         JAVASCRIPT
-    ================================= -->
 
-    <script>
+      <div class="product-card">
 
-        /* =================================
-           PRODUCTO
-        ================================= */
 
-        const producto = {
+        <!-- GALERÍA -->
 
-            nombre:
-                "Auriculares Gamer con Micrófono",
+        <div class="gallery">
 
-            precio:
-                23400,
+          <div class="main-image">
 
-            imagen:
-                "img/foto1.jpg"
+            <div class="image-shine"></div>
 
-        };
+            <img
+              src="img/foto1.jpg"
+              alt="Auriculares Gamer - Foto principal"
+              id="gallery-main-image"
+            >
 
+          </div>
 
-        /* =================================
-           CANTIDAD
-        ================================= */
 
-        let cantidad = 1;
+          <div class="thumbnail-gallery">
 
+            <button
+              type="button"
+              class="thumbnail active"
+              onclick="cambiarImagen(1)"
+            >
 
-        /* =================================
-           FORMATO DE PRECIO
-        ================================= */
+              <img
+                src="img/foto1.jpg"
+                alt="Foto 1"
+              >
 
-        function formatoPrecio(numero) {
+            </button>
 
-            return "$" +
-                numero.toLocaleString("es-CL");
 
-        }
+            <button
+              type="button"
+              class="thumbnail"
+              onclick="cambiarImagen(2)"
+            >
 
+              <img
+                src="img/foto2.jpg"
+                alt="Foto 2"
+              >
 
-        /* =================================
-           ACTUALIZAR PÁGINA
-        ================================= */
+            </button>
 
-        function actualizarPagina() {
 
-            const total =
-                producto.precio *
-                cantidad;
+            <button
+              type="button"
+              class="thumbnail"
+              onclick="cambiarImagen(3)"
+            >
 
+              <img
+                src="img/foto3.jpg"
+                alt="Foto 3"
+              >
 
-            document.getElementById(
-                "quantity"
-            ).textContent =
-                cantidad;
+            </button>
 
 
-            document.getElementById(
-                "cart-count"
-            ).textContent =
-                cantidad;
+            <button
+              type="button"
+              class="thumbnail"
+              onclick="cambiarImagen(4)"
+            >
 
+              <img
+                src="img/foto4.jpg"
+                alt="Foto 4"
+              >
 
-            document.getElementById(
-                "total"
-            ).textContent =
-                formatoPrecio(total);
+            </button>
 
-        }
 
+            <button
+              type="button"
+              class="thumbnail"
+              onclick="cambiarImagen(5)"
+            >
 
-        /* =================================
-           CAMBIAR CANTIDAD
-        ================================= */
+              <img
+                src="img/foto5.jpg"
+                alt="Foto 5"
+              >
 
-        function cambiarCantidad(valor) {
+            </button>
 
-            cantidad += valor;
+          </div>
 
+        </div>
 
-            if (cantidad < 1) {
 
-                cantidad = 1;
 
-            }
+        <!-- INFORMACIÓN -->
 
+        <div class="product-info">
 
-            actualizarPagina();
+          <span class="badge">
+            🚀 DESTACADO DE TEMPORADA
+          </span>
 
-        }
 
+          <h2>
 
-        /* =================================
-           CAMBIAR IMAGEN
-        ================================= */
+            Auriculares Gamer
 
-        function cambiarImagen(numero) {
+            <br>
 
-            const imagen =
-                document.getElementById(
-                    "main-product-image"
-                );
+            con Micrófono
 
+          </h2>
 
-            imagen.src =
-                "img/foto" +
-                numero +
-                ".jpg";
 
+          <p class="description">
 
-            const miniaturas =
-                document.querySelectorAll(
-                    ".thumbnail"
-                );
+            Sumérgete en una experiencia
+            de juego envolvente con un diseño
+            pensado para largas sesiones.
 
+          </p>
 
-            miniaturas.forEach(
-                function(thumbnail) {
 
-                    thumbnail.classList.remove(
-                        "active"
-                    );
 
-                }
-            );
+          <!-- CARACTERÍSTICAS -->
 
+          <div class="features">
 
-            miniaturas[
-                numero - 1
-            ].classList.add(
-                "active"
-            );
+            <div>
 
-        }
+              <span>
+                🎮
+              </span>
 
+              <p>
 
-        /* =================================
-           IR AL CHECKOUT
-        ================================= */
+                <strong>
+                  Compatibilidad
+                </strong>
 
-        function irAlCheckout() {
+                PS4, PS5, Xbox, PC y laptop.
 
-            const url =
+              </p>
 
-                "checkout.html" +
+            </div>
 
-                "?producto=" +
 
-                encodeURIComponent(
-                    producto.nombre
-                ) +
+            <div>
 
-                "&precio=" +
+              <span>
+                🎧
+              </span>
 
-                producto.precio +
+              <p>
 
-                "&cantidad=" +
+                <strong>
+                  Audio inmersivo
+                </strong>
 
-                cantidad;
+                Sonido envolvente con graves profundos.
 
+              </p>
 
-            window.location.href =
-                url;
+            </div>
 
-        }
 
+            <div>
 
-        /* =================================
-           INICIAR
-        ================================= */
+              <span>
+                🎙️
+              </span>
 
-        actualizarPagina();
+              <p>
 
-    </script>
+                <strong>
+                  Micrófono
+                </strong>
 
+                Comunicación clara durante tus partidas.
 
-    <!-- ============================================
-         SUPABASE
-    ============================================= -->
+              </p>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            </div>
 
-    <script src="./supabase-config.js"></script>
 
+            <div>
+
+              <span>
+                💡
+              </span>
+
+              <p>
+
+                <strong>
+                  Luz LED
+                </strong>
+
+                Estilo RGB incorporado.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- COMPRA -->
+
+          <div class="purchase-box">
+
+            <div class="price-line">
+
+              <div>
+
+                <span>
+                  Precio
+                </span>
+
+                <strong>
+                  $23.400
+                </strong>
+
+              </div>
+
+              <small>
+                CLP
+              </small>
+
+            </div>
+
+
+            <div class="quantity-row">
+
+              <span>
+                Cantidad
+              </span>
+
+
+              <div class="quantity-container">
+
+                <button
+                  type="button"
+                  onclick="cambiarCantidad(-1)"
+                  aria-label="Disminuir"
+                >
+                  −
+                </button>
+
+
+                <span id="quantity">
+                  1
+                </span>
+
+
+                <button
+                  type="button"
+                  onclick="cambiarCantidad(1)"
+                  aria-label="Aumentar"
+                >
+                  +
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div class="total">
+
+              <span>
+                Total
+              </span>
+
+              <strong id="total">
+                $23.400
+              </strong>
+
+            </div>
+
+
+            <button
+              class="buy-button"
+              type="button"
+              onclick="irAlCheckout()"
+            >
+
+              🛒 Comprar ahora
+
+            </button>
+
+
+            <p class="payment-note">
+
+              🔒 Pago seguro mediante Mercado Pago
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer
+    class="footer"
+    id="contacto"
+  >
+
+    <div class="footer-brand">
+
+      <a
+        href="index.html"
+        class="logo"
+      >
+
+        <span class="logo-mark">
+          F
+        </span>
+
+        <span>
+          Flip<span>Finder</span>
+        </span>
+
+      </a>
+
+
+      <p>
+        Productos seleccionados y ofertas.
+      </p>
+
+    </div>
+
+
+    <div class="footer-note">
+
+      <span>
+        Compra segura
+      </span>
+
+      <span>
+        •
+      </span>
+
+      <span>
+        Envíos a todo Chile
+      </span>
+
+      <span>
+        •
+      </span>
+
+      <span>
+        Mercado Pago
+      </span>
+
+    </div>
+
+
+    <p>
+      © 2026 FlipFinder
+    </p>
+
+  </footer>
+
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    const producto = {
+
+      nombre:
+        "Auriculares Gamer con Micrófono",
+
+      precio:
+        23400,
+
+      imagen:
+        "img/foto1.jpg"
+
+    };
+
+
+    let cantidad = 1;
+
+
+
+    function formatoPrecio(numero) {
+
+      return "$" +
+        numero.toLocaleString("es-CL");
+
+    }
+
+
+
+    function actualizarPagina() {
+
+      const total =
+        producto.precio *
+        cantidad;
+
+
+      document.getElementById(
+        "quantity"
+      ).textContent =
+        cantidad;
+
+
+      document.getElementById(
+        "cart-count"
+      ).textContent =
+        cantidad;
+
+
+      document.getElementById(
+        "total"
+      ).textContent =
+        formatoPrecio(total);
+
+    }
+
+
+
+    function cambiarCantidad(valor) {
+
+      cantidad += valor;
+
+
+      if (cantidad < 1) {
+
+        cantidad = 1;
+
+      }
+
+
+      actualizarPagina();
+
+    }
+
+
+
+    function cambiarImagen(numero) {
+
+      const ruta =
+        "img/foto" +
+        numero +
+        ".jpg";
+
+
+      document.getElementById(
+        "main-product-image"
+      ).src =
+        ruta;
+
+
+      document.getElementById(
+        "gallery-main-image"
+      ).src =
+        ruta;
+
+
+      document
+        .querySelectorAll(".thumbnail")
+        .forEach(function(thumbnail) {
+
+          thumbnail.classList.remove(
+            "active"
+          );
+
+        });
+
+
+      const miniaturas =
+        document.querySelectorAll(
+          ".thumbnail"
+        );
+
+
+      if (miniaturas[numero - 1]) {
+
+        miniaturas[numero - 1]
+          .classList.add("active");
+
+      }
+
+    }
+
+
+
+    function irAlCheckout() {
+
+      const url =
+        "checkout.html" +
+        "?producto=" +
+        encodeURIComponent(
+          producto.nombre
+        ) +
+        "&precio=" +
+        producto.precio +
+        "&cantidad=" +
+        cantidad;
+
+
+      window.location.href =
+        url;
+
+    }
+
+
+
+    actualizarPagina();
+
+  </script>
 
 </body>
-
 </html>
