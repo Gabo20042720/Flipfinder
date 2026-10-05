@@ -8,6 +8,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet"
@@ -25,6 +26,7 @@
     <!-- =========================
          BARRA SUPERIOR
     ========================== -->
+
     <div class="top-bar">
         <div class="container top-bar-content">
             <span>🔥 Ofertas especiales todos los días</span>
@@ -38,6 +40,7 @@
     <!-- =========================
          HEADER
     ========================== -->
+
     <header class="header">
         <div class="container header-content">
 
@@ -55,22 +58,33 @@
 
             <div class="header-actions">
 
-                <button class="icon-button" onclick="enfocarBuscador()" title="Buscar">
+                <button
+                    class="icon-button"
+                    onclick="enfocarBuscador()"
+                    title="Buscar"
+                >
                     🔍
                 </button>
 
-                <button class="icon-button" onclick="irCuenta()" title="Mi cuenta">
+                <button
+                    class="icon-button"
+                    onclick="irCuenta()"
+                    title="Mi cuenta"
+                >
                     👤
                 </button>
 
-                <button class="cart-button" onclick="irAlCarrito()">
+                <button
+                    class="cart-button"
+                    onclick="irAlCarrito()"
+                    title="Ver carrito"
+                >
                     🛒
                     <span>Carrito</span>
                     <strong id="cart-count">0</strong>
                 </button>
 
             </div>
-
         </div>
     </header>
 
@@ -80,6 +94,7 @@
         <!-- =========================
              HERO
         ========================== -->
+
         <section class="hero" id="inicio">
 
             <div class="hero-glow hero-glow-one"></div>
@@ -110,6 +125,7 @@
                             id="hero-search-input"
                             placeholder="¿Qué estás buscando?"
                             autocomplete="off"
+                            onkeydown="if(event.key === 'Enter') buscarDesdeHero()"
                         >
 
                         <button onclick="buscarDesdeHero()">
@@ -163,26 +179,36 @@
                     <div class="showcase-card">
 
                         <div class="showcase-top">
+
                             <span>🔥 DESTACADO</span>
-                            <button onclick="favorito(this)">♡</button>
+
+                            <button onclick="favorito(this)">
+                                ♡
+                            </button>
+
                         </div>
 
                         <div class="showcase-image">
+
                             <img
                                 src="img/foto1.jpg"
                                 alt="Producto destacado"
                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'product-placeholder\'>🎧</div>';"
                             >
+
                         </div>
 
                         <div class="showcase-info">
+
                             <small>PRODUCTO DESTACADO</small>
+
                             <h3>Auriculares Gamer</h3>
 
                             <div class="showcase-price">
                                 <strong>$23.400</strong>
                                 <del>$29.990</del>
                             </div>
+
                         </div>
 
                     </div>
@@ -190,21 +216,27 @@
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- =========================
              CATEGORÍAS
         ========================== -->
+
         <section class="categories-section" id="categorias">
 
             <div class="container">
 
                 <div class="section-heading">
+
                     <div>
-                        <span class="section-label">EXPLORA</span>
-                        <h2>Compra por categoría</h2>
+                        <span class="section-label">
+                            EXPLORA
+                        </span>
+
+                        <h2>
+                            Compra por categoría
+                        </h2>
                     </div>
 
                     <button
@@ -213,6 +245,7 @@
                     >
                         Ver todo →
                     </button>
+
                 </div>
 
 
@@ -228,6 +261,7 @@
                         <small>Todo el catálogo</small>
                     </button>
 
+
                     <button
                         class="category-card"
                         data-category="tecnologia"
@@ -237,6 +271,7 @@
                         <strong>Tecnología</strong>
                         <small>Innovación</small>
                     </button>
+
 
                     <button
                         class="category-card"
@@ -248,6 +283,7 @@
                         <small>Para gamers</small>
                     </button>
 
+
                     <button
                         class="category-card"
                         data-category="hogar"
@@ -257,6 +293,7 @@
                         <strong>Hogar</strong>
                         <small>Tu espacio</small>
                     </button>
+
 
                     <button
                         class="category-card"
@@ -268,6 +305,7 @@
                         <small>Complementos</small>
                     </button>
 
+
                     <button
                         class="category-card"
                         data-category="electronica"
@@ -277,6 +315,7 @@
                         <strong>Electrónica</strong>
                         <small>Dispositivos</small>
                     </button>
+
 
                     <button
                         class="category-card"
@@ -291,13 +330,13 @@
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- =========================
              PRODUCTOS
         ========================== -->
+
         <section class="products-section" id="productos">
 
             <div class="container">
@@ -305,12 +344,21 @@
                 <div class="section-heading products-heading">
 
                     <div>
-                        <span class="section-label">CATÁLOGO</span>
-                        <h2>Productos para ti</h2>
+
+                        <span class="section-label">
+                            CATÁLOGO
+                        </span>
+
+                        <h2>
+                            Productos para ti
+                        </h2>
+
                         <p id="products-status">
                             Cargando productos...
                         </p>
+
                     </div>
+
 
                     <div class="products-controls">
 
@@ -327,14 +375,28 @@
 
                         </div>
 
+
                         <select
                             id="sort-products"
                             onchange="ordenarProductos(this.value)"
                         >
-                            <option value="destacados">Destacados</option>
-                            <option value="precio-menor">Precio menor</option>
-                            <option value="precio-mayor">Precio mayor</option>
-                            <option value="nombre">Nombre A-Z</option>
+
+                            <option value="destacados">
+                                Destacados
+                            </option>
+
+                            <option value="precio-menor">
+                                Precio menor
+                            </option>
+
+                            <option value="precio-mayor">
+                                Precio mayor
+                            </option>
+
+                            <option value="nombre">
+                                Nombre A-Z
+                            </option>
+
                         </select>
 
                     </div>
@@ -342,14 +404,12 @@
                 </div>
 
 
-                <!-- Aquí JavaScript cargará los productos -->
                 <div
                     class="products-grid"
                     id="products-grid"
                 ></div>
 
 
-                <!-- SIN RESULTADOS -->
                 <div
                     class="no-results"
                     id="no-results"
@@ -360,7 +420,9 @@
                         🔎
                     </div>
 
-                    <h3>No encontramos productos</h3>
+                    <h3>
+                        No encontramos productos
+                    </h3>
 
                     <p>
                         Prueba con otra búsqueda o categoría.
@@ -376,13 +438,13 @@
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- =========================
              OFERTAS
         ========================== -->
+
         <section class="offers-section" id="ofertas">
 
             <div class="container">
@@ -421,13 +483,13 @@
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- =========================
              BENEFICIOS
         ========================== -->
+
         <section class="benefits-section">
 
             <div class="container">
@@ -435,47 +497,90 @@
                 <div class="benefits-grid">
 
                     <div class="benefit">
-                        <div class="benefit-icon">🚚</div>
-                        <div>
-                            <h3>Envíos a todo Chile</h3>
-                            <p>Recibe tus productos donde estés.</p>
+
+                        <div class="benefit-icon">
+                            🚚
                         </div>
+
+                        <div>
+                            <h3>
+                                Envíos a todo Chile
+                            </h3>
+
+                            <p>
+                                Recibe tus productos donde estés.
+                            </p>
+                        </div>
+
                     </div>
 
-                    <div class="benefit">
-                        <div class="benefit-icon">🔒</div>
-                        <div>
-                            <h3>Compra segura</h3>
-                            <p>Protegemos tus datos y tu compra.</p>
-                        </div>
-                    </div>
 
                     <div class="benefit">
-                        <div class="benefit-icon">💳</div>
-                        <div>
-                            <h3>Pago con Mercado Pago</h3>
-                            <p>Compra de manera rápida y segura.</p>
+
+                        <div class="benefit-icon">
+                            🔒
                         </div>
+
+                        <div>
+                            <h3>
+                                Compra segura
+                            </h3>
+
+                            <p>
+                                Protegemos tus datos y tu compra.
+                            </p>
+                        </div>
+
                     </div>
 
+
                     <div class="benefit">
-                        <div class="benefit-icon">⭐</div>
-                        <div>
-                            <h3>Productos seleccionados</h3>
-                            <p>Buscamos opciones para ti.</p>
+
+                        <div class="benefit-icon">
+                            💳
                         </div>
+
+                        <div>
+                            <h3>
+                                Pago con Mercado Pago
+                            </h3>
+
+                            <p>
+                                Compra de manera rápida y segura.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+                        <div class="benefit-icon">
+                            ⭐
+                        </div>
+
+                        <div>
+                            <h3>
+                                Productos seleccionados
+                            </h3>
+
+                            <p>
+                                Buscamos opciones para ti.
+                            </p>
+                        </div>
+
                     </div>
 
                 </div>
 
             </div>
-
         </section>
 
 
         <!-- =========================
              CTA
         ========================== -->
+
         <section class="cta-section">
 
             <div class="container">
@@ -483,6 +588,7 @@
                 <div class="cta-box">
 
                     <div>
+
                         <span class="section-label">
                             FLIPFINDER
                         </span>
@@ -495,6 +601,7 @@
                             Explora nuestro catálogo y encuentra
                             tu próximo producto favorito.
                         </p>
+
                     </div>
 
                     <button
@@ -507,7 +614,6 @@
                 </div>
 
             </div>
-
         </section>
 
     </main>
@@ -516,6 +622,7 @@
     <!-- =========================
          FOOTER
     ========================== -->
+
     <footer class="footer">
 
         <div class="container footer-grid">
@@ -523,8 +630,15 @@
             <div class="footer-brand">
 
                 <a href="index.html" class="logo">
-                    <span class="logo-icon">F</span>
-                    <span>Flip<span>Finder</span></span>
+
+                    <span class="logo-icon">
+                        F
+                    </span>
+
+                    <span>
+                        Flip<span>Finder</span>
+                    </span>
+
                 </a>
 
                 <p>
@@ -539,9 +653,17 @@
 
                 <h4>Tienda</h4>
 
-                <a href="#productos">Productos</a>
-                <a href="#categorias">Categorías</a>
-                <a href="#ofertas">Ofertas</a>
+                <a href="#productos">
+                    Productos
+                </a>
+
+                <a href="#categorias">
+                    Categorías
+                </a>
+
+                <a href="#ofertas">
+                    Ofertas
+                </a>
 
             </div>
 
@@ -550,9 +672,17 @@
 
                 <h4>Ayuda</h4>
 
-                <a href="#">Contacto</a>
-                <a href="#">Envíos</a>
-                <a href="#">Preguntas frecuentes</a>
+                <a href="#">
+                    Contacto
+                </a>
+
+                <a href="#">
+                    Envíos
+                </a>
+
+                <a href="#">
+                    Preguntas frecuentes
+                </a>
 
             </div>
 
@@ -588,53 +718,354 @@
     <!-- =========================
          JAVASCRIPT
     ========================== -->
+
     <script>
+
+        /* ==========================================
+           VARIABLES
+        ========================================== */
 
         let productos = [];
         let productosFiltrados = [];
-        let carrito = [];
+
+        let carrito = cargarCarritoLocal();
 
 
-        /* =========================
-           CARGAR PRODUCTOS SUPABASE
-        ========================== */
+        /* ==========================================
+           CARGAR CARRITO
+        ========================================== */
+
+        function cargarCarritoLocal() {
+
+            try {
+
+                const guardado =
+                    localStorage.getItem("flipfinder_carrito");
+
+                if (!guardado) {
+                    return [];
+                }
+
+                const carritoGuardado =
+                    JSON.parse(guardado);
+
+                if (!Array.isArray(carritoGuardado)) {
+                    return [];
+                }
+
+                return carritoGuardado.filter(item => {
+
+                    return (
+                        item &&
+                        item.id &&
+                        Number.isInteger(Number(item.quantity)) &&
+                        Number(item.quantity) > 0
+                    );
+
+                });
+
+            } catch (error) {
+
+                console.error(
+                    "Error leyendo carrito:",
+                    error
+                );
+
+                return [];
+            }
+        }
+
+
+        /* ==========================================
+           GUARDAR CARRITO
+        ========================================== */
+
+        function guardarCarrito() {
+
+            try {
+
+                localStorage.setItem(
+                    "flipfinder_carrito",
+                    JSON.stringify(carrito)
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Error guardando carrito:",
+                    error
+                );
+            }
+
+            actualizarCarrito();
+        }
+
+
+        /* ==========================================
+           CANTIDAD TOTAL
+        ========================================== */
+
+        function obtenerCantidadTotalCarrito() {
+
+            return carrito.reduce(
+                (total, item) => {
+
+                    return total + Number(
+                        item.quantity || 0
+                    );
+
+                },
+                0
+            );
+        }
+
+
+        /* ==========================================
+           AGREGAR PRODUCTO AL CARRITO
+        ========================================== */
+
+        function comprarProducto(nombre, precio, id) {
+
+            const producto =
+                productos.find(
+                    item =>
+                        String(item.id) === String(id)
+                );
+
+            if (!producto) {
+
+                alert(
+                    "No pudimos encontrar este producto."
+                );
+
+                return;
+            }
+
+
+            const stock =
+                Number(producto.stock || 0);
+
+
+            if (stock <= 0) {
+
+                alert(
+                    "Este producto está sin stock."
+                );
+
+                return;
+            }
+
+
+            const existente =
+                carrito.find(
+                    item =>
+                        String(item.id) === String(id)
+                );
+
+
+            if (existente) {
+
+                const nuevaCantidad =
+                    Number(existente.quantity) + 1;
+
+
+                if (nuevaCantidad > stock) {
+
+                    alert(
+                        `Solo quedan ${stock} unidad(es) disponibles de este producto.`
+                    );
+
+                    return;
+                }
+
+
+                existente.quantity =
+                    nuevaCantidad;
+
+                existente.stock =
+                    stock;
+
+                existente.precio =
+                    Number(producto.precio || 0);
+
+            } else {
+
+                carrito.push({
+
+                    id: String(producto.id),
+
+                    nombre:
+                        String(producto.nombre),
+
+                    precio:
+                        Number(producto.precio || 0),
+
+                    imagen:
+                        String(producto.imagen || ""),
+
+                    stock:
+                        stock,
+
+                    quantity:
+                        1
+                });
+            }
+
+
+            guardarCarrito();
+
+
+            mostrarProductoAgregado(
+                producto.nombre
+            );
+        }
+
+
+        /* ==========================================
+           CONFIRMACIÓN
+        ========================================== */
+
+        function mostrarProductoAgregado(nombre) {
+
+            const cantidad =
+                obtenerCantidadTotalCarrito();
+
+            alert(
+                `✅ ${nombre} fue agregado al carrito.\n\n` +
+                `Productos en tu carrito: ${cantidad}`
+            );
+        }
+
+
+        /* ==========================================
+           CONTADOR DEL CARRITO
+        ========================================== */
+
+        function actualizarCarrito() {
+
+            const contador =
+                document.getElementById("cart-count");
+
+            if (!contador) {
+                return;
+            }
+
+            const cantidad =
+                obtenerCantidadTotalCarrito();
+
+            contador.textContent =
+                cantidad;
+        }
+
+
+        /* ==========================================
+           IR AL CARRITO
+        ========================================== */
+
+        function irAlCarrito() {
+
+            const cantidad =
+                obtenerCantidadTotalCarrito();
+
+
+            if (cantidad === 0) {
+
+                alert(
+                    "Tu carrito está vacío.\n\nAgrega al menos un producto para continuar."
+                );
+
+                return;
+            }
+
+
+            window.location.href =
+                "checkout.html";
+        }
+
+
+        /* ==========================================
+           VACIAR CARRITO
+        ========================================== */
+
+        function vaciarCarrito() {
+
+            carrito = [];
+
+            guardarCarrito();
+        }
+
+
+        /* ==========================================
+           CARGAR PRODUCTOS DESDE SUPABASE
+        ========================================== */
 
         async function cargarProductos() {
 
-            const grid = document.getElementById("products-grid");
-            const status = document.getElementById("products-status");
+            const grid =
+                document.getElementById(
+                    "products-grid"
+                );
+
+            const status =
+                document.getElementById(
+                    "products-status"
+                );
+
 
             try {
 
                 if (!window.supabaseClient) {
+
                     throw new Error(
                         "No se encontró la conexión con Supabase."
                     );
                 }
 
-                const { data, error } =
+
+                const {
+                    data,
+                    error
+                } =
                     await window.supabaseClient
                         .from("productos")
                         .select("*")
                         .eq("activo", true)
-                        .order("destacado", {
-                            ascending: false
-                        })
-                        .order("created_at", {
-                            ascending: false
-                        });
+                        .order(
+                            "destacado",
+                            {
+                                ascending: false
+                            }
+                        )
+                        .order(
+                            "created_at",
+                            {
+                                ascending: false
+                            }
+                        );
+
 
                 if (error) {
                     throw error;
                 }
 
-                productos = data || [];
-                productosFiltrados = [...productos];
+
+                productos =
+                    data || [];
+
+
+                productosFiltrados =
+                    [...productos];
+
 
                 status.textContent =
                     `${productos.length} productos disponibles`;
 
+
+                sincronizarStockCarrito();
+
+
                 renderizarProductos();
+
 
             } catch (error) {
 
@@ -643,257 +1074,424 @@
                     error
                 );
 
+
                 status.textContent =
                     "No pudimos cargar los productos.";
 
+
                 grid.innerHTML = `
+
                     <div class="catalog-error">
+
                         <div>⚠️</div>
-                        <h3>No pudimos cargar el catálogo</h3>
+
+                        <h3>
+                            No pudimos cargar el catálogo
+                        </h3>
+
                         <p>
                             Revisa la conexión con Supabase.
                         </p>
+
                         <button
                             class="primary-button"
                             onclick="cargarProductos()"
                         >
                             Intentar nuevamente
                         </button>
+
                     </div>
+
                 `;
-
             }
-
         }
 
 
-        /* =========================
+        /* ==========================================
+           SINCRONIZAR STOCK
+        ========================================== */
+
+        function sincronizarStockCarrito() {
+
+            let huboCambios = false;
+
+
+            carrito =
+                carrito
+                    .map(item => {
+
+                        const producto =
+                            productos.find(
+                                producto =>
+                                    String(producto.id) ===
+                                    String(item.id)
+                            );
+
+
+                        if (!producto) {
+
+                            huboCambios = true;
+
+                            return null;
+                        }
+
+
+                        const stock =
+                            Number(
+                                producto.stock || 0
+                            );
+
+
+                        let quantity =
+                            Number(
+                                item.quantity || 0
+                            );
+
+
+                        if (stock <= 0) {
+
+                            huboCambios = true;
+
+                            return null;
+                        }
+
+
+                        if (quantity > stock) {
+
+                            quantity =
+                                stock;
+
+                            huboCambios = true;
+                        }
+
+
+                        return {
+
+                            ...item,
+
+                            nombre:
+                                producto.nombre,
+
+                            precio:
+                                Number(
+                                    producto.precio || 0
+                                ),
+
+                            imagen:
+                                producto.imagen || "",
+
+                            stock:
+                                stock,
+
+                            quantity:
+                                quantity
+                        };
+
+                    })
+                    .filter(Boolean);
+
+
+            if (huboCambios) {
+                guardarCarrito();
+            }
+        }
+
+
+        /* ==========================================
            RENDERIZAR PRODUCTOS
-        ========================== */
+        ========================================== */
 
         function renderizarProductos() {
 
             const grid =
-                document.getElementById("products-grid");
+                document.getElementById(
+                    "products-grid"
+                );
+
 
             const noResults =
-                document.getElementById("no-results");
+                document.getElementById(
+                    "no-results"
+                );
+
 
             grid.innerHTML = "";
 
+
             if (!productosFiltrados.length) {
 
-                noResults.style.display = "block";
+                noResults.style.display =
+                    "block";
 
                 return;
-
             }
 
-            noResults.style.display = "none";
+
+            noResults.style.display =
+                "none";
 
 
-            productosFiltrados.forEach(producto => {
+            productosFiltrados.forEach(
+                producto => {
 
-                const card =
-                    document.createElement("article");
-
-                card.className = "product-card";
-
-
-                const precio =
-                    Number(producto.precio || 0);
-
-                const precioAnterior =
-                    producto.precio_anterior
-                        ? Number(producto.precio_anterior)
-                        : null;
+                    const card =
+                        document.createElement(
+                            "article"
+                        );
 
 
-                const descuento =
-                    precioAnterior && precioAnterior > precio
-                        ? Math.round(
-                            ((precioAnterior - precio) /
-                            precioAnterior) * 100
-                        )
-                        : 0;
+                    card.className =
+                        "product-card";
 
 
-                const imagen =
-                    producto.imagen ||
-                    "";
+                    const precio =
+                        Number(
+                            producto.precio || 0
+                        );
 
 
-                const imagenHTML = imagen
-                    ? `
-                        <img
-                            src="${escaparHTML(imagen)}"
-                            alt="${escaparHTML(producto.nombre)}"
-                            loading="lazy"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
+                    const precioAnterior =
+                        producto.precio_anterior
+                            ? Number(
+                                producto.precio_anterior
+                            )
+                            : null;
 
-                        <div
-                            class="product-placeholder"
-                            style="display:none;"
-                        >
-                            🛍️
+
+                    const descuento =
+                        precioAnterior &&
+                        precioAnterior > precio
+                            ? Math.round(
+                                (
+                                    (
+                                        precioAnterior -
+                                        precio
+                                    ) /
+                                    precioAnterior
+                                ) * 100
+                            )
+                            : 0;
+
+
+                    const imagen =
+                        producto.imagen || "";
+
+
+                    const stock =
+                        Number(
+                            producto.stock || 0
+                        );
+
+
+                    const imagenHTML =
+                        imagen
+                            ? `
+
+                                <img
+                                    src="${escaparHTML(imagen)}"
+                                    alt="${escaparHTML(producto.nombre)}"
+                                    loading="lazy"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                                >
+
+                                <div
+                                    class="product-placeholder"
+                                    style="display:none;"
+                                >
+                                    🛍️
+                                </div>
+
+                            `
+                            : `
+
+                                <div class="product-placeholder">
+                                    🛍️
+                                </div>
+
+                            `;
+
+
+                    card.innerHTML = `
+
+                        <div class="product-image">
+
+                            ${
+                                producto.oferta
+                                    ? `
+
+                                        <span class="product-badge">
+                                            🔥 OFERTA
+                                        </span>
+
+                                    `
+                                    : ""
+                            }
+
+
+                            ${
+                                producto.destacado
+                                    ? `
+
+                                        <span class="product-featured">
+                                            ⭐ DESTACADO
+                                        </span>
+
+                                    `
+                                    : ""
+                            }
+
+
+                            <button
+                                class="favorite-button"
+                                onclick="favorito(this)"
+                                aria-label="Agregar a favoritos"
+                            >
+                                ♡
+                            </button>
+
+
+                            ${imagenHTML}
+
                         </div>
-                    `
-                    : `
-                        <div class="product-placeholder">
-                            🛍️
-                        </div>
-                    `;
 
 
-                card.innerHTML = `
+                        <div class="product-info">
 
-                    <div class="product-image">
-
-                        ${producto.oferta
-                            ? `<span class="product-badge">🔥 OFERTA</span>`
-                            : ""
-                        }
-
-                        ${producto.destacado
-                            ? `<span class="product-featured">⭐ DESTACADO</span>`
-                            : ""
-                        }
-
-                        <button
-                            class="favorite-button"
-                            onclick="favorito(this)"
-                        >
-                            ♡
-                        </button>
-
-                        ${imagenHTML}
-
-                    </div>
-
-
-                    <div class="product-info">
-
-                        <span class="product-category">
-                            ${escaparHTML(
-                                producto.categoria || "otros"
-                            )}
-                        </span>
-
-                        <h3>
-                            ${escaparHTML(
-                                producto.nombre
-                            )}
-                        </h3>
-
-                        <p class="product-description">
-                            ${escaparHTML(
-                                producto.descripcion || ""
-                            )}
-                        </p>
-
-
-                        <div class="product-rating">
-
-                            <span>
-                                ⭐ ${Number(
-                                    producto.rating || 0
-                                ).toFixed(1)}
+                            <span class="product-category">
+                                ${escaparHTML(
+                                    producto.categoria || "otros"
+                                )}
                             </span>
 
-                            <small>
-                                (${Number(
-                                    producto.reviews || 0
-                                )} reseñas)
-                            </small>
 
-                        </div>
+                            <h3>
+                                ${escaparHTML(
+                                    producto.nombre
+                                )}
+                            </h3>
 
 
-                        <div class="product-price">
+                            <p class="product-description">
+                                ${escaparHTML(
+                                    producto.descripcion || ""
+                                )}
+                            </p>
 
-                            <div>
 
-                                <strong>
-                                    ${formatearPrecio(precio)}
-                                </strong>
+                            <div class="product-rating">
+
+                                <span>
+                                    ⭐ ${Number(
+                                        producto.rating || 0
+                                    ).toFixed(1)}
+                                </span>
+
+                                <small>
+                                    (${Number(
+                                        producto.reviews || 0
+                                    )} reseñas)
+                                </small>
+
+                            </div>
+
+
+                            <div class="product-price">
+
+                                <div>
+
+                                    <strong>
+                                        ${formatearPrecio(precio)}
+                                    </strong>
+
+
+                                    ${
+                                        precioAnterior
+                                            ? `
+
+                                                <del>
+                                                    ${formatearPrecio(
+                                                        precioAnterior
+                                                    )}
+                                                </del>
+
+                                            `
+                                            : ""
+                                    }
+
+                                </div>
+
 
                                 ${
-                                    precioAnterior
+                                    descuento
                                         ? `
-                                            <del>
-                                                ${formatearPrecio(
-                                                    precioAnterior
-                                                )}
-                                            </del>
+
+                                            <span class="discount">
+                                                -${descuento}%
+                                            </span>
+
                                         `
                                         : ""
                                 }
 
                             </div>
 
-                            ${
-                                descuento
-                                    ? `
-                                        <span class="discount">
-                                            -${descuento}%
-                                        </span>
-                                    `
-                                    : ""
-                            }
+
+                            <div class="product-stock">
+
+                                ${
+                                    stock > 0
+                                        ? `
+
+                                            <span class="stock-ok">
+                                                ✓ En stock
+                                            </span>
+
+                                        `
+                                        : `
+
+                                            <span class="stock-out">
+                                                Sin stock
+                                            </span>
+
+                                        `
+                                }
+
+                            </div>
+
+
+                            <button
+                                class="buy-button"
+                                onclick="comprarProducto(
+                                    '${escaparJS(producto.nombre)}',
+                                    ${precio},
+                                    '${escaparJS(producto.id)}'
+                                )"
+                                ${stock <= 0 ? "disabled" : ""}
+                            >
+
+                                ${
+                                    stock > 0
+                                        ? "🛒 Agregar al carrito"
+                                        : "Sin stock"
+                                }
+
+                            </button>
 
                         </div>
 
-
-                        <div class="product-stock">
-
-                            ${
-                                Number(producto.stock || 0) > 0
-                                    ? `
-                                        <span class="stock-ok">
-                                            ✓ En stock
-                                        </span>
-                                    `
-                                    : `
-                                        <span class="stock-out">
-                                            Sin stock
-                                        </span>
-                                    `
-                            }
-
-                        </div>
+                    `;
 
 
-                        <button
-                            class="buy-button"
-                            onclick="comprarProducto('${escaparJS(producto.nombre)}', ${precio}, '${producto.id}')"
-                            ${
-                                Number(producto.stock || 0) <= 0
-                                    ? "disabled"
-                                    : ""
-                            }
-                        >
-                            ${
-                                Number(producto.stock || 0) > 0
-                                    ? "Comprar ahora"
-                                    : "Sin stock"
-                            }
-                        </button>
+                    grid.appendChild(card);
 
-                    </div>
-                `;
-
-
-                grid.appendChild(card);
-
-            });
-
+                }
+            );
         }
 
 
-        /* =========================
+        /* ==========================================
            FORMATO PRECIO
-        ========================== */
+        ========================================== */
 
         function formatearPrecio(valor) {
 
@@ -905,13 +1503,12 @@
                     maximumFractionDigits: 0
                 }
             ).format(valor);
-
         }
 
 
-        /* =========================
+        /* ==========================================
            SEGURIDAD HTML
-        ========================== */
+        ========================================== */
 
         function escaparHTML(texto) {
 
@@ -921,9 +1518,12 @@
                 .replace(/>/g, "&gt;")
                 .replace(/"/g, "&quot;")
                 .replace(/'/g, "&#039;");
-
         }
 
+
+        /* ==========================================
+           SEGURIDAD JAVASCRIPT
+        ========================================== */
 
         function escaparJS(texto) {
 
@@ -933,13 +1533,12 @@
                 .replace(/"/g, '\\"')
                 .replace(/\n/g, "\\n")
                 .replace(/\r/g, "\\r");
-
         }
 
 
-        /* =========================
-           BUSCAR
-        ========================== */
+        /* ==========================================
+           BUSCAR PRODUCTOS
+        ========================================== */
 
         function buscarProductos(texto) {
 
@@ -950,27 +1549,35 @@
 
 
             productosFiltrados =
-                productos.filter(producto => {
+                productos.filter(
+                    producto => {
 
-                    if (!busqueda) {
-                        return true;
+                        if (!busqueda) {
+                            return true;
+                        }
+
+
+                        const contenido = `
+
+                            ${producto.nombre || ""}
+
+                            ${producto.descripcion || ""}
+
+                            ${producto.categoria || ""}
+
+                        `.toLowerCase();
+
+
+                        return contenido.includes(
+                            busqueda
+                        );
                     }
-
-                    const contenido = `
-                        ${producto.nombre || ""}
-                        ${producto.descripcion || ""}
-                        ${producto.categoria || ""}
-                    `.toLowerCase();
-
-                    return contenido.includes(busqueda);
-
-                });
+                );
 
 
             actualizarEstadoBusqueda();
 
             renderizarProductos();
-
         }
 
 
@@ -981,19 +1588,20 @@
                     "hero-search-input"
                 );
 
+
             const texto =
                 input.value.trim();
 
 
             document.getElementById(
                 "product-search"
-            ).value = texto;
+            ).value =
+                texto;
 
 
             buscarProductos(texto);
 
             irProductos();
-
         }
 
 
@@ -1004,19 +1612,20 @@
                     "hero-search-input"
                 );
 
+
             input.focus();
+
 
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
-
         }
 
 
-        /* =========================
+        /* ==========================================
            CATEGORÍAS
-        ========================== */
+        ========================================== */
 
         function filtrarCategoria(
             categoria,
@@ -1026,12 +1635,19 @@
             document
                 .querySelectorAll(".category-card")
                 .forEach(card => {
-                    card.classList.remove("active");
+
+                    card.classList.remove(
+                        "active"
+                    );
+
                 });
 
 
             if (boton) {
-                boton.classList.add("active");
+
+                boton.classList.add(
+                    "active"
+                );
             }
 
 
@@ -1043,12 +1659,14 @@
             } else {
 
                 productosFiltrados =
-                    productos.filter(producto =>
-                        String(producto.categoria)
-                            .toLowerCase() ===
-                        categoria.toLowerCase()
+                    productos.filter(
+                        producto =>
+                            String(
+                                producto.categoria || ""
+                            )
+                                .toLowerCase() ===
+                            categoria.toLowerCase()
                     );
-
             }
 
 
@@ -1062,7 +1680,6 @@
             renderizarProductos();
 
             irProductos();
-
         }
 
 
@@ -1071,7 +1688,11 @@
             document
                 .querySelectorAll(".category-card")
                 .forEach(card => {
-                    card.classList.remove("active");
+
+                    card.classList.remove(
+                        "active"
+                    );
+
                 });
 
 
@@ -1080,14 +1701,19 @@
                     '[data-category="ofertas"]'
                 );
 
+
             if (ofertas) {
-                ofertas.classList.add("active");
+
+                ofertas.classList.add(
+                    "active"
+                );
             }
 
 
             productosFiltrados =
                 productos.filter(
-                    producto => producto.oferta === true
+                    producto =>
+                        producto.oferta === true
                 );
 
 
@@ -1096,17 +1722,21 @@
             renderizarProductos();
 
             irProductos();
-
         }
 
 
-        /* =========================
+        /* ==========================================
            ORDENAR
-        ========================== */
+        ========================================== */
 
-        function ordenarProductos(criterio) {
+        function ordenarProductos(
+            criterio
+        ) {
 
-            if (criterio === "precio-menor") {
+            if (
+                criterio ===
+                "precio-menor"
+            ) {
 
                 productosFiltrados.sort(
                     (a, b) =>
@@ -1114,7 +1744,10 @@
                         Number(b.precio)
                 );
 
-            } else if (criterio === "precio-mayor") {
+            } else if (
+                criterio ===
+                "precio-mayor"
+            ) {
 
                 productosFiltrados.sort(
                     (a, b) =>
@@ -1122,15 +1755,21 @@
                         Number(a.precio)
                 );
 
-            } else if (criterio === "nombre") {
+            } else if (
+                criterio ===
+                "nombre"
+            ) {
 
                 productosFiltrados.sort(
                     (a, b) =>
-                        String(a.nombre)
-                            .localeCompare(
-                                String(b.nombre),
-                                "es"
-                            )
+                        String(
+                            a.nombre
+                        ).localeCompare(
+                            String(
+                                b.nombre
+                            ),
+                            "es"
+                        )
                 );
 
             } else {
@@ -1140,18 +1779,16 @@
                         Number(b.destacado) -
                         Number(a.destacado)
                 );
-
             }
 
 
             renderizarProductos();
-
         }
 
 
-        /* =========================
+        /* ==========================================
            ESTADO
-        ========================== */
+        ========================================== */
 
         function actualizarEstadoBusqueda() {
 
@@ -1160,22 +1797,31 @@
                     "products-status"
                 );
 
-            if (!status) return;
+
+            if (!status) {
+                return;
+            }
+
 
             status.textContent =
                 `${productosFiltrados.length} productos encontrados`;
-
         }
 
+
+        /* ==========================================
+           REINICIAR CATÁLOGO
+        ========================================== */
 
         function reiniciarCatalogo() {
 
             productosFiltrados =
                 [...productos];
 
+
             document.getElementById(
                 "product-search"
             ).value = "";
+
 
             document.getElementById(
                 "hero-search-input"
@@ -1185,7 +1831,11 @@
             document
                 .querySelectorAll(".category-card")
                 .forEach(card => {
-                    card.classList.remove("active");
+
+                    card.classList.remove(
+                        "active"
+                    );
+
                 });
 
 
@@ -1194,144 +1844,60 @@
                     '[data-category="todos"]'
                 );
 
+
             if (todos) {
-                todos.classList.add("active");
+
+                todos.classList.add(
+                    "active"
+                );
             }
 
 
             document.getElementById(
                 "sort-products"
-            ).value = "destacados";
+            ).value =
+                "destacados";
 
 
             renderizarProductos();
 
             irProductos();
-
         }
 
 
-        /* =========================
-           COMPRAR
-        ========================== */
-
-        function comprarProducto(
-            nombre,
-            precio,
-            id
-        ) {
-
-            /*
-             * Por ahora mantenemos el flujo
-             * de checkout existente.
-             *
-             * En la siguiente fase conectaremos
-             * el carrito real y todos los productos
-             * al checkout.
-             */
-
-            if (
-                nombre ===
-                "Auriculares Gamer con Micrófono"
-            ) {
-
-                window.location.href =
-                    "checkout.html" +
-                    "?producto=" +
-                    encodeURIComponent(nombre) +
-                    "&precio=" +
-                    encodeURIComponent(precio) +
-                    "&cantidad=1" +
-                    "&producto_id=" +
-                    encodeURIComponent(id);
-
-                return;
-
-            }
-
-
-            alert(
-                "Producto seleccionado: " +
-                nombre +
-                "\n\nEl carrito completo para todos los productos lo conectaremos en la siguiente fase."
-            );
-
-        }
-
-
-        /* =========================
+        /* ==========================================
            FAVORITOS
-        ========================== */
+        ========================================== */
 
         function favorito(boton) {
 
-            boton.classList.toggle("active");
+            boton.classList.toggle(
+                "active"
+            );
+
 
             boton.textContent =
                 boton.classList.contains("active")
                     ? "♥"
                     : "♡";
-
         }
 
 
-        /* =========================
-           CARRITO
-        ========================== */
-
-        function irAlCarrito() {
-
-            if (!carrito.length) {
-
-                alert(
-                    "Tu carrito está vacío."
-                );
-
-                return;
-
-            }
-
-
-            alert(
-                "Tu carrito tiene " +
-                carrito.length +
-                " producto(s)."
-            );
-
-        }
-
-
-        function actualizarCarrito() {
-
-            const contador =
-                document.getElementById(
-                    "cart-count"
-                );
-
-            if (contador) {
-                contador.textContent =
-                    carrito.length;
-            }
-
-        }
-
-
-        /* =========================
+        /* ==========================================
            CUENTA
-        ========================== */
+        ========================================== */
 
         function irCuenta() {
 
             alert(
                 "La cuenta de usuario la conectaremos en la siguiente fase."
             );
-
         }
 
 
-        /* =========================
-           SCROLL
-        ========================== */
+        /* ==========================================
+           SCROLL PRODUCTOS
+        ========================================== */
 
         function irProductos() {
 
@@ -1340,21 +1906,20 @@
                 .scrollIntoView({
                     behavior: "smooth"
                 });
-
         }
 
 
-        /* =========================
+        /* ==========================================
            INICIAR
-        ========================== */
+        ========================================== */
 
         document.addEventListener(
             "DOMContentLoaded",
             () => {
 
-                cargarProductos();
-
                 actualizarCarrito();
+
+                cargarProductos();
 
             }
         );
