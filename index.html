@@ -4,58 +4,110 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>FlipFinder | Encuentra lo que buscas</title>
+  <title>FlipFinder | Tu tienda online</title>
 
   <link rel="stylesheet" href="style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
 </head>
 
 <body>
 
-  <!-- FONDO -->
+  <!-- =========================================
+       FONDOS
+  ========================================== -->
+
   <div class="background-glow glow-one"></div>
   <div class="background-glow glow-two"></div>
 
-  <!-- BARRA SUPERIOR -->
+
+  <!-- =========================================
+       BARRA SUPERIOR
+  ========================================== -->
+
   <div class="top-bar">
-    🔥 OFERTAS ESPECIALES
-    <span>Envíos a todo Chile</span>
-    <span>Compra segura con Mercado Pago</span>
+
+    <div class="top-bar-content">
+
+      <span>🔥 OFERTAS ESPECIALES</span>
+
+      <span>🚚 Envíos a todo Chile</span>
+
+      <span>🔒 Compra segura</span>
+
+      <span>💳 Mercado Pago</span>
+
+    </div>
+
   </div>
 
-  <!-- HEADER -->
+
+  <!-- =========================================
+       HEADER
+  ========================================== -->
+
   <header class="header">
 
     <div class="container header-content">
 
       <a href="index.html" class="logo">
-        <span class="logo-flip">FLIP</span><span class="logo-finder">FINDER</span>
+
+        <span class="logo-flip">FLIP</span>
+        <span class="logo-finder">FINDER</span>
+
       </a>
 
+
       <nav class="desktop-nav">
+
         <a href="#inicio">Inicio</a>
+
         <a href="#categorias">Categorías</a>
+
         <a href="#productos">Productos</a>
+
         <a href="#ofertas">Ofertas</a>
+
       </nav>
+
 
       <div class="header-actions">
 
-        <button class="icon-button" onclick="abrirBuscador()" title="Buscar">
+        <button
+          class="icon-button"
+          onclick="enfocarBuscador()"
+          title="Buscar"
+        >
           🔎
         </button>
 
-        <button class="icon-button" onclick="irCuenta()" title="Mi cuenta">
+
+        <button
+          class="icon-button"
+          onclick="irCuenta()"
+          title="Mi cuenta"
+        >
           👤
         </button>
 
-        <button class="cart-button" onclick="irAlCarrito()">
+
+        <button
+          class="cart-button"
+          onclick="irAlCarrito()"
+        >
+
           🛒
+
           <span>Carrito</span>
+
           <b id="cart-count">0</b>
+
         </button>
 
       </div>
@@ -65,7 +117,11 @@
   </header>
 
 
-  <!-- HERO -->
+
+  <!-- =========================================
+       HERO
+  ========================================== -->
+
   <main>
 
     <section class="hero" id="inicio">
@@ -75,31 +131,67 @@
         <div class="hero-content">
 
           <div class="hero-badge">
-            ✨ NUEVA EXPERIENCIA FLIPFINDER
+            ✨ BIENVENIDO A FLIPFINDER
           </div>
 
+
           <h1>
+
             Encuentra lo que buscas.
+
             <span>Descubre algo nuevo.</span>
+
           </h1>
 
+
           <p>
-            Tecnología, gaming, hogar, accesorios y mucho más.
-            Todo en un solo lugar y con ofertas increíbles.
+
+            Tecnología, gaming, hogar, accesorios, electrónica
+            y mucho más. Todo en un solo lugar.
+
           </p>
+
+
+          <!-- BUSCADOR PRINCIPAL -->
+
+          <div class="hero-search">
+
+            <span>🔎</span>
+
+            <input
+              type="text"
+              id="hero-search-input"
+              placeholder="¿Qué estás buscando?"
+              oninput="buscarProductos(this.value)"
+            >
+
+            <button onclick="limpiarBusqueda()">
+              Buscar
+            </button>
+
+          </div>
+
 
           <div class="hero-buttons">
 
-            <a href="#productos" class="primary-button">
+            <a
+              href="#productos"
+              class="primary-button"
+            >
               Ver productos
               <span>→</span>
             </a>
 
-            <a href="#categorias" class="secondary-button">
+
+            <a
+              href="#categorias"
+              class="secondary-button"
+            >
               Explorar categorías
             </a>
 
           </div>
+
 
           <div class="hero-trust">
 
@@ -123,9 +215,13 @@
         </div>
 
 
+
+        <!-- PRODUCTO DESTACADO -->
+
         <div class="hero-showcase">
 
           <div class="showcase-glow"></div>
+
 
           <div class="showcase-card">
 
@@ -133,17 +229,40 @@
               🔥 PRODUCTO DESTACADO
             </span>
 
+
             <div class="showcase-image">
-              <img src="img/foto1.jpg" alt="Producto destacado">
+
+              <img
+                src="img/foto1.jpg"
+                alt="Auriculares Gamer"
+              >
+
             </div>
 
+
             <div class="showcase-info">
+
               <div>
-                <h3>Auriculares Gamer</h3>
-                <p>Con micrófono y audio inmersivo</p>
+
+                <span class="showcase-category">
+                  GAMING
+                </span>
+
+                <h3>
+                  Auriculares Gamer
+                </h3>
+
+                <p>
+                  Audio inmersivo + micrófono
+                </p>
+
               </div>
 
-              <strong>$23.400</strong>
+
+              <strong>
+                $23.400
+              </strong>
+
             </div>
 
           </div>
@@ -155,80 +274,245 @@
     </section>
 
 
-    <!-- CATEGORÍAS -->
-    <section class="section" id="categorias">
+
+    <!-- =========================================
+         CATEGORÍAS
+    ========================================== -->
+
+    <section
+      class="section"
+      id="categorias"
+    >
 
       <div class="container">
 
         <div class="section-heading">
 
           <div>
-            <span class="section-label">EXPLORA</span>
-            <h2>Categorías</h2>
+
+            <span class="section-label">
+              EXPLORA
+            </span>
+
+            <h2>
+              Categorías
+            </h2>
+
           </div>
 
+
           <p>
-            Encuentra productos pensados para cada parte de tu día.
+            Explora nuestras principales categorías
+            y encuentra productos para todos.
           </p>
 
         </div>
 
 
+
         <div class="categories-grid">
 
-          <a href="#productos" class="category-card">
-            <div class="category-icon">🎧</div>
-            <div>
-              <h3>Tecnología</h3>
-              <p>Audio y dispositivos</p>
-            </div>
-            <span>→</span>
-          </a>
 
-          <a href="#productos" class="category-card">
-            <div class="category-icon">🎮</div>
-            <div>
-              <h3>Gaming</h3>
-              <p>Todo para jugar</p>
-            </div>
-            <span>→</span>
-          </a>
+          <button
+            class="category-card active"
+            onclick="filtrarCategoria('todos', this)"
+          >
 
-          <a href="#productos" class="category-card">
-            <div class="category-icon">🏠</div>
-            <div>
-              <h3>Hogar</h3>
-              <p>Productos para tu casa</p>
+            <div class="category-icon">
+              🛍️
             </div>
-            <span>→</span>
-          </a>
 
-          <a href="#productos" class="category-card">
-            <div class="category-icon">📱</div>
             <div>
-              <h3>Accesorios</h3>
-              <p>Complementa tus equipos</p>
-            </div>
-            <span>→</span>
-          </a>
 
-          <a href="#productos" class="category-card">
-            <div class="category-icon">💡</div>
-            <div>
-              <h3>Electrónica</h3>
-              <p>Innovación para todos</p>
-            </div>
-            <span>→</span>
-          </a>
+              <h3>
+                Todos
+              </h3>
 
-          <a href="#ofertas" class="category-card category-sale">
-            <div class="category-icon">🔥</div>
-            <div>
-              <h3>Ofertas</h3>
-              <p>Precios especiales</p>
+              <p>
+                Ver todo el catálogo
+              </p>
+
             </div>
-            <span>→</span>
-          </a>
+
+            <span>
+              →
+            </span>
+
+          </button>
+
+
+
+          <button
+            class="category-card"
+            onclick="filtrarCategoria('tecnologia', this)"
+          >
+
+            <div class="category-icon">
+              📱
+            </div>
+
+            <div>
+
+              <h3>
+                Tecnología
+              </h3>
+
+              <p>
+                Gadgets y dispositivos
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </button>
+
+
+
+          <button
+            class="category-card"
+            onclick="filtrarCategoria('gaming', this)"
+          >
+
+            <div class="category-icon">
+              🎮
+            </div>
+
+            <div>
+
+              <h3>
+                Gaming
+              </h3>
+
+              <p>
+                Todo para jugar
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </button>
+
+
+
+          <button
+            class="category-card"
+            onclick="filtrarCategoria('hogar', this)"
+          >
+
+            <div class="category-icon">
+              🏠
+            </div>
+
+            <div>
+
+              <h3>
+                Hogar
+              </h3>
+
+              <p>
+                Productos para tu casa
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </button>
+
+
+
+          <button
+            class="category-card"
+            onclick="filtrarCategoria('accesorios', this)"
+          >
+
+            <div class="category-icon">
+              🎒
+            </div>
+
+            <div>
+
+              <h3>
+                Accesorios
+              </h3>
+
+              <p>
+                Complementos útiles
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </button>
+
+
+
+          <button
+            class="category-card"
+            onclick="filtrarCategoria('electronica', this)"
+          >
+
+            <div class="category-icon">
+              💡
+            </div>
+
+            <div>
+
+              <h3>
+                Electrónica
+              </h3>
+
+              <p>
+                Innovación y tecnología
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </button>
+
+
+
+          <button
+            class="category-card category-sale"
+            onclick="filtrarCategoria('ofertas', this)"
+          >
+
+            <div class="category-icon">
+              🔥
+            </div>
+
+            <div>
+
+              <h3>
+                Ofertas
+              </h3>
+
+              <p>
+                Precios especiales
+              </p>
+
+            </div>
+
+            <span>
+              →
+            </span>
+
+          </button>
 
         </div>
 
@@ -237,29 +521,152 @@
     </section>
 
 
-    <!-- PRODUCTOS -->
-    <section class="section products-section" id="productos">
+
+    <!-- =========================================
+         PRODUCTOS
+    ========================================== -->
+
+    <section
+      class="section products-section"
+      id="productos"
+    >
 
       <div class="container">
 
-        <div class="section-heading">
+
+        <div class="products-header">
 
           <div>
-            <span class="section-label">DESCUBRE</span>
-            <h2>Productos destacados</h2>
+
+            <span class="section-label">
+              CATÁLOGO
+            </span>
+
+            <h2>
+              Productos
+            </h2>
+
+            <p
+              id="products-result-text"
+              class="products-result-text"
+            >
+              Mostrando todos los productos
+            </p>
+
           </div>
 
-          <button class="text-button" onclick="mostrarTodos()">
-            Ver todos →
+
+          <!-- ORDENAR -->
+
+          <div class="sort-box">
+
+            <label for="sort-products">
+              Ordenar por
+            </label>
+
+            <select
+              id="sort-products"
+              onchange="ordenarProductos(this.value)"
+            >
+
+              <option value="destacados">
+                Destacados
+              </option>
+
+              <option value="precio-menor">
+                Precio: menor a mayor
+              </option>
+
+              <option value="precio-mayor">
+                Precio: mayor a menor
+              </option>
+
+              <option value="nombre">
+                Nombre A-Z
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- FILTROS -->
+
+        <div class="filter-bar">
+
+          <button
+            class="filter-button active"
+            onclick="filtrarCategoria('todos', this)"
+          >
+            Todos
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filtrarCategoria('tecnologia', this)"
+          >
+            📱 Tecnología
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filtrarCategoria('gaming', this)"
+          >
+            🎮 Gaming
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filtrarCategoria('hogar', this)"
+          >
+            🏠 Hogar
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filtrarCategoria('accesorios', this)"
+          >
+            🎒 Accesorios
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filtrarCategoria('electronica', this)"
+          >
+            💡 Electrónica
+          </button>
+
+          <button
+            class="filter-button"
+            onclick="filtrarCategoria('ofertas', this)"
+          >
+            🔥 Ofertas
           </button>
 
         </div>
 
 
-        <div class="products-grid">
+
+        <!-- GRID PRODUCTOS -->
+
+        <div
+          class="products-grid"
+          id="products-grid"
+        >
+
 
           <!-- PRODUCTO 1 -->
-          <article class="product-card">
+
+          <article
+            class="product-card"
+            data-category="gaming"
+            data-price="23400"
+            data-name="Auriculares Gamer con Micrófono"
+            data-offer="true"
+          >
 
             <div class="product-image">
 
@@ -267,13 +674,23 @@
                 DESTACADO
               </span>
 
-              <button class="favorite-button" onclick="favorito(this)">
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+                aria-label="Agregar a favoritos"
+              >
                 ♡
               </button>
 
-              <img src="img/foto1.jpg" alt="Auriculares Gamer">
+
+              <img
+                src="img/foto1.jpg"
+                alt="Auriculares Gamer con Micrófono"
+              >
 
             </div>
+
 
             <div class="product-info">
 
@@ -281,23 +698,41 @@
                 GAMING
               </span>
 
-              <h3>Auriculares Gamer con Micrófono</h3>
+
+              <h3>
+                Auriculares Gamer con Micrófono
+              </h3>
+
 
               <div class="rating">
                 ⭐⭐⭐⭐⭐
-                <span>(12)</span>
+                <span>
+                  (12)
+                </span>
               </div>
+
 
               <div class="product-bottom">
 
                 <div>
-                  <span class="old-price">$29.990</span>
-                  <strong>$23.400</strong>
+
+                  <span class="old-price">
+                    $29.990
+                  </span>
+
+                  <strong>
+                    $23.400
+                  </strong>
+
                 </div>
+
 
                 <button
                   class="add-button"
-                  onclick="comprarProducto('Auriculares Gamer con Micrófono', 23400)"
+                  onclick="comprarProducto(
+                    'Auriculares Gamer con Micrófono',
+                    23400
+                  )"
                 >
                   🛒
                 </button>
@@ -309,20 +744,38 @@
           </article>
 
 
+
           <!-- PRODUCTO 2 -->
-          <article class="product-card">
+
+          <article
+            class="product-card"
+            data-category="tecnologia"
+            data-price="31990"
+            data-name="Smartwatch Inteligente"
+            data-offer="true"
+          >
 
             <div class="product-image placeholder-image">
+
               <span class="product-badge sale-badge">
                 -20%
               </span>
 
-              <button class="favorite-button" onclick="favorito(this)">
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+              >
                 ♡
               </button>
 
-              <div class="placeholder-icon">⌚</div>
+
+              <div class="placeholder-icon">
+                ⌚
+              </div>
+
             </div>
+
 
             <div class="product-info">
 
@@ -330,19 +783,34 @@
                 TECNOLOGÍA
               </span>
 
-              <h3>Smartwatch Inteligente</h3>
+
+              <h3>
+                Smartwatch Inteligente
+              </h3>
+
 
               <div class="rating">
                 ⭐⭐⭐⭐⭐
-                <span>(8)</span>
+                <span>
+                  (8)
+                </span>
               </div>
+
 
               <div class="product-bottom">
 
                 <div>
-                  <span class="old-price">$39.990</span>
-                  <strong>$31.990</strong>
+
+                  <span class="old-price">
+                    $39.990
+                  </span>
+
+                  <strong>
+                    $31.990
+                  </strong>
+
                 </div>
+
 
                 <button
                   class="add-button"
@@ -358,8 +826,16 @@
           </article>
 
 
+
           <!-- PRODUCTO 3 -->
-          <article class="product-card">
+
+          <article
+            class="product-card"
+            data-category="electronica"
+            data-price="19990"
+            data-name="Parlante Bluetooth Portátil"
+            data-offer="false"
+          >
 
             <div class="product-image placeholder-image">
 
@@ -367,32 +843,52 @@
                 NUEVO
               </span>
 
-              <button class="favorite-button" onclick="favorito(this)">
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+              >
                 ♡
               </button>
 
-              <div class="placeholder-icon">🔊</div>
+
+              <div class="placeholder-icon">
+                🔊
+              </div>
 
             </div>
+
 
             <div class="product-info">
 
               <span class="product-category">
-                AUDIO
+                ELECTRÓNICA
               </span>
 
-              <h3>Parlante Bluetooth Portátil</h3>
+
+              <h3>
+                Parlante Bluetooth Portátil
+              </h3>
+
 
               <div class="rating">
                 ⭐⭐⭐⭐⭐
-                <span>(15)</span>
+                <span>
+                  (15)
+                </span>
               </div>
+
 
               <div class="product-bottom">
 
                 <div>
-                  <strong>$19.990</strong>
+
+                  <strong>
+                    $19.990
+                  </strong>
+
                 </div>
+
 
                 <button
                   class="add-button"
@@ -408,8 +904,16 @@
           </article>
 
 
+
           <!-- PRODUCTO 4 -->
-          <article class="product-card">
+
+          <article
+            class="product-card"
+            data-category="hogar"
+            data-price="16240"
+            data-name="Lámpara LED Inteligente"
+            data-offer="true"
+          >
 
             <div class="product-image placeholder-image">
 
@@ -417,13 +921,21 @@
                 -35%
               </span>
 
-              <button class="favorite-button" onclick="favorito(this)">
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+              >
                 ♡
               </button>
 
-              <div class="placeholder-icon">💡</div>
+
+              <div class="placeholder-icon">
+                💡
+              </div>
 
             </div>
+
 
             <div class="product-info">
 
@@ -431,19 +943,349 @@
                 HOGAR
               </span>
 
-              <h3>Lámpara LED Inteligente</h3>
+
+              <h3>
+                Lámpara LED Inteligente
+              </h3>
+
 
               <div class="rating">
                 ⭐⭐⭐⭐⭐
-                <span>(21)</span>
+                <span>
+                  (21)
+                </span>
               </div>
+
 
               <div class="product-bottom">
 
                 <div>
-                  <span class="old-price">$24.990</span>
-                  <strong>$16.240</strong>
+
+                  <span class="old-price">
+                    $24.990
+                  </span>
+
+                  <strong>
+                    $16.240
+                  </strong>
+
                 </div>
+
+
+                <button
+                  class="add-button"
+                  onclick="productoProximamente()"
+                >
+                  🛒
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- PRODUCTO 5 -->
+
+          <article
+            class="product-card"
+            data-category="accesorios"
+            data-price="12990"
+            data-name="Mochila Multifuncional"
+            data-offer="false"
+          >
+
+            <div class="product-image placeholder-image">
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+              >
+                ♡
+              </button>
+
+
+              <div class="placeholder-icon">
+                🎒
+              </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+              <span class="product-category">
+                ACCESORIOS
+              </span>
+
+
+              <h3>
+                Mochila Multifuncional
+              </h3>
+
+
+              <div class="rating">
+                ⭐⭐⭐⭐☆
+                <span>
+                  (9)
+                </span>
+              </div>
+
+
+              <div class="product-bottom">
+
+                <div>
+
+                  <strong>
+                    $12.990
+                  </strong>
+
+                </div>
+
+
+                <button
+                  class="add-button"
+                  onclick="productoProximamente()"
+                >
+                  🛒
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- PRODUCTO 6 -->
+
+          <article
+            class="product-card"
+            data-category="tecnologia"
+            data-price="14990"
+            data-name="Cargador Rápido USB-C"
+            data-offer="true"
+          >
+
+            <div class="product-image placeholder-image">
+
+              <span class="product-badge sale-badge">
+                -25%
+              </span>
+
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+              >
+                ♡
+              </button>
+
+
+              <div class="placeholder-icon">
+                🔌
+              </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+              <span class="product-category">
+                TECNOLOGÍA
+              </span>
+
+
+              <h3>
+                Cargador Rápido USB-C
+              </h3>
+
+
+              <div class="rating">
+                ⭐⭐⭐⭐⭐
+                <span>
+                  (17)
+                </span>
+              </div>
+
+
+              <div class="product-bottom">
+
+                <div>
+
+                  <span class="old-price">
+                    $19.990
+                  </span>
+
+                  <strong>
+                    $14.990
+                  </strong>
+
+                </div>
+
+
+                <button
+                  class="add-button"
+                  onclick="productoProximamente()"
+                >
+                  🛒
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- PRODUCTO 7 -->
+
+          <article
+            class="product-card"
+            data-category="gaming"
+            data-price="28990"
+            data-name="Teclado Gamer RGB"
+            data-offer="false"
+          >
+
+            <div class="product-image placeholder-image">
+
+              <span class="product-badge">
+                GAMING
+              </span>
+
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+              >
+                ♡
+              </button>
+
+
+              <div class="placeholder-icon">
+                ⌨️
+              </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+              <span class="product-category">
+                GAMING
+              </span>
+
+
+              <h3>
+                Teclado Gamer RGB
+              </h3>
+
+
+              <div class="rating">
+                ⭐⭐⭐⭐⭐
+                <span>
+                  (24)
+                </span>
+              </div>
+
+
+              <div class="product-bottom">
+
+                <div>
+
+                  <strong>
+                    $28.990
+                  </strong>
+
+                </div>
+
+
+                <button
+                  class="add-button"
+                  onclick="productoProximamente()"
+                >
+                  🛒
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- PRODUCTO 8 -->
+
+          <article
+            class="product-card"
+            data-category="hogar"
+            data-price="9990"
+            data-name="Organizador Multiuso"
+            data-offer="true"
+          >
+
+            <div class="product-image placeholder-image">
+
+              <span class="product-badge sale-badge">
+                -30%
+              </span>
+
+
+              <button
+                class="favorite-button"
+                onclick="favorito(this)"
+              >
+                ♡
+              </button>
+
+
+              <div class="placeholder-icon">
+                🏠
+              </div>
+
+            </div>
+
+
+            <div class="product-info">
+
+              <span class="product-category">
+                HOGAR
+              </span>
+
+
+              <h3>
+                Organizador Multiuso
+              </h3>
+
+
+              <div class="rating">
+                ⭐⭐⭐⭐☆
+                <span>
+                  (11)
+                </span>
+              </div>
+
+
+              <div class="product-bottom">
+
+                <div>
+
+                  <span class="old-price">
+                    $14.990
+                  </span>
+
+                  <strong>
+                    $9.990
+                  </strong>
+
+                </div>
+
 
                 <button
                   class="add-button"
@@ -460,13 +1302,50 @@
 
         </div>
 
+
+
+        <!-- SIN RESULTADOS -->
+
+        <div
+          id="no-results"
+          class="no-results"
+        >
+
+          <div>
+            🔎
+          </div>
+
+          <h3>
+            No encontramos productos
+          </h3>
+
+          <p>
+            Prueba con otra búsqueda o categoría.
+          </p>
+
+          <button
+            class="primary-button"
+            onclick="reiniciarCatalogo()"
+          >
+            Ver todos los productos
+          </button>
+
+        </div>
+
       </div>
 
     </section>
 
 
-    <!-- OFERTAS -->
-    <section class="offers-section" id="ofertas">
+
+    <!-- =========================================
+         OFERTAS
+    ========================================== -->
+
+    <section
+      class="offers-section"
+      id="ofertas"
+    >
 
       <div class="container">
 
@@ -478,22 +1357,34 @@
               🔥 OFERTAS DE HOY
             </span>
 
+
             <h2>
-              Precios especiales por tiempo limitado
+              Precios especiales por tiempo limitado.
             </h2>
 
+
             <p>
-              Aprovecha nuestras promociones antes de que se terminen.
+              Encuentra productos increíbles a precios
+              especiales antes de que se terminen.
             </p>
 
-            <a href="#productos" class="primary-button">
+
+            <button
+              class="primary-button"
+              onclick="filtrarOfertas()"
+            >
               Ver ofertas →
-            </a>
+            </button>
 
           </div>
 
+
           <div class="offer-decoration">
-            <span>−50%</span>
+
+            <span>
+              -50%
+            </span>
+
           </div>
 
         </div>
@@ -503,7 +1394,11 @@
     </section>
 
 
-    <!-- BENEFICIOS -->
+
+    <!-- =========================================
+         BENEFICIOS
+    ========================================== -->
+
     <section class="section benefits-section">
 
       <div class="container">
@@ -514,47 +1409,92 @@
             COMPRA CON CONFIANZA
           </span>
 
-          <h2>¿Por qué comprar en FlipFinder?</h2>
+
+          <h2>
+            ¿Por qué comprar en FlipFinder?
+          </h2>
+
 
           <p>
-            Queremos que comprar online sea simple, rápido y seguro.
+            Queremos que comprar online sea simple,
+            rápido y seguro.
           </p>
 
         </div>
 
 
+
         <div class="benefits-grid">
 
+
           <div class="benefit-card">
-            <div class="benefit-icon">🚚</div>
-            <h3>Envíos a todo Chile</h3>
+
+            <div class="benefit-icon">
+              🚚
+            </div>
+
+            <h3>
+              Envíos a todo Chile
+            </h3>
+
             <p>
               Recibe tus productos donde estés.
             </p>
+
           </div>
 
+
+
           <div class="benefit-card">
-            <div class="benefit-icon">🔒</div>
-            <h3>Compra segura</h3>
+
+            <div class="benefit-icon">
+              🔒
+            </div>
+
+            <h3>
+              Compra segura
+            </h3>
+
             <p>
               Tus pagos están protegidos.
             </p>
+
           </div>
 
+
+
           <div class="benefit-card">
-            <div class="benefit-icon">💳</div>
-            <h3>Mercado Pago</h3>
+
+            <div class="benefit-icon">
+              💳
+            </div>
+
+            <h3>
+              Mercado Pago
+            </h3>
+
             <p>
               Paga de forma rápida y segura.
             </p>
+
           </div>
 
+
+
           <div class="benefit-card">
-            <div class="benefit-icon">📦</div>
-            <h3>Seguimiento</h3>
+
+            <div class="benefit-icon">
+              📦
+            </div>
+
+            <h3>
+              Seguimiento
+            </h3>
+
             <p>
               Mantente informado sobre tu pedido.
             </p>
+
           </div>
 
         </div>
@@ -564,24 +1504,37 @@
     </section>
 
 
-    <!-- CTA -->
+
+    <!-- =========================================
+         CTA
+    ========================================== -->
+
     <section class="cta-section">
 
       <div class="container">
 
         <div class="cta-box">
 
-          <span>✨ FLIPFINDER</span>
+          <span>
+            ✨ FLIPFINDER
+          </span>
+
 
           <h2>
             Siempre hay algo nuevo por descubrir.
           </h2>
 
+
           <p>
-            Explora nuestra tienda y encuentra tu próximo producto favorito.
+            Explora nuestra tienda y encuentra
+            tu próximo producto favorito.
           </p>
 
-          <a href="#productos" class="primary-button">
+
+          <a
+            href="#productos"
+            class="primary-button"
+          >
             Explorar productos →
           </a>
 
@@ -594,53 +1547,104 @@
   </main>
 
 
-  <!-- FOOTER -->
+
+  <!-- =========================================
+       FOOTER
+  ========================================== -->
+
   <footer class="footer">
 
     <div class="container footer-grid">
 
+
       <div class="footer-brand">
 
-        <a href="index.html" class="logo">
-          <span class="logo-flip">FLIP</span><span class="logo-finder">FINDER</span>
+        <a
+          href="index.html"
+          class="logo"
+        >
+
+          <span class="logo-flip">
+            FLIP
+          </span>
+
+          <span class="logo-finder">
+            FINDER
+          </span>
+
         </a>
 
+
         <p>
-          Tu tienda online para descubrir productos increíbles.
+          Tu tienda online para descubrir
+          productos increíbles.
         </p>
 
       </div>
 
 
+
       <div class="footer-column">
 
-        <h4>Tienda</h4>
+        <h4>
+          Tienda
+        </h4>
 
-        <a href="#productos">Productos</a>
-        <a href="#categorias">Categorías</a>
-        <a href="#ofertas">Ofertas</a>
+        <a href="#productos">
+          Productos
+        </a>
+
+        <a href="#categorias">
+          Categorías
+        </a>
+
+        <a href="#ofertas">
+          Ofertas
+        </a>
 
       </div>
 
 
+
       <div class="footer-column">
 
-        <h4>Ayuda</h4>
+        <h4>
+          Ayuda
+        </h4>
 
-        <a href="#">Preguntas frecuentes</a>
-        <a href="#">Envíos</a>
-        <a href="#">Contacto</a>
+        <a href="#">
+          Preguntas frecuentes
+        </a>
+
+        <a href="#">
+          Envíos
+        </a>
+
+        <a href="#">
+          Contacto
+        </a>
 
       </div>
 
 
+
       <div class="footer-column">
 
-        <h4>Compra segura</h4>
+        <h4>
+          Compra segura
+        </h4>
 
-        <p>🔒 Pago protegido</p>
-        <p>💳 Mercado Pago</p>
-        <p>🚚 Envíos a todo Chile</p>
+        <p>
+          🔒 Pago protegido
+        </p>
+
+        <p>
+          💳 Mercado Pago
+        </p>
+
+        <p>
+          🚚 Envíos a todo Chile
+        </p>
 
       </div>
 
@@ -662,24 +1666,34 @@
   </footer>
 
 
-  <!-- JAVASCRIPT -->
+
+  <!-- =========================================
+       JAVASCRIPT
+  ========================================== -->
+
   <script>
 
     /*
-      PRODUCTO REAL ACTUAL
-      Mantenemos el mismo sistema de checkout
-      que ya veníamos utilizando.
+    ==================================================
+    PRODUCTO PRINCIPAL
+    ==================================================
     */
 
     const productoPrincipal = {
+
       nombre: "Auriculares Gamer con Micrófono",
+
       precio: 23400,
+
       imagen: "img/foto1.jpg"
+
     };
 
 
     /*
-      CARRITO
+    ==================================================
+    CARRITO
+    ==================================================
     */
 
     let carrito = [];
@@ -687,30 +1701,45 @@
 
     function actualizarCarrito() {
 
-      const contador = document.getElementById("cart-count");
+      const contador =
+        document.getElementById("cart-count");
 
-      if (!contador) return;
+
+      if (!contador) {
+        return;
+      }
+
 
       let cantidadTotal = 0;
 
+
       carrito.forEach(function(producto) {
+
         cantidadTotal += producto.cantidad;
+
       });
+
 
       contador.textContent = cantidadTotal;
 
     }
 
 
+
     /*
-      AGREGAR PRODUCTO
+    ==================================================
+    COMPRAR PRODUCTO
+    ==================================================
     */
 
     function comprarProducto(nombre, precio) {
 
-      const productoExistente = carrito.find(function(producto) {
-        return producto.nombre === nombre;
-      });
+      const productoExistente =
+        carrito.find(function(producto) {
+
+          return producto.nombre === nombre;
+
+        });
 
 
       if (productoExistente) {
@@ -720,9 +1749,13 @@
       } else {
 
         carrito.push({
+
           nombre: nombre,
+
           precio: precio,
+
           cantidad: 1
+
         });
 
       }
@@ -732,11 +1765,23 @@
 
 
       /*
-        Por ahora, para el producto real,
-        enviamos directamente al checkout.
+      ------------------------------------------
+      PRODUCTO REAL
+      ------------------------------------------
       */
 
-      if (nombre === productoPrincipal.nombre) {
+      if (
+        nombre ===
+        productoPrincipal.nombre
+      ) {
+
+        const productoCarrito =
+          carrito.find(function(producto) {
+
+            return producto.nombre === nombre;
+
+          });
+
 
         window.location.href =
           "checkout.html" +
@@ -745,67 +1790,41 @@
           "&precio=" +
           precio +
           "&cantidad=" +
-          carrito.find(function(p) {
-            return p.nombre === nombre;
-          }).cantidad;
-
-      } else {
-
-        alert("Este producto estará disponible próximamente.");
-
-      }
-
-    }
-
-
-    /*
-      IR AL CARRITO
-    */
-
-    function irAlCarrito() {
-
-      if (carrito.length === 0) {
-
-        alert("Tu carrito está vacío.");
+          productoCarrito.cantidad;
 
         return;
 
       }
 
-      alert("El carrito completo lo conectaremos en el siguiente paso.");
 
-    }
+      /*
+      ------------------------------------------
+      PRODUCTOS FUTUROS
+      ------------------------------------------
+      */
 
-
-    /*
-      CUENTA
-    */
-
-    function irCuenta() {
-
-      alert("La sección Mi Cuenta la conectaremos con Supabase.");
-
-    }
-
-
-    /*
-      BUSCADOR
-    */
-
-    function abrirBuscador() {
-
-      const busqueda = prompt(
-        "¿Qué producto estás buscando?"
+      alert(
+        "Este producto estará disponible próximamente."
       );
 
-
-      if (!busqueda) return;
-
-
-      const texto = busqueda.toLowerCase();
+    }
 
 
-      const productos = document.querySelectorAll(".product-card");
+
+    /*
+    ==================================================
+    BUSCADOR
+    ==================================================
+    */
+
+    function buscarProductos(texto) {
+
+      const busqueda =
+        texto.trim().toLowerCase();
+
+
+      const productos =
+        document.querySelectorAll(".product-card");
 
 
       let encontrados = 0;
@@ -813,11 +1832,26 @@
 
       productos.forEach(function(producto) {
 
+        const nombre =
+          producto.dataset.name.toLowerCase();
+
+
+        const categoria =
+          producto.dataset.category.toLowerCase();
+
+
         const contenido =
           producto.textContent.toLowerCase();
 
 
-        if (contenido.includes(texto)) {
+        const coincide =
+          busqueda === "" ||
+          nombre.includes(busqueda) ||
+          categoria.includes(busqueda) ||
+          contenido.includes(busqueda);
+
+
+        if (coincide) {
 
           producto.style.display = "";
 
@@ -832,67 +1866,65 @@
       });
 
 
-      if (encontrados === 0) {
-
-        alert(
-          "No encontramos productos para: " +
-          busqueda
-        );
-
-      }
-
-    }
-
-
-    /*
-      FAVORITOS
-    */
-
-    function favorito(boton) {
-
-      if (boton.textContent === "♡") {
-
-        boton.textContent = "♥";
-        boton.classList.add("favorite-active");
-
-      } else {
-
-        boton.textContent = "♡";
-        boton.classList.remove("favorite-active");
-
-      }
-
-    }
-
-
-    /*
-      PRODUCTOS QUE TODAVÍA NO ESTÁN CONECTADOS
-    */
-
-    function productoProximamente() {
-
-      alert(
-        "Este producto es parte del nuevo catálogo de FlipFinder y lo conectaremos al carrito próximamente."
+      actualizarResultado(
+        encontrados,
+        busqueda
       );
 
     }
 
 
+
     /*
-      MOSTRAR TODOS
+    ==================================================
+    ENFOCAR BUSCADOR
+    ==================================================
     */
 
-    function mostrarTodos() {
+    function enfocarBuscador() {
 
-      const productos =
-        document.querySelectorAll(".product-card");
+      const buscador =
+        document.getElementById(
+          "hero-search-input"
+        );
 
 
-      productos.forEach(function(producto) {
+      if (!buscador) {
+        return;
+      }
 
-        producto.style.display = "";
 
-      });
+      buscador.focus();
+
+
+      document
+        .getElementById("inicio")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+
+    /*
+    ==================================================
+    LIMPIAR BÚSQUEDA
+    ==================================================
+    */
+
+    function limpiarBusqueda() {
+
+      const buscador =
+        document.getElementById(
+          "hero-search-input"
+        );
+
+
+      buscador.value = "";
+
+
+      buscarProductos("");
 
 
       document
@@ -903,6 +1935,461 @@
 
     }
 
+
+
+    /*
+    ==================================================
+    FILTRAR CATEGORÍA
+    ==================================================
+    */
+
+    function filtrarCategoria(
+      categoria,
+      boton
+    ) {
+
+      const productos =
+        document.querySelectorAll(".product-card");
+
+
+      /*
+      Activar botón visual
+      */
+
+      document
+        .querySelectorAll(
+          ".filter-button, .category-card"
+        )
+        .forEach(function(elemento) {
+
+          elemento.classList.remove("active");
+
+        });
+
+
+      if (boton) {
+
+        boton.classList.add("active");
+
+      }
+
+
+      let encontrados = 0;
+
+
+      productos.forEach(function(producto) {
+
+        const categoriaProducto =
+          producto.dataset.category;
+
+
+        const esOferta =
+          producto.dataset.offer === "true";
+
+
+        let mostrar = false;
+
+
+        if (categoria === "todos") {
+
+          mostrar = true;
+
+        } else if (categoria === "ofertas") {
+
+          mostrar = esOferta;
+
+        } else {
+
+          mostrar =
+            categoriaProducto === categoria;
+
+        }
+
+
+        if (mostrar) {
+
+          producto.style.display = "";
+
+          encontrados++;
+
+        } else {
+
+          producto.style.display = "none";
+
+        }
+
+      });
+
+
+      const textoCategoria =
+        categoria === "todos"
+          ? "todos los productos"
+          : categoria === "ofertas"
+            ? "las ofertas"
+            : categoria;
+
+
+      document.getElementById(
+        "products-result-text"
+      ).textContent =
+        "Mostrando " +
+        encontrados +
+        " producto(s) de " +
+        textoCategoria;
+
+
+      document
+        .getElementById("productos")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+
+      revisarResultados(encontrados);
+
+    }
+
+
+
+    /*
+    ==================================================
+    FILTRAR OFERTAS
+    ==================================================
+    */
+
+    function filtrarOfertas() {
+
+      filtrarCategoria(
+        "ofertas",
+        null
+      );
+
+    }
+
+
+
+    /*
+    ==================================================
+    ORDENAR PRODUCTOS
+    ==================================================
+    */
+
+    function ordenarProductos(criterio) {
+
+      const grid =
+        document.getElementById(
+          "products-grid"
+        );
+
+
+      const productos =
+        Array.from(
+          grid.querySelectorAll(
+            ".product-card"
+          )
+        );
+
+
+      if (criterio === "precio-menor") {
+
+        productos.sort(function(a, b) {
+
+          return (
+            Number(a.dataset.price) -
+            Number(b.dataset.price)
+          );
+
+        });
+
+      }
+
+
+      if (criterio === "precio-mayor") {
+
+        productos.sort(function(a, b) {
+
+          return (
+            Number(b.dataset.price) -
+            Number(a.dataset.price)
+          );
+
+        });
+
+      }
+
+
+      if (criterio === "nombre") {
+
+        productos.sort(function(a, b) {
+
+          return a.dataset.name.localeCompare(
+            b.dataset.name
+          );
+
+        });
+
+      }
+
+
+      if (criterio === "destacados") {
+
+        productos.sort(function(a, b) {
+
+          const ofertaA =
+            a.dataset.offer === "true"
+              ? 1
+              : 0;
+
+          const ofertaB =
+            b.dataset.offer === "true"
+              ? 1
+              : 0;
+
+          return ofertaB - ofertaA;
+
+        });
+
+      }
+
+
+      productos.forEach(function(producto) {
+
+        grid.appendChild(producto);
+
+      });
+
+    }
+
+
+
+    /*
+    ==================================================
+    RESULTADOS
+    ==================================================
+    */
+
+    function actualizarResultado(
+      cantidad,
+      busqueda
+    ) {
+
+      const texto =
+        document.getElementById(
+          "products-result-text"
+        );
+
+
+      if (busqueda === "") {
+
+        texto.textContent =
+          "Mostrando todos los productos";
+
+      } else {
+
+        texto.textContent =
+          "Encontrados " +
+          cantidad +
+          " producto(s) para \"" +
+          busqueda +
+          "\"";
+
+      }
+
+
+      revisarResultados(cantidad);
+
+    }
+
+
+
+    function revisarResultados(cantidad) {
+
+      const mensaje =
+        document.getElementById(
+          "no-results"
+        );
+
+
+      if (cantidad === 0) {
+
+        mensaje.classList.add("show");
+
+      } else {
+
+        mensaje.classList.remove("show");
+
+      }
+
+    }
+
+
+
+    /*
+    ==================================================
+    REINICIAR CATÁLOGO
+    ==================================================
+    */
+
+    function reiniciarCatalogo() {
+
+      const buscador =
+        document.getElementById(
+          "hero-search-input"
+        );
+
+
+      buscador.value = "";
+
+
+      document
+        .querySelectorAll(".product-card")
+        .forEach(function(producto) {
+
+          producto.style.display = "";
+
+        });
+
+
+      document
+        .querySelectorAll(
+          ".filter-button, .category-card"
+        )
+        .forEach(function(elemento) {
+
+          elemento.classList.remove(
+            "active"
+          );
+
+        });
+
+
+      document
+        .querySelector(
+          ".filter-button"
+        )
+        .classList.add("active");
+
+
+      document
+        .querySelector(
+          ".category-card"
+        )
+        .classList.add("active");
+
+
+      document.getElementById(
+        "products-result-text"
+      ).textContent =
+        "Mostrando todos los productos";
+
+
+      revisarResultados(1);
+
+
+      document
+        .getElementById("no-results")
+        .classList.remove("show");
+
+    }
+
+
+
+    /*
+    ==================================================
+    FAVORITOS
+    ==================================================
+    */
+
+    function favorito(boton) {
+
+      if (
+        boton.textContent.trim() === "♡"
+      ) {
+
+        boton.textContent = "♥";
+
+        boton.classList.add(
+          "favorite-active"
+        );
+
+      } else {
+
+        boton.textContent = "♡";
+
+        boton.classList.remove(
+          "favorite-active"
+        );
+
+      }
+
+    }
+
+
+
+    /*
+    ==================================================
+    PRODUCTOS FUTUROS
+    ==================================================
+    */
+
+    function productoProximamente() {
+
+      alert(
+        "Este producto ya está preparado en el catálogo y lo conectaremos al carrito real en una próxima fase."
+      );
+
+    }
+
+
+
+    /*
+    ==================================================
+    CUENTA
+    ==================================================
+    */
+
+    function irCuenta() {
+
+      alert(
+        "La sección Mi Cuenta la conectaremos con Supabase en una próxima fase."
+      );
+
+    }
+
+
+
+    /*
+    ==================================================
+    CARRITO
+    ==================================================
+    */
+
+    function irAlCarrito() {
+
+      if (carrito.length === 0) {
+
+        alert(
+          "Tu carrito está vacío."
+        );
+
+        return;
+
+      }
+
+
+      alert(
+        "El carrito completo lo conectaremos en la siguiente fase."
+      );
+
+    }
+
+
+
+    /*
+    ==================================================
+    INICIALIZACIÓN
+    ==================================================
+    */
 
     actualizarCarrito();
 
