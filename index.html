@@ -1,14 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FlipFinder | Tu tienda online</title>
+    <title>FlipFinder | Tu marketplace online</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet"
@@ -16,1915 +16,2388 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
+
+    <style>
+        :root {
+            --ff-yellow: #ffe600;
+            --ff-blue: #3483fa;
+            --ff-blue-dark: #2968c8;
+            --ff-green: #00a650;
+            --ff-red: #e53935;
+            --ff-text: #333;
+            --ff-muted: #777;
+            --ff-light: #f5f5f5;
+            --ff-border: #e5e5e5;
+            --ff-white: #fff;
+            --ff-shadow: 0 2px 8px rgba(0,0,0,.08);
+            --ff-shadow-hover: 0 8px 24px rgba(0,0,0,.13);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", Arial, sans-serif;
+            color: var(--ff-text);
+            background: #f5f5f5;
+        }
+
+        button,
+        input,
+        select {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .ff-container {
+            width: min(1180px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+
+        .ff-header {
+            background: var(--ff-yellow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 5px rgba(0,0,0,.12);
+        }
+
+        .ff-header-main {
+            min-height: 74px;
+            display: grid;
+            grid-template-columns: 180px minmax(300px, 1fr) auto;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .ff-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #222;
+        }
+
+        .ff-logo-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            background: #222;
+            color: var(--ff-yellow);
+            display: grid;
+            place-items: center;
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .ff-logo-text span {
+            font-weight: 500;
+        }
+
+        .ff-search {
+            height: 46px;
+            background: white;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,.18);
+            overflow: hidden;
+        }
+
+        .ff-search input {
+            flex: 1;
+            height: 100%;
+            border: 0;
+            outline: 0;
+            padding: 0 17px;
+            font-size: 15px;
+        }
+
+        .ff-search button {
+            width: 55px;
+            height: 100%;
+            border: 0;
+            background: white;
+            border-left: 1px solid #eee;
+            font-size: 19px;
+        }
+
+        .ff-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ff-header-button {
+            border: 0;
+            background: transparent;
+            padding: 9px 10px;
+            border-radius: 7px;
+            color: #222;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .ff-header-button:hover {
+            background: rgba(255,255,255,.35);
+        }
+
+        .ff-cart {
+            position: relative;
+        }
+
+        .ff-cart-count {
+            min-width: 20px;
+            height: 20px;
+            padding: 0 5px;
+            border-radius: 10px;
+            background: var(--ff-blue);
+            color: white;
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .ff-category-bar {
+            border-top: 1px solid rgba(0,0,0,.08);
+            background: rgba(255,255,255,.18);
+        }
+
+        .ff-category-nav {
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            overflow-x: auto;
+        }
+
+        .ff-category-nav button {
+            border: 0;
+            background: transparent;
+            white-space: nowrap;
+            font-size: 13px;
+            color: #333;
+            padding: 10px 0;
+        }
+
+        .ff-category-nav button:hover {
+            font-weight: 700;
+        }
+
+        /* HERO */
+
+        .ff-hero {
+            background: linear-gradient(
+                135deg,
+                #fff9c4 0%,
+                #ffe600 48%,
+                #ffd500 100%
+            );
+            padding: 35px 0;
+        }
+
+        .ff-hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .ff-hero-label {
+            display: inline-flex;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: rgba(255,255,255,.65);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 13px;
+        }
+
+        .ff-hero h1 {
+            margin: 0;
+            max-width: 650px;
+            font-size: clamp(34px, 5vw, 58px);
+            line-height: 1.02;
+            letter-spacing: -2.5px;
+            color: #222;
+        }
+
+        .ff-hero h1 span {
+            display: block;
+        }
+
+        .ff-hero p {
+            max-width: 600px;
+            margin: 18px 0 24px;
+            color: #444;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .ff-hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .ff-primary-button,
+        .ff-secondary-button {
+            border-radius: 7px;
+            padding: 13px 21px;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .ff-primary-button {
+            border: 0;
+            background: var(--ff-blue);
+            color: white;
+        }
+
+        .ff-primary-button:hover {
+            background: var(--ff-blue-dark);
+        }
+
+        .ff-secondary-button {
+            border: 1px solid rgba(0,0,0,.12);
+            background: white;
+            color: #333;
+        }
+
+        .ff-hero-card {
+            background: white;
+            border-radius: 15px;
+            padding: 18px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.15);
+        }
+
+        .ff-hero-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .ff-hero-card-top span {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--ff-green);
+        }
+
+        .ff-hero-image {
+            height: 250px;
+            border-radius: 10px;
+            background: #f5f5f5;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        .ff-hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .ff-hero-product {
+            padding-top: 14px;
+        }
+
+        .ff-hero-product small {
+            color: #777;
+            font-size: 11px;
+        }
+
+        .ff-hero-product h3 {
+            margin: 5px 0;
+            font-size: 17px;
+        }
+
+        .ff-hero-price {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .ff-hero-old-price {
+            color: #888;
+            text-decoration: line-through;
+            font-size: 13px;
+            margin-left: 8px;
+        }
+
+        /* BENEFICIOS */
+
+        .ff-benefits {
+            background: white;
+            box-shadow: var(--ff-shadow);
+        }
+
+        .ff-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .ff-benefit {
+            padding: 22px 18px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            border-right: 1px solid #eee;
+        }
+
+        .ff-benefit:last-child {
+            border-right: 0;
+        }
+
+        .ff-benefit-icon {
+            font-size: 27px;
+        }
+
+        .ff-benefit strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        .ff-benefit span {
+            color: #777;
+            font-size: 11px;
+        }
+
+        /* SECCIONES */
+
+        .ff-section {
+            padding: 42px 0;
+        }
+
+        .ff-section-white {
+            background: white;
+        }
+
+        .ff-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+
+        .ff-section-header h2 {
+            margin: 0 0 5px;
+            font-size: 27px;
+        }
+
+        .ff-section-header p {
+            margin: 0;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .ff-see-all {
+            border: 0;
+            background: transparent;
+            color: var(--ff-blue);
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        /* CATEGORIAS */
+
+        .ff-categories {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 14px;
+        }
+
+        .ff-category {
+            border: 1px solid #eee;
+            background: white;
+            border-radius: 10px;
+            padding: 20px 10px;
+            text-align: center;
+            transition: .2s;
+        }
+
+        .ff-category:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--ff-shadow-hover);
+        }
+
+        .ff-category-icon {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            display: grid;
+            place-items: center;
+            font-size: 25px;
+        }
+
+        .ff-category strong {
+            display: block;
+            font-size: 13px;
+        }
+
+        .ff-category small {
+            display: block;
+            margin-top: 4px;
+            color: #888;
+            font-size: 10px;
+        }
+
+        /* PRODUCTOS */
+
+        .ff-products-tools {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .ff-mini-search {
+            width: 240px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .ff-mini-search span {
+            padding-left: 12px;
+        }
+
+        .ff-mini-search input {
+            width: 100%;
+            border: 0;
+            outline: 0;
+            padding: 0 10px;
+            font-size: 12px;
+        }
+
+        .ff-sort {
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            padding: 0 10px;
+            font-size: 12px;
+        }
+
+        .ff-products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .ff-product-card {
+            background: white;
+            border-radius: 9px;
+            overflow: hidden;
+            box-shadow: var(--ff-shadow);
+            transition: .2s;
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .ff-product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--ff-shadow-hover);
+        }
+
+        .ff-product-image {
+            height: 230px;
+            position: relative;
+            background: white;
+            border-bottom: 1px solid #eee;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+
+        .ff-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 16px;
+            transition: transform .25s;
+        }
+
+        .ff-product-card:hover .ff-product-image img {
+            transform: scale(1.04);
+        }
+
+        .ff-product-placeholder {
+            font-size: 55px;
+        }
+
+        .ff-badge,
+        .ff-featured {
+            position: absolute;
+            top: 10px;
+            z-index: 2;
+            padding: 5px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .ff-badge {
+            left: 10px;
+            background: var(--ff-green);
+            color: white;
+        }
+
+        .ff-featured {
+            right: 10px;
+            background: var(--ff-yellow);
+            color: #222;
+        }
+
+        .ff-favorite {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            z-index: 3;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            background: white;
+            font-size: 18px;
+            display: grid;
+            place-items: center;
+        }
+
+        .ff-favorite.active {
+            color: #e91e63;
+        }
+
+        .ff-product-info {
+            padding: 15px;
+        }
+
+        .ff-product-category {
+            color: #888;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .ff-product-title {
+            margin: 6px 0 4px;
+            font-size: 14px;
+            line-height: 1.35;
+            min-height: 38px;
+            font-weight: 600;
+        }
+
+        .ff-product-description {
+            margin: 0 0 8px;
+            color: #777;
+            font-size: 11px;
+            line-height: 1.4;
+            height: 31px;
+            overflow: hidden;
+        }
+
+        .ff-rating {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 11px;
+        }
+
+        .ff-rating span {
+            color: #f5a400;
+            font-weight: 700;
+        }
+
+        .ff-rating small {
+            color: #888;
+        }
+
+        .ff-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+        }
+
+        .ff-price {
+            font-size: 23px;
+            font-weight: 700;
+        }
+
+        .ff-old-price {
+            display: block;
+            color: #999;
+            text-decoration: line-through;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .ff-discount {
+            color: var(--ff-green);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .ff-shipping {
+            margin-top: 8px;
+            color: var(--ff-green);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .ff-stock {
+            margin-top: 5px;
+            font-size: 10px;
+        }
+
+        .ff-stock-ok {
+            color: var(--ff-green);
+        }
+
+        .ff-stock-low {
+            color: #e67e22;
+        }
+
+        .ff-stock-out {
+            color: var(--ff-red);
+        }
+
+        .ff-buy {
+            width: 100%;
+            margin-top: 13px;
+            height: 40px;
+            border: 0;
+            border-radius: 6px;
+            background: var(--ff-blue);
+            color: white;
+            font-weight: 800;
+            font-size: 12px;
+        }
+
+        .ff-buy:hover {
+            background: var(--ff-blue-dark);
+        }
+
+        .ff-buy:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* OFERTAS */
+
+        .ff-offers {
+            background: #fff8d6;
+        }
+
+        .ff-offer-box {
+            background: linear-gradient(120deg, #ffe600, #ffd000);
+            border-radius: 14px;
+            padding: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ff-offer-box h2 {
+            margin: 5px 0 8px;
+            font-size: 32px;
+        }
+
+        .ff-offer-box p {
+            margin: 0 0 20px;
+            color: #555;
+        }
+
+        .ff-offer-label {
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .ff-offer-symbol {
+            font-size: 110px;
+            font-weight: 900;
+            opacity: .12;
+        }
+
+        /* ESTADOS */
+
+        .ff-no-results,
+        .ff-error {
+            background: white;
+            padding: 50px 20px;
+            border-radius: 10px;
+            text-align: center;
+            grid-column: 1 / -1;
+        }
+
+        .ff-no-results-icon,
+        .ff-error-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .ff-no-results h3,
+        .ff-error h3 {
+            margin: 0 0 7px;
+        }
+
+        .ff-no-results p,
+        .ff-error p {
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* FOOTER */
+
+        .ff-footer {
+            background: #222;
+            color: white;
+            padding-top: 42px;
+        }
+
+        .ff-footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 35px;
+            padding-bottom: 35px;
+        }
+
+        .ff-footer h3 {
+            margin: 0 0 12px;
+        }
+
+        .ff-footer h4 {
+            margin: 0 0 13px;
+            font-size: 13px;
+        }
+
+        .ff-footer p,
+        .ff-footer a {
+            color: #aaa;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .ff-footer a {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .ff-footer a:hover {
+            color: white;
+        }
+
+        .ff-footer-bottom {
+            border-top: 1px solid #333;
+            padding: 18px 0;
+            color: #888;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+            .ff-header-main {
+                grid-template-columns: 150px 1fr auto;
+                gap: 12px;
+            }
+
+            .ff-categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .ff-products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .ff-hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ff-hero-card {
+                max-width: 500px;
+            }
+
+            .ff-benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ff-footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .ff-container {
+                width: min(100% - 20px, 1180px);
+            }
+
+            .ff-header-main {
+                grid-template-columns: 1fr auto;
+                padding: 10px 0;
+            }
+
+            .ff-logo {
+                font-size: 21px;
+            }
+
+            .ff-header-actions .ff-account-button {
+                display: none;
+            }
+
+            .ff-search {
+                grid-column: 1 / -1;
+                grid-row: 2;
+            }
+
+            .ff-category-nav {
+                gap: 18px;
+            }
+
+            .ff-hero {
+                padding: 28px 0;
+            }
+
+            .ff-hero h1 {
+                font-size: 37px;
+            }
+
+            .ff-hero-card {
+                display: none;
+            }
+
+            .ff-benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ff-benefit {
+                border-right: 0;
+                border-bottom: 1px solid #eee;
+            }
+
+            .ff-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .ff-section {
+                padding: 30px 0;
+            }
+
+            .ff-section-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .ff-products-tools {
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .ff-mini-search,
+            .ff-sort {
+                width: 100%;
+            }
+
+            .ff-products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .ff-product-image {
+                height: 180px;
+            }
+
+            .ff-product-info {
+                padding: 11px;
+            }
+
+            .ff-price {
+                font-size: 19px;
+            }
+
+            .ff-offer-box {
+                padding: 25px;
+            }
+
+            .ff-offer-box h2 {
+                font-size: 25px;
+            }
+
+            .ff-offer-symbol {
+                display: none;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .ff-products-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ff-product-image {
+                height: 155px;
+            }
+
+            .ff-product-description {
+                display: none;
+            }
+
+            .ff-footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- =========================
-         BARRA SUPERIOR
-    ========================== -->
+<header class="ff-header">
 
-    <div class="top-bar">
-        <div class="container top-bar-content">
-            <span>🔥 Ofertas especiales todos los días</span>
-            <span>🚚 Envíos a todo Chile</span>
-            <span>🔒 Compra segura</span>
-            <span>💳 Mercado Pago</span>
+    <div class="ff-container ff-header-main">
+
+        <a href="index.html" class="ff-logo">
+            <span class="ff-logo-mark">F</span>
+            <span class="ff-logo-text">
+                Flip<span>Finder</span>
+            </span>
+        </a>
+
+        <div class="ff-search">
+            <input
+                type="text"
+                id="hero-search-input"
+                placeholder="Buscar productos, marcas y más..."
+                autocomplete="off"
+                onkeydown="if(event.key === 'Enter') buscarDesdeHero()"
+            >
+            <button
+                type="button"
+                onclick="buscarDesdeHero()"
+                aria-label="Buscar"
+            >
+                🔍
+            </button>
         </div>
+
+        <div class="ff-header-actions">
+
+            <button
+                class="ff-header-button ff-account-button"
+                onclick="irCuenta()"
+            >
+                👤
+                <span>Mi cuenta</span>
+            </button>
+
+            <button
+                class="ff-header-button ff-cart"
+                onclick="irAlCarrito()"
+            >
+                🛒
+                <span>Carrito</span>
+                <strong id="cart-count" class="ff-cart-count">0</strong>
+            </button>
+
+        </div>
+
     </div>
 
+    <div class="ff-category-bar">
 
-    <!-- =========================
-         HEADER
-    ========================== -->
+        <div class="ff-container ff-category-nav">
 
-    <header class="header">
-        <div class="container header-content">
+            <button onclick="reiniciarCatalogo()">🏠 Inicio</button>
 
-            <a href="index.html" class="logo">
-                <span class="logo-icon">F</span>
-                <span>Flip<span>Finder</span></span>
-            </a>
+            <button onclick="filtrarCategoria('tecnologia')">
+                💻 Tecnología
+            </button>
 
-            <nav class="nav">
-                <a href="#inicio">Inicio</a>
-                <a href="#categorias">Categorías</a>
-                <a href="#productos">Productos</a>
-                <a href="#ofertas">Ofertas</a>
-            </nav>
+            <button onclick="filtrarCategoria('gaming')">
+                🎮 Gaming
+            </button>
 
-            <div class="header-actions">
+            <button onclick="filtrarCategoria('hogar')">
+                🏠 Hogar
+            </button>
 
-                <button
-                    class="icon-button"
-                    onclick="enfocarBuscador()"
-                    title="Buscar"
-                >
-                    🔍
-                </button>
+            <button onclick="filtrarCategoria('accesorios')">
+                🎒 Accesorios
+            </button>
 
-                <button
-                    class="icon-button"
-                    onclick="irCuenta()"
-                    title="Mi cuenta"
-                >
-                    👤
-                </button>
+            <button onclick="filtrarCategoria('electronica')">
+                ⚡ Electrónica
+            </button>
 
-                <button
-                    class="cart-button"
-                    onclick="irAlCarrito()"
-                    title="Ver carrito"
-                >
-                    🛒
-                    <span>Carrito</span>
-                    <strong id="cart-count">0</strong>
-                </button>
+            <button onclick="filtrarOfertas()">
+                🔥 Ofertas
+            </button>
 
-            </div>
         </div>
-    </header>
 
+    </div>
 
-    <main>
+</header>
 
-        <!-- =========================
-             HERO
-        ========================== -->
+<main>
 
-        <section class="hero" id="inicio">
+<section class="ff-hero">
 
-            <div class="hero-glow hero-glow-one"></div>
-            <div class="hero-glow hero-glow-two"></div>
+    <div class="ff-container ff-hero-grid">
 
-            <div class="container hero-content">
+        <div>
 
-                <div class="hero-text">
+            <span class="ff-hero-label">
+                ✨ DESCUBRE FLIPFINDER
+            </span>
 
-                    <span class="hero-badge">
-                        ✨ NUEVA EXPERIENCIA DE COMPRA
-                    </span>
+            <h1>
+                Encuentra lo que buscas.
+                <span>Compra fácil y seguro.</span>
+            </h1>
 
-                    <h1>
-                        Encuentra lo que
-                        <span>estás buscando.</span>
-                    </h1>
+            <p>
+                Descubre tecnología, gaming, hogar, accesorios
+                y productos seleccionados para ti.
+            </p>
 
-                    <p>
-                        Tecnología, gaming, hogar, accesorios y mucho más.
-                        Descubre productos increíbles en FlipFinder.
-                    </p>
+            <div class="ff-hero-actions">
 
-                    <div class="hero-search">
+                <button
+                    class="ff-primary-button"
+                    onclick="irProductos()"
+                >
+                    Ver productos
+                </button>
 
-                        <input
-                            type="text"
-                            id="hero-search-input"
-                            placeholder="¿Qué estás buscando?"
-                            autocomplete="off"
-                            onkeydown="if(event.key === 'Enter') buscarDesdeHero()"
-                        >
-
-                        <button onclick="buscarDesdeHero()">
-                            Buscar
-                        </button>
-
-                    </div>
-
-                    <div class="hero-buttons">
-
-                        <button
-                            class="primary-button"
-                            onclick="irProductos()"
-                        >
-                            Ver productos
-                        </button>
-
-                        <button
-                            class="secondary-button"
-                            onclick="filtrarOfertas()"
-                        >
-                            🔥 Ver ofertas
-                        </button>
-
-                    </div>
-
-                    <div class="hero-trust">
-
-                        <div>
-                            <strong>✓</strong>
-                            <span>Compra segura</span>
-                        </div>
-
-                        <div>
-                            <strong>✓</strong>
-                            <span>Productos seleccionados</span>
-                        </div>
-
-                        <div>
-                            <strong>✓</strong>
-                            <span>Envíos a Chile</span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="hero-showcase">
-
-                    <div class="showcase-card">
-
-                        <div class="showcase-top">
-
-                            <span>🔥 DESTACADO</span>
-
-                            <button onclick="favorito(this)">
-                                ♡
-                            </button>
-
-                        </div>
-
-                        <div class="showcase-image">
-
-                            <img
-                                src="img/foto1.jpg"
-                                alt="Producto destacado"
-                                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'product-placeholder\'>🎧</div>';"
-                            >
-
-                        </div>
-
-                        <div class="showcase-info">
-
-                            <small>PRODUCTO DESTACADO</small>
-
-                            <h3>Auriculares Gamer</h3>
-
-                            <div class="showcase-price">
-                                <strong>$23.400</strong>
-                                <del>$29.990</del>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                <button
+                    class="ff-secondary-button"
+                    onclick="filtrarOfertas()"
+                >
+                    🔥 Ver ofertas
+                </button>
 
             </div>
-        </section>
 
+        </div>
 
-        <!-- =========================
-             CATEGORÍAS
-        ========================== -->
+        <div class="ff-hero-card">
 
-        <section class="categories-section" id="categorias">
-
-            <div class="container">
-
-                <div class="section-heading">
-
-                    <div>
-                        <span class="section-label">
-                            EXPLORA
-                        </span>
-
-                        <h2>
-                            Compra por categoría
-                        </h2>
-                    </div>
-
-                    <button
-                        class="text-button"
-                        onclick="reiniciarCatalogo()"
-                    >
-                        Ver todo →
-                    </button>
-
-                </div>
-
-
-                <div class="categories-grid">
-
-                    <button
-                        class="category-card active"
-                        data-category="todos"
-                        onclick="filtrarCategoria('todos', this)"
-                    >
-                        <span>✨</span>
-                        <strong>Todos</strong>
-                        <small>Todo el catálogo</small>
-                    </button>
-
-
-                    <button
-                        class="category-card"
-                        data-category="tecnologia"
-                        onclick="filtrarCategoria('tecnologia', this)"
-                    >
-                        <span>💻</span>
-                        <strong>Tecnología</strong>
-                        <small>Innovación</small>
-                    </button>
-
-
-                    <button
-                        class="category-card"
-                        data-category="gaming"
-                        onclick="filtrarCategoria('gaming', this)"
-                    >
-                        <span>🎮</span>
-                        <strong>Gaming</strong>
-                        <small>Para gamers</small>
-                    </button>
-
-
-                    <button
-                        class="category-card"
-                        data-category="hogar"
-                        onclick="filtrarCategoria('hogar', this)"
-                    >
-                        <span>🏠</span>
-                        <strong>Hogar</strong>
-                        <small>Tu espacio</small>
-                    </button>
-
-
-                    <button
-                        class="category-card"
-                        data-category="accesorios"
-                        onclick="filtrarCategoria('accesorios', this)"
-                    >
-                        <span>🎒</span>
-                        <strong>Accesorios</strong>
-                        <small>Complementos</small>
-                    </button>
-
-
-                    <button
-                        class="category-card"
-                        data-category="electronica"
-                        onclick="filtrarCategoria('electronica', this)"
-                    >
-                        <span>⚡</span>
-                        <strong>Electrónica</strong>
-                        <small>Dispositivos</small>
-                    </button>
-
-
-                    <button
-                        class="category-card"
-                        data-category="ofertas"
-                        onclick="filtrarOfertas()"
-                    >
-                        <span>🔥</span>
-                        <strong>Ofertas</strong>
-                        <small>Precios especiales</small>
-                    </button>
-
-                </div>
-
+            <div class="ff-hero-card-top">
+                <span>🔥 PRODUCTO DESTACADO</span>
+                <span>⭐ 4.8</span>
             </div>
-        </section>
 
+            <div class="ff-hero-image">
 
-        <!-- =========================
-             PRODUCTOS
-        ========================== -->
-
-        <section class="products-section" id="productos">
-
-            <div class="container">
-
-                <div class="section-heading products-heading">
-
-                    <div>
-
-                        <span class="section-label">
-                            CATÁLOGO
-                        </span>
-
-                        <h2>
-                            Productos para ti
-                        </h2>
-
-                        <p id="products-status">
-                            Cargando productos...
-                        </p>
-
-                    </div>
-
-
-                    <div class="products-controls">
-
-                        <div class="mini-search">
-
-                            <span>🔍</span>
-
-                            <input
-                                type="text"
-                                id="product-search"
-                                placeholder="Buscar producto..."
-                                oninput="buscarProductos(this.value)"
-                            >
-
-                        </div>
-
-
-                        <select
-                            id="sort-products"
-                            onchange="ordenarProductos(this.value)"
-                        >
-
-                            <option value="destacados">
-                                Destacados
-                            </option>
-
-                            <option value="precio-menor">
-                                Precio menor
-                            </option>
-
-                            <option value="precio-mayor">
-                                Precio mayor
-                            </option>
-
-                            <option value="nombre">
-                                Nombre A-Z
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
+                <img
+                    src="img/foto1.jpg"
+                    alt="Auriculares Gamer"
+                    onerror="this.style.display='none';document.getElementById('hero-placeholder').style.display='block';"
+                >
 
                 <div
-                    class="products-grid"
-                    id="products-grid"
-                ></div>
-
-
-                <div
-                    class="no-results"
-                    id="no-results"
+                    id="hero-placeholder"
+                    class="ff-product-placeholder"
                     style="display:none;"
                 >
+                    🎧
+                </div>
 
-                    <div class="no-results-icon">
-                        🔎
-                    </div>
+            </div>
+
+            <div class="ff-hero-product">
+
+                <small>GAMING</small>
+
+                <h3>Auriculares Gamer con Micrófono</h3>
+
+                <span class="ff-hero-price">$23.400</span>
+
+                <span class="ff-hero-old-price">$29.990</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="ff-benefits">
+
+    <div class="ff-container ff-benefits-grid">
+
+        <div class="ff-benefit">
+            <div class="ff-benefit-icon">🚚</div>
+            <div>
+                <strong>Envíos a todo Chile</strong>
+                <span>Recibe tu compra donde estés</span>
+            </div>
+        </div>
+
+        <div class="ff-benefit">
+            <div class="ff-benefit-icon">🔒</div>
+            <div>
+                <strong>Compra segura</strong>
+                <span>Protegemos tu compra</span>
+            </div>
+        </div>
+
+        <div class="ff-benefit">
+            <div class="ff-benefit-icon">💳</div>
+            <div>
+                <strong>Mercado Pago</strong>
+                <span>Paga de forma segura</span>
+            </div>
+        </div>
+
+        <div class="ff-benefit">
+            <div class="ff-benefit-icon">⭐</div>
+            <div>
+                <strong>Productos seleccionados</strong>
+                <span>Opciones para ti</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="ff-section ff-section-white" id="categorias">
+
+    <div class="ff-container">
+
+        <div class="ff-section-header">
+
+            <div>
+                <h2>Explora por categoría</h2>
+                <p>Encuentra rápidamente lo que necesitas.</p>
+            </div>
+
+            <button
+                class="ff-see-all"
+                onclick="reiniciarCatalogo()"
+            >
+                Ver todo →
+            </button>
+
+        </div>
+
+        <div class="ff-categories">
+
+            <button class="ff-category" onclick="reiniciarCatalogo()">
+                <div class="ff-category-icon">✨</div>
+                <strong>Todos</strong>
+                <small>Todo el catálogo</small>
+            </button>
+
+            <button class="ff-category" onclick="filtrarCategoria('tecnologia')">
+                <div class="ff-category-icon">💻</div>
+                <strong>Tecnología</strong>
+                <small>Innovación</small>
+            </button>
+
+            <button class="ff-category" onclick="filtrarCategoria('gaming')">
+                <div class="ff-category-icon">🎮</div>
+                <strong>Gaming</strong>
+                <small>Para gamers</small>
+            </button>
+
+            <button class="ff-category" onclick="filtrarCategoria('hogar')">
+                <div class="ff-category-icon">🏠</div>
+                <strong>Hogar</strong>
+                <small>Tu espacio</small>
+            </button>
+
+            <button class="ff-category" onclick="filtrarCategoria('accesorios')">
+                <div class="ff-category-icon">🎒</div>
+                <strong>Accesorios</strong>
+                <small>Complementos</small>
+            </button>
+
+            <button class="ff-category" onclick="filtrarCategoria('electronica')">
+                <div class="ff-category-icon">⚡</div>
+                <strong>Electrónica</strong>
+                <small>Dispositivos</small>
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="ff-section" id="productos">
+
+    <div class="ff-container">
+
+        <div class="ff-section-header">
+
+            <div>
+                <h2>Productos para ti</h2>
+                <p id="products-status">Cargando productos...</p>
+            </div>
+
+            <div class="ff-products-tools">
+
+                <div class="ff-mini-search">
+                    <span>🔍</span>
+                    <input
+                        type="text"
+                        id="product-search"
+                        placeholder="Buscar producto..."
+                        oninput="buscarProductos(this.value)"
+                    >
+                </div>
+
+                <select
+                    class="ff-sort"
+                    id="sort-products"
+                    onchange="ordenarProductos(this.value)"
+                >
+                    <option value="destacados">Destacados</option>
+                    <option value="precio-menor">Precio menor</option>
+                    <option value="precio-mayor">Precio mayor</option>
+                    <option value="nombre">Nombre A-Z</option>
+                </select>
+
+            </div>
+
+        </div>
+
+        <div
+            class="ff-products-grid"
+            id="products-grid"
+        ></div>
+
+        <div
+            class="ff-no-results"
+            id="no-results"
+            style="display:none;"
+        >
+            <div class="ff-no-results-icon">🔎</div>
+            <h3>No encontramos productos</h3>
+            <p>Prueba con otra búsqueda o categoría.</p>
+
+            <button
+                class="ff-primary-button"
+                onclick="reiniciarCatalogo()"
+            >
+                Ver todos
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="ff-section ff-offers" id="ofertas">
+
+    <div class="ff-container">
+
+        <div class="ff-offer-box">
+
+            <div>
+
+                <span class="ff-offer-label">
+                    🔥 OFERTAS FLIPFINDER
+                </span>
+
+                <h2>
+                    Grandes productos.
+                    <br>
+                    Mejores precios.
+                </h2>
+
+                <p>
+                    Descubre productos seleccionados
+                    con precios especiales.
+                </p>
+
+                <button
+                    class="ff-primary-button"
+                    onclick="filtrarOfertas()"
+                >
+                    Ver ofertas
+                </button>
+
+            </div>
+
+            <div class="ff-offer-symbol">%</div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer class="ff-footer">
+
+    <div class="ff-container ff-footer-grid">
+
+        <div>
+
+            <h3>FlipFinder</h3>
+
+            <p>
+                Tu marketplace online para descubrir
+                productos increíbles.
+            </p>
+
+            <p>
+                Compra fácil, rápido y seguro.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h4>Comprar</h4>
+
+            <a href="#productos">Productos</a>
+            <a href="#categorias">Categorías</a>
+            <a href="#ofertas">Ofertas</a>
+
+        </div>
+
+        <div>
+
+            <h4>Ayuda</h4>
+
+            <a href="#">Contacto</a>
+            <a href="#">Envíos</a>
+            <a href="#">Preguntas frecuentes</a>
+
+        </div>
+
+        <div>
+
+            <h4>Compra segura</h4>
+
+            <p>🔒 Pago protegido</p>
+            <p>💳 Mercado Pago</p>
+            <p>🚚 Envíos a Chile</p>
+
+        </div>
+
+    </div>
+
+    <div class="ff-footer-bottom">
+
+        <div class="ff-container">
+            © 2026 FlipFinder. Todos los derechos reservados.
+        </div>
+
+    </div>
+
+</footer>
+
+<script>
+
+    let productos = [];
+    let productosFiltrados = [];
+    let carrito = cargarCarritoLocal();
+
+    /*
+     * =========================================================
+     * CARRITO
+     * =========================================================
+     */
+
+    function cargarCarritoLocal() {
+
+        try {
+
+            const guardado =
+                localStorage.getItem("flipfinder_carrito");
+
+            if (!guardado) {
+                return [];
+            }
+
+            const datos = JSON.parse(guardado);
+
+            if (!Array.isArray(datos)) {
+                return [];
+            }
+
+            return datos
+                .filter(item =>
+                    item &&
+                    item.id &&
+                    Number(item.quantity) > 0
+                )
+                .map(item => ({
+                    id: String(item.id),
+                    nombre: String(item.nombre || ""),
+                    precio: Number(item.precio || 0),
+                    imagen: String(item.imagen || ""),
+                    stock: Number(item.stock || 0),
+                    quantity: Number(item.quantity)
+                }));
+
+        } catch (error) {
+
+            console.error(
+                "Error leyendo carrito:",
+                error
+            );
+
+            return [];
+        }
+    }
+
+    function guardarCarrito() {
+
+        try {
+
+            localStorage.setItem(
+                "flipfinder_carrito",
+                JSON.stringify(carrito)
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Error guardando carrito:",
+                error
+            );
+        }
+
+        actualizarCarrito();
+    }
+
+    function obtenerCantidadTotalCarrito() {
+
+        return carrito.reduce(
+            (total, item) =>
+                total + Number(item.quantity || 0),
+            0
+        );
+    }
+
+    function actualizarCarrito() {
+
+        const contador =
+            document.getElementById("cart-count");
+
+        if (!contador) {
+            return;
+        }
+
+        contador.textContent =
+            obtenerCantidadTotalCarrito();
+    }
+
+    /*
+     * ESTA ES LA PARTE IMPORTANTE:
+     * Cada producto tiene su propio ID.
+     * Productos diferentes se agregan como elementos
+     * separados dentro del mismo carrito.
+     */
+
+    function comprarProducto(nombre, precio, id) {
+
+        const producto =
+            productos.find(
+                item =>
+                    String(item.id) === String(id)
+            );
+
+        if (!producto) {
+
+            alert(
+                "No pudimos encontrar este producto."
+            );
+
+            return;
+        }
+
+        const stock =
+            Number(producto.stock || 0);
+
+        if (stock <= 0) {
+
+            alert(
+                "Este producto está sin stock."
+            );
+
+            return;
+        }
+
+        const productoId =
+            String(producto.id);
+
+        const existente =
+            carrito.find(
+                item =>
+                    String(item.id) === productoId
+            );
+
+        if (existente) {
+
+            const nuevaCantidad =
+                Number(existente.quantity || 0) + 1;
+
+            if (nuevaCantidad > stock) {
+
+                alert(
+                    `Solo quedan ${stock} unidad(es) disponibles de este producto.`
+                );
+
+                return;
+            }
+
+            existente.quantity =
+                nuevaCantidad;
+
+            existente.stock =
+                stock;
+
+            existente.precio =
+                Number(producto.precio || 0);
+
+            existente.nombre =
+                String(producto.nombre);
+
+            existente.imagen =
+                String(producto.imagen || "");
+
+        } else {
+
+            carrito.push({
+
+                id: productoId,
+
+                nombre:
+                    String(producto.nombre),
+
+                precio:
+                    Number(producto.precio || 0),
+
+                imagen:
+                    String(producto.imagen || ""),
+
+                stock:
+                    stock,
+
+                quantity:
+                    1
+            });
+        }
+
+        guardarCarrito();
+
+        mostrarProductoAgregado(
+            producto.nombre
+        );
+    }
+
+    function mostrarProductoAgregado(nombre) {
+
+        const cantidad =
+            obtenerCantidadTotalCarrito();
+
+        alert(
+            `✅ ${nombre} fue agregado al carrito.\n\n` +
+            `Productos en tu carrito: ${cantidad}`
+        );
+    }
+
+    function irAlCarrito() {
+
+        const cantidad =
+            obtenerCantidadTotalCarrito();
+
+        if (cantidad === 0) {
+
+            alert(
+                "Tu carrito está vacío.\n\nAgrega al menos un producto para continuar."
+            );
+
+            return;
+        }
+
+        window.location.href =
+            "checkout.html";
+    }
+
+    /*
+     * =========================================================
+     * SUPABASE
+     * =========================================================
+     */
+
+    async function cargarProductos() {
+
+        const grid =
+            document.getElementById(
+                "products-grid"
+            );
+
+        const status =
+            document.getElementById(
+                "products-status"
+            );
+
+        try {
+
+            if (!window.supabaseClient) {
+
+                throw new Error(
+                    "No se encontró la conexión con Supabase."
+                );
+            }
+
+            const {
+                data,
+                error
+            } =
+                await window.supabaseClient
+                    .from("productos")
+                    .select("*")
+                    .eq("activo", true)
+                    .order(
+                        "destacado",
+                        {
+                            ascending: false
+                        }
+                    )
+                    .order(
+                        "created_at",
+                        {
+                            ascending: false
+                        }
+                    );
+
+            if (error) {
+                throw error;
+            }
+
+            productos =
+                data || [];
+
+            productosFiltrados =
+                [...productos];
+
+            status.textContent =
+                `${productos.length} productos disponibles`;
+
+            sincronizarStockCarrito();
+
+            renderizarProductos();
+
+        } catch (error) {
+
+            console.error(
+                "Error cargando productos:",
+                error
+            );
+
+            status.textContent =
+                "No pudimos cargar los productos.";
+
+            grid.innerHTML = `
+                <div class="ff-error">
+                    <div class="ff-error-icon">⚠️</div>
 
                     <h3>
-                        No encontramos productos
+                        No pudimos cargar el catálogo
                     </h3>
 
                     <p>
-                        Prueba con otra búsqueda o categoría.
+                        Revisa la conexión con Supabase.
                     </p>
 
                     <button
-                        class="primary-button"
-                        onclick="reiniciarCatalogo()"
+                        class="ff-primary-button"
+                        onclick="cargarProductos()"
                     >
-                        Ver todos
+                        Intentar nuevamente
                     </button>
-
                 </div>
-
-            </div>
-        </section>
-
-
-        <!-- =========================
-             OFERTAS
-        ========================== -->
-
-        <section class="offers-section" id="ofertas">
-
-            <div class="container">
-
-                <div class="offer-banner">
-
-                    <div class="offer-content">
-
-                        <span class="offer-label">
-                            🔥 OFERTAS
-                        </span>
-
-                        <h2>
-                            Grandes productos.
-                            <span>Mejores precios.</span>
-                        </h2>
-
-                        <p>
-                            Encuentra productos seleccionados con
-                            precios especiales.
-                        </p>
-
-                        <button
-                            class="primary-button"
-                            onclick="filtrarOfertas()"
-                        >
-                            Ver ofertas
-                        </button>
-
-                    </div>
-
-                    <div class="offer-decoration">
-                        %
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- =========================
-             BENEFICIOS
-        ========================== -->
-
-        <section class="benefits-section">
-
-            <div class="container">
-
-                <div class="benefits-grid">
-
-                    <div class="benefit">
-
-                        <div class="benefit-icon">
-                            🚚
-                        </div>
-
-                        <div>
-                            <h3>
-                                Envíos a todo Chile
-                            </h3>
-
-                            <p>
-                                Recibe tus productos donde estés.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="benefit">
-
-                        <div class="benefit-icon">
-                            🔒
-                        </div>
-
-                        <div>
-                            <h3>
-                                Compra segura
-                            </h3>
-
-                            <p>
-                                Protegemos tus datos y tu compra.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="benefit">
-
-                        <div class="benefit-icon">
-                            💳
-                        </div>
-
-                        <div>
-                            <h3>
-                                Pago con Mercado Pago
-                            </h3>
-
-                            <p>
-                                Compra de manera rápida y segura.
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="benefit">
-
-                        <div class="benefit-icon">
-                            ⭐
-                        </div>
-
-                        <div>
-                            <h3>
-                                Productos seleccionados
-                            </h3>
-
-                            <p>
-                                Buscamos opciones para ti.
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- =========================
-             CTA
-        ========================== -->
-
-        <section class="cta-section">
-
-            <div class="container">
-
-                <div class="cta-box">
-
-                    <div>
-
-                        <span class="section-label">
-                            FLIPFINDER
-                        </span>
-
-                        <h2>
-                            Descubre algo nuevo hoy.
-                        </h2>
-
-                        <p>
-                            Explora nuestro catálogo y encuentra
-                            tu próximo producto favorito.
-                        </p>
-
-                    </div>
-
-                    <button
-                        class="primary-button"
-                        onclick="irProductos()"
-                    >
-                        Explorar productos →
-                    </button>
-
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="footer">
-
-        <div class="container footer-grid">
-
-            <div class="footer-brand">
-
-                <a href="index.html" class="logo">
-
-                    <span class="logo-icon">
-                        F
-                    </span>
-
-                    <span>
-                        Flip<span>Finder</span>
-                    </span>
-
-                </a>
-
-                <p>
-                    Tu tienda online para descubrir productos
-                    increíbles.
-                </p>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>Tienda</h4>
-
-                <a href="#productos">
-                    Productos
-                </a>
-
-                <a href="#categorias">
-                    Categorías
-                </a>
-
-                <a href="#ofertas">
-                    Ofertas
-                </a>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>Ayuda</h4>
-
-                <a href="#">
-                    Contacto
-                </a>
-
-                <a href="#">
-                    Envíos
-                </a>
-
-                <a href="#">
-                    Preguntas frecuentes
-                </a>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h4>Compra segura</h4>
-
-                <p>🔒 Pago protegido</p>
-                <p>💳 Mercado Pago</p>
-                <p>🚚 Envíos a Chile</p>
-
-            </div>
-
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <div class="container">
-
-                <p>
-                    © 2026 FlipFinder. Todos los derechos reservados.
-                </p>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
-
-    <script>
-
-        /* ==========================================
-           VARIABLES
-        ========================================== */
-
-        let productos = [];
-        let productosFiltrados = [];
-
-        let carrito = cargarCarritoLocal();
-
-
-        /* ==========================================
-           CARGAR CARRITO
-        ========================================== */
-
-        function cargarCarritoLocal() {
-
-            try {
-
-                const guardado =
-                    localStorage.getItem("flipfinder_carrito");
-
-                if (!guardado) {
-                    return [];
-                }
-
-                const carritoGuardado =
-                    JSON.parse(guardado);
-
-                if (!Array.isArray(carritoGuardado)) {
-                    return [];
-                }
-
-                return carritoGuardado.filter(item => {
-
-                    return (
-                        item &&
-                        item.id &&
-                        Number.isInteger(Number(item.quantity)) &&
-                        Number(item.quantity) > 0
-                    );
-
-                });
-
-            } catch (error) {
-
-                console.error(
-                    "Error leyendo carrito:",
-                    error
-                );
-
-                return [];
-            }
+            `;
         }
-
-
-        /* ==========================================
-           GUARDAR CARRITO
-        ========================================== */
-
-        function guardarCarrito() {
-
-            try {
-
-                localStorage.setItem(
-                    "flipfinder_carrito",
-                    JSON.stringify(carrito)
-                );
-
-            } catch (error) {
-
-                console.error(
-                    "Error guardando carrito:",
-                    error
-                );
-            }
-
-            actualizarCarrito();
-        }
-
-
-        /* ==========================================
-           CANTIDAD TOTAL
-        ========================================== */
-
-        function obtenerCantidadTotalCarrito() {
-
-            return carrito.reduce(
-                (total, item) => {
-
-                    return total + Number(
-                        item.quantity || 0
-                    );
-
-                },
-                0
-            );
-        }
-
-
-        /* ==========================================
-           AGREGAR PRODUCTO AL CARRITO
-        ========================================== */
-
-        function comprarProducto(nombre, precio, id) {
-
-            const producto =
-                productos.find(
-                    item =>
-                        String(item.id) === String(id)
-                );
-
-            if (!producto) {
-
-                alert(
-                    "No pudimos encontrar este producto."
-                );
-
-                return;
-            }
-
-
-            const stock =
-                Number(producto.stock || 0);
-
-
-            if (stock <= 0) {
-
-                alert(
-                    "Este producto está sin stock."
-                );
-
-                return;
-            }
-
-
-            const existente =
-                carrito.find(
-                    item =>
-                        String(item.id) === String(id)
-                );
-
-
-            if (existente) {
-
-                const nuevaCantidad =
-                    Number(existente.quantity) + 1;
-
-
-                if (nuevaCantidad > stock) {
-
-                    alert(
-                        `Solo quedan ${stock} unidad(es) disponibles de este producto.`
-                    );
-
-                    return;
-                }
-
-
-                existente.quantity =
-                    nuevaCantidad;
-
-                existente.stock =
-                    stock;
-
-                existente.precio =
-                    Number(producto.precio || 0);
-
-            } else {
-
-                carrito.push({
-
-                    id: String(producto.id),
-
-                    nombre:
-                        String(producto.nombre),
-
-                    precio:
-                        Number(producto.precio || 0),
-
-                    imagen:
-                        String(producto.imagen || ""),
-
-                    stock:
-                        stock,
-
-                    quantity:
-                        1
-                });
-            }
-
-
-            guardarCarrito();
-
-
-            mostrarProductoAgregado(
-                producto.nombre
-            );
-        }
-
-
-        /* ==========================================
-           CONFIRMACIÓN
-        ========================================== */
-
-        function mostrarProductoAgregado(nombre) {
-
-            const cantidad =
-                obtenerCantidadTotalCarrito();
-
-            alert(
-                `✅ ${nombre} fue agregado al carrito.\n\n` +
-                `Productos en tu carrito: ${cantidad}`
-            );
-        }
-
-
-        /* ==========================================
-           CONTADOR DEL CARRITO
-        ========================================== */
-
-        function actualizarCarrito() {
-
-            const contador =
-                document.getElementById("cart-count");
-
-            if (!contador) {
-                return;
-            }
-
-            const cantidad =
-                obtenerCantidadTotalCarrito();
-
-            contador.textContent =
-                cantidad;
-        }
-
-
-        /* ==========================================
-           IR AL CARRITO
-        ========================================== */
-
-        function irAlCarrito() {
-
-            const cantidad =
-                obtenerCantidadTotalCarrito();
-
-
-            if (cantidad === 0) {
-
-                alert(
-                    "Tu carrito está vacío.\n\nAgrega al menos un producto para continuar."
-                );
-
-                return;
-            }
-
-
-            window.location.href =
-                "checkout.html";
-        }
-
-
-        /* ==========================================
-           VACIAR CARRITO
-        ========================================== */
-
-        function vaciarCarrito() {
-
-            carrito = [];
-
-            guardarCarrito();
-        }
-
-
-        /* ==========================================
-           CARGAR PRODUCTOS DESDE SUPABASE
-        ========================================== */
-
-        async function cargarProductos() {
-
-            const grid =
-                document.getElementById(
-                    "products-grid"
-                );
-
-            const status =
-                document.getElementById(
-                    "products-status"
-                );
-
-
-            try {
-
-                if (!window.supabaseClient) {
-
-                    throw new Error(
-                        "No se encontró la conexión con Supabase."
-                    );
-                }
-
-
-                const {
-                    data,
-                    error
-                } =
-                    await window.supabaseClient
-                        .from("productos")
-                        .select("*")
-                        .eq("activo", true)
-                        .order(
-                            "destacado",
-                            {
-                                ascending: false
-                            }
-                        )
-                        .order(
-                            "created_at",
-                            {
-                                ascending: false
-                            }
+    }
+
+    /*
+     * =========================================================
+     * SINCRONIZAR CARRITO
+     * =========================================================
+     */
+
+    function sincronizarStockCarrito() {
+
+        let huboCambios = false;
+
+        carrito =
+            carrito
+                .map(item => {
+
+                    const producto =
+                        productos.find(
+                            producto =>
+                                String(producto.id) ===
+                                String(item.id)
                         );
 
+                    if (!producto) {
 
-                if (error) {
-                    throw error;
-                }
+                        huboCambios = true;
 
-
-                productos =
-                    data || [];
-
-
-                productosFiltrados =
-                    [...productos];
-
-
-                status.textContent =
-                    `${productos.length} productos disponibles`;
-
-
-                sincronizarStockCarrito();
-
-
-                renderizarProductos();
-
-
-            } catch (error) {
-
-                console.error(
-                    "Error cargando productos:",
-                    error
-                );
-
-
-                status.textContent =
-                    "No pudimos cargar los productos.";
-
-
-                grid.innerHTML = `
-
-                    <div class="catalog-error">
-
-                        <div>⚠️</div>
-
-                        <h3>
-                            No pudimos cargar el catálogo
-                        </h3>
-
-                        <p>
-                            Revisa la conexión con Supabase.
-                        </p>
-
-                        <button
-                            class="primary-button"
-                            onclick="cargarProductos()"
-                        >
-                            Intentar nuevamente
-                        </button>
-
-                    </div>
-
-                `;
-            }
-        }
-
-
-        /* ==========================================
-           SINCRONIZAR STOCK
-        ========================================== */
-
-        function sincronizarStockCarrito() {
-
-            let huboCambios = false;
-
-
-            carrito =
-                carrito
-                    .map(item => {
-
-                        const producto =
-                            productos.find(
-                                producto =>
-                                    String(producto.id) ===
-                                    String(item.id)
-                            );
-
-
-                        if (!producto) {
-
-                            huboCambios = true;
-
-                            return null;
-                        }
-
-
-                        const stock =
-                            Number(
-                                producto.stock || 0
-                            );
-
-
-                        let quantity =
-                            Number(
-                                item.quantity || 0
-                            );
-
-
-                        if (stock <= 0) {
-
-                            huboCambios = true;
-
-                            return null;
-                        }
-
-
-                        if (quantity > stock) {
-
-                            quantity =
-                                stock;
-
-                            huboCambios = true;
-                        }
-
-
-                        return {
-
-                            ...item,
-
-                            nombre:
-                                producto.nombre,
-
-                            precio:
-                                Number(
-                                    producto.precio || 0
-                                ),
-
-                            imagen:
-                                producto.imagen || "",
-
-                            stock:
-                                stock,
-
-                            quantity:
-                                quantity
-                        };
-
-                    })
-                    .filter(Boolean);
-
-
-            if (huboCambios) {
-                guardarCarrito();
-            }
-        }
-
-
-        /* ==========================================
-           RENDERIZAR PRODUCTOS
-        ========================================== */
-
-        function renderizarProductos() {
-
-            const grid =
-                document.getElementById(
-                    "products-grid"
-                );
-
-
-            const noResults =
-                document.getElementById(
-                    "no-results"
-                );
-
-
-            grid.innerHTML = "";
-
-
-            if (!productosFiltrados.length) {
-
-                noResults.style.display =
-                    "block";
-
-                return;
-            }
-
-
-            noResults.style.display =
-                "none";
-
-
-            productosFiltrados.forEach(
-                producto => {
-
-                    const card =
-                        document.createElement(
-                            "article"
-                        );
-
-
-                    card.className =
-                        "product-card";
-
-
-                    const precio =
-                        Number(
-                            producto.precio || 0
-                        );
-
-
-                    const precioAnterior =
-                        producto.precio_anterior
-                            ? Number(
-                                producto.precio_anterior
-                            )
-                            : null;
-
-
-                    const descuento =
-                        precioAnterior &&
-                        precioAnterior > precio
-                            ? Math.round(
-                                (
-                                    (
-                                        precioAnterior -
-                                        precio
-                                    ) /
-                                    precioAnterior
-                                ) * 100
-                            )
-                            : 0;
-
-
-                    const imagen =
-                        producto.imagen || "";
-
+                        return null;
+                    }
 
                     const stock =
-                        Number(
-                            producto.stock || 0
-                        );
+                        Number(producto.stock || 0);
 
+                    let quantity =
+                        Number(item.quantity || 0);
 
-                    const imagenHTML =
-                        imagen
-                            ? `
+                    if (stock <= 0) {
 
-                                <img
-                                    src="${escaparHTML(imagen)}"
-                                    alt="${escaparHTML(producto.nombre)}"
-                                    loading="lazy"
-                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                                >
+                        huboCambios = true;
 
-                                <div
-                                    class="product-placeholder"
-                                    style="display:none;"
-                                >
-                                    🛍️
-                                </div>
+                        return null;
+                    }
 
-                            `
-                            : `
+                    if (quantity > stock) {
 
-                                <div class="product-placeholder">
-                                    🛍️
-                                </div>
+                        quantity = stock;
 
-                            `;
+                        huboCambios = true;
+                    }
 
+                    return {
 
-                    card.innerHTML = `
+                        id:
+                            String(producto.id),
 
-                        <div class="product-image">
+                        nombre:
+                            String(producto.nombre),
 
-                            ${
-                                producto.oferta
-                                    ? `
+                        precio:
+                            Number(producto.precio || 0),
 
-                                        <span class="product-badge">
-                                            🔥 OFERTA
-                                        </span>
+                        imagen:
+                            String(producto.imagen || ""),
 
-                                    `
-                                    : ""
-                            }
+                        stock:
+                            stock,
 
+                        quantity:
+                            quantity
+                    };
 
-                            ${
-                                producto.destacado
-                                    ? `
+                })
+                .filter(Boolean);
 
-                                        <span class="product-featured">
-                                            ⭐ DESTACADO
-                                        </span>
+        if (huboCambios) {
+            guardarCarrito();
+        } else {
+            actualizarCarrito();
+        }
+    }
 
-                                    `
-                                    : ""
-                            }
+    /*
+     * =========================================================
+     * PRODUCTOS
+     * =========================================================
+     */
 
+    function renderizarProductos() {
 
-                            <button
-                                class="favorite-button"
-                                onclick="favorito(this)"
-                                aria-label="Agregar a favoritos"
+        const grid =
+            document.getElementById(
+                "products-grid"
+            );
+
+        const noResults =
+            document.getElementById(
+                "no-results"
+            );
+
+        grid.innerHTML = "";
+
+        if (!productosFiltrados.length) {
+
+            noResults.style.display =
+                "block";
+
+            return;
+        }
+
+        noResults.style.display =
+            "none";
+
+        productosFiltrados.forEach(
+            producto => {
+
+                const card =
+                    document.createElement("article");
+
+                card.className =
+                    "ff-product-card";
+
+                const precio =
+                    Number(producto.precio || 0);
+
+                const precioAnterior =
+                    producto.precio_anterior
+                        ? Number(producto.precio_anterior)
+                        : null;
+
+                const descuento =
+                    precioAnterior &&
+                    precioAnterior > precio
+                        ? Math.round(
+                            (
+                                (
+                                    precioAnterior - precio
+                                ) /
+                                precioAnterior
+                            ) * 100
+                        )
+                        : 0;
+
+                const stock =
+                    Number(producto.stock || 0);
+
+                let stockHTML = "";
+
+                if (stock <= 0) {
+
+                    stockHTML = `
+                        <div class="ff-stock ff-stock-out">
+                            Sin stock
+                        </div>
+                    `;
+
+                } else if (stock <= 5) {
+
+                    stockHTML = `
+                        <div class="ff-stock ff-stock-low">
+                            ⚠️ Últimas ${stock} unidades
+                        </div>
+                    `;
+
+                } else {
+
+                    stockHTML = `
+                        <div class="ff-stock ff-stock-ok">
+                            ✓ En stock
+                        </div>
+                    `;
+                }
+
+                const imagen =
+                    producto.imagen || "";
+
+                const imagenHTML =
+                    imagen
+                        ? `
+                            <img
+                                src="${escaparHTML(imagen)}"
+                                alt="${escaparHTML(producto.nombre)}"
+                                loading="lazy"
+                                onerror="
+                                    this.style.display='none';
+                                    this.nextElementSibling.style.display='flex';
+                                "
                             >
-                                ♡
-                            </button>
 
+                            <div
+                                class="ff-product-placeholder"
+                                style="display:none;"
+                            >
+                                🛍️
+                            </div>
+                        `
+                        : `
+                            <div class="ff-product-placeholder">
+                                🛍️
+                            </div>
+                        `;
 
-                            ${imagenHTML}
+                card.innerHTML = `
+
+                    <div class="ff-product-image">
+
+                        ${
+                            producto.oferta
+                                ? `
+                                    <span class="ff-badge">
+                                        🔥 OFERTA
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                        ${
+                            producto.destacado
+                                ? `
+                                    <span class="ff-featured">
+                                        ⭐ DESTACADO
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                        <button
+                            class="ff-favorite"
+                            onclick="favorito(this)"
+                            aria-label="Agregar a favoritos"
+                        >
+                            ♡
+                        </button>
+
+                        ${imagenHTML}
+
+                    </div>
+
+                    <div class="ff-product-info">
+
+                        <div class="ff-product-category">
+                            ${escaparHTML(
+                                producto.categoria || "otros"
+                            )}
+                        </div>
+
+                        <h3 class="ff-product-title">
+                            ${escaparHTML(
+                                producto.nombre
+                            )}
+                        </h3>
+
+                        <p class="ff-product-description">
+                            ${escaparHTML(
+                                producto.descripcion || ""
+                            )}
+                        </p>
+
+                        <div class="ff-rating">
+
+                            <span>
+                                ★ ${Number(
+                                    producto.rating || 0
+                                ).toFixed(1)}
+                            </span>
+
+                            <small>
+                                (${Number(
+                                    producto.reviews || 0
+                                )} reseñas)
+                            </small>
 
                         </div>
 
+                        <div class="ff-price-row">
 
-                        <div class="product-info">
+                            <div>
 
-                            <span class="product-category">
-                                ${escaparHTML(
-                                    producto.categoria || "otros"
-                                )}
-                            </span>
-
-
-                            <h3>
-                                ${escaparHTML(
-                                    producto.nombre
-                                )}
-                            </h3>
-
-
-                            <p class="product-description">
-                                ${escaparHTML(
-                                    producto.descripcion || ""
-                                )}
-                            </p>
-
-
-                            <div class="product-rating">
-
-                                <span>
-                                    ⭐ ${Number(
-                                        producto.rating || 0
-                                    ).toFixed(1)}
-                                </span>
-
-                                <small>
-                                    (${Number(
-                                        producto.reviews || 0
-                                    )} reseñas)
-                                </small>
-
-                            </div>
-
-
-                            <div class="product-price">
-
-                                <div>
-
-                                    <strong>
-                                        ${formatearPrecio(precio)}
-                                    </strong>
-
-
-                                    ${
-                                        precioAnterior
-                                            ? `
-
-                                                <del>
-                                                    ${formatearPrecio(
-                                                        precioAnterior
-                                                    )}
-                                                </del>
-
-                                            `
-                                            : ""
-                                    }
-
+                                <div class="ff-price">
+                                    ${formatearPrecio(precio)}
                                 </div>
 
-
                                 ${
-                                    descuento
+                                    precioAnterior
                                         ? `
-
-                                            <span class="discount">
-                                                -${descuento}%
+                                            <span class="ff-old-price">
+                                                ${formatearPrecio(
+                                                    precioAnterior
+                                                )}
                                             </span>
-
                                         `
                                         : ""
                                 }
 
                             </div>
 
-
-                            <div class="product-stock">
-
-                                ${
-                                    stock > 0
-                                        ? `
-
-                                            <span class="stock-ok">
-                                                ✓ En stock
-                                            </span>
-
-                                        `
-                                        : `
-
-                                            <span class="stock-out">
-                                                Sin stock
-                                            </span>
-
-                                        `
-                                }
-
-                            </div>
-
-
-                            <button
-                                class="buy-button"
-                                onclick="comprarProducto(
-                                    '${escaparJS(producto.nombre)}',
-                                    ${precio},
-                                    '${escaparJS(producto.id)}'
-                                )"
-                                ${stock <= 0 ? "disabled" : ""}
-                            >
-
-                                ${
-                                    stock > 0
-                                        ? "🛒 Agregar al carrito"
-                                        : "Sin stock"
-                                }
-
-                            </button>
+                            ${
+                                descuento
+                                    ? `
+                                        <span class="ff-discount">
+                                            -${descuento}%
+                                        </span>
+                                    `
+                                    : ""
+                            }
 
                         </div>
 
-                    `;
+                        <div class="ff-shipping">
+                            🚚 Envíos a todo Chile
+                        </div>
 
+                        ${stockHTML}
 
-                    grid.appendChild(card);
+                        <button
+                            class="ff-buy"
+                            onclick="comprarProducto(
+                                '${escaparJS(producto.nombre)}',
+                                ${precio},
+                                '${escaparJS(producto.id)}'
+                            )"
+                            ${stock <= 0 ? "disabled" : ""}
+                        >
+                            ${
+                                stock > 0
+                                    ? "🛒 Agregar al carrito"
+                                    : "Sin stock"
+                            }
+                        </button>
 
+                    </div>
+                `;
+
+                grid.appendChild(card);
+            }
+        );
+    }
+
+    /*
+     * =========================================================
+     * PRECIO
+     * =========================================================
+     */
+
+    function formatearPrecio(valor) {
+
+        return new Intl.NumberFormat(
+            "es-CL",
+            {
+                style: "currency",
+                currency: "CLP",
+                maximumFractionDigits: 0
+            }
+        ).format(valor);
+    }
+
+    /*
+     * =========================================================
+     * SEGURIDAD
+     * =========================================================
+     */
+
+    function escaparHTML(texto) {
+
+        return String(texto)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function escaparJS(texto) {
+
+        return String(texto)
+            .replace(/\\/g, "\\\\")
+            .replace(/'/g, "\\'")
+            .replace(/"/g, '\\"')
+            .replace(/\n/g, "\\n")
+            .replace(/\r/g, "\\r");
+    }
+
+    /*
+     * =========================================================
+     * BUSQUEDA
+     * =========================================================
+     */
+
+    function buscarProductos(texto) {
+
+        const busqueda =
+            String(texto || "")
+                .trim()
+                .toLowerCase();
+
+        productosFiltrados =
+            productos.filter(
+                producto => {
+
+                    if (!busqueda) {
+                        return true;
+                    }
+
+                    const contenido = `
+                        ${producto.nombre || ""}
+                        ${producto.descripcion || ""}
+                        ${producto.categoria || ""}
+                    `.toLowerCase();
+
+                    return contenido.includes(
+                        busqueda
+                    );
                 }
             );
-        }
 
+        actualizarEstadoBusqueda();
+        renderizarProductos();
+    }
 
-        /* ==========================================
-           FORMATO PRECIO
-        ========================================== */
+    function buscarDesdeHero() {
 
-        function formatearPrecio(valor) {
-
-            return new Intl.NumberFormat(
-                "es-CL",
-                {
-                    style: "currency",
-                    currency: "CLP",
-                    maximumFractionDigits: 0
-                }
-            ).format(valor);
-        }
-
-
-        /* ==========================================
-           SEGURIDAD HTML
-        ========================================== */
-
-        function escaparHTML(texto) {
-
-            return String(texto)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
-
-
-        /* ==========================================
-           SEGURIDAD JAVASCRIPT
-        ========================================== */
-
-        function escaparJS(texto) {
-
-            return String(texto)
-                .replace(/\\/g, "\\\\")
-                .replace(/'/g, "\\'")
-                .replace(/"/g, '\\"')
-                .replace(/\n/g, "\\n")
-                .replace(/\r/g, "\\r");
-        }
-
-
-        /* ==========================================
-           BUSCAR PRODUCTOS
-        ========================================== */
-
-        function buscarProductos(texto) {
-
-            const busqueda =
-                String(texto || "")
-                    .trim()
-                    .toLowerCase();
-
-
-            productosFiltrados =
-                productos.filter(
-                    producto => {
-
-                        if (!busqueda) {
-                            return true;
-                        }
-
-
-                        const contenido = `
-
-                            ${producto.nombre || ""}
-
-                            ${producto.descripcion || ""}
-
-                            ${producto.categoria || ""}
-
-                        `.toLowerCase();
-
-
-                        return contenido.includes(
-                            busqueda
-                        );
-                    }
-                );
-
-
-            actualizarEstadoBusqueda();
-
-            renderizarProductos();
-        }
-
-
-        function buscarDesdeHero() {
-
-            const input =
-                document.getElementById(
-                    "hero-search-input"
-                );
-
-
-            const texto =
-                input.value.trim();
-
-
+        const input =
             document.getElementById(
-                "product-search"
-            ).value =
-                texto;
+                "hero-search-input"
+            );
 
+        const texto =
+            input.value.trim();
 
-            buscarProductos(texto);
+        document.getElementById(
+            "product-search"
+        ).value = texto;
 
-            irProductos();
-        }
+        buscarProductos(texto);
 
+        irProductos();
+    }
 
-        function enfocarBuscador() {
+    /*
+     * =========================================================
+     * CATEGORIAS
+     * =========================================================
+     */
 
-            const input =
-                document.getElementById(
-                    "hero-search-input"
-                );
+    function filtrarCategoria(categoria) {
 
-
-            input.focus();
-
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
-
-
-        /* ==========================================
-           CATEGORÍAS
-        ========================================== */
-
-        function filtrarCategoria(
-            categoria,
-            boton
-        ) {
-
-            document
-                .querySelectorAll(".category-card")
-                .forEach(card => {
-
-                    card.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-            if (boton) {
-
-                boton.classList.add(
-                    "active"
-                );
-            }
-
-
-            if (categoria === "todos") {
-
-                productosFiltrados =
-                    [...productos];
-
-            } else {
-
-                productosFiltrados =
-                    productos.filter(
-                        producto =>
-                            String(
-                                producto.categoria || ""
-                            )
-                                .toLowerCase() ===
-                            categoria.toLowerCase()
-                    );
-            }
-
-
-            document.getElementById(
-                "product-search"
-            ).value = "";
-
-
-            actualizarEstadoBusqueda();
-
-            renderizarProductos();
-
-            irProductos();
-        }
-
-
-        function filtrarOfertas() {
-
-            document
-                .querySelectorAll(".category-card")
-                .forEach(card => {
-
-                    card.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-            const ofertas =
-                document.querySelector(
-                    '[data-category="ofertas"]'
-                );
-
-
-            if (ofertas) {
-
-                ofertas.classList.add(
-                    "active"
-                );
-            }
-
-
-            productosFiltrados =
-                productos.filter(
-                    producto =>
-                        producto.oferta === true
-                );
-
-
-            actualizarEstadoBusqueda();
-
-            renderizarProductos();
-
-            irProductos();
-        }
-
-
-        /* ==========================================
-           ORDENAR
-        ========================================== */
-
-        function ordenarProductos(
-            criterio
-        ) {
-
-            if (
-                criterio ===
-                "precio-menor"
-            ) {
-
-                productosFiltrados.sort(
-                    (a, b) =>
-                        Number(a.precio) -
-                        Number(b.precio)
-                );
-
-            } else if (
-                criterio ===
-                "precio-mayor"
-            ) {
-
-                productosFiltrados.sort(
-                    (a, b) =>
-                        Number(b.precio) -
-                        Number(a.precio)
-                );
-
-            } else if (
-                criterio ===
-                "nombre"
-            ) {
-
-                productosFiltrados.sort(
-                    (a, b) =>
-                        String(
-                            a.nombre
-                        ).localeCompare(
-                            String(
-                                b.nombre
-                            ),
-                            "es"
-                        )
-                );
-
-            } else {
-
-                productosFiltrados.sort(
-                    (a, b) =>
-                        Number(b.destacado) -
-                        Number(a.destacado)
-                );
-            }
-
-
-            renderizarProductos();
-        }
-
-
-        /* ==========================================
-           ESTADO
-        ========================================== */
-
-        function actualizarEstadoBusqueda() {
-
-            const status =
-                document.getElementById(
-                    "products-status"
-                );
-
-
-            if (!status) {
-                return;
-            }
-
-
-            status.textContent =
-                `${productosFiltrados.length} productos encontrados`;
-        }
-
-
-        /* ==========================================
-           REINICIAR CATÁLOGO
-        ========================================== */
-
-        function reiniciarCatalogo() {
+        if (categoria === "todos") {
 
             productosFiltrados =
                 [...productos];
 
+        } else {
 
-            document.getElementById(
-                "product-search"
-            ).value = "";
-
-
-            document.getElementById(
-                "hero-search-input"
-            ).value = "";
-
-
-            document
-                .querySelectorAll(".category-card")
-                .forEach(card => {
-
-                    card.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-            const todos =
-                document.querySelector(
-                    '[data-category="todos"]'
+            productosFiltrados =
+                productos.filter(
+                    producto =>
+                        String(
+                            producto.categoria || ""
+                        ).toLowerCase() ===
+                        categoria.toLowerCase()
                 );
-
-
-            if (todos) {
-
-                todos.classList.add(
-                    "active"
-                );
-            }
-
-
-            document.getElementById(
-                "sort-products"
-            ).value =
-                "destacados";
-
-
-            renderizarProductos();
-
-            irProductos();
         }
 
+        document.getElementById(
+            "product-search"
+        ).value = "";
 
-        /* ==========================================
-           FAVORITOS
-        ========================================== */
+        actualizarEstadoBusqueda();
+        renderizarProductos();
+        irProductos();
+    }
 
-        function favorito(boton) {
+    function filtrarOfertas() {
 
-            boton.classList.toggle(
-                "active"
+        productosFiltrados =
+            productos.filter(
+                producto =>
+                    producto.oferta === true
             );
 
+        document.getElementById(
+            "product-search"
+        ).value = "";
 
-            boton.textContent =
-                boton.classList.contains("active")
-                    ? "♥"
-                    : "♡";
-        }
+        actualizarEstadoBusqueda();
+        renderizarProductos();
+        irProductos();
+    }
 
+    /*
+     * =========================================================
+     * ORDENAR
+     * =========================================================
+     */
 
-        /* ==========================================
-           CUENTA
-        ========================================== */
+    function ordenarProductos(criterio) {
 
-        function irCuenta() {
+        if (criterio === "precio-menor") {
 
-            alert(
-                "La cuenta de usuario la conectaremos en la siguiente fase."
+            productosFiltrados.sort(
+                (a, b) =>
+                    Number(a.precio) -
+                    Number(b.precio)
+            );
+
+        } else if (criterio === "precio-mayor") {
+
+            productosFiltrados.sort(
+                (a, b) =>
+                    Number(b.precio) -
+                    Number(a.precio)
+            );
+
+        } else if (criterio === "nombre") {
+
+            productosFiltrados.sort(
+                (a, b) =>
+                    String(a.nombre)
+                        .localeCompare(
+                            String(b.nombre),
+                            "es"
+                        )
+            );
+
+        } else {
+
+            productosFiltrados.sort(
+                (a, b) =>
+                    Number(b.destacado) -
+                    Number(a.destacado)
             );
         }
 
+        renderizarProductos();
+    }
 
-        /* ==========================================
-           SCROLL PRODUCTOS
-        ========================================== */
+    /*
+     * =========================================================
+     * ESTADO
+     * =========================================================
+     */
 
-        function irProductos() {
+    function actualizarEstadoBusqueda() {
 
-            document
-                .getElementById("productos")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+        const status =
+            document.getElementById(
+                "products-status"
+            );
+
+        if (!status) {
+            return;
         }
 
+        status.textContent =
+            `${productosFiltrados.length} productos encontrados`;
+    }
 
-        /* ==========================================
-           INICIAR
-        ========================================== */
+    /*
+     * =========================================================
+     * REINICIAR
+     * =========================================================
+     */
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            () => {
+    function reiniciarCatalogo() {
 
-                actualizarCarrito();
+        productosFiltrados =
+            [...productos];
 
-                cargarProductos();
+        document.getElementById(
+            "product-search"
+        ).value = "";
 
-            }
+        document.getElementById(
+            "hero-search-input"
+        ).value = "";
+
+        document.getElementById(
+            "sort-products"
+        ).value = "destacados";
+
+        actualizarEstadoBusqueda();
+        renderizarProductos();
+    }
+
+    /*
+     * =========================================================
+     * FAVORITOS
+     * =========================================================
+     */
+
+    function favorito(boton) {
+
+        boton.classList.toggle("active");
+
+        boton.textContent =
+            boton.classList.contains("active")
+                ? "♥"
+                : "♡";
+    }
+
+    /*
+     * =========================================================
+     * CUENTA
+     * =========================================================
+     */
+
+    function irCuenta() {
+
+        alert(
+            "La cuenta de usuario la conectaremos en la siguiente fase."
         );
+    }
 
-    </script>
+    /*
+     * =========================================================
+     * SCROLL
+     * =========================================================
+     */
+
+    function irProductos() {
+
+        document
+            .getElementById("productos")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+    }
+
+    /*
+     * =========================================================
+     * INICIO
+     * =========================================================
+     */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            actualizarCarrito();
+
+            cargarProductos();
+
+        }
+    );
+
+</script>
 
 </body>
 </html>
+```
