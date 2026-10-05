@@ -1,884 +1,727 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlipFinder | Tu marketplace online</title>
-    <!-- FontAwesome para íconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-yellow: #ffe600;
-            --primary-blue: #3483fa;
-            --primary-blue-hover: #2968c8;
-            --bg-gray: #edd000;
-            --bg-page: #f5f5f5;
-            --text-dark: #333333;
-            --text-muted: #666666;
-            --text-green: #00a650;
-            --border-color: #eee;
-            --max-width: 1350px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-page);
-            color: var(--text-dark);
-        }
-
-        /* HEADER & NAVBAR */
-        header {
-            background-color: var(--primary-yellow);
-            padding: 10px 0;
-            border-bottom: 1px solid #e6d000;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 24px;
-            font-weight: 800;
-            color: #2d3277;
-            text-decoration: none;
-        }
-
-        .logo i {
-            font-size: 22px;
-        }
-
-        .search-bar {
-            flex: 1;
-            max-width: 600px;
-            display: flex;
-            background: #fff;
-            border-radius: 4px;
-            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
-            overflow: hidden;
-        }
-
-        .search-bar input {
-            width: 100%;
-            padding: 10px 14px;
-            border: none;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .search-bar button {
-            background: #fff;
-            border: none;
-            padding: 0 14px;
-            color: #666;
-            cursor: pointer;
-            border-left: 1px solid #eee;
-        }
-
-        .user-nav {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 13px;
-        }
-
-        .user-nav a {
-            color: #333;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        /* CATEGORIES NAV */
-        .categories-nav {
-            background-color: var(--primary-yellow);
-            padding-bottom: 8px;
-            font-size: 13px;
-        }
-
-        .categories-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 16px;
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-        }
-
-        .categories-container a {
-            color: #333;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-
-        .categories-container a:hover {
-            opacity: 0.8;
-        }
-
-        /* MAIN CONTAINER */
-        main {
-            max-width: var(--max-width);
-            margin: 20px auto;
-            padding: 0 16px;
-        }
-
-        /* HERO BANNER */
-        .hero-banner {
-            background: linear-gradient(135deg, #fff35c 0%, #ffd000 100%);
-            border-radius: 8px;
-            padding: 30px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .hero-content h1 {
-            font-size: 32px;
-            color: #111;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
-
-        .hero-content p {
-            color: #444;
-            font-size: 15px;
-            margin-bottom: 20px;
-            max-width: 450px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-blue-hover);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--primary-blue);
-            border: 1px solid var(--primary-blue);
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .hero-featured-card {
-            background: white;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 220px;
-            text-align: center;
-        }
-
-        .hero-featured-card img {
-            width: 100%;
-            height: 120px;
-            object-fit: contain;
-            margin-bottom: 10px;
-        }
-
-        .hero-featured-card .title {
-            font-size: 12px;
-            color: #666;
-            margin-bottom: 6px;
-        }
-
-        .hero-featured-card .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #111;
-        }
-
-        /* TRUST BADGES */
-        .trust-badges {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            background: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            margin-bottom: 28px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-
-        .badge-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .badge-item i {
-            font-size: 24px;
-            color: var(--primary-blue);
-        }
-
-        .badge-text strong {
-            display: block;
-            font-size: 13px;
-            color: #333;
-        }
-
-        .badge-text span {
-            font-size: 11px;
-            color: #777;
-        }
-
-        /* CATEGORIES GRID */
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .section-title a {
-            font-size: 13px;
-            color: var(--primary-blue);
-            text-decoration: none;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-            gap: 12px;
-            margin-bottom: 32px;
-        }
-
-        .category-card {
-            background: white;
-            border-radius: 8px;
-            padding: 16px 8px;
-            text-align: center;
-            text-decoration: none;
-            color: #333;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .category-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .category-card i {
-            font-size: 24px;
-            color: #ff9900;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .category-card span {
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        /* PRODUCTS SECTION */
-        .products-filter-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .search-mini {
-            position: relative;
-        }
-
-        .search-mini input {
-            padding: 6px 12px 6px 30px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 12px;
-        }
-
-        .search-mini i {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
-            font-size: 12px;
-        }
-
-        /* COMPACT GRID FOR PRODUCTS (5 to 6 per row) */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-            gap: 16px;
-            margin-bottom: 40px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        }
-
-        .badge-offer {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #00a650;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 3px;
-            text-transform: uppercase;
-        }
-
-        .badge-highlight {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #ff9900;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 3px;
-        }
-
-        .wishlist-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            color: #ccc;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .wishlist-btn:hover {
-            color: #ff5a5f;
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: contain;
-            margin: 15px 0 10px 0;
-        }
-
-        .product-category {
-            font-size: 10px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .product-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            margin: 4px 0 8px 0;
-            line-height: 1.3;
-            height: 34px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-
-        .rating {
-            font-size: 11px;
-            color: #ffb400;
-            margin-bottom: 8px;
-        }
-
-        .rating span {
-            color: #888;
-            font-size: 10px;
-            margin-left: 3px;
-        }
-
-        .price-container {
-            margin-bottom: 8px;
-        }
-
-        .price-main {
-            font-size: 18px;
-            font-weight: 700;
-            color: #222;
-        }
-
-        .discount-tag {
-            font-size: 12px;
-            color: var(--text-green);
-            font-weight: 600;
-            margin-left: 6px;
-        }
-
-        .shipping-tag {
-            font-size: 11px;
-            color: var(--text-green);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            margin-bottom: 12px;
-        }
-
-        .btn-add-cart {
-            width: 100%;
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            padding: 8px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-add-cart:hover {
-            background-color: var(--primary-blue-hover);
-        }
-
-        /* BOTTOM BANNER */
-        .bottom-banner {
-            background: linear-gradient(90deg, #ffe600 0%, #ffcc00 100%);
-            border-radius: 8px;
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .bottom-banner h3 {
-            font-size: 20px;
-            color: #111;
-        }
-
-        .bottom-banner p {
-            font-size: 13px;
-            color: #444;
-        }
-
-        .percent-icon {
-            font-size: 48px;
-            font-weight: 900;
-            color: rgba(0,0,0,0.15);
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: #222;
-            color: #aaa;
-            padding: 30px 0;
-            font-size: 12px;
-        }
-
-        .footer-container {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 16px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-
-        .footer-col h4 {
-            color: #fff;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .footer-col ul {
-            list-style: none;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 6px;
-        }
-
-        .footer-col a {
-            color: #aaa;
-            text-decoration: none;
-        }
-
-        .footer-col a:hover {
-            color: #fff;
-        }
-
-        @media (max-width: 768px) {
-            .hero-banner {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-            .hero-featured-card {
-                display: none;
-            }
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlipFinder | Tu marketplace online de confianza</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1350px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header Principal */
+    header {
+      background-color: #fff159;
+      padding: 12px 0 8px;
+      border-bottom: 1px solid #e0d44d;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #2d3277;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Barra de Búsqueda Prominente */
+    .search-container {
+      flex: 1;
+      max-width: 680px;
+      position: relative;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .search-box:focus-within {
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      border-color: #2968c8;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 11px 16px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      background: transparent;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .search-box button {
+      background: none;
+      border: none;
+      padding: 0 16px;
+      color: #666;
+      cursor: pointer;
+      font-size: 16px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid #eee;
+    }
+
+    .search-box button:hover {
+      color: #333;
+    }
+
+    /* Menú Desplegable de Autocompletado */
+    .search-suggestions {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      margin-top: 2px;
+      max-height: 320px;
+      overflow-y: auto;
+      display: none;
+      z-index: 1001;
+    }
+
+    .search-suggestions.active {
+      display: block;
+    }
+
+    .suggestion-item {
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 14px;
+    }
+
+    .suggestion-item:hover {
+      background-color: #f8f9fa;
+    }
+
+    .suggestion-item .item-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .suggestion-item i {
+      color: #aaa;
+      font-size: 13px;
+    }
+
+    .suggestion-item .badge-type {
+      font-size: 11px;
+      background: #eef2f5;
+      color: #555;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .header-actions a {
+      color: #333;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Sub-navegación Secundaria */
+    .sub-nav {
+      background-color: #fff159;
+      padding: 8px 0 10px;
+      font-size: 14px;
+    }
+
+    .sub-nav-content {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .sub-nav a {
+      color: #333;
+      text-decoration: none;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 400;
+    }
+
+    .sub-nav a:hover {
+      opacity: 1;
+    }
+
+    /* Banner Principal */
+    .hero-banner {
+      background-color: #fff159;
+      padding: 16px 0 28px;
+      margin-bottom: 24px;
+    }
+
+    .banner-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .banner-text h1 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .banner-text p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      background-color: #3483fa;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    .btn-secondary {
+      background-color: rgba(65, 137, 230, 0.15);
+      color: #3483fa;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-block;
+      margin-left: 8px;
+    }
+
+    /* Trust Badges */
+    .trust-badges {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .badge-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .badge-item i {
+      font-size: 20px;
+      color: #3483fa;
+    }
+
+    /* Grid de Productos */
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #00a650;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 160px;
+      object-fit: contain;
+      margin-bottom: 12px;
+    }
+
+    .product-category {
+      font-size: 11px;
+      color: #999;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      margin: 4px 0 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      height: 36px;
+    }
+
+    .product-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    .shipping-tag {
+      font-size: 12px;
+      color: #00a650;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .btn-add-cart {
+      width: 100%;
+      background-color: #3483fa;
+      color: #fff;
+      border: none;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn-add-cart:hover {
+      background-color: #2968c8;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: #ccc;
+      padding: 32px 0 16px;
+      margin-top: 40px;
+      font-size: 13px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      padding-top: 16px;
+      text-align: center;
+      color: #777;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- STICKY HEADER -->
-    <header>
-        <div class="header-container">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-bolt"></i> FlipFinder
-            </a>
-            
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar productos, marcas y más...">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+  <!-- Header Principal -->
+  <header>
+    <div class="container header-content">
+      <a href="index.html" class="logo">
+        <i class="fa-solid fa-bolt"></i> FlipFinder
+      </a>
 
-            <div class="user-nav">
-                <a href="#"><i class="fa-regular fa-user"></i> Mi cuenta</a>
-                <a href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
-            </div>
+      <!-- Contenedor con Autocompletado -->
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Buscar productos, marcas y más..." autocomplete="off">
+          <button type="button" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
-    </header>
+        <!-- Desplegable de Sugerencias -->
+        <div class="search-suggestions" id="suggestionsBox"></div>
+      </div>
 
-    <!-- CATEGORIES SUBNAV -->
-    <nav class="categories-nav">
-        <div class="categories-container">
-            <a href="#"><i class="fa-solid fa-list"></i> Categorías</a>
-            <a href="#">Tecnología</a>
-            <a href="#">Gaming</a>
-            <a href="#">Hogar</a>
-            <a href="#">Accesorios</a>
-            <a href="#">Electrónica</a>
-            <a href="#"><i class="fa-solid fa-tag"></i> Ofertas</a>
+      <div class="header-actions">
+        <a href="#"><i class="fa-regular fa-user"></i> Mi cuenta</a>
+        <a href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub Navegación Secundaria Estilo Mercado Libre -->
+  <nav class="sub-nav">
+    <div class="container sub-nav-content">
+      <a href="#"><i class="fa-solid fa-bars"></i> Categorías</a>
+      <a href="#"><i class="fa-solid fa-fire"></i> Ofertas</a>
+      <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> Historial</a>
+      <a href="#"><i class="fa-solid fa-store"></i> Vender</a>
+      <a href="#">Tecnología</a>
+      <a href="#">Gaming</a>
+      <a href="#">Hogar</a>
+      <a href="#">Ayuda</a>
+    </div>
+  </nav>
+
+  <!-- Banner Principal -->
+  <div class="hero-banner">
+    <div class="container">
+      <div class="banner-card">
+        <div class="banner-text">
+          <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
+          <p>Descubre tecnología, gaming, hogar, accesorios y productos seleccionados para ti.</p>
+          <div>
+            <a href="#" class="btn-primary">Ver productos</a>
+            <a href="#" class="btn-secondary">Ver ofertas</a>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </div>
 
-    <main>
-        <!-- HERO BANNER -->
-        <section class="hero-banner">
-            <div class="hero-content">
-                <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
-                <p>Descubre tecnología, gaming, hogar, accesorios y productos seleccionados para ti.</p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn-primary">Ver productos</a>
-                    <a href="#" class="btn-outline">Ver ofertas</a>
-                </div>
+  <main class="container">
+    <!-- Badges de Confianza -->
+    <div class="trust-badges">
+      <div class="badge-item">
+        <i class="fa-solid fa-truck-fast"></i>
+        <div><strong>Envíos a todo Chile</strong><br>Recibe rápido donde estés</div>
+      </div>
+      <div class="badge-item">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div><strong>Compra segura</strong><br>Protegemos tu compra</div>
+      </div>
+      <div class="badge-item">
+        <i class="fa-regular fa-credit-card"></i>
+        <div><strong>Mercado Pago</strong><br>Paga de forma segura</div>
+      </div>
+      <div class="badge-item">
+        <i class="fa-solid fa-star"></i>
+        <div><strong>Productos seleccionados</strong><br>Garantía de calidad</div>
+      </div>
+    </div>
+
+    <!-- Catálogo de Productos -->
+    <h2 class="section-title">Productos para ti</h2>
+    <div class="products-grid" id="productsGrid">
+
+      <div class="product-card" data-title="smartwatch inteligente pro" data-category="tecnologia">
+        <span class="product-tag">Oferta</span>
+        <img src="https://via.placeholder.com/200" alt="Smartwatch" class="product-img">
+        <div class="product-category">Tecnología</div>
+        <h3 class="product-title">Smartwatch Inteligente Pro</h3>
+        <div class="product-price">$31.990</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+      <div class="product-card" data-title="teclado gamer rgb mecanico switch azul" data-category="gaming">
+        <span class="product-tag">Destacado</span>
+        <img src="https://via.placeholder.com/200" alt="Teclado Gamer" class="product-img">
+        <div class="product-category">Gaming</div>
+        <h3 class="product-title">Teclado Gamer RGB Mecánico Switch Azul</h3>
+        <div class="product-price">$28.990</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+      <div class="product-card" data-title="audifonos gamer con microfono hd" data-category="gaming">
+        <span class="product-tag">Oferta</span>
+        <img src="https://via.placeholder.com/200" alt="Audífonos" class="product-img">
+        <div class="product-category">Gaming</div>
+        <h3 class="product-title">Audífonos Gamer con Micrófono HD</h3>
+        <div class="product-price">$23.400</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+      <div class="product-card" data-title="mochila multifuncional impermeable laptop" data-category="accesorios">
+        <img src="https://via.placeholder.com/200" alt="Mochila" class="product-img">
+        <div class="product-category">Accesorios</div>
+        <h3 class="product-title">Mochila Multifuncional Impermeable Laptop</h3>
+        <div class="product-price">$12.990</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+      <div class="product-card" data-title="cargador rapido usb-c 65w gan" data-category="tecnologia">
+        <span class="product-tag">Oferta</span>
+        <img src="https://via.placeholder.com/200" alt="Cargador USB-C" class="product-img">
+        <div class="product-category">Tecnología</div>
+        <h3 class="product-title">Cargador Rápido USB-C 65W GaN</h3>
+        <div class="product-price">$14.990</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+      <div class="product-card" data-title="organizador multiuso para escritorio" data-category="hogar">
+        <img src="https://via.placeholder.com/200" alt="Organizador" class="product-img">
+        <div class="product-category">Hogar</div>
+        <h3 class="product-title">Organizador Multiuso para Escritorio</h3>
+        <div class="product-price">$9.990</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+      <div class="product-card" data-title="parlante bluetooth portatil resistente al agua" data-category="electronica">
+        <img src="https://via.placeholder.com/200" alt="Parlante" class="product-img">
+        <div class="product-category">Electrónica</div>
+        <h3 class="product-title">Parlante Bluetooth Portátil Resistente al Agua</h3>
+        <div class="product-price">$19.990</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+      <div class="product-card" data-title="lampara led inteligente rgb con app" data-category="hogar">
+        <span class="product-tag">Oferta</span>
+        <img src="https://via.placeholder.com/200" alt="Lámpara LED" class="product-img">
+        <div class="product-category">Hogar</div>
+        <h3 class="product-title">Lámpara LED Inteligente RGB con App</h3>
+        <div class="product-price">$16.240</div>
+        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+        <button class="btn-add-cart">Agregar al carrito</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h4>FlipFinder</h4>
+        <p>Tu marketplace online de confianza para productos seleccionados.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Comprar</h4>
+        <ul>
+          <li><a href="#">Ofertas</a></li>
+          <li><a href="#">Categorías</a></li>
+          <li><a href="#">Populares</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ayuda</h4>
+        <ul>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Envíos</a></li>
+          <li><a href="#">Devoluciones</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Compra Segura</h4>
+        <p><i class="fa-solid fa-shield-halved"></i> Pago protegido con cifrado SSL.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 FlipFinder. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- Script de Autocompletado y Búsqueda Interactiva -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('searchInput');
+      const suggestionsBox = document.getElementById('suggestionsBox');
+      const productCards = document.querySelectorAll('.product-card');
+
+      // Extraer datos de productos para las sugerencias de autocompletado
+      const items = Array.from(productCards).map(card => ({
+        title: card.querySelector('.product-title').textContent.trim(),
+        category: card.querySelector('.product-category').textContent.trim(),
+        element: card
+      }));
+
+      // Categorías disponibles
+      const categories = [...new Set(items.map(item => item.category))];
+
+      function updateFilter(query) {
+        const cleanQuery = query.toLowerCase().trim();
+
+        productCards.forEach(card => {
+          const title = card.getAttribute('data-title') || '';
+          const category = card.getAttribute('data-category') || '';
+
+          if (title.includes(cleanQuery) || category.includes(cleanQuery)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Renderizar el menú desplegable de sugerencias
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+        suggestionsBox.innerHTML = '';
+
+        if (!query) {
+          suggestionsBox.classList.remove('active');
+          updateFilter('');
+          return;
+        }
+
+        // Filtrar sugerencias (coincidencias de productos y categorías)
+        const matchedCategories = categories.filter(cat => cat.toLowerCase().includes(query));
+        const matchedProducts = items.filter(item => item.title.toLowerCase().includes(query));
+
+        let html = '';
+
+        // Mostrar categorías encontradas
+        matchedCategories.forEach(cat => {
+          html += `
+            <div class="suggestion-item" data-type="category" data-value="${cat}">
+              <div class="item-info">
+                <i class="fa-solid fa-folder"></i>
+                <span>En <strong>${cat}</strong></span>
+              </div>
+              <span class="badge-type">Categoría</span>
             </div>
-            
-            <div class="hero-featured-card">
-                <div class="title">OFERTA DESTACADA</div>
-                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" alt="Audífonos Gamer">
-                <div style="font-size: 11px; color:#555;">Audífonos Gamer con Micrófono</div>
-                <div class="price">$23.400 <span style="font-size: 10px; color:#00a650;">-22%</span></div>
+          `;
+        });
+
+        // Mostrar productos encontrados
+        matchedProducts.slice(0, 5).forEach(prod => {
+          html += `
+            <div class="suggestion-item" data-type="product" data-value="${prod.title}">
+              <div class="item-info">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>${prod.title}</span>
+              </div>
+              <span class="badge-type">Producto</span>
             </div>
-        </section>
+          `;
+        });
 
-        <!-- TRUST BADGES -->
-        <section class="trust-badges">
-            <div class="badge-item">
-                <i class="fa-solid fa-truck-fast"></i>
-                <div class="badge-text">
-                    <strong>Envíos a todo Chile</strong>
-                    <span>Recibe tu compra donde estés</span>
-                </div>
+        if (html) {
+          suggestionsBox.innerHTML = html;
+          suggestionsBox.classList.add('active');
+        } else {
+          suggestionsBox.innerHTML = `
+            <div class="suggestion-item" style="cursor: default; color: #888;">
+              <div class="item-info">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span>No se encontraron resultados</span>
+              </div>
             </div>
-            <div class="badge-item">
-                <i class="fa-solid fa-shield-halved"></i>
-                <div class="badge-text">
-                    <strong>Compra segura</strong>
-                    <span>Protegemos tus datos</span>
-                </div>
-            </div>
-            <div class="badge-item">
-                <i class="fa-solid fa-credit-card"></i>
-                <div class="badge-text">
-                    <strong>Mercado Pago</strong>
-                    <span>Paga de forma segura</span>
-                </div>
-            </div>
-            <div class="badge-item">
-                <i class="fa-solid fa-star"></i>
-                <div class="badge-text">
-                    <strong>Productos seleccionados</strong>
-                    <span>Opción de calidad</span>
-                </div>
-            </div>
-        </section>
+          `;
+          suggestionsBox.classList.add('active');
+        }
 
-        <!-- EXPLORE BY CATEGORY -->
-        <section>
-            <div class="section-title">
-                <h2>Explora por categoría</h2>
-                <a href="#">Ver todas</a>
-            </div>
-            
-            <div class="categories-grid">
-                <a href="#" class="category-card">
-                    <i class="fa-solid fa-border-all"></i>
-                    <span>Todos</span>
-                </a>
-                <a href="#" class="category-card">
-                    <i class="fa-solid fa-laptop"></i>
-                    <span>Tecnología</span>
-                </a>
-                <a href="#" class="category-card">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span>Gaming</span>
-                </a>
-                <a href="#" class="category-card">
-                    <i class="fa-solid fa-house"></i>
-                    <span>Hogar</span>
-                </a>
-                <a href="#" class="category-card">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                    <span>Accesorios</span>
-                </a>
-                <a href="#" class="category-card">
-                    <i class="fa-solid fa-plug"></i>
-                    <span>Electrónica</span>
-                </a>
-            </div>
-        </section>
+        updateFilter(query);
+      });
 
-        <!-- PRODUCTS CATALOG -->
-        <section>
-            <div class="products-filter-bar">
-                <div class="section-title" style="margin-bottom:0;">
-                    <h2>Productos para ti</h2>
-                </div>
-                <div class="search-mini">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Buscar producto...">
-                </div>
-            </div>
+      // Evento al hacer clic en una sugerencia
+      suggestionsBox.addEventListener('click', (e) => {
+        const item = e.target.closest('.suggestion-item');
+        if (!item || !item.dataset.value) return;
 
-            <!-- 5-COLUMN COMPACT GRID -->
-            <div class="products-grid">
-                
-                <!-- PRODUCT 1 -->
-                <div class="product-card">
-                    <span class="badge-offer">Oferta</span>
-                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" alt="Smartwatch">
-                    <div>
-                        <div class="product-category">Tecnología</div>
-                        <div class="product-title">Smartwatch Inteligente Deportivo Pro</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.7 <span>(128)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$31.990</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
+        const val = item.dataset.value;
+        searchInput.value = val;
+        suggestionsBox.classList.remove('active');
+        updateFilter(val);
+      });
 
-                <!-- PRODUCT 2 -->
-                <div class="product-card">
-                    <span class="badge-highlight">Destacado</span>
-                    <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" alt="Teclado Gamer">
-                    <div>
-                        <div class="product-category">Gaming</div>
-                        <div class="product-title">Teclado Gamer RGB Mecánico Switch Azul</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.8 <span>(95)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$28.990</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
-
-                <!-- PRODUCT 3 -->
-                <div class="product-card">
-                    <span class="badge-offer">Oferta</span>
-                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" alt="Audífonos Gamer">
-                    <div>
-                        <div class="product-category">Gaming</div>
-                        <div class="product-title">Audífonos Gamer con Micrófono HD</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.6 <span>(210)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$23.400</span>
-                            <span class="discount-tag">-22%</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
-
-                <!-- PRODUCT 4 -->
-                <div class="product-card">
-                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
-                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300" alt="Mochila">
-                    <div>
-                        <div class="product-category">Accesorios</div>
-                        <div class="product-title">Mochila Multifuncional Impermeable Laptop</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.5 <span>(64)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$12.990</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
-
-                <!-- PRODUCT 5 -->
-                <div class="product-card">
-                    <span class="badge-offer">Oferta</span>
-                    <img src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=300" alt="Cargador">
-                    <div>
-                        <div class="product-category">Tecnología</div>
-                        <div class="product-title">Cargador Rápido USB-C 65W GaN</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 <span>(312)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$14.990</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
-
-                <!-- PRODUCT 6 -->
-                <div class="product-card">
-                    <span class="badge-offer">Oferta</span>
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300" alt="Organizador">
-                    <div>
-                        <div class="product-category">Hogar</div>
-                        <div class="product-title">Organizador Multiuso para Escritorio y Casa</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.4 <span>(42)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$9.990</span>
-                            <span class="discount-tag">-15%</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
-
-                <!-- PRODUCT 7 -->
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" alt="Parlante">
-                    <div>
-                        <div class="product-category">Electrónica</div>
-                        <div class="product-title">Parlante Bluetooth Portátil Resistente al Agua</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.7 <span>(180)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$19.990</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
-
-                <!-- PRODUCT 8 -->
-                <div class="product-card">
-                    <span class="badge-offer">Oferta</span>
-                    <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" alt="Lámpara">
-                    <div>
-                        <div class="product-category">Hogar</div>
-                        <div class="product-title">Lámpara LED Inteligente RGB con App</div>
-                        <div class="rating"><i class="fa-solid fa-star"></i> 4.6 <span>(88)</span></div>
-                        <div class="price-container">
-                            <span class="price-main">$16.240</span>
-                            <span class="discount-tag">-18%</span>
-                        </div>
-                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
-                    </div>
-                    <button class="btn-add-cart">Agregar al carrito</button>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- PROMO BANNER BOTTOM -->
-        <section class="bottom-banner">
-            <div>
-                <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #555;">Ofertas FlipFinder</span>
-                <h3>Grandes productos. Mejores precios.</h3>
-                <p>Descubre productos seleccionados con garantías especiales.</p>
-            </div>
-            <div class="percent-icon">%</div>
-        </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-col">
-                <h4>FlipFinder</h4>
-                <p>Tu marketplace online de confianza para productos seleccionados.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Comprar</h4>
-                <ul>
-                    <li><a href="#">Ofertas</a></li>
-                    <li><a href="#">Categorías</a></li>
-                    <li><a href="#">Populares</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Ayuda</h4>
-                <ul>
-                    <li><a href="#">Contacto</a></li>
-                    <li><a href="#">Envíos</a></li>
-                    <li><a href="#">Devoluciones</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Compra segura</h4>
-                <p><i class="fa-solid fa-lock"></i> Pago protegido con cifrado SSL.</p>
-            </div>
-        </div>
-    </footer>
-
+      // Ocultar sugerencias al hacer clic fuera
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-container')) {
+          suggestionsBox.classList.remove('active');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
