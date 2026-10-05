@@ -1,1768 +1,1767 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipFinder | Tu marketplace online</title>
+    <!-- FontAwesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-yellow: #ffe600;
+            --primary-blue: #3483fa;
+            --primary-blue-hover: #2968c8;
+            --bg-gray: #edd000; /* Fondo general estilo ML */
+            --bg-page: #f5f5f5;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --text-green: #00a650;
+            --border-color: #eee;
+            --max-width: 1350px;
+        }
 
-    <title>FlipFinder | Encuentra lo que buscas</title>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    <link rel="stylesheet" href="style.css">
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+        }
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-config.js"></script>
+        /* HEADER & NAVBAR */
+        header {
+            background-color: var(--primary-yellow);
+            padding: 10px 0;
+            border-bottom: 1px solid #e6d000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #2d3277;
+            text-decoration: none;
+        }
+
+        .logo i {
+            font-size: 22px;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 14px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-bar button {
+            background: #fff;
+            border: none;
+            padding: 0 14px;
+            color: #666;
+            cursor: pointer;
+            border-left: 1px solid #eee;
+        }
+
+        .user-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+        }
+
+        .user-nav a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* CATEGORIES NAV */
+        .categories-nav {
+            background-color: var(--primary-yellow);
+            padding-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .categories-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .categories-container a {
+            color: #333;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .categories-container a:hover {
+            opacity: 0.8;
+        }
+
+        /* MAIN CONTAINER */
+        main {
+            max-width: var(--max-width);
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        /* HERO BANNER */
+        .hero-banner {
+            background: linear-gradient(135deg, #fff35c 0%, #ffd000 100%);
+            border-radius: 8px;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .hero-content h1 {
+            font-size: 32px;
+            color: #111;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .hero-content p {
+            color: #444;
+            font-size: 15px;
+            margin-bottom: 20px;
+            max-width: 450px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-blue-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .hero-featured-card {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 220px;
+            text-align: center;
+        }
+
+        .hero-featured-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .hero-featured-card .title {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+
+        .hero-featured-card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111;
+        }
+
+        /* TRUST BADGES */
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge-item i {
+            font-size: 24px;
+            color: var(--primary-blue);
+        }
+
+        .badge-text strong {
+            display: block;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .badge-text span {
+            font-size: 11px;
+            color: #777;
+        }
+
+        /* CATEGORIES GRID */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-title a {
+            font-size: 13px;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px 8px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .category-card i {
+            font-size: 24px;
+            color: #ff9900;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .category-card span {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* PRODUCTS SECTION */
+        .products-filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .search-mini {
+            position: relative;
+        }
+
+        .search-mini input {
+            padding: 6px 12px 6px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .search-mini i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* COMPACT GRID FOR PRODUCTS (5 to 6 per row) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .badge-offer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #00a650;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .badge-highlight {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff9900;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .wishlist-btn:hover {
+            color: #ff5a5f;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin: 15px 0 10px 0;
+        }
+
+        .product-category {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin: 4px 0 8px 0;
+            line-height: 1.3;
+            height: 34px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .rating {
+            font-size: 11px;
+            color: #ffb400;
+            margin-bottom: 8px;
+        }
+
+        .rating span {
+            color: #888;
+            font-size: 10px;
+            margin-left: 3px;
+        }
+
+        .price-container {
+            margin-bottom: 8px;
+        }
+
+        .price-main {
+            font-size: 18px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .discount-tag {
+            font-size: 12px;
+            color: var(--text-green);
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .shipping-tag {
+            font-size: 11px;
+            color: var(--text-green);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-blue-hover);
+        }
+
+        /* BOTTOM BANNER */
+        .bottom-banner {
+            background: linear-gradient(90deg, #ffe600 0%, #ffcc00 100%);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .bottom-banner h3 {
+            font-size: 20px;
+            color: #111;
+        }
+
+        .bottom-banner p {
+            font-size: 13px;
+            color: #444;
+        }
+
+        .percent-icon {
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(0,0,0,0.15);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 30px 0;
+            font-size: 12px;
+        }
+
+        .footer-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 6px;
+        }
+
+        .footer-col a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .hero-featured-card {
+                display: none;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-    <!-- =========================
-         HEADER
-    ========================== -->
-    <header class="header">
+    <!-- STICKY HEADER -->
+    <header>
         <div class="header-container">
-
-            <a href="index.html" class="logo">
-                <span class="logo-icon">F</span>
-                <span>FlipFinder</span>
+            <a href="#" class="logo">
+                <i class="fa-solid fa-bolt"></i> FlipFinder
             </a>
-
-            <div class="search-container">
-                <input
-                    type="search"
-                    id="buscador"
-                    placeholder="Buscar productos..."
-                    autocomplete="off"
-                >
-                <button type="button" id="btnBuscar">
-                    🔍
-                </button>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos, marcas y más...">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
 
-            <div class="header-actions">
-
-                <button
-                    type="button"
-                    class="header-action"
-                    id="btnInicioSesion"
-                >
-                    👤
-                    <span>Mi cuenta</span>
-                </button>
-
-                <button
-                    type="button"
-                    class="header-action carrito-header"
-                    id="btnCarrito"
-                >
-                    🛒
-                    <span>Carrito</span>
-                    <span id="contadorCarrito" class="cart-count">0</span>
-                </button>
-
+            <div class="user-nav">
+                <a href="#"><i class="fa-regular fa-user"></i> Mi cuenta</a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
             </div>
         </div>
-
-        <nav class="nav">
-            <div class="nav-container">
-
-                <button
-                    type="button"
-                    class="nav-link categoria-link activo"
-                    data-categoria="todos"
-                >
-                    Todos
-                </button>
-
-                <button
-                    type="button"
-                    class="nav-link categoria-link"
-                    data-categoria="tecnologia"
-                >
-                    Tecnología
-                </button>
-
-                <button
-                    type="button"
-                    class="nav-link categoria-link"
-                    data-categoria="electronica"
-                >
-                    Electrónica
-                </button>
-
-                <button
-                    type="button"
-                    class="nav-link categoria-link"
-                    data-categoria="gaming"
-                >
-                    Gaming
-                </button>
-
-                <button
-                    type="button"
-                    class="nav-link categoria-link"
-                    data-categoria="hogar"
-                >
-                    Hogar
-                </button>
-
-                <button
-                    type="button"
-                    class="nav-link categoria-link"
-                    data-categoria="accesorios"
-                >
-                    Accesorios
-                </button>
-
-                <button
-                    type="button"
-                    class="nav-link categoria-link"
-                    data-categoria="ofertas"
-                >
-                    🔥 Ofertas
-                </button>
-
-            </div>
-        </nav>
     </header>
 
+    <!-- CATEGORIES SUBNAV -->
+    <nav class="categories-nav">
+        <div class="categories-container">
+            <a href="#"><i class="fa-solid fa-list"></i> Categorías</a>
+            <a href="#">Tecnología</a>
+            <a href="#">Gaming</a>
+            <a href="#">Hogar</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Electrónica</a>
+            <a href="#"><i class="fa-solid fa-tag"></i> Ofertas</a>
+        </div>
+    </nav>
 
-    <!-- =========================
-         HERO
-    ========================== -->
     <main>
-
-        <section class="hero">
-            <div class="hero-container">
-
-                <div class="hero-content">
-
-                    <span class="hero-tag">
-                        🔥 OFERTAS DESTACADAS
-                    </span>
-
-                    <h1>
-                        Encuentra lo que buscas.
-                        <span>Compra fácil.</span>
-                    </h1>
-
-                    <p>
-                        Descubre productos increíbles a precios increíbles.
-                        Compra de forma rápida y segura en FlipFinder.
-                    </p>
-
-                    <button
-                        type="button"
-                        class="hero-button"
-                        id="btnVerProductos"
-                    >
-                        Ver productos
-                    </button>
-
+        <!-- HERO BANNER -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
+                <p>Descubre tecnología, gaming, hogar, accesorios y productos seleccionados para ti.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Ver productos</a>
+                    <a href="#" class="btn-outline">Ver ofertas</a>
                 </div>
-
-                <div class="hero-visual">
-                    <div class="hero-card">
-                        <span>⚡</span>
-                        <strong>Grandes ofertas</strong>
-                        <small>Productos seleccionados</small>
-                    </div>
-                </div>
-
+            </div>
+            
+            <div class="hero-featured-card">
+                <div class="title">OFERTA DESTACADA</div>
+                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" alt="Audífonos Gamer">
+                <div style="font-size: 11px; color:#555;">Audífonos Gamer con Micrófono</div>
+                <div class="price">$23.400 <span style="font-size: 10px; color:#00a650;">-22%</span></div>
             </div>
         </section>
 
-
-        <!-- =========================
-             BENEFICIOS
-        ========================== -->
-        <section class="benefits">
-
-            <div class="benefit">
-                <div class="benefit-icon">🚚</div>
-                <div>
-                    <strong>Envíos rápidos</strong>
-                    <p>Recibe tus productos rápidamente.</p>
+        <!-- TRUST BADGES -->
+        <section class="trust-badges">
+            <div class="badge-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div class="badge-text">
+                    <strong>Envíos a todo Chile</strong>
+                    <span>Recibe tu compra donde estés</span>
                 </div>
             </div>
-
-            <div class="benefit">
-                <div class="benefit-icon">🔒</div>
-                <div>
+            <div class="badge-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="badge-text">
                     <strong>Compra segura</strong>
-                    <p>Pagos procesados de forma segura.</p>
+                    <span>Protegemos tus datos</span>
                 </div>
             </div>
-
-            <div class="benefit">
-                <div class="benefit-icon">💳</div>
-                <div>
-                    <strong>Pago fácil</strong>
-                    <p>Compra con Mercado Pago.</p>
+            <div class="badge-item">
+                <i class="fa-solid fa-credit-card"></i>
+                <div class="badge-text">
+                    <strong>Mercado Pago</strong>
+                    <span>Paga de forma segura</span>
                 </div>
             </div>
-
-            <div class="benefit">
-                <div class="benefit-icon">⭐</div>
-                <div>
+            <div class="badge-item">
+                <i class="fa-solid fa-star"></i>
+                <div class="badge-text">
                     <strong>Productos seleccionados</strong>
-                    <p>Encuentra productos destacados.</p>
+                    <span>Opción de calidad</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPLORE BY CATEGORY -->
+        <section>
+            <div class="section-title">
+                <h2>Explora por categoría</h2>
+                <a href="#">Ver todas</a>
+            </div>
+            
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-border-all"></i>
+                    <span>Todos</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>Tecnología</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Gaming</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Hogar</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Accesorios</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-plug"></i>
+                    <span>Electrónica</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- PRODUCTS CATALOG -->
+        <section>
+            <div class="products-filter-bar">
+                <div class="section-title" style="margin-bottom:0;">
+                    <h2>Productos para ti</h2>
+                </div>
+                <div class="search-mini">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar producto...">
                 </div>
             </div>
 
-        </section>
-
-
-        <!-- =========================
-             CATEGORÍAS
-        ========================== -->
-        <section class="categories-section">
-
-            <div class="section-container">
-
-                <div class="section-heading">
+            <!-- 5-COLUMN COMPACT GRID -->
+            <div class="products-grid">
+                
+                <!-- PRODUCT 1 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" alt="Smartwatch">
                     <div>
-                        <span class="section-eyebrow">EXPLORA</span>
-                        <h2>Compra por categoría</h2>
+                        <div class="product-category">Tecnología</div>
+                        <div class="product-title">Smartwatch Inteligente Deportivo Pro</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.7 <span>(128)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$31.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
                     </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
                 </div>
 
-                <div class="categories-grid">
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-categoria="tecnologia"
-                    >
-                        <span class="category-icon">💻</span>
-                        <strong>Tecnología</strong>
-                        <small>Productos tecnológicos</small>
-                    </button>
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-categoria="electronica"
-                    >
-                        <span class="category-icon">🔊</span>
-                        <strong>Electrónica</strong>
-                        <small>Todo para tu entretenimiento</small>
-                    </button>
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-categoria="gaming"
-                    >
-                        <span class="category-icon">🎮</span>
-                        <strong>Gaming</strong>
-                        <small>Equípate para jugar</small>
-                    </button>
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-categoria="hogar"
-                    >
-                        <span class="category-icon">🏠</span>
-                        <strong>Hogar</strong>
-                        <small>Soluciones para tu hogar</small>
-                    </button>
-
-                    <button
-                        type="button"
-                        class="category-card"
-                        data-categoria="accesorios"
-                    >
-                        <span class="category-icon">🎒</span>
-                        <strong>Accesorios</strong>
-                        <small>Complementos para tu día</small>
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             PRODUCTOS
-        ========================== -->
-        <section class="products-section" id="productos">
-
-            <div class="section-container">
-
-                <div class="section-heading">
-
+                <!-- PRODUCT 2 -->
+                <div class="product-card">
+                    <span class="badge-highlight">Destacado</span>
+                    <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" alt="Teclado Gamer">
                     <div>
-                        <span class="section-eyebrow">DESTACADOS</span>
-                        <h2 id="tituloProductos">Productos destacados</h2>
+                        <div class="product-category">Gaming</div>
+                        <div class="product-title">Teclado Gamer RGB Mecánico Switch Azul</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.8 <span>(95)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$28.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
                     </div>
-
-                    <div class="products-controls">
-
-                        <select id="ordenProductos">
-                            <option value="destacados">
-                                Más destacados
-                            </option>
-
-                            <option value="precio-menor">
-                                Precio: menor a mayor
-                            </option>
-
-                            <option value="precio-mayor">
-                                Precio: mayor a menor
-                            </option>
-
-                            <option value="nombre">
-                                Nombre
-                            </option>
-                        </select>
-
-                    </div>
-
+                    <button class="btn-add-cart">Agregar al carrito</button>
                 </div>
 
-
-                <div
-                    id="estadoProductos"
-                    class="products-state"
-                >
-                    Cargando productos...
-                </div>
-
-
-                <div
-                    id="productosGrid"
-                    class="products-grid"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             OFERTAS
-        ========================== -->
-        <section class="offers-section">
-
-            <div class="section-container">
-
-                <div class="offer-banner">
-
+                <!-- PRODUCT 3 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" alt="Audífonos Gamer">
                     <div>
-                        <span class="offer-label">
-                            🔥 OFERTAS
-                        </span>
-
-                        <h2>
-                            Encuentra precios increíbles
-                        </h2>
-
-                        <p>
-                            Aprovecha nuestros productos en oferta
-                            antes de que se agoten.
-                        </p>
+                        <div class="product-category">Gaming</div>
+                        <div class="product-title">Audífonos Gamer con Micrófono HD</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.6 <span>(210)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$23.400</span>
+                            <span class="discount-tag">-22%</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
                     </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
 
-                    <button
-                        type="button"
-                        id="btnVerOfertas"
-                        class="offer-button"
-                    >
-                        Ver ofertas
-                    </button>
+                <!-- PRODUCT 4 -->
+                <div class="product-card">
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300" alt="Mochila">
+                    <div>
+                        <div class="product-category">Accesorios</div>
+                        <div class="product-title">Mochila Multifuncional Impermeable Laptop</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.5 <span>(64)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$12.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
 
+                <!-- PRODUCT 5 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=300" alt="Cargador">
+                    <div>
+                        <div class="product-category">Tecnología</div>
+                        <div class="product-title">Cargador Rápido USB-C 65W GaN</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 <span>(312)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$14.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 6 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300" alt="Organizador">
+                    <div>
+                        <div class="product-category">Hogar</div>
+                        <div class="product-title">Organizador Multiuso para Escritorio y Casa</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.4 <span>(42)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$9.990</span>
+                            <span class="discount-tag">-15%</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 7 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" alt="Parlante">
+                    <div>
+                        <div class="product-category">Electrónica</div>
+                        <div class="product-title">Parlante Bluetooth Portátil Resistente al Agua</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.7 <span>(180)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$19.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 8 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" alt="Lámpara">
+                    <div>
+                        <div class="product-category">Hogar</div>
+                        <div class="product-title">Lámpara LED Inteligente RGB con App</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.6 <span>(88)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$16.240</span>
+                            <span class="discount-tag">-18%</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
                 </div>
 
             </div>
-
         </section>
 
+        <!-- PROMO BANNER BOTTOM -->
+        <section class="bottom-banner">
+            <div>
+                <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #555;">Ofertas FlipFinder</span>
+                <h3>Grandes productos. Mejores precios.</h3>
+                <p>Descubre productos seleccionados con garantías especiales.</p>
+            </div>
+            <div class="percent-icon">%</div>
+        </section>
     </main>
 
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-    <footer class="footer">
-
+    <!-- FOOTER -->
+    <footer>
         <div class="footer-container">
-
-            <div class="footer-column footer-brand">
-
-                <a href="index.html" class="logo">
-                    <span class="logo-icon">F</span>
-                    <span>FlipFinder</span>
-                </a>
-
-                <p>
-                    Tu tienda online para encontrar productos
-                    increíbles al mejor precio.
-                </p>
-
+            <div class="footer-col">
+                <h4>FlipFinder</h4>
+                <p>Tu marketplace online de confianza para productos seleccionados.</p>
             </div>
-
-
-            <div class="footer-column">
-
-                <h3>Compra</h3>
-
-                <button
-                    type="button"
-                    class="footer-link categoria-link"
-                    data-categoria="todos"
-                >
-                    Todos los productos
-                </button>
-
-                <button
-                    type="button"
-                    class="footer-link categoria-link"
-                    data-categoria="ofertas"
-                >
-                    Ofertas
-                </button>
-
-                <button
-                    type="button"
-                    class="footer-link"
-                    id="footerCarrito"
-                >
-                    Mi carrito
-                </button>
-
+            <div class="footer-col">
+                <h4>Comprar</h4>
+                <ul>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Categorías</a></li>
+                    <li><a href="#">Populares</a></li>
+                </ul>
             </div>
-
-
-            <div class="footer-column">
-
-                <h3>Ayuda</h3>
-
-                <a href="#" class="footer-link">
-                    Preguntas frecuentes
-                </a>
-
-                <a href="#" class="footer-link">
-                    Envíos
-                </a>
-
-                <a href="#" class="footer-link">
-                    Contacto
-                </a>
-
+            <div class="footer-col">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                </ul>
             </div>
-
-
-            <div class="footer-column">
-
-                <h3>Información</h3>
-
-                <a href="#" class="footer-link">
-                    Términos y condiciones
-                </a>
-
-                <a href="#" class="footer-link">
-                    Privacidad
-                </a>
-
+            <div class="footer-col">
+                <h4>Compra segura</h4>
+                <p><i class="fa-solid fa-lock"></i> Pago protegido con cifrado SSL.</p>
             </div>
-
         </div>
-
-        <div class="footer-bottom">
-            © 2026 FlipFinder. Todos los derechos reservados.
-        </div>
-
     </footer>
 
-
-    <!-- =========================
-         NOTIFICACIÓN
-    ========================== -->
-    <div
-        id="toast"
-        class="toast"
-        aria-live="polite"
-    ></div>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================== -->
-    <script>
-
-        "use strict";
-
-
-        /* =====================================================
-           VARIABLES
-        ===================================================== */
-
-        let productos = [];
-        let productosFiltrados = [];
-
-        let carrito = cargarCarritoLocal();
-
-        let categoriaActual = "todos";
-        let textoBusqueda = "";
-        let ordenActual = "destacados";
-
-
-        /* =====================================================
-           LOCAL STORAGE
-        ===================================================== */
-
-        function cargarCarritoLocal() {
-
-            try {
-
-                const guardado =
-                    localStorage.getItem("flipfinder_carrito");
-
-                if (!guardado) {
-                    return [];
-                }
-
-                const datos = JSON.parse(guardado);
-
-                if (!Array.isArray(datos)) {
-                    return [];
-                }
-
-                return datos
-                    .filter(item => item && item.id)
-                    .map(item => ({
-                        id: String(item.id),
-                        nombre: String(item.nombre || ""),
-                        precio: Number(item.precio || 0),
-                        imagen: String(item.imagen || ""),
-                        stock: Number(item.stock || 0),
-                        quantity: Math.max(
-                            1,
-                            Number(item.quantity || 1)
-                        )
-                    }));
-
-            } catch (error) {
-
-                console.error(
-                    "Error leyendo el carrito:",
-                    error
-                );
-
-                return [];
-            }
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipFinder | Tu marketplace online</title>
+    <!-- FontAwesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-yellow: #ffe600;
+            --primary-blue: #3483fa;
+            --primary-blue-hover: #2968c8;
+            --bg-gray: #edd000; /* Fondo general estilo ML */
+            --bg-page: #f5f5f5;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --text-green: #00a650;
+            --border-color: #eee;
+            --max-width: 1350px;
         }
 
-
-        function guardarCarrito() {
-
-            try {
-
-                localStorage.setItem(
-                    "flipfinder_carrito",
-                    JSON.stringify(carrito)
-                );
-
-                actualizarContadorCarrito();
-
-                return true;
-
-            } catch (error) {
-
-                console.error(
-                    "Error guardando el carrito:",
-                    error
-                );
-
-                mostrarToast(
-                    "No pudimos guardar el carrito.",
-                    true
-                );
-
-                return false;
-            }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-
-        function actualizarContadorCarrito() {
-
-            const contador =
-                document.getElementById("contadorCarrito");
-
-            if (!contador) {
-                return;
-            }
-
-            const cantidad = carrito.reduce(
-                (total, item) =>
-                    total + Number(item.quantity || 0),
-                0
-            );
-
-            contador.textContent = cantidad;
-
-            if (cantidad > 0) {
-                contador.style.display = "inline-flex";
-            } else {
-                contador.style.display = "none";
-            }
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-dark);
         }
 
-
-        /* =====================================================
-           CARGAR PRODUCTOS DESDE SUPABASE
-        ===================================================== */
-
-        async function cargarProductos() {
-
-            const estado =
-                document.getElementById("estadoProductos");
-
-            try {
-
-                if (
-                    !window.supabaseClient
-                ) {
-                    throw new Error(
-                        "Supabase no está configurado."
-                    );
-                }
-
-
-                const {
-                    data,
-                    error
-                } = await window.supabaseClient
-                    .from("productos")
-                    .select("*")
-                    .eq("activo", true)
-                    .order("destacado", {
-                        ascending: false
-                    })
-                    .order("created_at", {
-                        ascending: false
-                    });
-
-
-                if (error) {
-                    throw error;
-                }
-
-
-                productos = Array.isArray(data)
-                    ? data
-                    : [];
-
-
-                sincronizarStockCarrito();
-
-                aplicarFiltros();
-
-            } catch (error) {
-
-                console.error(
-                    "Error cargando productos:",
-                    error
-                );
-
-                if (estado) {
-
-                    estado.textContent =
-                        "No pudimos cargar los productos. Recarga la página e inténtalo nuevamente.";
-                }
-            }
+        /* HEADER & NAVBAR */
+        header {
+            background-color: var(--primary-yellow);
+            padding: 10px 0;
+            border-bottom: 1px solid #e6d000;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-
-        /* =====================================================
-           SINCRONIZAR CARRITO CON SUPABASE
-        ===================================================== */
-
-        function sincronizarStockCarrito() {
-
-            if (!Array.isArray(carrito)) {
-                carrito = [];
-                guardarCarrito();
-                return;
-            }
-
-
-            const productosDisponibles =
-                new Map(
-                    productos.map(producto => [
-                        String(producto.id),
-                        producto
-                    ])
-                );
-
-
-            const carritoNuevo = [];
-
-
-            for (const item of carrito) {
-
-                const producto =
-                    productosDisponibles.get(
-                        String(item.id)
-                    );
-
-
-                if (!producto) {
-                    continue;
-                }
-
-
-                const stock =
-                    Number(producto.stock || 0);
-
-
-                if (stock <= 0) {
-                    continue;
-                }
-
-
-                const cantidad =
-                    Math.min(
-                        Number(item.quantity || 1),
-                        stock
-                    );
-
-
-                carritoNuevo.push({
-                    id: String(producto.id),
-                    nombre: String(producto.nombre || ""),
-                    precio: Number(producto.precio || 0),
-                    imagen: String(producto.imagen || ""),
-                    stock: stock,
-                    quantity: Math.max(1, cantidad)
-                });
-            }
-
-
-            carrito = carritoNuevo;
-
-            guardarCarrito();
+        .header-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-
-        /* =====================================================
-           AGREGAR PRODUCTO AL CARRITO
-        ===================================================== */
-
-        function agregarAlCarrito(id) {
-
-            const producto =
-                productos.find(
-                    item =>
-                        String(item.id) === String(id)
-                );
-
-
-            if (!producto) {
-
-                console.error(
-                    "Producto no encontrado:",
-                    id
-                );
-
-                mostrarToast(
-                    "No pudimos encontrar este producto.",
-                    true
-                );
-
-                return;
-            }
-
-
-            const stock =
-                Number(producto.stock || 0);
-
-
-            if (stock <= 0) {
-
-                mostrarToast(
-                    "Este producto está sin stock.",
-                    true
-                );
-
-                return;
-            }
-
-
-            const productoId =
-                String(producto.id);
-
-
-            const existente =
-                carrito.find(
-                    item =>
-                        String(item.id) === productoId
-                );
-
-
-            if (existente) {
-
-                const cantidadActual =
-                    Number(
-                        existente.quantity || 0
-                    );
-
-
-                if (
-                    cantidadActual + 1 >
-                    stock
-                ) {
-
-                    mostrarToast(
-                        `Solo quedan ${stock} unidad(es) disponibles.`,
-                        true
-                    );
-
-                    return;
-                }
-
-
-                existente.quantity =
-                    cantidadActual + 1;
-
-                existente.nombre =
-                    String(producto.nombre || "");
-
-                existente.precio =
-                    Number(producto.precio || 0);
-
-                existente.imagen =
-                    String(producto.imagen || "");
-
-                existente.stock =
-                    stock;
-
-            } else {
-
-                carrito.push({
-
-                    id: productoId,
-
-                    nombre:
-                        String(
-                            producto.nombre || ""
-                        ),
-
-                    precio:
-                        Number(
-                            producto.precio || 0
-                        ),
-
-                    imagen:
-                        String(
-                            producto.imagen || ""
-                        ),
-
-                    stock:
-                        stock,
-
-                    quantity: 1
-                });
-            }
-
-
-            /*
-             * ESTE ES EL PUNTO IMPORTANTE:
-             * guardamos inmediatamente el carrito.
-             */
-
-            const guardado =
-                guardarCarrito();
-
-
-            if (!guardado) {
-                return;
-            }
-
-
-            actualizarContadorCarrito();
-
-
-            mostrarToast(
-                `${producto.nombre} se agregó al carrito.`
-            );
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #2d3277;
+            text-decoration: none;
         }
 
-
-        /* =====================================================
-           FILTROS
-        ===================================================== */
-
-        function aplicarFiltros() {
-
-            let resultado =
-                [...productos];
-
-
-            if (
-                categoriaActual !==
-                "todos"
-            ) {
-
-                if (
-                    categoriaActual ===
-                    "ofertas"
-                ) {
-
-                    resultado =
-                        resultado.filter(
-                            producto =>
-                                producto.oferta === true
-                        );
-
-                } else {
-
-                    resultado =
-                        resultado.filter(
-                            producto =>
-                                String(
-                                    producto.categoria || ""
-                                ).toLowerCase() ===
-                                categoriaActual
-                        );
-                }
-            }
-
-
-            if (textoBusqueda) {
-
-                const busqueda =
-                    textoBusqueda.toLowerCase();
-
-
-                resultado =
-                    resultado.filter(
-                        producto => {
-
-                            const nombre =
-                                String(
-                                    producto.nombre || ""
-                                ).toLowerCase();
-
-                            const descripcion =
-                                String(
-                                    producto.descripcion || ""
-                                ).toLowerCase();
-
-                            const categoria =
-                                String(
-                                    producto.categoria || ""
-                                ).toLowerCase();
-
-
-                            return (
-                                nombre.includes(busqueda) ||
-                                descripcion.includes(busqueda) ||
-                                categoria.includes(busqueda)
-                            );
-                        }
-                    );
-            }
-
-
-            if (
-                ordenActual ===
-                "precio-menor"
-            ) {
-
-                resultado.sort(
-                    (a, b) =>
-                        Number(a.precio || 0) -
-                        Number(b.precio || 0)
-                );
-
-            } else if (
-                ordenActual ===
-                "precio-mayor"
-            ) {
-
-                resultado.sort(
-                    (a, b) =>
-                        Number(b.precio || 0) -
-                        Number(a.precio || 0)
-                );
-
-            } else if (
-                ordenActual ===
-                "nombre"
-            ) {
-
-                resultado.sort(
-                    (a, b) =>
-                        String(a.nombre || "")
-                            .localeCompare(
-                                String(b.nombre || ""),
-                                "es"
-                            )
-                );
-            }
-
-
-            productosFiltrados =
-                resultado;
-
-
-            renderizarProductos();
+        .logo i {
+            font-size: 22px;
         }
 
-
-        /* =====================================================
-           RENDER PRODUCTOS
-        ===================================================== */
-
-        function renderizarProductos() {
-
-            const grid =
-                document.getElementById(
-                    "productosGrid"
-                );
-
-            const estado =
-                document.getElementById(
-                    "estadoProductos"
-                );
-
-
-            if (!grid) {
-                return;
-            }
-
-
-            grid.innerHTML = "";
-
-
-            if (
-                productosFiltrados.length ===
-                0
-            ) {
-
-                if (estado) {
-
-                    estado.textContent =
-                        "No encontramos productos con esos criterios.";
-
-                    estado.style.display =
-                        "block";
-                }
-
-                return;
-            }
-
-
-            if (estado) {
-                estado.style.display =
-                    "none";
-            }
-
-
-            for (
-                const producto
-                of productosFiltrados
-            ) {
-
-                const card =
-                    crearProductoCard(producto);
-
-
-                grid.appendChild(card);
-            }
+        .search-bar {
+            flex: 1;
+            max-width: 600px;
+            display: flex;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+            overflow: hidden;
         }
 
+        .search-bar input {
+            width: 100%;
+            padding: 10px 14px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
 
-        /* =====================================================
-           TARJETA DE PRODUCTO
-        ===================================================== */
+        .search-bar button {
+            background: #fff;
+            border: none;
+            padding: 0 14px;
+            color: #666;
+            cursor: pointer;
+            border-left: 1px solid #eee;
+        }
 
-        function crearProductoCard(producto) {
+        .user-nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 13px;
+        }
 
-            const card =
-                document.createElement("article");
+        .user-nav a {
+            color: #333;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
 
+        /* CATEGORIES NAV */
+        .categories-nav {
+            background-color: var(--primary-yellow);
+            padding-bottom: 8px;
+            font-size: 13px;
+        }
 
-            card.className =
-                "product-card";
+        .categories-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+        }
 
+        .categories-container a {
+            color: #333;
+            text-decoration: none;
+            white-space: nowrap;
+        }
 
-            const precio =
-                Number(producto.precio || 0);
+        .categories-container a:hover {
+            opacity: 0.8;
+        }
 
+        /* MAIN CONTAINER */
+        main {
+            max-width: var(--max-width);
+            margin: 20px auto;
+            padding: 0 16px;
+        }
 
-            const precioAnterior =
-                Number(
-                    producto.precio_anterior || 0
-                );
+        /* HERO BANNER */
+        .hero-banner {
+            background: linear-gradient(135deg, #fff35c 0%, #ffd000 100%);
+            border-radius: 8px;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
 
+        .hero-content h1 {
+            font-size: 32px;
+            color: #111;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
 
-            const stock =
-                Number(producto.stock || 0);
+        .hero-content p {
+            color: #444;
+            font-size: 15px;
+            margin-bottom: 20px;
+            max-width: 450px;
+        }
 
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+        }
 
-            const tieneOferta =
-                Boolean(producto.oferta) &&
-                precioAnterior > precio;
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
+        .btn-primary:hover {
+            background-color: var(--primary-blue-hover);
+        }
 
-            const descuento =
-                tieneOferta
-                    ? Math.round(
-                        (
-                            1 -
-                            precio /
-                            precioAnterior
-                        ) * 100
-                    )
-                    : 0;
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 1px solid var(--primary-blue);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
+        .hero-featured-card {
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 220px;
+            text-align: center;
+        }
 
-            const rating =
-                Number(
-                    producto.rating || 0
-                );
+        .hero-featured-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
 
+        .hero-featured-card .title {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 6px;
+        }
 
-            const reviews =
-                Number(
-                    producto.reviews || 0
-                );
+        .hero-featured-card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111;
+        }
 
+        /* TRUST BADGES */
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
 
-            const imagen =
-                String(
-                    producto.imagen || ""
-                );
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
+        .badge-item i {
+            font-size: 24px;
+            color: var(--primary-blue);
+        }
 
-            card.innerHTML = `
+        .badge-text strong {
+            display: block;
+            font-size: 13px;
+            color: #333;
+        }
 
-                <div class="product-image-container">
+        .badge-text span {
+            font-size: 11px;
+            color: #777;
+        }
 
-                    ${
-                        tieneOferta
-                            ? `
-                                <span class="product-badge">
-                                    -${descuento}%
-                                </span>
-                              `
-                            : ""
-                    }
+        /* CATEGORIES GRID */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
 
-                    ${
-                        producto.destacado
-                            ? `
-                                <span class="product-featured">
-                                    ⭐ Destacado
-                                </span>
-                              `
-                            : ""
-                    }
+        .section-title a {
+            font-size: 13px;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
 
-                    ${
-                        imagen
-                            ? `
-                                <img
-                                    src="${escaparAtributo(imagen)}"
-                                    alt="${escaparAtributo(producto.nombre)}"
-                                    class="product-image"
-                                    loading="lazy"
-                                    onerror="this.style.display='none'; this.parentElement.classList.add('image-error');"
-                                >
-                              `
-                            : `
-                                <div class="product-image-placeholder">
-                                    🛍️
-                                </div>
-                              `
-                    }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 12px;
+            margin-bottom: 32px;
+        }
 
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px 8px;
+            text-align: center;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .category-card i {
+            font-size: 24px;
+            color: #ff9900;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .category-card span {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* PRODUCTS SECTION */
+        .products-filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .search-mini {
+            position: relative;
+        }
+
+        .search-mini input {
+            padding: 6px 12px 6px 30px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .search-mini i {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 12px;
+        }
+
+        /* COMPACT GRID FOR PRODUCTS (5 to 6 per row) */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .badge-offer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #00a650;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .badge-highlight {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff9900;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .wishlist-btn:hover {
+            color: #ff5a5f;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin: 15px 0 10px 0;
+        }
+
+        .product-category {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin: 4px 0 8px 0;
+            line-height: 1.3;
+            height: 34px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .rating {
+            font-size: 11px;
+            color: #ffb400;
+            margin-bottom: 8px;
+        }
+
+        .rating span {
+            color: #888;
+            font-size: 10px;
+            margin-left: 3px;
+        }
+
+        .price-container {
+            margin-bottom: 8px;
+        }
+
+        .price-main {
+            font-size: 18px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .discount-tag {
+            font-size: 12px;
+            color: var(--text-green);
+            font-weight: 600;
+            margin-left: 6px;
+        }
+
+        .shipping-tag {
+            font-size: 11px;
+            color: var(--text-green);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-blue-hover);
+        }
+
+        /* BOTTOM BANNER */
+        .bottom-banner {
+            background: linear-gradient(90deg, #ffe600 0%, #ffcc00 100%);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .bottom-banner h3 {
+            font-size: 20px;
+            color: #111;
+        }
+
+        .bottom-banner p {
+            font-size: 13px;
+            color: #444;
+        }
+
+        .percent-icon {
+            font-size: 48px;
+            font-weight: 900;
+            color: rgba(0,0,0,0.15);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 30px 0;
+            font-size: 12px;
+        }
+
+        .footer-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 6px;
+        }
+
+        .footer-col a {
+            color: #aaa;
+            text-decoration: none;
+        }
+
+        .footer-col a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .hero-featured-card {
+                display: none;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-bolt"></i> FlipFinder
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos, marcas y más...">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+            <div class="user-nav">
+                <a href="#"><i class="fa-regular fa-user"></i> Mi cuenta</a>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CATEGORIES SUBNAV -->
+    <nav class="categories-nav">
+        <div class="categories-container">
+            <a href="#"><i class="fa-solid fa-list"></i> Categorías</a>
+            <a href="#">Tecnología</a>
+            <a href="#">Gaming</a>
+            <a href="#">Hogar</a>
+            <a href="#">Accesorios</a>
+            <a href="#">Electrónica</a>
+            <a href="#"><i class="fa-solid fa-tag"></i> Ofertas</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- HERO BANNER -->
+        <section class="hero-banner">
+            <div class="hero-content">
+                <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
+                <p>Descubre tecnología, gaming, hogar, accesorios y productos seleccionados para ti.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">Ver productos</a>
+                    <a href="#" class="btn-outline">Ver ofertas</a>
+                </div>
+            </div>
+            
+            <div class="hero-featured-card">
+                <div class="title">OFERTA DESTACADA</div>
+                <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" alt="Audífonos Gamer">
+                <div style="font-size: 11px; color:#555;">Audífonos Gamer con Micrófono</div>
+                <div class="price">$23.400 <span style="font-size: 10px; color:#00a650;">-22%</span></div>
+            </div>
+        </section>
+
+        <!-- TRUST BADGES -->
+        <section class="trust-badges">
+            <div class="badge-item">
+                <i class="fa-solid fa-truck-fast"></i>
+                <div class="badge-text">
+                    <strong>Envíos a todo Chile</strong>
+                    <span>Recibe tu compra donde estés</span>
+                </div>
+            </div>
+            <div class="badge-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="badge-text">
+                    <strong>Compra segura</strong>
+                    <span>Protegemos tus datos</span>
+                </div>
+            </div>
+            <div class="badge-item">
+                <i class="fa-solid fa-credit-card"></i>
+                <div class="badge-text">
+                    <strong>Mercado Pago</strong>
+                    <span>Paga de forma segura</span>
+                </div>
+            </div>
+            <div class="badge-item">
+                <i class="fa-solid fa-star"></i>
+                <div class="badge-text">
+                    <strong>Productos seleccionados</strong>
+                    <span>Opción de calidad</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPLORE BY CATEGORY -->
+        <section>
+            <div class="section-title">
+                <h2>Explora por categoría</h2>
+                <a href="#">Ver todas</a>
+            </div>
+            
+            <div class="categories-grid">
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-border-all"></i>
+                    <span>Todos</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-laptop"></i>
+                    <span>Tecnología</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Gaming</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Hogar</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span>Accesorios</span>
+                </a>
+                <a href="#" class="category-card">
+                    <i class="fa-solid fa-plug"></i>
+                    <span>Electrónica</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- PRODUCTS CATALOG -->
+        <section>
+            <div class="products-filter-bar">
+                <div class="section-title" style="margin-bottom:0;">
+                    <h2>Productos para ti</h2>
+                </div>
+                <div class="search-mini">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar producto...">
+                </div>
+            </div>
+
+            <!-- 5-COLUMN COMPACT GRID -->
+            <div class="products-grid">
+                
+                <!-- PRODUCT 1 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300" alt="Smartwatch">
+                    <div>
+                        <div class="product-category">Tecnología</div>
+                        <div class="product-title">Smartwatch Inteligente Deportivo Pro</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.7 <span>(128)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$31.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
                 </div>
 
-
-                <div class="product-info">
-
-                    <span class="product-category">
-                        ${escaparHTML(
-                            producto.categoria || "Otros"
-                        )}
-                    </span>
-
-
-                    <h3 class="product-name">
-                        ${escaparHTML(
-                            producto.nombre
-                        )}
-                    </h3>
-
-
-                    <div class="product-rating">
-
-                        <span>
-                            ⭐ ${rating.toFixed(1)}
-                        </span>
-
-                        <small>
-                            (${reviews})
-                        </small>
-
+                <!-- PRODUCT 2 -->
+                <div class="product-card">
+                    <span class="badge-highlight">Destacado</span>
+                    <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300" alt="Teclado Gamer">
+                    <div>
+                        <div class="product-category">Gaming</div>
+                        <div class="product-title">Teclado Gamer RGB Mecánico Switch Azul</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.8 <span>(95)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$28.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
                     </div>
-
-
-                    <div class="product-price">
-
-                        ${
-                            tieneOferta
-                                ? `
-                                    <span class="old-price">
-                                        ${formatearPrecio(
-                                            precioAnterior
-                                        )}
-                                    </span>
-                                  `
-                                : ""
-                        }
-
-                        <strong>
-                            ${formatearPrecio(precio)}
-                        </strong>
-
-                    </div>
-
-
-                    <div class="product-stock">
-
-                        ${
-                            stock > 0
-                                ? `
-                                    <span>
-                                        ✓ En stock
-                                    </span>
-                                  `
-                                : `
-                                    <span>
-                                        Sin stock
-                                    </span>
-                                  `
-                        }
-
-                    </div>
-
-
-                    <button
-                        type="button"
-                        class="add-cart-button"
-                        data-product-id="${escaparAtributo(producto.id)}"
-                        ${
-                            stock <= 0
-                                ? "disabled"
-                                : ""
-                        }
-                    >
-                        ${
-                            stock > 0
-                                ? "🛒 Agregar al carrito"
-                                : "Agotado"
-                        }
-                    </button>
-
+                    <button class="btn-add-cart">Agregar al carrito</button>
                 </div>
-            `;
 
-
-            /*
-             * IMPORTANTE:
-             * Ya NO usamos:
-             *
-             * onclick="comprarProducto(...)"
-             *
-             * El evento se agrega directamente
-             * al botón.
-             */
-
-            const boton =
-                card.querySelector(
-                    ".add-cart-button"
-                );
-
-
-            if (boton && stock > 0) {
-
-                boton.addEventListener(
-                    "click",
-                    function () {
-
-                        const id =
-                            this.dataset.productId;
-
-                        agregarAlCarrito(id);
-                    }
-                );
-            }
-
-
-            return card;
-        }
-
-
-        /* =====================================================
-           FORMATEAR PRECIO
-        ===================================================== */
-
-        function formatearPrecio(valor) {
-
-            return new Intl.NumberFormat(
-                "es-CL",
-                {
-                    style: "currency",
-                    currency: "CLP",
-                    maximumFractionDigits: 0
-                }
-            ).format(
-                Number(valor || 0)
-            );
-        }
-
-
-        /* =====================================================
-           ESCAPAR TEXTO
-        ===================================================== */
-
-        function escaparHTML(texto) {
-
-            return String(texto ?? "")
-                .replaceAll("&", "&amp;")
-                .replaceAll("<", "&lt;")
-                .replaceAll(">", "&gt;")
-                .replaceAll('"', "&quot;")
-                .replaceAll("'", "&#039;");
-        }
-
-
-        function escaparAtributo(texto) {
-
-            return escaparHTML(texto);
-        }
-
-
-        /* =====================================================
-           BUSCADOR
-        ===================================================== */
-
-        function realizarBusqueda() {
-
-            const input =
-                document.getElementById(
-                    "buscador"
-                );
-
-
-            textoBusqueda =
-                String(
-                    input?.value || ""
-                ).trim();
-
-
-            aplicarFiltros();
-
-
-            const productosSection =
-                document.getElementById(
-                    "productos"
-                );
-
-
-            if (productosSection) {
-
-                productosSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-        }
-
-
-        /* =====================================================
-           CATEGORÍAS
-        ===================================================== */
-
-        function seleccionarCategoria(
-            categoria
-        ) {
-
-            categoriaActual =
-                String(categoria || "todos")
-                    .toLowerCase();
-
-
-            document
-                .querySelectorAll(
-                    ".categoria-link"
-                )
-                .forEach(elemento => {
-
-                    elemento.classList.toggle(
-                        "activo",
-                        elemento.dataset.categoria ===
-                        categoriaActual
-                    );
-                });
-
-
-            aplicarFiltros();
-
-
-            const titulo =
-                document.getElementById(
-                    "tituloProductos"
-                );
-
-
-            if (titulo) {
-
-                if (
-                    categoriaActual ===
-                    "todos"
-                ) {
-
-                    titulo.textContent =
-                        "Productos destacados";
-
-                } else if (
-                    categoriaActual ===
-                    "ofertas"
-                ) {
-
-                    titulo.textContent =
-                        "Ofertas";
-
-                } else {
-
-                    titulo.textContent =
-                        categoriaActual
-                            .charAt(0)
-                            .toUpperCase() +
-                        categoriaActual.slice(1);
-                }
-            }
-
-
-            const productosSection =
-                document.getElementById(
-                    "productos"
-                );
-
-
-            if (productosSection) {
-
-                productosSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-        }
-
-
-        /* =====================================================
-           CARRITO
-        ===================================================== */
-
-        function irAlCarrito() {
-
-            window.location.href =
-                "checkout.html";
-        }
-
-
-        /* =====================================================
-           TOAST
-        ===================================================== */
-
-        function mostrarToast(
-            mensaje,
-            error = false
-        ) {
-
-            const toast =
-                document.getElementById(
-                    "toast"
-                );
-
-
-            if (!toast) {
-                return;
-            }
-
-
-            toast.textContent =
-                mensaje;
-
-
-            toast.classList.toggle(
-                "error",
-                Boolean(error)
-            );
-
-
-            toast.classList.add(
-                "mostrar"
-            );
-
-
-            clearTimeout(
-                mostrarToast.timeout
-            );
-
-
-            mostrarToast.timeout =
-                setTimeout(
-                    () => {
-
-                        toast.classList.remove(
-                            "mostrar"
-                        );
-
-                    },
-                    2500
-                );
-        }
-
-
-        /* =====================================================
-           EVENTOS
-        ===================================================== */
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
-
-                actualizarContadorCarrito();
-
-
-                cargarProductos();
-
-
-                const buscador =
-                    document.getElementById(
-                        "buscador"
-                    );
-
-
-                const btnBuscar =
-                    document.getElementById(
-                        "btnBuscar"
-                    );
-
-
-                if (btnBuscar) {
-
-                    btnBuscar.addEventListener(
-                        "click",
-                        realizarBusqueda
-                    );
-                }
-
-
-                if (buscador) {
-
-                    buscador.addEventListener(
-                        "keydown",
-                        function (event) {
-
-                            if (
-                                event.key ===
-                                "Enter"
-                            ) {
-
-                                realizarBusqueda();
-                            }
-                        }
-                    );
-
-
-                    buscador.addEventListener(
-                        "input",
-                        function () {
-
-                            textoBusqueda =
-                                String(
-                                    buscador.value || ""
-                                ).trim();
-
-                            aplicarFiltros();
-                        }
-                    );
-                }
-
-
-                document
-                    .querySelectorAll(
-                        ".categoria-link"
-                    )
-                    .forEach(
-                        elemento => {
-
-                            elemento.addEventListener(
-                                "click",
-                                function () {
-
-                                    seleccionarCategoria(
-                                        this.dataset.categoria
-                                    );
-                                }
-                            );
-                        }
-                    );
-
-
-                document
-                    .querySelectorAll(
-                        ".category-card"
-                    )
-                    .forEach(
-                        elemento => {
-
-                            elemento.addEventListener(
-                                "click",
-                                function () {
-
-                                    seleccionarCategoria(
-                                        this.dataset.categoria
-                                    );
-                                }
-                            );
-                        }
-                    );
-
-
-                const orden =
-                    document.getElementById(
-                        "ordenProductos"
-                    );
-
-
-                if (orden) {
-
-                    orden.addEventListener(
-                        "change",
-                        function () {
-
-                            ordenActual =
-                                this.value;
-
-                            aplicarFiltros();
-                        }
-                    );
-                }
-
-
-                const btnCarrito =
-                    document.getElementById(
-                        "btnCarrito"
-                    );
-
-
-                if (btnCarrito) {
-
-                    btnCarrito.addEventListener(
-                        "click",
-                        irAlCarrito
-                    );
-                }
-
-
-                const footerCarrito =
-                    document.getElementById(
-                        "footerCarrito"
-                    );
-
-
-                if (footerCarrito) {
-
-                    footerCarrito.addEventListener(
-                        "click",
-                        irAlCarrito
-                    );
-                }
-
-
-                const btnVerProductos =
-                    document.getElementById(
-                        "btnVerProductos"
-                    );
-
-
-                if (btnVerProductos) {
-
-                    btnVerProductos.addEventListener(
-                        "click",
-                        function () {
-
-                            const section =
-                                document.getElementById(
-                                    "productos"
-                                );
-
-                            if (section) {
-
-                                section.scrollIntoView({
-                                    behavior: "smooth"
-                                });
-                            }
-                        }
-                    );
-                }
-
-
-                const btnVerOfertas =
-                    document.getElementById(
-                        "btnVerOfertas"
-                    );
-
-
-                if (btnVerOfertas) {
-
-                    btnVerOfertas.addEventListener(
-                        "click",
-                        function () {
-
-                            seleccionarCategoria(
-                                "ofertas"
-                            );
-                        }
-                    );
-                }
-
-
-                const btnInicioSesion =
-                    document.getElementById(
-                        "btnInicioSesion"
-                    );
-
-
-                if (btnInicioSesion) {
-
-                    btnInicioSesion.addEventListener(
-                        "click",
-                        function () {
-
-                            mostrarToast(
-                                "El inicio de sesión estará disponible próximamente."
-                            );
-                        }
-                    );
-                }
-
-            }
-        );
-
-    </script>
+                <!-- PRODUCT 3 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=300" alt="Audífonos Gamer">
+                    <div>
+                        <div class="product-category">Gaming</div>
+                        <div class="product-title">Audífonos Gamer con Micrófono HD</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.6 <span>(210)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$23.400</span>
+                            <span class="discount-tag">-22%</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 4 -->
+                <div class="product-card">
+                    <button class="wishlist-btn"><i class="fa-regular fa-heart"></i></button>
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300" alt="Mochila">
+                    <div>
+                        <div class="product-category">Accesorios</div>
+                        <div class="product-title">Mochila Multifuncional Impermeable Laptop</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.5 <span>(64)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$12.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 5 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=300" alt="Cargador">
+                    <div>
+                        <div class="product-category">Tecnología</div>
+                        <div class="product-title">Cargador Rápido USB-C 65W GaN</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.9 <span>(312)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$14.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 6 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=300" alt="Organizador">
+                    <div>
+                        <div class="product-category">Hogar</div>
+                        <div class="product-title">Organizador Multiuso para Escritorio y Casa</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.4 <span>(42)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$9.990</span>
+                            <span class="discount-tag">-15%</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 7 -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300" alt="Parlante">
+                    <div>
+                        <div class="product-category">Electrónica</div>
+                        <div class="product-title">Parlante Bluetooth Portátil Resistente al Agua</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.7 <span>(180)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$19.990</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+                <!-- PRODUCT 8 -->
+                <div class="product-card">
+                    <span class="badge-offer">Oferta</span>
+                    <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=300" alt="Lámpara">
+                    <div>
+                        <div class="product-category">Hogar</div>
+                        <div class="product-title">Lámpara LED Inteligente RGB con App</div>
+                        <div class="rating"><i class="fa-solid fa-star"></i> 4.6 <span>(88)</span></div>
+                        <div class="price-container">
+                            <span class="price-main">$16.240</span>
+                            <span class="discount-tag">-18%</span>
+                        </div>
+                        <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis Chile</div>
+                    </div>
+                    <button class="btn-add-cart">Agregar al carrito</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROMO BANNER BOTTOM -->
+        <section class="bottom-banner">
+            <div>
+                <span style="font-size: 11px; font-weight: bold; text-transform: uppercase; color: #555;">Ofertas FlipFinder</span>
+                <h3>Grandes productos. Mejores precios.</h3>
+                <p>Descubre productos seleccionados con garantías especiales.</p>
+            </div>
+            <div class="percent-icon">%</div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>FlipFinder</h4>
+                <p>Tu marketplace online de confianza para productos seleccionados.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Comprar</h4>
+                <ul>
+                    <li><a href="#">Ofertas</a></li>
+                    <li><a href="#">Categorías</a></li>
+                    <li><a href="#">Populares</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compra segura</h4>
+                <p><i class="fa-solid fa-lock"></i> Pago protegido con cifrado SSL.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
-```
