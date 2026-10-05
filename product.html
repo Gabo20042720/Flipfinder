@@ -10,12 +10,13 @@
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; color: #333; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
 
-    /* Header corto */
     header { background: #fff159; padding: 12px 0; border-bottom: 1px solid #e0d44d; }
     .header-content { display: flex; align-items: center; justify-content: space-between; }
     .logo { font-size: 24px; font-weight: 800; color: #2d3277; text-decoration: none; }
 
-    /* Contenedor Producto */
+    .header-actions { display: flex; align-items: center; gap: 20px; font-size: 14px; }
+    .header-actions a { color: #333; text-decoration: none; }
+
     .product-detail-container {
       background: #fff;
       border-radius: 8px;
@@ -27,59 +28,17 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    .product-gallery img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
+    .product-gallery img { width: 100%; max-height: 400px; object-fit: contain; border-radius: 8px; }
     .product-info h1 { font-size: 22px; margin-bottom: 12px; color: #333; }
     .product-category { font-size: 12px; color: #888; text-transform: uppercase; margin-bottom: 8px; }
     .product-price { font-size: 32px; font-weight: 700; color: #333; margin: 16px 0; }
     .shipping-badge { color: #00a650; font-weight: 600; font-size: 14px; margin-bottom: 16px; }
 
-    /* Caja de Compra */
-    .buy-box {
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 16px;
-      background: #fafafa;
-      height: fit-content;
-    }
+    .buy-box { border: 1px solid #eee; border-radius: 8px; padding: 16px; background: #fafafa; height: fit-content; }
+    .btn-buy-now { width: 100%; background: #3483fa; color: #fff; border: none; padding: 12px; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 8px; }
+    .btn-add-cart { width: 100%; background: rgba(65, 137, 230, 0.15); color: #3483fa; border: none; padding: 12px; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; }
 
-    .btn-buy-now {
-      width: 100%;
-      background: #3483fa;
-      color: #fff;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-bottom: 8px;
-    }
-
-    .btn-add-cart {
-      width: 100%;
-      background: rgba(65, 137, 230, 0.15);
-      color: #3483fa;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .description-box {
-      grid-column: 1 / -1;
-      border-top: 1px solid #eee;
-      padding-top: 24px;
-      margin-top: 16px;
-    }
-
+    .description-box { grid-column: 1 / -1; border-top: 1px solid #eee; padding-top: 24px; margin-top: 16px; }
     .description-box h2 { font-size: 18px; margin-bottom: 12px; }
     .description-box p { color: #555; line-height: 1.6; }
   </style>
@@ -89,7 +48,10 @@
   <header>
     <div class="container header-content">
       <a href="index.html" class="logo"><i class="fa-solid fa-bolt"></i> FlipFinder</a>
-      <a href="index.html" style="text-decoration: none; color: #333;"><i class="fa-solid fa-arrow-left"></i> Volver al catálogo</a>
+      <div class="header-actions">
+        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+        <a href="checkout.html"><i class="fa-solid fa-cart-shopping"></i> Carrito (0)</a>
+      </div>
     </div>
   </header>
 
@@ -101,58 +63,57 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
+  <script src="cart.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      // 1. Obtener el ID del producto desde la URL
       const urlParams = new URLSearchParams(window.location.search);
       const productId = urlParams.get('id');
 
+      // Si entra a product.html sin parametro ?id= lo devuelve al index para evitar pantalla blanca
       if (!productId) {
         window.location.href = 'index.html';
         return;
       }
 
-      // 2. Consultar el producto específico en Supabase
-      const { data: prod, error } = await supabase
-        .from('productos')
-        .select('*')
-        .eq('id', productId)
-        .single();
+      try {
+        const { data: prod, error } = await supabase
+          .from('productos')
+          .select('*')
+          .eq('id', productId)
+          .single();
 
-      if (error || !prod) {
-        document.getElementById('productDetail').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: red;">Producto no encontrado.</p>';
-        return;
+        if (error || !prod) {
+          document.getElementById('productDetail').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: red; padding: 40px;">Producto no encontrado.</p>';
+          return;
+        }
+
+        document.title = `${prod.nombre} | FlipFinder`;
+        document.getElementById('productDetail').innerHTML = `
+          <div class="product-gallery">
+            <img src="${prod.imagen || 'https://via.placeholder.com/400'}" alt="${prod.nombre}">
+          </div>
+          <div class="product-info">
+            <div class="product-category">${prod.categoria || 'General'}</div>
+            <h1>${prod.nombre}</h1>
+            <div class="shipping-badge"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
+            <div class="product-price">$${Number(prod.precio).toLocaleString('es-CL')}</div>
+            <p style="color: #666; font-size: 14px;">Stock: <strong>${prod.stock ?? 1} disponibles</strong></p>
+          </div>
+          <div class="buy-box">
+            <p style="font-size: 13px; color: #00a650; font-weight: 600; margin-bottom: 12px;"><i class="fa-solid fa-shield-halved"></i> Compra Protegida</p>
+            <button class="btn-buy-now" onclick="agregarAlCarrito('${prod.id}'); window.location.href='checkout.html';">Comprar ahora</button>
+            <button class="btn-add-cart" onclick="agregarAlCarrito('${prod.id}')">Agregar al carrito</button>
+          </div>
+          <div class="description-box">
+            <h2>Descripción del producto</h2>
+            <p>${prod.descripcion || 'Sin descripción disponible.'}</p>
+          </div>
+        `;
+      } catch (err) {
+        console.error(err);
+        document.getElementById('productDetail').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: red; padding: 40px;">Error al cargar la información.</p>';
       }
-
-      // 3. Renderizar detalles
-      document.title = `${prod.nombre} | FlipFinder`;
-      document.getElementById('productDetail').innerHTML = `
-        <div class="product-gallery">
-          <img src="${prod.imagen || 'https://via.placeholder.com/400'}" alt="${prod.nombre}">
-        </div>
-
-        <div class="product-info">
-          <div class="product-category">${prod.categoria || 'General'}</div>
-          <h1>${prod.nombre}</h1>
-          <div class="shipping-badge"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
-          <div class="product-price">$${Number(prod.precio).toLocaleString('es-CL')}</div>
-          <p style="color: #666; font-size: 14px;">Stock disponible: <strong>${prod.stock ?? 1} unidades</strong></p>
-        </div>
-
-        <div class="buy-box">
-          <p style="font-size: 13px; color: #00a650; font-weight: 600; margin-bottom: 12px;">
-            <i class="fa-solid fa-shield-halved"></i> Compra Protegida
-          </p>
-          <button class="btn-buy-now">Comprar ahora</button>
-          <button class="btn-add-cart">Agregar al carrito</button>
-        </div>
-
-        <div class="description-box">
-          <h2>Descripción del producto</h2>
-          <p>${prod.descripcion || 'Sin descripción disponible por el momento.'}</p>
-        </div>
-      `;
     });
   </script>
 </body>

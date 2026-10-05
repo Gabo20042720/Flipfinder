@@ -3,44 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalle del Producto | FlipFinder</title>
+  <title>FlipFinder | Tu marketplace online de confianza</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f5f5f5; color: #333; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 16px; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f5f5f5; color: #333; }
+    .container { max-width: 1350px; margin: 0 auto; padding: 0 16px; }
 
-    header { background: #fff159; padding: 12px 0; border-bottom: 1px solid #e0d44d; }
-    .header-content { display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 24px; font-weight: 800; color: #2d3277; text-decoration: none; }
+    header { background-color: #fff159; padding: 12px 0 8px; border-bottom: 1px solid #e0d44d; position: sticky; top: 0; z-index: 1000; }
+    .header-content { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-size: 26px; font-weight: 800; color: #2d3277; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+
+    .search-container { flex: 1; max-width: 680px; position: relative; }
+    .search-box { display: flex; align-items: center; background: #fff; border-radius: 4px; border: 1px solid transparent; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    .search-box input { width: 100%; padding: 11px 16px; border: none; outline: none; font-size: 15px; }
+    .search-box button { background: none; border: none; padding: 0 16px; color: #666; cursor: pointer; border-left: 1px solid #eee; height: 40px; }
+
+    .search-suggestions { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-radius: 0 0 8px 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-top: 2px; display: none; z-index: 1001; }
+    .search-suggestions.active { display: block; }
+    .suggestion-item { padding: 10px 16px; display: flex; justify-content: space-between; cursor: pointer; border-bottom: 1px solid #f5f5f5; font-size: 14px; }
+    .suggestion-item:hover { background-color: #f8f9fa; }
 
     .header-actions { display: flex; align-items: center; gap: 20px; font-size: 14px; }
-    .header-actions a { color: #333; text-decoration: none; }
+    .header-actions a { color: #333; text-decoration: none; display: flex; align-items: center; gap: 6px; }
 
-    .product-detail-container {
-      background: #fff;
-      border-radius: 8px;
-      margin: 24px auto;
-      padding: 24px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 300px;
-      gap: 24px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
+    .sub-nav { background-color: #fff159; padding: 8px 0 10px; font-size: 14px; }
+    .sub-nav-content { display: flex; gap: 24px; }
+    .sub-nav a { color: #333; text-decoration: none; opacity: 0.85; }
 
-    .product-gallery img { width: 100%; max-height: 400px; object-fit: contain; border-radius: 8px; }
-    .product-info h1 { font-size: 22px; margin-bottom: 12px; color: #333; }
-    .product-category { font-size: 12px; color: #888; text-transform: uppercase; margin-bottom: 8px; }
-    .product-price { font-size: 32px; font-weight: 700; color: #333; margin: 16px 0; }
-    .shipping-badge { color: #00a650; font-weight: 600; font-size: 14px; margin-bottom: 16px; }
+    .hero-banner { background-color: #fff159; padding: 16px 0 28px; margin-bottom: 24px; }
+    .banner-card { background: #fff; border-radius: 8px; padding: 24px; }
 
-    .buy-box { border: 1px solid #eee; border-radius: 8px; padding: 16px; background: #fafafa; height: fit-content; }
-    .btn-buy-now { width: 100%; background: #3483fa; color: #fff; border: none; padding: 12px; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; margin-bottom: 8px; }
-    .btn-add-cart { width: 100%; background: rgba(65, 137, 230, 0.15); color: #3483fa; border: none; padding: 12px; border-radius: 6px; font-size: 15px; font-weight: 600; cursor: pointer; }
+    .trust-badges { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; background: #fff; padding: 16px; border-radius: 8px; }
+    .badge-item { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+    .badge-item i { font-size: 20px; color: #3483fa; }
 
-    .description-box { grid-column: 1 / -1; border-top: 1px solid #eee; padding-top: 24px; margin-top: 16px; }
-    .description-box h2 { font-size: 18px; margin-bottom: 12px; }
-    .description-box p { color: #555; line-height: 1.6; }
+    .section-title { font-size: 20px; font-weight: 600; margin-bottom: 16px; }
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+    .product-card { background: #fff; border-radius: 8px; padding: 12px; border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .product-tag { position: absolute; top: 8px; left: 8px; background: #00a650; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+    .product-img { width: 100%; height: 160px; object-fit: contain; margin-bottom: 12px; }
+    .product-category { font-size: 11px; color: #999; text-transform: uppercase; font-weight: 600; }
+    .product-title { font-size: 14px; font-weight: 500; color: #333; margin: 4px 0 8px; height: 36px; overflow: hidden; }
+    .product-price { font-size: 18px; font-weight: 700; color: #333; margin-bottom: 4px; }
+    .shipping-tag { font-size: 12px; color: #00a650; font-weight: 600; margin-bottom: 12px; }
+    .btn-add-cart { width: 100%; background-color: #3483fa; color: #fff; border: none; padding: 8px; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+    footer { background-color: #222; color: #ccc; padding: 32px 0 16px; margin-top: 40px; font-size: 13px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 24px; }
+    .footer-bottom { border-top: 1px solid #333; padding-top: 16px; text-align: center; color: #777; }
   </style>
 </head>
 <body>
@@ -48,64 +59,137 @@
   <header>
     <div class="container header-content">
       <a href="index.html" class="logo"><i class="fa-solid fa-bolt"></i> FlipFinder</a>
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Buscar productos, marcas y más..." autocomplete="off">
+          <button type="button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="search-suggestions" id="suggestionsBox"></div>
+      </div>
       <div class="header-actions">
-        <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Volver</a>
+        <a href="#"><i class="fa-regular fa-user"></i> Mi cuenta</a>
         <a href="checkout.html"><i class="fa-solid fa-cart-shopping"></i> Carrito (0)</a>
       </div>
     </div>
   </header>
 
+  <nav class="sub-nav">
+    <div class="container sub-nav-content">
+      <a href="#"><i class="fa-solid fa-bars"></i> Categorías</a>
+      <a href="#"><i class="fa-solid fa-fire"></i> Ofertas</a>
+      <a href="#">Tecnología</a>
+      <a href="#">Gaming</a>
+      <a href="#">Hogar</a>
+    </div>
+  </nav>
+
+  <div class="hero-banner">
+    <div class="container">
+      <div class="banner-card">
+        <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
+        <p>Descubre los mejores productos seleccionados para ti.</p>
+      </div>
+    </div>
+  </div>
+
   <main class="container">
-    <div class="product-detail-container" id="productDetail">
-      <p style="grid-column: 1/-1; text-align: center; padding: 40px;">Cargando producto...</p>
+    <div class="trust-badges">
+      <div class="badge-item"><i class="fa-solid fa-truck-fast"></i><div><strong>Envíos a todo Chile</strong><br>Recibe rápido</div></div>
+      <div class="badge-item"><i class="fa-solid fa-shield-halved"></i><div><strong>Compra segura</strong><br>Protegida</div></div>
+      <div class="badge-item"><i class="fa-regular fa-credit-card"></i><div><strong>Mercado Pago</strong><br>Pagos seguros</div></div>
+      <div class="badge-item"><i class="fa-solid fa-star"></i><div><strong>Garantía</strong><br>Calidad asegurada</div></div>
+    </div>
+
+    <h2 class="section-title">Productos para ti</h2>
+    <div class="products-grid" id="productsGrid">
+      <p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">Cargando catálogo...</p>
     </div>
   </main>
 
-  <!-- Scripts -->
+  <footer>
+    <div class="container footer-bottom">&copy; 2026 FlipFinder. Todos los derechos reservados.</div>
+  </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
   <script src="cart.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', async () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get('id');
+      const grid = document.getElementById('productsGrid');
+      const searchInput = document.getElementById('searchInput');
+      const suggestionsBox = document.getElementById('suggestionsBox');
 
-      if (!productId) return window.location.href = 'index.html';
+      try {
+        const { data: productos, error } = await supabase
+          .from('productos')
+          .select('*')
+          .eq('activo', true);
 
-      const { data: prod, error } = await supabase
-        .from('productos')
-        .select('*')
-        .eq('id', productId)
-        .single();
+        if (error) throw error;
 
-      if (error || !prod) {
-        document.getElementById('productDetail').innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: red;">Producto no encontrado.</p>';
-        return;
+        if (!productos || productos.length === 0) {
+          grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No hay productos disponibles.</p>';
+          return;
+        }
+
+        grid.innerHTML = productos.map(prod => {
+          const etiqueta = prod.oferta ? 'Oferta' : (prod.destacado ? 'Destacado' : '');
+          const imagenUrl = prod.imagen || 'https://via.placeholder.com/200';
+          const categoriaText = prod.categoria || 'General';
+          const tituloText = prod.nombre || 'Producto';
+          const precioFormatted = Number(prod.precio || 0).toLocaleString('es-CL');
+
+          return `
+            <div class="product-card" data-title="${tituloText.toLowerCase()}" data-category="${categoriaText.toLowerCase()}">
+              ${etiqueta ? `<span class="product-tag">${etiqueta}</span>` : ''}
+              <a href="product.html?id=${prod.id}" style="text-decoration: none; color: inherit;">
+                <img src="${imagenUrl}" alt="${tituloText}" class="product-img">
+                <div class="product-category">${categoriaText}</div>
+                <h3 class="product-title">${tituloText}</h3>
+              </a>
+              <div class="product-price">$${precioFormatted}</div>
+              <div class="shipping-tag"><i class="fa-solid fa-truck"></i> Envío gratis</div>
+              <button class="btn-add-cart" onclick="agregarAlCarrito('${prod.id}')">Agregar al carrito</button>
+            </div>
+          `;
+        }).join('');
+
+        // Buscador
+        const categories = [...new Set(productos.map(p => p.categoria).filter(Boolean))];
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.trim().toLowerCase();
+          document.querySelectorAll('.product-card').forEach(card => {
+            const title = card.getAttribute('data-title') || '';
+            const category = card.getAttribute('data-category') || '';
+            card.style.display = (title.includes(query) || category.includes(query)) ? 'flex' : 'none';
+          });
+
+          if (!query) return suggestionsBox.classList.remove('active');
+
+          const matchedCats = categories.filter(c => c.toLowerCase().includes(query));
+          const matchedProds = productos.filter(p => (p.nombre || '').toLowerCase().includes(query));
+
+          let html = '';
+          matchedCats.forEach(cat => { html += `<div class="suggestion-item" data-value="${cat}"><span><i class="fa-solid fa-folder"></i> En <strong>${cat}</strong></span></div>`; });
+          matchedProds.slice(0, 5).forEach(p => { html += `<div class="suggestion-item" data-value="${p.nombre}"><span><i class="fa-solid fa-magnifying-glass"></i> ${p.nombre}</span></div>`; });
+
+          if (html) { suggestionsBox.innerHTML = html; suggestionsBox.classList.add('active'); }
+          else { suggestionsBox.classList.remove('active'); }
+        });
+
+        suggestionsBox.addEventListener('click', (e) => {
+          const item = e.target.closest('.suggestion-item');
+          if (!item) return;
+          searchInput.value = item.dataset.value;
+          suggestionsBox.classList.remove('active');
+          searchInput.dispatchEvent(new Event('input'));
+        });
+
+      } catch (err) {
+        console.error(err);
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: red; padding: 40px;">Error al cargar productos desde Supabase.</p>';
       }
-
-      document.title = `${prod.nombre} | FlipFinder`;
-      document.getElementById('productDetail').innerHTML = `
-        <div class="product-gallery">
-          <img src="${prod.imagen || 'https://via.placeholder.com/400'}" alt="${prod.nombre}">
-        </div>
-        <div class="product-info">
-          <div class="product-category">${prod.categoria || 'General'}</div>
-          <h1>${prod.nombre}</h1>
-          <div class="shipping-badge"><i class="fa-solid fa-truck"></i> Envío gratis a todo Chile</div>
-          <div class="product-price">$${Number(prod.precio).toLocaleString('es-CL')}</div>
-          <p style="color: #666; font-size: 14px;">Stock: <strong>${prod.stock ?? 1} disponibles</strong></p>
-        </div>
-        <div class="buy-box">
-          <p style="font-size: 13px; color: #00a650; font-weight: 600; margin-bottom: 12px;"><i class="fa-solid fa-shield-halved"></i> Compra Protegida</p>
-          <button class="btn-buy-now" onclick="agregarAlCarrito('${prod.id}'); window.location.href='checkout.html';">Comprar ahora</button>
-          <button class="btn-add-cart" onclick="agregarAlCarrito('${prod.id}')">Agregar al carrito</button>
-        </div>
-        <div class="description-box">
-          <h2>Descripción del producto</h2>
-          <p>${prod.descripcion || 'Sin descripción disponible.'}</p>
-        </div>
-      `;
     });
   </script>
 </body>
