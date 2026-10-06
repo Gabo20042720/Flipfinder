@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlipFinder - Tu Marketplace Principal</title>
-  <!-- Enlace al nuevo diseño CSS en la carpeta css/ -->
+  <!-- Enlace al CSS en la carpeta css/ -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -86,10 +86,28 @@
     </section>
   </main>
 
+  <!-- PANEL LATERAL DEL CARRITO (DRAWER) -->
+  <div id="cartDrawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Tu Carrito</h3>
+      <button id="closeCart" class="close-cart-btn">&times;</button>
+    </div>
+    <div id="cartItems" class="cart-drawer-body">
+      <!-- Se llena dinámicamente desde JS -->
+    </div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <strong id="cartTotal">$0</strong>
+      </div>
+      <a href="pages/checkout.html" class="btn-checkout">Proceder al Pago</a>
+    </div>
+  </div>
+
   <!-- NOTIFICACIÓN TOAST -->
   <div id="toast" class="toast"></div>
 
-  <!-- ENLACES A LOS ARCHIVOS JAVASCRIPT EN LA CARPETA js/ -->
+  <!-- ENLACES A JS -->
   <script src="js/supabase-config.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
