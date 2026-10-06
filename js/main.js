@@ -2,24 +2,31 @@ document.addEventListener('DOMContentLoaded', async () => {
   const productosContainer = document.getElementById('productos-container');
 
   try {
-    // Verificar si la variable de supabase existe en supabase-config.js
-    const client = window.supabaseClient || window.supabase;
+    // Obtener la instancia de Supabase
+    const client = window.supabaseClient || (typeof supabase !== 'undefined' ? supabase : null);
 
-    if (!client) {
-      throw new Error("Cliente de Supabase no inicializado");
+    if (!client || typeof client.from !== 'function') {
+      console.error('El cliente de Supabase no se ha inicializado correctamente.');
+      productosContainer.innerHTML = '<p class="error-mensaje">Error de configuración con la base de datos.</p>';
+      return;
     }
 
+    // Consultar la tabla de productos
     const { data: productos, error } = await client
       .from('productos')
       .select('*');
 
-    if (error) throw error;
+    if (error) {
+      console.error('Error desde Supabase:', error);
+      throw error;
+    }
 
     if (!productos || productos.length === 0) {
       productosContainer.innerHTML = '<p class="no-productos">No hay productos disponibles por el momento.</p>';
       return;
     }
 
+    // Limpiar contenedor y rendirizar tarjetas
     productosContainer.innerHTML = '';
 
     productos.forEach(producto => {
@@ -33,10 +40,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       }).format(producto.precio || 0);
 
       card.innerHTML = `
-        <img src="${producto.imagen_url || 'https://via.placeholder.com/300'}" alt="${producto.nombre}">
+        <img src="${producto.imagen_url || 'https://via.placeholder.com/300'}" alt="${producto.nombre || 'Producto'}">
         <div class="product-info">
           <div class="product-price">${precioFormateado}</div>
-          <h4 class="product-title">${producto.nombre}</h4>
+          <h4 class="product-title">${producto.nombre || 'Sin título'}</h4>
           <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
         </div>
       `;
@@ -45,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
   } catch (err) {
-    console.error('Error al consultar productos en Supabase:', err);
+    console.error('Error al cargar productos:', err);
     if (productosContainer) {
       productosContainer.innerHTML = '<p class="error-mensaje">Ocurrió un error al cargar el catálogo de productos.</p>';
     }
