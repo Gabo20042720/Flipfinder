@@ -1,13 +1,9 @@
-const SUPABASE_URL = "https://nwtzzcxmpaxiyihjxdin.supabase.co";
+var SUPABASE_URL = "https://nwtzzcxmpaxiyihjxdin.supabase.co";
+var SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZgsxNyLJk8Bteys0Qp2uLQ_nFF5eBBx";
 
-// Pega dentro de las comillas la clave que empieza por eyJ... copiada de Legacy anon:
-const SUPABASE_ANON_KEY = "sb_publishable_ZgsxNyLJk8BteysOQp2uLQ_nFF5eBBx";
-
-// Guardamos la referencia a la librería cargada en HTML
-const supabaseLib = window.supabase;
-
-// Creamos e inicializamos el cliente
-const client = supabaseLib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-// Lo dejamos disponible globalmente
-window.supabase = client;
+// Inicializamos el cliente oficial y reemplazamos window.supabase
+if (window.supabase && typeof window.supabase.createClient === 'function') {
+    window.supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+} else if (typeof supabase !== 'undefined' && typeof supabase.createClient === 'function') {
+    window.supabase = supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+}
