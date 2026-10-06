@@ -1,72 +1,419 @@
-<header class="navbar">
-  <div class="logo">
-    <a href="#">FlipFinder</a>
-  </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlipFinder - Tu Marketplace</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
 
-  <!-- Botón de Categorías con Menú Desplegable -->
-  <div class="category-menu-container">
-    <button id="category-btn" class="category-btn">
-      <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-      </svg>
-      Categorías
-    </button>
+    body {
+      background-color: #0b1528;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-    <nav id="category-drawer" class="category-drawer">
-      <ul class="category-list">
-        <li class="category-item">
-          <a href="#">Tecnología</a>
-          <span class="arrow">&rsaquo;</span>
-        </li>
-        <li class="category-item">
-          <a href="#">Hogar y Electro</a>
-          <span class="arrow">&rsaquo;</span>
-        </li>
-        <li class="category-item">
-          <a href="#">Moda</a>
-          <span class="arrow">&rsaquo;</span>
-        </li>
-        <li class="category-item">
-          <a href="#">Deportes</a>
-          <span class="arrow">&rsaquo;</span>
-        </li>
-      </ul>
-    </nav>
-  </div>
+    /* BARRA NAVEGACIÓN PRINCIPAL */
+    header {
+      background-color: #0b1528;
+      border-bottom: 1px solid #1a2942;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-  <!-- Barra de búsqueda -->
-  <div class="search-bar">
-    <input type="text" placeholder="Buscar productos, marcas y más...">
-    <button type="submit">🔍</button>
-  </div>
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-  <!-- Acciones -->
-  <div class="user-actions">
-    <a href="#">Mi cuenta</a>
-    <a href="#" class="cart-btn">Carrito (3)</a>
-  </div>
-</header>
-<!-- Todo el contenido de tu página va arriba -->
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #38bdf8;
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
 
-    <!-- El script de Categorías se coloca al final -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const categoryBtn = document.getElementById('category-btn');
-        const categoryDrawer = document.getElementById('category-drawer');
+    .menu-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-grow: 1;
+      max-width: 700px;
+    }
 
-        // Abrir / Cerrar al hacer clic en el botón
-        categoryBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          categoryDrawer.classList.toggle('active');
-        });
+    /* BOTÓN CATEGORÍAS */
+    .cat-dropdown {
+      position: relative;
+    }
 
-        // Cerrar si se hace clic fuera del menú
-        document.addEventListener('click', (e) => {
-          if (!categoryDrawer.contains(e.target) && !categoryBtn.contains(e.target)) {
-            categoryDrawer.classList.remove('active');
-          }
-        });
-      });
-    </script>
-  </body>
+    .cat-btn {
+      background-color: #38bdf8;
+      color: #0b1528;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.2s;
+    }
+
+    .cat-btn:hover {
+      background-color: #7dd3fc;
+    }
+
+    /* MENÚ DESPLEGABLE */
+    .cat-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 240px;
+      background-color: #112238;
+      border: 1px solid #1e3a5f;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      display: none;
+      overflow: hidden;
+      z-index: 200;
+    }
+
+    .cat-menu.show {
+      display: block;
+    }
+
+    .cat-menu ul {
+      list-style: none;
+    }
+
+    .cat-menu li a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 18px;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid #1a2e48;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cat-menu li:last-child a {
+      border-bottom: none;
+    }
+
+    .cat-menu li a:hover {
+      background-color: #1a3456;
+      color: #38bdf8;
+    }
+
+    /* BUSCADOR */
+    .search-box {
+      display: flex;
+      flex-grow: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #e0f2fe;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      outline: none;
+      color: #0f172a;
+      font-size: 14px;
+    }
+
+    .search-box button {
+      background-color: #0284c7;
+      border: none;
+      color: white;
+      padding: 0 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ACCIONES DE USUARIO */
+    .user-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .user-nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .cart-btn {
+      background-color: #0284c7;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    /* SECCIÓN PRINCIPAL */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #94a3b8;
+      font-size: 16px;
+    }
+
+    /* SECCIÓN VENTAJAS */
+    .features {
+      max-width: 1280px;
+      margin: 0 auto 50px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background-color: #112238;
+      border: 1px solid #1a2e48;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .feature-icon {
+      font-size: 24px;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* GRILLA DE PRODUCTOS */
+    .products-section {
+      max-width: 1280px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    .products-section h2 {
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .grid-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      background-color: #112238;
+      border: 1px solid #1a2e48;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .product-img {
+      width: 100%;
+      height: 180px;
+      background-color: #0b1528;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 50px;
+    }
+
+    .product-name {
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .product-price {
+      font-weight: 800;
+      font-size: 18px;
+      color: #38bdf8;
+      margin-bottom: 16px;
+    }
+
+    .btn-add {
+      width: 100%;
+      background-color: #e0f2fe;
+      color: #0b1528;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA DE NAVEGACIÓN -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">FlipFinder</a>
+
+      <div class="menu-bar">
+        <!-- MENÚ DE CATEGORÍAS -->
+        <div class="cat-dropdown">
+          <button class="cat-btn" id="catBtn">
+            <span>☰</span> Categorías
+          </button>
+          <div class="cat-menu" id="catMenu">
+            <ul>
+              <li><a href="#">Tecnología <span>›</span></a></li>
+              <li><a href="#">Hogar y Electro <span>›</span></a></li>
+              <li><a href="#">Moda <span>›</span></a></li>
+              <li><a href="#">Deportes <span>›</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- BUSCADOR -->
+        <div class="search-box">
+          <input type="text" placeholder="Buscar productos, marcas y más...">
+          <button type="submit">🔍</button>
+        </div>
+      </div>
+
+      <!-- ACCIONES DE USUARIO -->
+      <div class="user-nav">
+        <a href="#">Mi cuenta</a>
+        <a href="#" class="cart-btn">Carrito (3)</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN HERO -->
+  <section class="hero">
+    <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
+    <p>Descubre los mejores productos seleccionados para ti.</p>
+  </section>
+
+  <!-- VENTAJAS -->
+  <section class="features">
+    <div class="feature-card">
+      <span class="feature-icon">🚚</span>
+      <div>
+        <div class="feature-title">Envíos a todo Chile</div>
+        <div class="feature-desc">Recibe rápido</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🛡️</span>
+      <div>
+        <div class="feature-title">Compra segura</div>
+        <div class="feature-desc">Protegida</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💳</span>
+      <div>
+        <div class="feature-title">Mercado Pago</div>
+        <div class="feature-desc">Pagos seguros</div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">⭐</span>
+      <div>
+        <div class="feature-title">Garantía</div>
+        <div class="feature-desc">Calidad asegurada</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="products-section">
+    <h2>Productos para ti</h2>
+    <div class="grid-products">
+      <div class="product-card">
+        <div class="product-img">💻</div>
+        <div class="product-name">Laptop Mac</div>
+        <div class="product-price">$55.000</div>
+        <button class="btn-add">Añadir al carrito</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img">🥣</div>
+        <div class="product-name">Kitchen Mixer</div>
+        <div class="product-price">$25.000</div>
+        <button class="btn-add">Añadir al carrito</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img">👟</div>
+        <div class="product-name">Zapatillas Sport</div>
+        <div class="product-price">$20.000</div>
+        <button class="btn-add">Añadir al carrito</button>
+      </div>
+      <div class="product-card">
+        <div class="product-img">⚽</div>
+        <div class="product-name">Balón de Fútbol</div>
+        <div class="product-price">$10.000</div>
+        <button class="btn-add">Añadir al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    const catBtn = document.getElementById('catBtn');
+    const catMenu = document.getElementById('catMenu');
+
+    catBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      catMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!catMenu.contains(e.target) && !catBtn.contains(e.target)) {
+        catMenu.classList.remove('show');
+      }
+    });
+  </script>
+</body>
 </html>
