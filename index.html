@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlipFinder | Tu marketplace de confianza</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 
@@ -82,13 +82,14 @@
         <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPTS EN ORDEN CORRECTO -->
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <script src="supabase-config.js"></script>
     <script src="cart.js"></script>
 
     <script>
-        const PLACEHOLDER_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='100%25' height='100%25' fill='%231e293b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='18'%3ESin Imagen%3C/text%3E%3C/svg%3E";
+        // Imagen neutra de respaldo si la URL de la base de datos falla o es local
+        const FALLBACK_IMG = "https://placehold.co/400x400/1e293b/f8fafc?text=Producto+FlipFinder";
 
         async function cargarProductos() {
             const contenedor = document.getElementById('productos-container');
@@ -96,7 +97,7 @@
 
             try {
                 if (!window.supabase || typeof window.supabase.from !== 'function') {
-                    throw new Error("El cliente de Supabase no está listo.");
+                    throw new Error("Cliente de Supabase no inicializado.");
                 }
 
                 const { data: productos, error } = await window.supabase
@@ -110,16 +111,17 @@
                     return;
                 }
 
-                // Guardamos los productos en una variable global segura para accederlos sin romper sintaxis
+                // Guardamos la lista global para evitar concatenar strings en HTML onclick
                 window.catalogoProductos = productos;
 
                 contenedor.innerHTML = productos.map((prod, index) => {
-                    const imagenSrc = prod.imagen && prod.imagen.trim() !== '' ? prod.imagen : PLACEHOLDER_SVG;
+                    // Si la imagen es una ruta relativa que no existe localmente, usamos fallback
+                    let imagenSrc = prod.imagen && prod.imagen.startsWith('http') ? prod.imagen : FALLBACK_IMG;
                     const precio = prod.precio || 0;
 
                     return `
                         <div class="product-card">
-                            <img src="${imagenSrc}" alt="${prod.nombre || 'Producto'}" onerror="this.onerror=null; this.src='${PLACEHOLDER_SVG}';">
+                            <img src="${imagenSrc}" alt="${prod.nombre || 'Producto'}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
                             <h3>${prod.nombre || 'Producto sin nombre'}</h3>
                             <p class="price">$${Number(precio).toLocaleString('es-CL')}</p>
                             <button onclick="agregarPorIndice(${index})">
@@ -135,16 +137,19 @@
             }
         }
 
-        // Función que lee el producto desde el arreglo sin exponer strings vulnerables en la etiqueta HTML
+        // Manejo seguro del evento de agregar al carrito
         function agregarPorIndice(index) {
             const prod = window.catalogoProductos[index];
             if (!prod) return;
+
+            const imagen = prod.imagen && prod.imagen.startsWith('http') ? prod.imagen : FALLBACK_IMG;
             
-            const fnAgregar = window.addToCart || window.agregarAlCarrito;
-            if (typeof fnAgregar === 'function') {
-                fnAgregar(prod.id, prod.nombre, prod.precio, prod.imagen);
+            if (typeof window.addToCart === 'function') {
+                window.addToCart(prod.id, prod.nombre, prod.precio, imagen);
+            } else if (typeof window.agregarAlCarrito === 'function') {
+                window.agregarAlCarrito(prod.id, prod.nombre, prod.precio, imagen);
             } else {
-                alert("Error: la función de carrito no está disponible.");
+                alert("El sistema de carrito no está disponible.");
             }
         }
 
