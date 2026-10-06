@@ -17,23 +17,25 @@
   </header>
 
   <main class="main-container">
-    <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
+    <div class="product-detail-layout">
       
-      <!-- Galería -->
-      <div style="display: flex; gap: 15px;">
-        <div id="thumbnails-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
-        <div>
-          <img id="main-product-img" src="" alt="Producto" style="max-width: 400px; border-radius: 8px;">
+      <!-- Galería con límite de tamaño -->
+      <div class="gallery-wrapper">
+        <div id="thumbnails-container" class="thumbnails-list">
+          <!-- Miniaturas pequeñas aquí -->
+        </div>
+        <div class="main-image-wrapper">
+          <img id="main-product-img" src="" alt="Producto">
         </div>
       </div>
 
-      <!-- Información -->
-      <div style="flex: 1; min-width: 280px;">
-        <h1 id="product-title">Cargando...</h1>
-        <h2 id="product-price" style="color: #2b2b2b; margin: 15px 0;">$0</h2>
-        <p id="product-description" style="color: #666; margin-bottom: 15px;"></p>
-        <p id="product-stock" style="font-weight: bold; margin-bottom: 20px;"></p>
-        <button class="btn-primary">Agregar al carrito</button>
+      <!-- Información del Producto -->
+      <div class="product-details-info">
+        <h1 id="product-title">Cargando producto...</h1>
+        <h2 id="product-price" style="font-size: 2rem; color: #1a1a1a;">$0</h2>
+        <p id="product-description" style="color: #4a5568; line-height: 1.6;"></p>
+        <p id="product-stock" style="font-weight: 600; color: #2d3748;"></p>
+        <button class="btn-primary" style="padding: 12px 24px; font-size: 1rem; width: fit-content; margin-top: 10px;">Agregar al carrito</button>
       </div>
 
     </div>
