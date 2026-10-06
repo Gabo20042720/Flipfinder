@@ -3,115 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Pago exitoso - FlipFinder</title>
-
+  <title>¡Pago Exitoso! - FlipFinder</title>
+  <link rel="stylesheet" href="../css/style.css">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f5f7;
-      color: #222;
-    }
-
-    header {
-      background: #111;
-      color: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h2 {
-      margin: 0;
-    }
-
-    header a {
-      color: white;
-      text-decoration: none;
-    }
-
-    main {
-      min-height: calc(100vh - 70px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-    }
-
-    .card {
-      background: white;
-      max-width: 550px;
-      width: 100%;
-      padding: 45px 35px;
-      border-radius: 14px;
+    .status-container {
+      max-width: 500px;
+      margin: 4rem auto;
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       text-align: center;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     }
-
-    .icon {
-      font-size: 60px;
-      margin-bottom: 15px;
+    .icon-success {
+      font-size: 4rem;
+      color: #00A650;
+      margin-bottom: 1rem;
     }
-
-    h1 {
-      margin-bottom: 15px;
-    }
-
-    p {
-      color: #666;
-      line-height: 1.6;
-    }
-
-    .boton {
+    .btn-home {
       display: inline-block;
-      margin-top: 20px;
-      padding: 14px 25px;
-      background: #111;
-      color: white;
-      text-decoration: none;
+      margin-top: 1.5rem;
+      background: #009EE3;
+      color: #ffffff;
+      padding: 0.8rem 1.5rem;
       border-radius: 8px;
+      text-decoration: none;
       font-weight: bold;
-    }
-
-    .boton:hover {
-      opacity: 0.85;
     }
   </style>
 </head>
-
 <body>
 
   <header>
-    <h2>FlipFinder</h2>
-    <a href="index.html">← Volver a la tienda</a>
+    <div class="nav-container">
+      <a href="../index.html" class="logo">FlipFinder</a>
+    </div>
   </header>
 
   <main>
-    <div class="card">
-
-      <div class="icon">✅</div>
-
-      <h1>¡Pago exitoso!</h1>
-
-      <p>
-        Tu pago fue aprobado correctamente.
-      </p>
-
-      <p>
-        Gracias por comprar en FlipFinder.
-        Estamos preparando tu pedido.
-      </p>
-
-      <a class="boton" href="index.html">
-        Volver a la tienda
-      </a>
-
+    <div class="status-container">
+      <div class="icon-success">✓</div>
+      <h2>¡Muchas gracias por tu compra!</h2>
+      <p style="color: #666; margin-top: 0.5rem;">Hemos recibido tu pedido correctamente. Te enviaremos un correo con el detalle del envío.</p>
+      <a href="../index.html" class="btn-home">Volver a la tienda</a>
     </div>
   </main>
 

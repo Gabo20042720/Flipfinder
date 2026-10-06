@@ -3,114 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pago no realizado - FlipFinder</title>
-
+  <title>Pago Cancelado - FlipFinder</title>
+  <link rel="stylesheet" href="../css/style.css">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f5f7;
-      color: #222;
-    }
-
-    header {
-      background: #111;
-      color: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h2 {
-      margin: 0;
-    }
-
-    header a {
-      color: white;
-      text-decoration: none;
-    }
-
-    main {
-      min-height: calc(100vh - 70px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
-    }
-
-    .card {
-      background: white;
-      max-width: 550px;
-      width: 100%;
-      padding: 45px 35px;
-      border-radius: 14px;
+    .status-container {
+      max-width: 500px;
+      margin: 4rem auto;
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       text-align: center;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
     }
-
-    .icon {
-      font-size: 60px;
-      margin-bottom: 15px;
+    .icon-error {
+      font-size: 4rem;
+      color: #E11D48;
+      margin-bottom: 1rem;
     }
-
-    h1 {
-      margin-bottom: 15px;
-    }
-
-    p {
-      color: #666;
-      line-height: 1.6;
-    }
-
-    .boton {
+    .btn-retry {
       display: inline-block;
-      margin-top: 20px;
-      padding: 14px 25px;
-      background: #111;
-      color: white;
-      text-decoration: none;
+      margin-top: 1.5rem;
+      background: #009EE3;
+      color: #ffffff;
+      padding: 0.8rem 1.5rem;
       border-radius: 8px;
+      text-decoration: none;
       font-weight: bold;
-    }
-
-    .boton:hover {
-      opacity: 0.85;
     }
   </style>
 </head>
-
 <body>
 
   <header>
-    <h2>FlipFinder</h2>
-    <a href="index.html">← Volver a la tienda</a>
+    <div class="nav-container">
+      <a href="../index.html" class="logo">FlipFinder</a>
+    </div>
   </header>
 
   <main>
-    <div class="card">
-
-      <div class="icon">❌</div>
-
-      <h1>Pago no realizado</h1>
-
-      <p>
-        El pago no pudo completarse.
-      </p>
-
-      <p>
-        No te preocupes: si el pago no fue aprobado,
-        no se debería considerar como una compra confirmada.
-      </p>
-
-      <a class="boton" href="checkout.html">
-        Intentar nuevamente
-      </a>
-
+    <div class="status-container">
+      <div class="icon-error">✕</div>
+      <h2>No se pudo procesar el pago</h2>
+      <p style="color: #666; margin-top: 0.5rem;">Ocurrió un problema o la transacción fue cancelada. Tu pedido no ha sido cobrado.</p>
+      <a href="checkout.html" class="btn-retry">Intentar nuevamente</a>
     </div>
   </main>
 
