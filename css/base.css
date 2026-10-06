@@ -1,14 +1,3 @@
-:root {
-  --primary-color: #fff159; /* Amarillo Mercado Libre */
-  --header-blue: #0088cc;   /* Color personalizado FlipFinder */
-  --bg-color: #ebebeb;      /* Gris clásico de fondo ML */
-  --text-dark: #333333;
-  --text-muted: #666666;
-  --price-green: #00a650;
-  --radius: 6px;
-  --shadow: 0 1px 3px rgba(0,0,0,0.12);
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,13 +5,29 @@
   font-family: 'Proxima Nova', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
+:root {
+  --yellow-brand: #fff159;
+  --blue-action: #3483fa;
+  --bg-site: #ebebeb;
+  --text-primary: #333333;
+  --text-muted: #666666;
+  --card-border: #e6e6e6;
+  --white: #ffffff;
+}
+
 body {
-  background-color: var(--bg-color);
-  color: var(--text-dark);
+  background-color: var(--bg-site);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .main-container {
   max-width: 1200px;
-  margin: 20px auto;
-  padding: 0 15px;
+  margin: 0 auto;
+  padding: 20px 15px;
 }
