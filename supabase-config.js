@@ -1,11 +1,9 @@
 const SUPABASE_URL = "https://nwtzzcxmpaxiyihjxdin.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZgsxNyLJk8Bteys0Qp2uLQ_nFF5eBBx";
+// Pega aquí la clave 'anon public' copiada de la pestaña Legacy:
+const SUPABASE_ANON_KEY = "sb_publishable_ZgsxNyLJk8BteysOQp2uLQ_nFF5eBBx";
 
-// Crear el cliente de Supabase
-const _supabase = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
+// Inicializamos el cliente oficial de Supabase
+const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Asignar a la variable global 'supabase' que usan index, product y cart
-window.supabase = _supabase;
+// Guardamos en window.supabase para que index.html y product.html lo usen directamente
+window.supabase = client;
