@@ -1,182 +1,322 @@
-/* Contenedor en el Navbar */
-.category-menu-container {
-  position: relative;
+/* ==========================================
+   PALETA ESTILO MERCADO PAGO / MODERN E-COMMERCE
+   ========================================== */
+:root {
+  --mp-blue: #009EE3;
+  --mp-blue-dark: #007EB5;
+  --mp-bg: #F5F5F5;
+  --card-bg: #FFFFFF;
+  --text-primary: #333333;
+  --text-muted: #666666;
+  --border-color: #E6E6E6;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --radius: 12px;
 }
 
-/* Botón con el estilo amarillo/oscuro de tu tienda */
-.category-btn {
-  background-color: transparent;
-  color: #ffffff;
-  border: 1px solid #23354e;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-}
-
-.category-btn:hover {
-  background-color: #1a2a40;
-  border-color: #fbc02d; /* Tono amarillo de tus botones */
-  color: #fbc02d;
-}
-
-/* Panel Desplegable (Estilo Paris pero oscuro) */
-.category-drawer {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  width: 240px;
-  background-color: #112239; /* Mismo azul de tus tarjetas */
-  border: 1px solid #23354e;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  display: none;
-  z-index: 1000;
-  overflow: hidden;
-}
-
-.category-drawer.active {
-  display: block;
-}
-
-/* Lista de Categorías */
-.category-list {
-  list-style: none;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.category-item {
+body {
+  background-color: var(--mp-bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ==========================================
+   NAVBAR & HEADER
+   ========================================== */
+header {
+  background-color: var(--mp-blue);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 12px 18px;
-  border-bottom: 1px solid #1a2c44;
-  transition: background 0.2s ease;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
-.category-item:last-child {
-  border-bottom: none;
-}
-
-.category-item a {
+.logo {
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  font-weight: 800;
   text-decoration: none;
-  color: #e2e8f0;
-  font-size: 14px;
+  letter-spacing: -0.5px;
+}
+
+.search-bar-container {
+  flex: 1;
+  display: flex;
+  max-width: 600px;
+  background: #FFFFFF;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.cat-btn {
+  background: #EAF6FE;
+  color: var(--mp-blue-dark);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cat-btn:hover {
+  background: #D5EDFC;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.nav-link {
+  color: #FFFFFF;
+  text-decoration: none;
   font-weight: 500;
-  width: 100%;
+  font-size: 0.95rem;
 }
 
-.category-item .arrow {
-  color: #64748b;
-  font-size: 18px;
-}
-
-.category-item:hover {
-  background-color: #1e324d;
-}
-
-.category-item:hover a {
-  color: #fbc02d; /* Texto amarillo al pasar el mouse */
-}
-
-.category-item:hover .arrow {
-  color: #fbc02d;
-}
-/* --- ESTILOS NAVBAR Y MENÚ CATEGORÍAS --- */
-
-/* Contenedor general de la barra superior */
-header.navbar, .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #0d1b2a; /* Fondo oscuro principal */
-  padding: 15px 30px;
-  gap: 15px;
-}
-
-/* Ajustes para el logo y enlaces generales */
-.navbar a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-/* Contenedor del menú de categorías */
-.category-menu-container {
-  position: relative;
-}
-
-/* Botón de Categorías */
-.category-btn {
-  background-color: transparent;
-  color: #ffffff;
-  border: 1px solid #23354e;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 6px;
+.cart-btn-nav {
+  background: #FFFFFF;
+  color: var(--mp-blue);
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.cart-btn-nav:hover {
+  transform: scale(1.03);
+}
+
+/* ==========================================
+   HERO BANNER & TRUST BADGES
+   ========================================== */
+.hero {
+  background: linear-gradient(135deg, var(--mp-blue) 0%, #005B9E 100%);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 3rem 1rem 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 2rem;
+}
+
+.badges-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.badge-card {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem;
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.8rem;
+  text-align: left;
 }
 
-.category-btn:hover {
-  background-color: #1a2a40;
-  border-color: #fbc02d;
-  color: #fbc02d;
+.badge-card span {
+  font-size: 1.8rem;
 }
 
-/* Menú desplegable oculto por defecto */
-.category-drawer {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  width: 240px;
-  background-color: #112239;
-  border: 1px solid #23354e;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-  display: none; /* Esto evita que se vea la lista desordenada en pantalla */
-  z-index: 1000;
-  overflow: hidden;
-}
-
-/* Muestra el menú cuando JavaScript le agrega la clase active */
-.category-drawer.active {
+.badge-card strong {
   display: block;
+  font-size: 0.95rem;
 }
 
-/* Limpieza de la lista HTML */
-.category-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.badge-card small {
+  opacity: 0.8;
+  font-size: 0.8rem;
 }
 
-.category-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 18px;
-  border-bottom: 1px solid #1a2c44;
+/* ==========================================
+   LAYOUT PRINCIPAL (FILTROS + PRODUCTOS)
+   ========================================== */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2rem;
 }
 
-.category-item a {
-  color: #e2e8f0;
-  font-size: 14px;
+/* Filtros */
+.filters-sidebar {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  height: fit-content;
+}
+
+.filters-sidebar h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--mp-bg);
+  padding-bottom: 0.5rem;
+}
+
+.filter-group {
+  margin-bottom: 1.2rem;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.filter-input {
   width: 100%;
+  padding: 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  outline: none;
 }
 
-.category-item:hover {
-  background-color: #1e324d;
+.btn-secondary {
+  width: 100%;
+  background: var(--mp-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.category-item:hover a {
-  color: #fbc02d;
+.btn-secondary:hover {
+  background: #EAEAEA;
+}
+
+/* Grilla de Productos */
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
+  color: var(--text-primary);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.product-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #EAF6FE;
+  color: var(--mp-blue-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.product-img {
+  font-size: 4rem;
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.product-price {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.btn-add {
+  margin-top: auto;
+  background: var(--mp-blue);
+  color: #FFFFFF;
+  border: none;
+  padding: 0.7rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-add:hover {
+  background: var(--mp-blue-dark);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-container {
+    grid-template-columns: 1fr;
+  }
 }
