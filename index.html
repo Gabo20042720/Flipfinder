@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="feature-item">
-            <span class="feature-icon">🛡️️</span>
+            <span class="feature-icon">🛡️</span>
             <div>
                 <strong>Compra segura</strong>
                 <p>Protegida</p>
@@ -82,13 +82,13 @@
         <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS EN ORDEN CORRECTO -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <script src="supabase-config.js"></script>
     <script src="cart.js"></script>
 
     <script>
-        // Imagen SVG local para evitar peticiones externas y bucles infinitos de error 404
+        // Imagen SVG incrustada para evitar peticiones externas y bucles de error 404
         const PLACEHOLDER_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='100%25' height='100%25' fill='%231e293b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='18'%3ESin Imagen%3C/text%3E%3C/svg%3E";
 
         async function cargarProductos() {
@@ -97,14 +97,17 @@
 
             try {
                 if (!window.supabase || typeof window.supabase.from !== 'function') {
-                    throw new Error("El cliente de Supabase no está inicializado.");
+                    throw new Error("El cliente de Supabase no se ha inicializado correctamente.");
                 }
 
                 const { data: productos, error } = await window.supabase
                     .from('productos')
                     .select('*');
 
-                if (error) throw error;
+                if (error) {
+                    console.error("Detalle del error de Supabase:", error);
+                    throw error;
+                }
 
                 if (!productos || productos.length === 0) {
                     contenedor.innerHTML = '<p>No hay productos disponibles por el momento.</p>';
@@ -129,8 +132,8 @@
                 }).join('');
 
             } catch (err) {
-                console.error("Error al cargar productos desde Supabase:", err);
-                contenedor.innerHTML = '<p style="color:red; font-weight:bold;">Error al cargar productos.</p>';
+                console.error("Error al cargar productos:", err);
+                contenedor.innerHTML = `<p style="color:red; font-weight:bold;">Error al cargar productos: ${err.message || 'Error de conexión'}</p>`;
             }
         }
 
