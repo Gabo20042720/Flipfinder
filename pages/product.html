@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalle del Producto - FlipFinder</title>
-  <link rel="stylesheet" href="../css/styles.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase-config.js" defer></script>
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
   <script src="../js/product-detail.js" defer></script>
 </head>
 <body>
@@ -17,23 +16,26 @@
     </div>
   </header>
 
-  <main class="product-detail-container">
-    <div class="gallery-container">
-      <div class="thumbnails-list" id="thumbnails-container">
-        <!-- Miniaturas de las 4 fotos -->
+  <main class="main-container">
+    <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
+      
+      <!-- Galería -->
+      <div style="display: flex; gap: 15px;">
+        <div id="thumbnails-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
+        <div>
+          <img id="main-product-img" src="" alt="Producto" style="max-width: 400px; border-radius: 8px;">
+        </div>
       </div>
-      <div class="main-image-container">
-        <img id="main-product-img" src="" alt="Imagen del producto">
+
+      <!-- Información -->
+      <div style="flex: 1; min-width: 280px;">
+        <h1 id="product-title">Cargando...</h1>
+        <h2 id="product-price" style="color: #2b2b2b; margin: 15px 0;">$0</h2>
+        <p id="product-description" style="color: #666; margin-bottom: 15px;"></p>
+        <p id="product-stock" style="font-weight: bold; margin-bottom: 20px;"></p>
+        <button class="btn-primary">Agregar al carrito</button>
       </div>
-    </div>
 
-    <div class="product-info-detail">
-      <h1 id="product-title">Cargando producto...</h1>
-      <p class="product-price-detail" id="product-price">$0</p>
-      <p class="product-description" id="product-description"></p>
-      <p class="product-stock" id="product-stock"></p>
-
-      <button id="btn-add-cart" class="btn-primary">Agregar al carrito</button>
     </div>
   </main>
 
