@@ -1,59 +1,77 @@
-// Gestión Global del Carrito en FlipFinder
-const CART_KEY = 'flipfinder_cart';
-
+// Obtener productos guardados en el carrito
 function getCart() {
-  const cart = localStorage.getItem(CART_KEY);
-  return cart ? JSON.parse(cart) : [];
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
 }
 
+// Guardar productos en el carrito
 function saveCart(cart) {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-  updateCartBadge();
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
 }
 
-async function agregarAlCarrito(productoId) {
-  try {
-    const { data: producto, error } = await supabase
-      .from('productos')
-      .select('id, nombre, precio, imagen')
-      .eq('id', productoId)
-      .single();
-
-    if (error || !producto) {
-      alert('No se pudo agregar el producto.');
-      return;
-    }
-
+// Agregar un producto al carrito
+function addToCart(product) {
     let cart = getCart();
-    const index = cart.findIndex(item => item.id === producto.id);
+    const existingIndex = cart.findIndex(item => item.id === product.id);
 
-    if (index > -1) {
-      cart[index].cantidad += 1;
+    if (existingIndex > -1) {
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
     } else {
-      cart.push({
-        id: producto.id,
-        nombre: producto.nombre,
-        precio: producto.precio,
-        imagen: producto.imagen,
-        cantidad: 1
-      });
+        cart.push({ ...product, quantity: 1 });
     }
 
     saveCart(cart);
-    alert(`¡"${producto.nombre}" se agregó al carrito!`);
-  } catch (err) {
-    console.error('Error al agregar al carrito:', err);
-  }
+    alert('¡Producto agregado al carrito!');
 }
 
-function updateCartBadge() {
-  const cart = getCart();
-  const totalItems = cart.reduce((acc, item) => acc + item.cantidad, 0);
-  const cartLinks = document.querySelectorAll('.header-actions a[href*="checkout"], .header-actions a[href*="cart"]');
-
-  cartLinks.forEach(link => {
-    link.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Carrito (${totalItems})`;
-  });
+// Actualizar el número del carrito en la barra superior
+function updateCartCount() {
+    const cart = getCart();
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    const cartCountElement = document.getElementById('cart-count');
+    if (cartCountElement) {
+        cartCountElement.textContent = totalItems;
+    }
 }
 
-document.addEventListener('DOMContentLoaded', updateCartBadge);
+// Renderizar lista en la página de carrito/checkout
+function renderCart() {
+    const cartContainer = document.getElementById('cart-items');
+    const totalContainer = document.getElementById('cart-total');
+    if (!cartContainer) return;
+
+    const cart = getCart();
+
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<p class="empty-cart">Tu carrito está vacío.</p>';
+        if (totalContainer) totalContainer.textContent = '$0';
+        return;
+    }
+
+    let total = 0;
+    cartContainer.innerHTML = cart.map(item => {
+        const itemTotal = (item.precio || item.price || 0) * (item.quantity || 1);
+        total += itemTotal;
+        return `
+            <div class="cart-item" data-id="${item.id}">
+                <img src="${item.imagen || item.image || 'img/placeholder.jpg'}" alt="${item.nombre || item.title}">
+                <div class="item-details">
+                    <h4>${item.nombre || item.title}</h4>
+                    <p>Cantidad: ${item.quantity || 1}</p>
+                    <p>Precio: $${(item.precio || item.price || 0).toLocaleString('es-CL')}</p>
+                </div>
+            </div>
+        `;
+    }).join('');
+
+    if (totalContainer) {
+        totalContainer.textContent = `$${total.toLocaleString('es-CL')}`;
+    }
+}
+
+// Ejecutar al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    renderCart();
+});
