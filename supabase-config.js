@@ -1,10 +1,11 @@
 const SUPABASE_URL = "https://nwtzzcxmpaxiyihjxdin.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZgsxNyLJk8Bteys0Qp2uLQ_nFF5eBBx";
 
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ZgsxNyLJk8BteysOQp2uLQ_nFF5eBBx";
-
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
+// Crear el cliente de Supabase
+const _supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
 );
 
-window.supabaseClient = supabaseClient;
+// Asignar a la variable global 'supabase' que usan index, product y cart
+window.supabase = _supabase;
