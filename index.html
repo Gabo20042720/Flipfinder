@@ -82,12 +82,15 @@
         <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPTS EN ORDEN CORRECTO -->
+    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <script src="supabase-config.js"></script>
     <script src="cart.js"></script>
 
     <script>
+        // Imagen SVG local para evitar peticiones externas y bucles infinitos de error 404
+        const PLACEHOLDER_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='100%25' height='100%25' fill='%231e293b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='18'%3ESin Imagen%3C/text%3E%3C/svg%3E";
+
         async function cargarProductos() {
             const contenedor = document.getElementById('productos-container');
             if (!contenedor) return;
@@ -109,13 +112,13 @@
                 }
 
                 contenedor.innerHTML = productos.map(prod => {
-                    const imagenSrc = prod.imagen && prod.imagen.trim() !== '' ? prod.imagen : 'https://via.placeholder.com/300x300?text=Producto';
+                    const imagenSrc = prod.imagen && prod.imagen.trim() !== '' ? prod.imagen : PLACEHOLDER_SVG;
                     const nombreLimpio = (prod.nombre || 'Producto').replace(/'/g, "\\'");
                     const precio = prod.precio || 0;
 
                     return `
                         <div class="product-card">
-                            <img src="${imagenSrc}" alt="${prod.nombre}" onerror="this.src='https://via.placeholder.com/300x300?text=Sin+Imagen'">
+                            <img src="${imagenSrc}" alt="${prod.nombre}" onerror="this.onerror=null; this.src='${PLACEHOLDER_SVG}';">
                             <h3>${prod.nombre}</h3>
                             <p class="price">$${Number(precio).toLocaleString('es-CL')}</p>
                             <button onclick="addToCart('${prod.id}', '${nombreLimpio}', ${precio}, '${imagenSrc}')">
