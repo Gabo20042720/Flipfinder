@@ -5,73 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FlipFinder Chile | Encuentra los mejores productos</title>
   
+  <!-- Estilos CSS en orden -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- JavaScript principal -->
+  <script src="js/main.js" defer></script>
 </head>
 <body>
 
-  <!-- HEADER TIPO MERCADO LIBRE -->
+  <!-- Barra Superior Estilo Mercado Libre -->
   <header class="main-header">
-    <div class="header-container">
-      <a href="index.html" class="logo">
-        Flip<span>Finder</span>
-      </a>
-
-      <div class="search-bar">
-        <input type="text" id="input-search" placeholder="Buscar productos, marcas y más...">
-        <button id="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+    <div class="header-content">
+      <div class="logo">
+        <a href="index.html">Flip<span>Finder</span></a>
       </div>
 
-      <div class="header-actions">
-        <a href="pages/admin-login.html" class="nav-link"><i class="fa-solid fa-user"></i> Admin</a>
-        <div class="cart-icon-wrapper" id="cart-btn">
-          <i class="fa-solid fa-cart-shopping"></i>
-          <span id="cart-counter" class="cart-badge">0</span>
-        </div>
+      <div class="search-box">
+        <input type="text" placeholder="Buscar productos, marcas y más...">
+        <button type="button">🔍</button>
+      </div>
+
+      <div class="header-user-actions">
+        <a href="#">Admin</a>
+        <a href="pages/cart.html" class="cart-icon">🛒 <span>0</span></a>
       </div>
     </div>
 
-    <nav class="sub-nav">
-      <div class="header-container">
-        <ul class="categories-list">
-          <li><a href="#">Categorías <i class="fa-solid fa-chevron-down"></i></a></li>
-          <li><a href="#">Ofertas</a></li>
-          <li><a href="#">Historial</a></li>
-          <li><a href="#">Vender</a></li>
-          <li><a href="#">Contacto</a></li>
-        </ul>
-      </div>
+    <nav class="nav-bar">
+      <a href="#">Categorías ▾</a>
+      <a href="#">Ofertas</a>
+      <a href="#">Historial</a>
+      <a href="#">Vender</a>
+      <a href="#">Contacto</a>
     </nav>
   </header>
 
-  <!-- BANNER PROMOCIONAL -->
-  <section class="hero-banner">
-    <div class="banner-content">
+  <!-- Contenido Principal -->
+  <main class="main-container">
+    <section class="hero-banner">
       <h2>Encuentra los mejores productos al mejor precio</h2>
       <p>Envíos a todo Chile con la rapidez que necesitas.</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="main-container">
-    <section class="products-section">
+    <section class="catalog-section">
       <h3 class="section-title">Productos Destacados</h3>
-      <div class="products-grid" id="productos-container">
-        <p class="loading-text">Cargando catálogo...</p>
+      <div id="productos-container">
+        <!-- Las tarjetas de producto se insertan aquí vía JS -->
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- Pie de Página -->
   <footer class="main-footer">
-    <p>&copy; 2026 FlipFinder Chile - Todos los derechos reservados.</p>
+    <div class="main-container">
+      <p>© 2026 FlipFinder Chile - Todos los derechos reservados.</p>
+    </div>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-config.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>

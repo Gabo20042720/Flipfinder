@@ -2,7 +2,7 @@
 .main-header {
   background-color: var(--yellow-brand);
   padding: 12px 0 8px 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
 }
 
 .header-content {
@@ -18,22 +18,22 @@
 .logo a {
   font-size: 1.8rem;
   font-weight: 800;
-  color: #2d3277; /* Azul FlipFinder */
+  color: #2d3277;
   letter-spacing: -0.5px;
 }
 
 .logo span {
-  color: #00a650; /* Verde FlipFinder */
+  color: #00a650;
 }
 
-/* Buscador central */
 .search-box {
   flex: 1;
   max-width: 600px;
   display: flex;
   background: #ffffff;
-  border-radius: 2px;
+  border-radius: 4px;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+  overflow: hidden;
 }
 
 .search-box input {
@@ -42,7 +42,6 @@
   padding: 10px 15px;
   font-size: 0.95rem;
   outline: none;
-  border-radius: 2px 0 0 2px;
 }
 
 .search-box button {
@@ -51,7 +50,6 @@
   border-left: 1px solid #e6e6e6;
   padding: 0 15px;
   cursor: pointer;
-  color: #666;
 }
 
 .header-user-actions {
@@ -59,12 +57,12 @@
   align-items: center;
   gap: 20px;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 
-/* Barra de Navegación */
 .nav-bar {
   max-width: 1200px;
-  margin: 8px auto 0 auto;
+  margin: 10px auto 0 auto;
   padding: 0 15px;
   display: flex;
   gap: 20px;
@@ -72,34 +70,37 @@
   color: #333333;
 }
 
-.nav-bar a:hover {
-  opacity: 0.7;
-}
-
-/* Banner de Bienvenida */
+/* --- Banner Banner --- */
 .hero-banner {
   background: #ffffff;
-  padding: 25px 20px;
+  padding: 20px 25px;
   border-radius: 6px;
   margin-bottom: 25px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
 }
 
 .hero-banner h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: #1a1a1a;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 .hero-banner p {
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
-/* Rejilla de Productos (Home) */
+/* --- Título de Sección --- */
+.section-title {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* --- Rejilla de Productos --- */
 #productos-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 16px;
 }
 
@@ -109,6 +110,8 @@
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
@@ -120,27 +123,90 @@
   width: 100%;
   height: 200px;
   object-fit: contain;
-  background: #fff;
+  background: #ffffff;
   padding: 10px;
   border-bottom: 1px solid #f0f0f0;
 }
 
 .product-info {
   padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+  displayPara que la tienda se vea profesional, estructurada y funcional tanto para ti como dueño como para el cliente, el problema principal en tu pantalla es que **`index.html` no está vinculando bien la hoja de estilos (`css/components.css` y `css/base.css`)**, lo que hace que los textos y links salgan desordenados arriba a la izquierda sin formato.
 
-.product-price {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #222;
-}
+Aquí tienes el código completo y listo para dejar la portada (`index.html`) con la estructura visual exacta estilo Mercado Libre.
 
-.product-title {
-  font-size: 0.85rem;
-  color: #4a4a4a;
-  font-weight: 400;
-  line-height: 1.3;
-}
+---
+
+### 1. `index.html` (Estructura HTML limpia y profesional)
+
+Abre **`index.html`** en la raíz de tu proyecto y reemplaza todo su contenido por este código:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlipFinder Chile | Encuentra los mejores productos</title>
+  
+  <!-- Enlaces CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  
+  <!-- Scripts -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Header tipo Mercado Libre -->
+  <header class="main-header">
+    <div class="header-content">
+      <div class="logo">
+        <a href="index.html">Flip<span>Finder</span></a>
+      </div>
+
+      <div class="search-box">
+        <input type="text" placeholder="Buscar productos, marcas y más...">
+        <button type="button">🔍</button>
+      </div>
+
+      <div class="header-user-actions">
+        <a href="#">👤 Mi cuenta</a>
+        <a href="#">🛒 <span id="cart-count">0</span></a>
+      </div>
+    </div>
+
+    <!-- Navegación secundaria -->
+    <nav class="nav-bar">
+      <a href="#">Categorías ▾</a>
+      <a href="#">Ofertas</a>
+      <a href="#">Historial</a>
+      <a href="#">Vender</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="main-container">
+    
+    <!-- Banner de Bienvenida -->
+    <section class="hero-banner">
+      <h2>Encuentra los mejores productos al mejor precio</h2>
+      <p>Envíos a todo Chile con la rapidez que necesitas.</p>
+    </section>
+
+    <!-- Catálogo de Productos -->
+    <section class="products-section">
+      <h3 style="font-size: 1.3rem; margin-bottom: 15px; color: #333;">Productos Destacados</h3>
+      <div id="productos-container">
+        <!-- Las tarjetas se generan dinámicamente desde js/main.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="text-align: center; padding: 20px; margin-top: 40px; color: #777; font-size: 0.85rem; border-top: 1px solid #ddd;">
+    © 2026 FlipFinder Chile - Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
