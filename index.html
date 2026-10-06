@@ -3,117 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FlipFinder - Tu Marketplace Principal</title>
-  
-  <!-- SDK oficial de Supabase via CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
-  <!-- Hoja de estilos principal -->
+  <title>FlipFinder Chile</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- NAVBAR / HEADER -->
+  <!-- Encabezado / Barra de navegación -->
   <header>
-    <div class="nav-container">
-      <a href="index.html" class="logo">FlipFinder</a>
-      
-      <div class="search-bar-container">
-        <button id="catBtn" class="cat-btn">≡ Categorías</button>
-        <input type="text" id="searchInput" class="search-input" placeholder="Buscar productos...">
-      </div>
-
-      <div class="user-actions">
-        <a href="pages/admin-login.html" class="nav-link">Mi cuenta</a>
-        <button id="cartBtn" class="cart-btn-nav">
-          Carrito (<span id="cartCount">0</span>)
-        </button>
-      </div>
+    <div class="logo">
+      <h1>FlipFinder</h1>
     </div>
+    <nav>
+      <ul>
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- HERO BANNER -->
-  <section class="hero">
-    <h1>Compra fácil y seguro.</h1>
-    <p>Descubre los mejores productos seleccionados para ti.</p>
+  <!-- Sección principal / Hero -->
+  <main>
+    <section class="hero">
+      <h2>Encuentra los mejores productos al mejor precio</h2>
+      <p>Explora nuestro catálogo en línea disponible para Chile.</p>
+    </section>
 
-    <div class="badges-grid">
-      <div class="badge-card">
-        <span>🚚</span>
-        <div>
-          <strong>Envíos a todo Chile</strong>
-          <small>Recibe rápido</small>
-        </div>
-      </div>
-      <div class="badge-card">
-        <span>🛡️</span>
-        <div>
-          <strong>Compra segura</strong>
-          <small>Protegida</small>
-        </div>
-      </div>
-      <div class="badge-card">
-        <span>💳</span>
-        <div>
-          <strong>Mercado Pago</strong>
-          <small>Pagos seguros</small>
-        </div>
-      </div>
-      <div class="badge-card">
-        <span>⭐</span>
-        <div>
-          <strong>Garantía</strong>
-          <small>Calidad asegurada</small>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTENIDO PRINCIPAL -->
-  <main class="main-container">
-    <!-- BARRA LATERAL DE FILTROS -->
-    <aside class="filters-sidebar">
-      <h3>Filtros</h3>
-      <div class="filter-group">
-        <label for="maxPriceInput">Precio Máximo ($)</label>
-        <input type="number" id="maxPriceInput" class="filter-input" placeholder="Ej: 30000">
-      </div>
-      <button id="clearFiltersBtn" class="btn-secondary">Limpiar Filtros</button>
-    </aside>
-
-    <!-- GRILLA DE PRODUCTOS -->
-    <section>
-      <h2 class="section-title">Productos para ti</h2>
-      <div id="productsGrid" class="products-grid">
-        <!-- Se cargan dinámicamente desde Supabase -->
+    <!-- Catálogo de Productos -->
+    <section id="catalogo" class="catalog-section">
+      <h2>Nuestros Productos</h2>
+      <div id="productsContainer" class="products-grid">
+        <p>Cargando productos...</p>
       </div>
     </section>
   </main>
 
-  <!-- PANEL LATERAL DEL CARRITO (DRAWER) -->
-  <div id="cartDrawer" class="cart-drawer">
-    <div class="cart-drawer-header">
-      <h3>Tu Carrito</h3>
-      <button id="closeCart" class="close-cart-btn">&times;</button>
-    </div>
-    <div id="cartItems" class="cart-drawer-body">
-      <!-- Se llena dinámicamente desde JS -->
-    </div>
-    <div class="cart-drawer-footer">
-      <div class="cart-total-row">
-        <span>Total:</span>
-        <strong id="cartTotal">$0</strong>
-      </div>
-      <a href="pages/checkout.html" class="btn-checkout">Proceder al Pago</a>
-    </div>
-  </div>
+  <!-- Pie de página -->
+  <footer>
+    <p>&copy; 2026 FlipFinder Chile - Todos los derechos reservados.</p>
+  </footer>
 
-  <!-- NOTIFICACIÓN TOAST -->
-  <div id="toast" class="toast"></div>
-
-  <!-- ENLACES A JAVASCRIPT -->
+  <!-- ========================================== -->
+  <!-- CARGA DE SCRIPTS (Mantener este orden)    -->
+  <!-- ========================================== -->
+  
+  <!-- 1. CDN Oficial de Supabase JS v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- 2. Configuración e Inicialización de Supabase -->
   <script src="js/supabase-config.js"></script>
+
+  <!-- 3. Funcionalidades adicionales (Carrito, etc. si existen) -->
   <script src="js/cart.js"></script>
+
+  <!-- 4. Lógica principal (main.js) -->
   <script src="js/main.js"></script>
+
 </body>
 </html>
