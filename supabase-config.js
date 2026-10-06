@@ -1,9 +1,13 @@
 const SUPABASE_URL = "https://nwtzzcxmpaxiyihjxdin.supabase.co";
-// Pega aquí la clave 'anon public' copiada de la pestaña Legacy:
+
+// Pega dentro de las comillas la clave que empieza por eyJ... copiada de Legacy anon:
 const SUPABASE_ANON_KEY = "sb_publishable_ZgsxNyLJk8BteysOQp2uLQ_nFF5eBBx";
 
-// Inicializamos el cliente oficial de Supabase
-const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// Guardamos la referencia a la librería cargada en HTML
+const supabaseLib = window.supabase;
 
-// Guardamos en window.supabase para que index.html y product.html lo usen directamente
+// Creamos e inicializamos el cliente
+const client = supabaseLib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// Lo dejamos disponible globalmente
 window.supabase = client;
