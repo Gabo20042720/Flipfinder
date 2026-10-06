@@ -1,52 +1,86 @@
-// Lista de productos con tus imágenes locales de la carpeta img/
-const productos = [
-  {
-    id: "9534",
-    nombre: "Auriculares Gamer Micrófono Off Ruido",
-    precio: 23400,
-    categoria: "Tecnología",
-    stock: 499,
-    descripcion: "¡Sumérgete en la experiencia de juego! Auriculares gamer con micrófono omnidireccional con cancelación de ruido.",
-    imagenes: [
-      "img/foto1.jpg",
-      "img/foto2.jpg",
-      "img/foto3.jpg",
-      "img/foto4.jpg",
-      "img/foto5.jpg"
-    ]
+// Productos cargados desde Supabase (misma forma que antes, para no romper cart.js ni product-detail.js)
+let productos = [];
+
+const formatoCLP = new Intl.NumberFormat('es-CL', {
+  style: 'currency',
+  currency: 'CLP',
+  maximumFractionDigits: 0
+});
+
+function escapeHtml(texto) {
+  const div = document.createElement('div');
+  div.textContent = texto ?? '';
+  return div.innerHTML;
+}
+
+async function cargarProductos() {
+  const { data, error } = await window.supabaseClient
+    .from('products')
+    .select('*')
+    .eq('active', true)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error cargando productos:', error);
+    return [];
   }
-];
 
-document.addEventListener('DOMContentLoaded', () => {
-  const productosContainer = document.getElementById('productos-container');
+  // Adaptamos los nombres de columnas a los que usaba tu código
+  return data.map(p => ({
+    id: p.id,
+    nombre: p.name,
+    precio: p.price,
+    categoria: p.category,
+    stock: p.stock,
+    descripcion: p.description,
+    imagenes: p.images || [],
+    destacado: p.featured
+  }));
+}
 
-  if (!productosContainer) return;
+function renderProductos(lista) {
+  const contenedor = document.getElementById('productos-container');
+  if (!contenedor) return;
 
-  productosContainer.innerHTML = '';
+  contenedor.innerHTML = '';
 
-  productos.forEach(producto => {
+  if (lista.length === 0) {
+    contenedor.innerHTML = '<p>No hay productos disponibles por ahora.</p>';
+    return;
+  }
+
+  lista.forEach(producto => {
     const card = document.createElement('div');
     card.classList.add('product-card');
 
-    const precioFormateado = new Intl.NumberFormat('es-CL', {
-      style: 'currency',
-      currency: 'CLP',
-      maximumFractionDigits: 0
-    }).format(producto.precio);
-
-    const primeraImagen = producto.imagenes[0];
+    const imagen = producto.imagenes[0] || 'img/placeholder.jpg';
 
     card.innerHTML = `
-      <a href="pages/product.html?id=${producto.id}" style="text-decoration: none; color: inherit;">
-        <img src="${primeraImagen}" alt="${producto.nombre}" loading="lazy">
+      <a href="pages/product.html?id=${encodeURIComponent(producto.id)}" style="text-decoration: none; color: inherit;">
+        <img src="${escapeHtml(imagen)}" alt="${escapeHtml(producto.nombre)}" loading="lazy">
         <div class="product-info">
-          <div class="product-price">${precioFormateado}</div>
-          <h4 class="product-title">${producto.nombre}</h4>
-          <button class="btn-agregar" data-id="${producto.id}">Agregar al carrito</button>
+          <div class="product-price">${formatoCLP.format(producto.precio)}</div>
+          <h4 class="product-title">${escapeHtml(producto.nombre)}</h4>
+          <button class="btn-agregar" data-id="${escapeHtml(producto.id)}">Agregar al carrito</button>
         </div>
       </a>
     `;
 
-    productosContainer.appendChild(card);
+    // Evita que el clic en el botón navegue a la página del producto
+    card.querySelector('.btn-agregar').addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
+    });
+
+    contenedor.appendChild(card);
   });
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const contenedor = document.getElementById('productos-container');
+  if (!contenedor) return;
+
+  contenedor.innerHTML = '<p>Cargando productos...</p>';
+  productos = await cargarProductos();
+  renderProductos(productos);
 });
