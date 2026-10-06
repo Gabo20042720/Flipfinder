@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- HEADER / NAVBAR -->
+    <!-- NAVBAR -->
     <header class="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
@@ -29,7 +29,7 @@
         </div>
     </header>
 
-    <!-- BANNER -->
+    <!-- BANNER PRINCIPAL -->
     <section class="hero-banner">
         <div class="banner-content">
             <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <!-- PRODUCTOS -->
+    <!-- CATÁLOGO DE PRODUCTOS -->
     <main class="main-content">
         <h2>Productos para ti</h2>
         <div id="productos-container" class="products-grid">
@@ -82,8 +82,9 @@
         <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- SCRIPTS -->
-    <script src="[https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2](https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2)"></script>
+    <!-- SCRIPTS EN ORDEN CORRECTO -->
+    <!-- CDN Global UMD de Supabase v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <script src="supabase-config.js"></script>
     <script src="cart.js"></script>
 
@@ -93,6 +94,7 @@
             if (!contenedor) return;
 
             try {
+                // Petición a la tabla 'productos' en Supabase
                 const { data: productos, error } = await window.supabase
                     .from('productos')
                     .select('*');
@@ -105,13 +107,13 @@
                 }
 
                 contenedor.innerHTML = productos.map(prod => {
-                    const imagenSrc = prod.imagen && prod.imagen.trim() !== '' ? prod.imagen : '[https://via.placeholder.com/300x300?text=Producto](https://via.placeholder.com/300x300?text=Producto)';
+                    const imagenSrc = prod.imagen && prod.imagen.trim() !== '' ? prod.imagen : 'https://via.placeholder.com/300x300?text=Producto';
                     const nombreLimpio = (prod.nombre || 'Producto').replace(/'/g, "\\'");
                     const precio = prod.precio || 0;
 
                     return `
                         <div class="product-card">
-                            <img src="${imagenSrc}" alt="${prod.nombre}" onerror="this.src='[https://via.placeholder.com/300x300?text=Sin+Imagen](https://via.placeholder.com/300x300?text=Sin+Imagen)'">
+                            <img src="${imagenSrc}" alt="${prod.nombre}" onerror="this.src='https://via.placeholder.com/300x300?text=Sin+Imagen'">
                             <h3>${prod.nombre}</h3>
                             <p class="price">$${Number(precio).toLocaleString('es-CL')}</p>
                             <button onclick="addToCart('${prod.id}', '${nombreLimpio}', ${precio}, '${imagenSrc}')">
@@ -122,8 +124,142 @@
                 }).join('');
 
             } catch (err) {
-                console.error("Error cargando productos:", err);
-                contenedor.innerHTML = '<p style="color:red;">Error al cargar productos.</p>';
+                console.error("Error al cargar productos desde Supabase:", err);
+                contenedor.innerHTML = '<p style="color:red; font-weight:bold;">Error al cargar productos.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarProductos);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipFinder | Tu marketplace de confianza</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-bold">Flip</span>Finder
+            </a>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar productos, marcas y más...">
+                <button type="button">🔍</button>
+            </div>
+
+            <div class="nav-actions">
+                <a href="admin-login.html" class="nav-link">Mi cuenta</a>
+                <a href="checkout.html" class="cart-btn">
+                    🛒 Carrito (<span id="cart-count">0</span>)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER PRINCIPAL -->
+    <section class="hero-banner">
+        <div class="banner-content">
+            <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
+            <p>Descubre los mejores productos seleccionados para ti.</p>
+        </div>
+    </section>
+
+    <!-- VENTAJAS -->
+    <section class="features-bar">
+        <div class="feature-item">
+            <span class="feature-icon">🚚</span>
+            <div>
+                <strong>Envíos a todo Chile</strong>
+                <p>Recibe rápido</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">🛡️</span>
+            <div>
+                <strong>Compra segura</strong>
+                <p>Protegida</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">💳</span>
+            <div>
+                <strong>Mercado Pago</strong>
+                <p>Pagos seguros</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">⭐</span>
+            <div>
+                <strong>Garantía</strong>
+                <p>Calidad asegurada</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATÁLOGO DE PRODUCTOS -->
+    <main class="main-content">
+        <h2>Productos para ti</h2>
+        <div id="productos-container" class="products-grid">
+            <p>Cargando productos...</p>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- SCRIPTS EN ORDEN CORRECTO -->
+    <!-- CDN Global UMD de Supabase v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+    <script src="supabase-config.js"></script>
+    <script src="cart.js"></script>
+
+    <script>
+        async function cargarProductos() {
+            const contenedor = document.getElementById('productos-container');
+            if (!contenedor) return;
+
+            try {
+                // Petición a la tabla 'productos' en Supabase
+                const { data: productos, error } = await window.supabase
+                    .from('productos')
+                    .select('*');
+
+                if (error) throw error;
+
+                if (!productos || productos.length === 0) {
+                    contenedor.innerHTML = '<p>No hay productos disponibles por el momento.</p>';
+                    return;
+                }
+
+                contenedor.innerHTML = productos.map(prod => {
+                    const imagenSrc = prod.imagen && prod.imagen.trim() !== '' ? prod.imagen : 'https://via.placeholder.com/300x300?text=Producto';
+                    const nombreLimpio = (prod.nombre || 'Producto').replace(/'/g, "\\'");
+                    const precio = prod.precio || 0;
+
+                    return `
+                        <div class="product-card">
+                            <img src="${imagenSrc}" alt="${prod.nombre}" onerror="this.src='https://via.placeholder.com/300x300?text=Sin+Imagen'">
+                            <h3>${prod.nombre}</h3>
+                            <p class="price">$${Number(precio).toLocaleString('es-CL')}</p>
+                            <button onclick="addToCart('${prod.id}', '${nombreLimpio}', ${precio}, '${imagenSrc}')">
+                                Agregar al carrito
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (err) {
+                console.error("Error al cargar productos desde Supabase:", err);
+                contenedor.innerHTML = '<p style="color:red; font-weight:bold;">Error al cargar productos.</p>';
             }
         }
 
