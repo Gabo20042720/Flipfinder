@@ -9,7 +9,7 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     body {
@@ -20,7 +20,7 @@
       flex-direction: column;
     }
 
-    /* BARRA NAVEGACIÓN PRINCIPAL */
+    /* HEADER */
     header {
       background-color: #0b1528;
       border-bottom: 1px solid #1a2942;
@@ -44,7 +44,6 @@
       font-weight: 800;
       color: #38bdf8;
       text-decoration: none;
-      letter-spacing: -0.5px;
     }
 
     .menu-bar {
@@ -55,11 +54,8 @@
       max-width: 700px;
     }
 
-    /* BOTÓN CATEGORÍAS */
-    .cat-dropdown {
-      position: relative;
-    }
-
+    /* DROPDOWN CATEGORÍAS */
+    .cat-dropdown { position: relative; }
     .cat-btn {
       background-color: #38bdf8;
       color: #0b1528;
@@ -72,14 +68,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: background-color 0.2s;
     }
 
-    .cat-btn:hover {
-      background-color: #7dd3fc;
-    }
-
-    /* MENÚ DESPLEGABLE */
     .cat-menu {
       position: absolute;
       top: calc(100% + 8px);
@@ -90,35 +80,19 @@
       border-radius: 10px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
       display: none;
-      overflow: hidden;
       z-index: 200;
     }
-
-    .cat-menu.show {
-      display: block;
-    }
-
-    .cat-menu ul {
-      list-style: none;
-    }
-
+    .cat-menu.show { display: block; }
+    .cat-menu ul { list-style: none; }
     .cat-menu li a {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 12px 18px;
       color: #e2e8f0;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 500;
       border-bottom: 1px solid #1a2e48;
-      transition: background 0.2s, color 0.2s;
     }
-
-    .cat-menu li:last-child a {
-      border-bottom: none;
-    }
-
     .cat-menu li a:hover {
       background-color: #1a3456;
       color: #38bdf8;
@@ -132,7 +106,6 @@
       overflow: hidden;
       background-color: #e0f2fe;
     }
-
     .search-box input {
       width: 100%;
       padding: 10px 16px;
@@ -140,111 +113,77 @@
       background: transparent;
       outline: none;
       color: #0f172a;
-      font-size: 14px;
     }
-
     .search-box button {
       background-color: #0284c7;
       border: none;
       color: white;
       padding: 0 16px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    /* ACCIONES DE USUARIO */
+    /* NAVEGACIÓN DERECHA */
     .user-nav {
       display: flex;
       align-items: center;
       gap: 20px;
     }
-
     .user-nav a {
       color: #ffffff;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 500;
     }
-
     .cart-btn {
       background-color: #0284c7;
       padding: 8px 16px;
       border-radius: 8px;
       font-weight: 600;
+      cursor: pointer;
+      border: none;
+      color: white;
     }
 
-    /* SECCIÓN PRINCIPAL */
-    .hero {
-      text-align: center;
-      padding: 60px 20px 40px;
-    }
+    /* HERO & FEATURES */
+    .hero { text-align: center; padding: 50px 20px 30px; }
+    .hero h1 { font-size: 36px; font-weight: 800; margin-bottom: 10px; }
+    .hero p { color: #94a3b8; }
 
-    .hero h1 {
-      font-size: 38px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      color: #94a3b8;
-      font-size: 16px;
-    }
-
-    /* SECCIÓN VENTAJAS */
     .features {
       max-width: 1280px;
-      margin: 0 auto 50px;
+      margin: 0 auto 40px;
       padding: 0 24px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
     }
-
     .feature-card {
       background-color: #112238;
       border: 1px solid #1a2e48;
       border-radius: 10px;
-      padding: 20px;
+      padding: 16px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
-    .feature-icon {
-      font-size: 24px;
-    }
-
-    .feature-title {
-      font-weight: 700;
-      font-size: 15px;
-    }
-
-    .feature-desc {
-      font-size: 13px;
-      color: #94a3b8;
-    }
-
-    /* GRILLA DE PRODUCTOS */
+    /* PRODUCTOS */
     .products-section {
       max-width: 1280px;
       margin: 0 auto 60px;
       padding: 0 24px;
       width: 100%;
     }
-
-    .products-section h2 {
-      font-size: 24px;
+    .products-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 24px;
     }
-
     .grid-products {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       gap: 24px;
     }
-
     .product-card {
       background-color: #112238;
       border: 1px solid #1a2e48;
@@ -254,32 +193,19 @@
       flex-direction: column;
       align-items: center;
     }
-
     .product-img {
       width: 100%;
-      height: 180px;
+      height: 160px;
       background-color: #0b1528;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
-      font-size: 50px;
+      font-size: 48px;
+      margin-bottom: 14px;
     }
-
-    .product-name {
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 8px;
-    }
-
-    .product-price {
-      font-weight: 800;
-      font-size: 18px;
-      color: #38bdf8;
-      margin-bottom: 16px;
-    }
-
+    .product-name { font-weight: 600; margin-bottom: 6px; }
+    .product-price { font-weight: 800; color: #38bdf8; margin-bottom: 14px; }
     .btn-add {
       width: 100%;
       background-color: #e0f2fe;
@@ -289,131 +215,274 @@
       border-radius: 6px;
       font-weight: 700;
       cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-add:hover { background-color: #38bdf8; }
+
+    /* DRAWER DEL CARRITO (PANEL LATERAL) */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -360px;
+      width: 360px;
+      height: 100vh;
+      background-color: #112238;
+      border-left: 1px solid #1a2e48;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+      z-index: 300;
+      transition: right 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .cart-drawer.open { right: 0; }
+    .cart-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #1a2e48;
+      padding-bottom: 12px;
+    }
+    .close-cart {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .cart-items {
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #0b1528;
+      padding: 10px 14px;
+      border-radius: 8px;
+    }
+    .cart-footer {
+      border-top: 1px solid #1a2e48;
+      padding-top: 16px;
+      margin-top: 10px;
+    }
+    .btn-checkout {
+      width: 100%;
+      background-color: #38bdf8;
+      color: #0b1528;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 800;
+      margin-top: 12px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
-  <!-- BARRA DE NAVEGACIÓN -->
+  <!-- HEADER -->
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">FlipFinder</a>
+      <a href="#" class="logo" id="logoHome">FlipFinder</a>
 
       <div class="menu-bar">
-        <!-- MENÚ DE CATEGORÍAS -->
         <div class="cat-dropdown">
-          <button class="cat-btn" id="catBtn">
-            <span>☰</span> Categorías
-          </button>
+          <button class="cat-btn" id="catBtn">☰ Categorías</button>
           <div class="cat-menu" id="catMenu">
             <ul>
-              <li><a href="#">Tecnología <span>›</span></a></li>
-              <li><a href="#">Hogar y Electro <span>›</span></a></li>
-              <li><a href="#">Moda <span>›</span></a></li>
-              <li><a href="#">Deportes <span>›</span></a></li>
+              <li><a href="#" class="cat-filter" data-category="Tecnología">Tecnología <span>›</span></a></li>
+              <li><a href="#" class="cat-filter" data-category="Hogar">Hogar y Electro <span>›</span></a></li>
+              <li><a href="#" class="cat-filter" data-category="Moda">Moda <span>›</span></a></li>
+              <li><a href="#" class="cat-filter" data-category="Deportes">Deportes <span>›</span></a></li>
             </ul>
           </div>
         </div>
 
-        <!-- BUSCADOR -->
         <div class="search-box">
-          <input type="text" placeholder="Buscar productos, marcas y más...">
-          <button type="submit">🔍</button>
+          <input type="text" id="searchInput" placeholder="Buscar productos...">
+          <button type="button">🔍</button>
         </div>
       </div>
 
-      <!-- ACCIONES DE USUARIO -->
       <div class="user-nav">
         <a href="#">Mi cuenta</a>
-        <a href="#" class="cart-btn">Carrito (3)</a>
+        <button class="cart-btn" id="cartBtn">Carrito (<span id="cartCount">0</span>)</button>
       </div>
     </div>
   </header>
 
-  <!-- SECCIÓN HERO -->
+  <!-- HERO -->
   <section class="hero">
     <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
     <p>Descubre los mejores productos seleccionados para ti.</p>
   </section>
 
-  <!-- VENTAJAS -->
+  <!-- FEATURES -->
   <section class="features">
-    <div class="feature-card">
-      <span class="feature-icon">🚚</span>
-      <div>
-        <div class="feature-title">Envíos a todo Chile</div>
-        <div class="feature-desc">Recibe rápido</div>
-      </div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">🛡️</span>
-      <div>
-        <div class="feature-title">Compra segura</div>
-        <div class="feature-desc">Protegida</div>
-      </div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">💳</span>
-      <div>
-        <div class="feature-title">Mercado Pago</div>
-        <div class="feature-desc">Pagos seguros</div>
-      </div>
-    </div>
-    <div class="feature-card">
-      <span class="feature-icon">⭐</span>
-      <div>
-        <div class="feature-title">Garantía</div>
-        <div class="feature-desc">Calidad asegurada</div>
-      </div>
-    </div>
+    <div class="feature-card"><span>🚚</span><div><strong>Envíos a todo Chile</strong><br><small style="color:#94a3b8">Recibe rápido</small></div></div>
+    <div class="feature-card"><span>🛡️</span><div><strong>Compra segura</strong><br><small style="color:#94a3b8">Protegida</small></div></div>
+    <div class="feature-card"><span>💳</span><div><strong>Mercado Pago</strong><br><small style="color:#94a3b8">Pagos seguros</small></div></div>
+    <div class="feature-card"><span>⭐</span><div><strong>Garantía</strong><br><small style="color:#94a3b8">Calidad asegurada</small></div></div>
   </section>
 
   <!-- PRODUCTOS -->
   <section class="products-section">
-    <h2>Productos para ti</h2>
-    <div class="grid-products">
-      <div class="product-card">
-        <div class="product-img">💻</div>
-        <div class="product-name">Laptop Mac</div>
-        <div class="product-price">$55.000</div>
-        <button class="btn-add">Añadir al carrito</button>
-      </div>
-      <div class="product-card">
-        <div class="product-img">🥣</div>
-        <div class="product-name">Kitchen Mixer</div>
-        <div class="product-price">$25.000</div>
-        <button class="btn-add">Añadir al carrito</button>
-      </div>
-      <div class="product-card">
-        <div class="product-img">👟</div>
-        <div class="product-name">Zapatillas Sport</div>
-        <div class="product-price">$20.000</div>
-        <button class="btn-add">Añadir al carrito</button>
-      </div>
-      <div class="product-card">
-        <div class="product-img">⚽</div>
-        <div class="product-name">Balón de Fútbol</div>
-        <div class="product-price">$10.000</div>
-        <button class="btn-add">Añadir al carrito</button>
-      </div>
+    <div class="products-header">
+      <h2 id="sectionTitle">Productos para ti</h2>
+      <button id="resetFilterBtn" style="display:none; background:none; border:none; color:#38bdf8; cursor:pointer;">Ver todos</button>
     </div>
+    <div class="grid-products" id="productsGrid"></div>
   </section>
 
-  <!-- JAVASCRIPT -->
+  <!-- PANEL LATERAL DEL CARRITO -->
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <h3>Tu Carrito</h3>
+      <button class="close-cart" id="closeCart">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div style="display:flex; justify-content:space-between; font-weight:700;">
+        <span>Total:</span>
+        <span id="cartTotal">$0</span>
+      </div>
+      <button class="btn-checkout" onclick="alert('¡Gracias por tu compra en FlipFinder!')">Pagar Ahora</button>
+    </div>
+  </div>
+
   <script>
+    // 1. BASE DE DATOS DE PRODUCTOS
+    const products = [
+      { id: 1, name: "Laptop Mac", category: "Tecnología", price: 55000, icon: "💻" },
+      { id: 2, name: "Kitchen Mixer", category: "Hogar", price: 25000, icon: "🥣" },
+      { id: 3, name: "Zapatillas Sport", category: "Moda", price: 20000, icon: "👟" },
+      { id: 4, name: "Balón de Fútbol", category: "Deportes", price: 10000, icon: "⚽" },
+      { id: 5, name: "Audífonos Bluetooth", category: "Tecnología", price: 18000, icon: "🎧" },
+      { id: 6, name: "Cafetera Expreso", category: "Hogar", price: 32000, icon: "☕" }
+    ];
+
+    let cart = [];
+
+    // ELEMENTOS DEL DOM
+    const productsGrid = document.getElementById('productsGrid');
+    const searchInput = document.getElementById('searchInput');
     const catBtn = document.getElementById('catBtn');
     const catMenu = document.getElementById('catMenu');
+    const cartBtn = document.getElementById('cartBtn');
+    const cartDrawer = document.getElementById('cartDrawer');
+    const closeCart = document.getElementById('closeCart');
+    const cartCount = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const sectionTitle = document.getElementById('sectionTitle');
+    const resetFilterBtn = document.getElementById('resetFilterBtn');
 
+    // 2. RENDERIZAR PRODUCTOS
+    function renderProducts(items) {
+      productsGrid.innerHTML = '';
+      if(items.length === 0) {
+        productsGrid.innerHTML = '<p style="color:#94a3b8">No se encontraron productos.</p>';
+        return;
+      }
+      items.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="product-img">${p.icon}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-price">$${p.price.toLocaleString('es-CL')}</div>
+          <button class="btn-add" onclick="addToCart(${p.id})">Añadir al carrito</button>
+        `;
+        productsGrid.appendChild(card);
+      });
+    }
+
+    // 3. CARRITO INTERACTIVO
+    function addToCart(id) {
+      const prod = products.find(p => p.id === id);
+      cart.push(prod);
+      updateCartUI();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      cartCount.textContent = cart.length;
+      cartItems.innerHTML = '';
+      let total = 0;
+
+      if(cart.length === 0) {
+        cartItems.innerHTML = '<p style="color:#94a3b8; text-align:center;">El carrito está vacío</p>';
+      } else {
+        cart.forEach((item, index) => {
+          total += item.price;
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <div>
+              <strong>${item.name}</strong><br>
+              <small style="color:#38bdf8">$${item.price.toLocaleString('es-CL')}</small>
+            </div>
+            <button style="background:none; border:none; color:#ef4444; cursor:pointer;" onclick="removeFromCart(${index})">✕</button>
+          `;
+          cartItems.appendChild(div);
+        });
+      }
+      cartTotal.textContent = `$${total.toLocaleString('es-CL')}`;
+    }
+
+    // 4. EVENTOS DE BÚSQUEDA Y FILTRADO
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+      renderProducts(filtered);
+    });
+
+    document.querySelectorAll('.cat-filter').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cat = e.target.dataset.category || e.target.parentElement.dataset.category;
+        const filtered = products.filter(p => p.category === cat);
+        sectionTitle.textContent = `Categoría: ${cat}`;
+        resetFilterBtn.style.display = 'inline-block';
+        catMenu.classList.remove('show');
+        renderProducts(filtered);
+      });
+    });
+
+    resetFilterBtn.addEventListener('click', () => {
+      sectionTitle.textContent = 'Productos para ti';
+      resetFilterBtn.style.display = 'none';
+      renderProducts(products);
+    });
+
+    // CONTROLES DE MENÚS Y PANEL LATERAL
     catBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       catMenu.classList.toggle('show');
     });
+
+    cartBtn.addEventListener('click', () => cartDrawer.classList.add('open'));
+    closeCart.addEventListener('click', () => cartDrawer.classList.remove('open'));
 
     document.addEventListener('click', (e) => {
       if (!catMenu.contains(e.target) && !catBtn.contains(e.target)) {
         catMenu.classList.remove('show');
       }
     });
+
+    // INICIALIZAR
+    renderProducts(products);
+    updateCartUI();
   </script>
 </body>
 </html>
