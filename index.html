@@ -1,177 +1,72 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlipFinder | Tu marketplace de confianza</title>
-    <link rel="stylesheet" href="style.css?v=3">
-</head>
-<body>
+<header class="navbar">
+  <div class="logo">
+    <a href="#">FlipFinder</a>
+  </div>
 
-    <!-- NAVBAR -->
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <span class="logo-bold">Flip</span>Finder
-            </a>
+  <!-- Botón de Categorías con Menú Desplegable -->
+  <div class="category-menu-container">
+    <button id="category-btn" class="category-btn">
+      <svg class="menu-icon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+      </svg>
+      Categorías
+    </button>
 
-            <div class="search-bar">
-                <input type="text" id="input-busqueda" placeholder="Buscar productos, marcas y más...">
-                <button type="button">🔍</button>
-            </div>
+    <nav id="category-drawer" class="category-drawer">
+      <ul class="category-list">
+        <li class="category-item">
+          <a href="#">Tecnología</a>
+          <span class="arrow">&rsaquo;</span>
+        </li>
+        <li class="category-item">
+          <a href="#">Hogar y Electro</a>
+          <span class="arrow">&rsaquo;</span>
+        </li>
+        <li class="category-item">
+          <a href="#">Moda</a>
+          <span class="arrow">&rsaquo;</span>
+        </li>
+        <li class="category-item">
+          <a href="#">Deportes</a>
+          <span class="arrow">&rsaquo;</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
-            <div class="nav-actions">
-                <a href="admin-login.html" class="nav-link">Mi cuenta</a>
-                <a href="checkout.html" class="cart-btn">
-                    🛒 Carrito (<span id="cart-count">0</span>)
-                </a>
-            </div>
-        </div>
-    </header>
+  <!-- Barra de búsqueda -->
+  <div class="search-bar">
+    <input type="text" placeholder="Buscar productos, marcas y más...">
+    <button type="submit">🔍</button>
+  </div>
 
-    <!-- BANNER PRINCIPAL -->
-    <section class="hero-banner">
-        <div class="banner-content">
-            <h1>Encuentra lo que buscas.<br>Compra fácil y seguro.</h1>
-            <p>Descubre los mejores productos seleccionados para ti.</p>
-        </div>
-    </section>
+  <!-- Acciones -->
+  <div class="user-actions">
+    <a href="#">Mi cuenta</a>
+    <a href="#" class="cart-btn">Carrito (3)</a>
+  </div>
+</header>
+<!-- Todo el contenido de tu página va arriba -->
 
-    <!-- VENTAJAS -->
-    <section class="features-bar">
-        <div class="feature-item">
-            <span class="feature-icon">🚚</span>
-            <div>
-                <strong>Envíos a todo Chile</strong>
-                <p>Recibe rápido</p>
-            </div>
-        </div>
-        <div class="feature-item">
-            <span class="feature-icon">🛡️</span>
-            <div>
-                <strong>Compra segura</strong>
-                <p>Protegida</p>
-            </div>
-        </div>
-        <div class="feature-item">
-            <span class="feature-icon">💳</span>
-            <div>
-                <strong>Mercado Pago</strong>
-                <p>Pagos seguros</p>
-            </div>
-        </div>
-        <div class="feature-item">
-            <span class="feature-icon">⭐</span>
-            <div>
-                <strong>Garantía</strong>
-                <p>Calidad asegurada</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- CATÁLOGO DE PRODUCTOS -->
-    <main class="main-content">
-        <h2>Productos para ti</h2>
-        <div id="productos-container" class="products-grid">
-            <p>Cargando productos...</p>
-        </div>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <p>&copy; 2026 FlipFinder. Todos los derechos reservados.</p>
-    </footer>
-
-    <!-- SCRIPTS EN ORDEN CORRECTO -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
-    <script src="supabase-config.js"></script>
-    <script src="cart.js"></script>
-
+    <!-- El script de Categorías se coloca al final -->
     <script>
-        const FALLBACK_IMG = "https://placehold.co/400x400/1e293b/f8fafc?text=Producto+FlipFinder";
+      document.addEventListener('DOMContentLoaded', () => {
+        const categoryBtn = document.getElementById('category-btn');
+        const categoryDrawer = document.getElementById('category-drawer');
 
-        async function cargarProductos() {
-            const contenedor = document.getElementById('productos-container');
-            if (!contenedor) return;
-
-            try {
-                if (!window.supabase || typeof window.supabase.from !== 'function') {
-                    throw new Error("Cliente de Supabase no está listo.");
-                }
-
-                const { data: productos, error } = await window.supabase
-                    .from('productos')
-                    .select('*');
-
-                if (error) throw error;
-
-                if (!productos || productos.length === 0) {
-                    contenedor.innerHTML = '<p>No hay productos disponibles por el momento.</p>';
-                    return;
-                }
-
-                window.catalogoProductos = productos;
-                renderizarGrilla(productos);
-
-            } catch (err) {
-                console.error("Error al cargar productos desde Supabase:", err);
-                contenedor.innerHTML = '<p style="color:red; font-weight:bold;">Error al cargar productos.</p>';
-            }
-        }
-
-        function renderizarGrilla(lista) {
-            const contenedor = document.getElementById('productos-container');
-            if (!contenedor) return;
-
-            if (lista.length === 0) {
-                contenedor.innerHTML = '<p style="color: var(--text-muted); font-size: 1.1rem;">No se encontraron productos que coincidan con la búsqueda.</p>';
-                return;
-            }
-
-            contenedor.innerHTML = lista.map(prod => {
-                const index = window.catalogoProductos.findIndex(p => p.id === prod.id);
-                const imagenSrc = prod.imagen && prod.imagen.startsWith('http') ? prod.imagen : FALLBACK_IMG;
-                const precio = prod.precio || 0;
-
-                return `
-                    <div class="product-card">
-                        <img src="${imagenSrc}" alt="${prod.nombre || 'Producto'}" onerror="this.onerror=null; this.src='${FALLBACK_IMG}';">
-                        <h3>${prod.nombre || 'Producto sin nombre'}</h3>
-                        <p class="price">$${Number(precio).toLocaleString('es-CL')}</p>
-                        <button onclick="agregarPorIndice(${index})">
-                            Agregar al carrito
-                        </button>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Filtro de Búsqueda en tiempo real
-        document.getElementById('input-busqueda')?.addEventListener('input', (e) => {
-            const busqueda = e.target.value.toLowerCase().trim();
-            const filtrados = (window.catalogoProductos || []).filter(prod => 
-                (prod.nombre || '').toLowerCase().includes(busqueda)
-            );
-            renderizarGrilla(filtrados);
+        // Abrir / Cerrar al hacer clic en el botón
+        categoryBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          categoryDrawer.classList.toggle('active');
         });
 
-        // Manejador seguro para agregar al carrito sin vulnerabilidad de caracteres especiales
-        function agregarPorIndice(index) {
-            const prod = window.catalogoProductos[index];
-            if (!prod) return;
-
-            const imagen = prod.imagen && prod.imagen.startsWith('http') ? prod.imagen : FALLBACK_IMG;
-            
-            if (typeof window.addToCart === 'function') {
-                window.addToCart(prod.id, prod.nombre, prod.precio, imagen);
-            } else if (typeof window.agregarAlCarrito === 'function') {
-                window.agregarAlCarrito(prod.id, prod.nombre, prod.precio, imagen);
-            } else {
-                alert("El sistema de carrito no está disponible en este momento.");
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', cargarProductos);
+        // Cerrar si se hace clic fuera del menú
+        document.addEventListener('click', (e) => {
+          if (!categoryDrawer.contains(e.target) && !categoryBtn.contains(e.target)) {
+            categoryDrawer.classList.remove('active');
+          }
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
