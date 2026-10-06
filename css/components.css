@@ -2,19 +2,19 @@
 .product-detail-layout {
   display: flex;
   gap: 30px;
-  align-items: flex-start;
-  margin-top: 30px;
-  background: #ffffff;
-  padding: 25px;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  align-items: flex-start;
 }
 
-.gallery-wrapper {
+.gallery-box {
   display: flex;
   gap: 15px;
-  max-width: 550px;
-  width: 100%;
+  width: 500px;
+  flex-shrink: 0;
 }
 
 .thumbnails-list {
@@ -30,53 +30,79 @@
   border-radius: 6px;
   border: 2px solid #e2e8f0;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .thumbnail-img:hover,
 .thumbnail-img.active {
-  border-color: #ffd700; /* Color corporativo */
+  border-color: #ffd700;
   transform: scale(1.03);
 }
 
-.main-image-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fafafa;
-  border-radius: 8px;
-  padding: 10px;
+.main-img-box {
+  width: 400px;
+  height: 400px;
   border: 1px solid #edf2f7;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: #fafafa;
 }
 
-.main-image-wrapper img {
+.main-img-box img {
   max-width: 100%;
-  max-height: 420px;
+  max-height: 100%;
+  width: auto;
+  height: auto;
   object-fit: contain;
-  border-radius: 6px;
 }
 
-.product-details-info {
+.info-box {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-/* Responsivo para celulares */
+.product-detail-title {
+  font-size: 1.8rem;
+}
+
+.product-detail-price {
+  font-size: 2rem;
+  color: #1a1a1a;
+}
+
+.product-detail-desc {
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.product-detail-stock {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Responsivo para móviles */
 @media (max-width: 768px) {
   .product-detail-layout {
     flex-direction: column;
   }
 
-  .gallery-wrapper {
+  .gallery-box {
     flex-direction: column-reverse;
-    max-width: 100%;
+    width: 100%;
   }
 
   .thumbnails-list {
     flex-direction: row;
     overflow-x: auto;
+  }
+
+  .main-img-box {
+    width: 100%;
+    height: 300px;
   }
 }
