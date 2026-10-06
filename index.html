@@ -50,7 +50,6 @@
     .btn-add-cart { width: 100%; background-color: #3483fa; color: #fff; border: none; padding: 8px; border-radius: 4px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
     footer { background-color: #222; color: #ccc; padding: 32px 0 16px; margin-top: 40px; font-size: 13px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 24px; }
     .footer-bottom { border-top: 1px solid #333; padding-top: 16px; text-align: center; color: #777; }
   </style>
 </head>
@@ -121,15 +120,15 @@
       const suggestionsBox = document.getElementById('suggestionsBox');
 
       try {
+        // Traemos todos los productos sin filtrar obligatoriamente por 'activo' para prevenir errores de columnas faltantes
         const { data: productos, error } = await supabase
           .from('productos')
-          .select('*')
-          .eq('activo', true);
+          .select('*');
 
         if (error) throw error;
 
         if (!productos || productos.length === 0) {
-          grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No hay productos disponibles.</p>';
+          grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No hay productos registrados en la base de datos.</p>';
           return;
         }
 
@@ -187,8 +186,8 @@
         });
 
       } catch (err) {
-        console.error(err);
-        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: red; padding: 40px;">Error al cargar productos desde Supabase.</p>';
+        console.error('Error al conectar con Supabase:', err);
+        grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: red; padding: 40px;">Error al cargar productos: ${err.message || 'Verifica la conexion a Supabase'}</p>`;
       }
     });
   </script>
