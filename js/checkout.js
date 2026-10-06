@@ -52,30 +52,25 @@ if (checkoutForm) {
     btnPay.disabled = true;
     btnPay.textContent = 'Procesando pedido...';
 
-    // Capturar datos del formulario
     const orderData = {
       cliente_nombre: document.getElementById('fullName').value,
       cliente_email: document.getElementById('email').value,
       cliente_telefono: document.getElementById('phone').value,
       direccion: document.getElementById('address').value,
       ciudad: document.getElementById('city').value,
-      productos: cart, // Guarda el listado de productos
+      productos: cart,
       total: cart.reduce((sum, item) => sum + (item.precio * item.qty), 0),
       estado: 'Pendiente'
     };
 
     try {
-      // Guardar pedido en Supabase (tabla 'pedidos')
-      const { data, error } = await supabase
+      const { data, error } = await window.supabaseClient
         .from('pedidos')
         .insert([orderData]);
 
       if (error) throw error;
 
-      // Limpiar carrito tras compra exitosa
       localStorage.removeItem('ff_cart');
-
-      // Redirigir a página de confirmación de pago
       window.location.href = 'pago-exitoso.html';
 
     } catch (err) {

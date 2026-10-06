@@ -4,7 +4,7 @@ async function loadOrders() {
   if (!tbody) return;
 
   try {
-    const { data: pedidos, error } = await supabase
+    const { data: pedidos, error } = await window.supabaseClient
       .from('pedidos')
       .select('*')
       .order('created_at', { ascending: false });
@@ -39,7 +39,7 @@ async function loadAdminProducts() {
   if (!tbody) return;
 
   try {
-    const { data: productos, error } = await supabase
+    const { data: productos, error } = await window.supabaseClient
       .from('productos')
       .select('*')
       .order('created_at', { ascending: false });
@@ -82,7 +82,7 @@ if (addProductForm) {
     };
 
     try {
-      const { error } = await supabase.from('productos').insert([newProduct]);
+      const { error } = await window.supabaseClient.from('productos').insert([newProduct]);
       if (error) throw error;
 
       alert('¡Producto agregado con éxito!');
@@ -98,7 +98,7 @@ if (addProductForm) {
 async function deleteProduct(id) {
   if (confirm('¿Seguro que deseas eliminar este producto?')) {
     try {
-      const { error } = await supabase.from('productos').delete().eq('id', id);
+      const { error } = await window.supabaseClient.from('productos').delete().eq('id', id);
       if (error) throw error;
       loadAdminProducts();
     } catch (err) {
