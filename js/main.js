@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }).format(producto.precio || 0);
 
       // Intentar obtener la imagen desde imagen_url o imagen
-      const urlImagen = producto.imagen_url || producto.imagen || 'foto1,jpg';
+      const urlImagen = producto.imagen_url || producto.imagen || 'https://via.placeholder.com/300';
 
       card.innerHTML = `
         <img src="${urlImagen}" alt="${producto.nombre || 'Producto'}" loading="lazy">
