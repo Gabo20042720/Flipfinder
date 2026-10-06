@@ -2,30 +2,30 @@ document.addEventListener('DOMContentLoaded', async () => {
   const productosContainer = document.getElementById('productos-container');
 
   try {
-    // 1. Obtener los productos desde la tabla 'productos' de Supabase
-    const { data: productos, error } = await supabase
+    // Verificar si la variable de supabase existe en supabase-config.js
+    const client = window.supabaseClient || window.supabase;
+
+    if (!client) {
+      throw new Error("Cliente de Supabase no inicializado");
+    }
+
+    const { data: productos, error } = await client
       .from('productos')
       .select('*');
 
-    if (error) {
-      throw error;
-    }
+    if (error) throw error;
 
-    // 2. Si no hay productos guardados
     if (!productos || productos.length === 0) {
       productosContainer.innerHTML = '<p class="no-productos">No hay productos disponibles por el momento.</p>';
       return;
     }
 
-    // 3. Limpiar el contenedor de carga
     productosContainer.innerHTML = '';
 
-    // 4. Generar cada tarjeta de producto estilo Mercado Libre
     productos.forEach(producto => {
       const card = document.createElement('div');
       card.classList.add('product-card');
 
-      // Formatear el precio a moneda chilena ($ CLP)
       const precioFormateado = new Intl.NumberFormat('es-CL', {
         style: 'currency',
         currency: 'CLP',
