@@ -3,356 +3,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Admin | FlipFinder</title>
-
+  <title>Panel de Administración - FlipFinder</title>
+  
+  <!-- SDK de Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <link rel="stylesheet" href="../css/style.css">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      color: #111;
-    }
-
-    header {
-      background: #111;
-      color: white;
-      padding: 20px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-
-    #cerrarSesion {
-      background: white;
-      color: #111;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    main {
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
       max-width: 1200px;
-      margin: 30px auto;
-      padding: 0 20px;
+      margin: 2rem auto;
+      padding: 0 1rem;
     }
-
-    .bienvenida {
-      margin-bottom: 25px;
+    .admin-card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      margin-bottom: 2rem;
     }
-
-    .bienvenida h2 {
-      margin-bottom: 5px;
-    }
-
-    .bienvenida p {
-      color: #666;
-      margin-top: 0;
-    }
-
-    .tabla-container {
-      background: white;
-      border-radius: 14px;
+    .table-container {
+      width: 100%;
       overflow-x: auto;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 900px;
+      margin-top: 1rem;
     }
-
-    th,
-    td {
-      padding: 14px;
+    th, td {
+      padding: 0.8rem;
       text-align: left;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #E6E6E6;
     }
-
     th {
-      background: #fafafa;
-      font-size: 14px;
+      background: #F5F5F5;
+      color: #333;
     }
-
-    td {
-      font-size: 14px;
-    }
-
-    .estado {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .approved {
-      background: #dff7e5;
-      color: #18753c;
-    }
-
-    .pendiente {
-      background: #fff2cc;
-      color: #856404;
-    }
-
-    .rejected,
-    .cancelled {
-      background: #f8d7da;
-      color: #842029;
-    }
-
-    .otro {
-      background: #e9ecef;
-      color: #495057;
-    }
-
-    #mensaje {
-      text-align: center;
-      padding: 30px;
-      color: #666;
-    }
-
-    .total {
+    .badge-status {
+      background: #EAF6FE;
+      color: #007EB5;
+      padding: 0.3rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
       font-weight: bold;
     }
   </style>
 </head>
-
 <body>
 
   <header>
-    <h1>FlipFinder — Administración</h1>
-
-    <button id="cerrarSesion">
-      Cerrar sesión
-    </button>
+    <div class="nav-container">
+      <a href="../index.html" class="logo">FlipFinder Admin</a>
+      <a href="../index.html" class="nav-link">Volver a la Tienda</a>
+    </div>
   </header>
 
-  <main>
+  <div class="admin-grid">
+    
+    <!-- FORMULARIO PARA AGREGAR PRODUCTO -->
+    <aside>
+      <div class="admin-card">
+        <h3>Agregar Producto</h3>
+        <form id="addProductForm" style="margin-top: 1rem;">
+          <div class="filter-group">
+            <label>Nombre del Producto</label>
+            <input type="text" id="prodName" class="filter-input" placeholder="Ej: Audífonos Gamer" required>
+          </div>
+          <div class="filter-group">
+            <label>Categoría</label>
+            <input type="text" id="prodCategory" class="filter-input" placeholder="Tecnología, Moda..." required>
+          </div>
+          <div class="filter-group">
+            <label>Precio ($)</label>
+            <input type="number" id="prodPrice" class="filter-input" placeholder="19990" required>
+          </div>
+          <div class="filter-group">
+            <label>Imagen (URL o Emoji)</label>
+            <input type="text" id="prodImage" class="filter-input" placeholder="🎧 o https://..." required>
+          </div>
+          <button type="submit" class="btn-checkout" style="width: 100%; border: none; cursor: pointer; padding: 0.8rem;">
+            Guardar Producto
+          </button>
+        </form>
+      </div>
+    </aside>
 
-    <div class="bienvenida">
-      <h2>Pedidos</h2>
-      <p id="usuarioAdmin">Comprobando sesión...</p>
-    </div>
-
-    <div class="tabla-container">
-
-      <table>
-
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Fecha</th>
-            <th>Cliente</th>
-            <th>Email</th>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Total</th>
-            <th>Estado</th>
-            <th>Payment ID</th>
-          </tr>
-        </thead>
-
-        <tbody id="pedidos">
-        </tbody>
-
-      </table>
-
-      <div id="mensaje">
-        Cargando pedidos...
+    <!-- LISTADO DE PEDIDOS Y PRODUCTOS -->
+    <main>
+      
+      <!-- TABLA DE PEDIDOS -->
+      <div class="admin-card">
+        <h3>Últimos Pedidos Registrados</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Contacto</th>
+                <th>Dirección</th>
+                <th>Total</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Se cargan dinámicamente -->
+            </tbody>
+          </table>
+        </div>
       </div>
 
-    </div>
+      <!-- TABLA DE PRODUCTOS -->
+      <div class="admin-card">
+        <h3>Gestión de Productos</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Acción</th>
+              </tr>
+            </thead>
+            <tbody id="productsTableBody">
+              <!-- Se cargan dinámicamente -->
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-  </main>
+    </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./supabase-config.js"></script>
+  </div>
 
-  <script>
-   
-    const pedidosElement =
-      document.getElementById("pedidos");
-
-    const mensajeElement =
-      document.getElementById("mensaje");
-
-    const usuarioAdminElement =
-      document.getElementById("usuarioAdmin");
-
-    const cerrarSesionButton =
-      document.getElementById("cerrarSesion");
-
-
-    async function iniciarPanel() {
-
-      const {
-        data: { user },
-        error: userError
-      } = await supabaseClient.auth.getUser();
-
-      if (userError || !user) {
-        window.location.href = "admin-login.html";
-        return;
-      }
-
-      const {
-        data: admin,
-        error: adminError
-      } = await supabaseClient
-        .from("admins")
-        .select("user_id")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-      if (adminError || !admin) {
-
-        await supabaseClient.auth.signOut();
-
-        alert(
-          "No tienes permisos de administrador."
-        );
-
-        window.location.href = "admin-login.html";
-        return;
-      }
-
-      usuarioAdminElement.textContent =
-        "Sesión iniciada: " + user.email;
-
-      await cargarPedidos();
-    }
-
-
-    async function cargarPedidos() {
-
-      const {
-        data: pedidos,
-        error
-      } = await supabaseClient
-        .from("pedidos")
-        .select("*")
-        .order("created_at", {
-          ascending: false
-        });
-
-      if (error) {
-
-        console.error(error);
-
-        mensajeElement.textContent =
-          "No se pudieron cargar los pedidos.";
-
-        return;
-      }
-
-      mensajeElement.style.display = "none";
-
-      pedidosElement.innerHTML = "";
-
-      if (!pedidos || pedidos.length === 0) {
-
-        mensajeElement.style.display = "block";
-
-        mensajeElement.textContent =
-          "Todavía no hay pedidos.";
-
-        return;
-      }
-
-
-      pedidos.forEach(function(pedido) {
-
-        const fila =
-          document.createElement("tr");
-
-        const fecha =
-          new Date(
-            pedido.created_at
-          ).toLocaleString("es-CL");
-
-
-        let claseEstado = "otro";
-
-        if (pedido.estado === "approved") {
-          claseEstado = "approved";
-        }
-
-        if (pedido.estado === "pendiente") {
-          claseEstado = "pendiente";
-        }
-
-        if (
-          pedido.estado === "rejected" ||
-          pedido.estado === "cancelled"
-        ) {
-          claseEstado = pedido.estado;
-        }
-
-
-        fila.innerHTML = `
-          <td>${pedido.id ?? "-"}</td>
-
-          <td>${fecha}</td>
-
-          <td>
-            ${(pedido.nombre || "")}
-            ${(pedido.apellido || "")}
-          </td>
-
-          <td>${pedido.email || "-"}</td>
-
-          <td>${pedido.producto || "-"}</td>
-
-          <td>${pedido.cantidad ?? "-"}</td>
-
-          <td class="total">
-            $${Number(
-              pedido.total || 0
-            ).toLocaleString("es-CL")}
-          </td>
-
-          <td>
-            <span class="estado ${claseEstado}">
-              ${pedido.estado || "-"}
-            </span>
-          </td>
-
-          <td>${pedido.payment_id || "-"}</td>
-        `;
-
-        pedidosElement.appendChild(fila);
-      });
-    }
-
-
-    cerrarSesionButton.addEventListener(
-      "click",
-      async function() {
-
-        await supabaseClient.auth.signOut();
-
-        window.location.href =
-          "admin-login.html";
-      }
-    );
-
-
-    iniciarPanel();
-  </script>
-
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/admin.js"></script>
 </body>
 </html>
