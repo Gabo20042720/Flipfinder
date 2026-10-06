@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Producto - FlipFinder</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js" defer></script>
+  <script src="../js/product-detail.js" defer></script>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">
+      <a href="../index.html">Flip<span>Finder</span></a>
+    </div>
+  </header>
+
+  <main class="product-detail-container">
+    <div class="gallery-container">
+      <div class="thumbnails-list" id="thumbnails-container">
+        <!-- Miniaturas de las 4 fotos -->
+      </div>
+      <div class="main-image-container">
+        <img id="main-product-img" src="" alt="Imagen del producto">
+      </div>
+    </div>
+
+    <div class="product-info-detail">
+      <h1 id="product-title">Cargando producto...</h1>
+      <p class="product-price-detail" id="product-price">$0</p>
+      <p class="product-description" id="product-description"></p>
+      <p class="product-stock" id="product-stock"></p>
+
+      <button id="btn-add-cart" class="btn-primary">Agregar al carrito</button>
+    </div>
+  </main>
+
+</body>
+</html>
