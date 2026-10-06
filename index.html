@@ -88,7 +88,6 @@
     <script src="cart.js"></script>
 
     <script>
-        // Imagen SVG incrustada para evitar peticiones externas y bucles de error 404
         const PLACEHOLDER_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Crect width='100%25' height='100%25' fill='%231e293b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%2394a3b8' font-family='sans-serif' font-size='18'%3ESin Imagen%3C/text%3E%3C/svg%3E";
 
         async function cargarProductos() {
@@ -97,34 +96,33 @@
 
             try {
                 if (!window.supabase || typeof window.supabase.from !== 'function') {
-                    throw new Error("El cliente de Supabase no se ha inicializado correctamente.");
+                    throw new Error("El cliente de Supabase no está listo.");
                 }
 
                 const { data: productos, error } = await window.supabase
                     .from('productos')
                     .select('*');
 
-                if (error) {
-                    console.error("Detalle del error de Supabase:", error);
-                    throw error;
-                }
+                if (error) throw error;
 
                 if (!productos || productos.length === 0) {
                     contenedor.innerHTML = '<p>No hay productos disponibles por el momento.</p>';
                     return;
                 }
 
-                contenedor.innerHTML = productos.map(prod => {
+                // Guardamos los productos en una variable global segura para accederlos sin romper sintaxis
+                window.catalogoProductos = productos;
+
+                contenedor.innerHTML = productos.map((prod, index) => {
                     const imagenSrc = prod.imagen && prod.imagen.trim() !== '' ? prod.imagen : PLACEHOLDER_SVG;
-                    const nombreLimpio = (prod.nombre || 'Producto').replace(/'/g, "\\'");
                     const precio = prod.precio || 0;
 
                     return `
                         <div class="product-card">
-                            <img src="${imagenSrc}" alt="${prod.nombre}" onerror="this.onerror=null; this.src='${PLACEHOLDER_SVG}';">
-                            <h3>${prod.nombre}</h3>
+                            <img src="${imagenSrc}" alt="${prod.nombre || 'Producto'}" onerror="this.onerror=null; this.src='${PLACEHOLDER_SVG}';">
+                            <h3>${prod.nombre || 'Producto sin nombre'}</h3>
                             <p class="price">$${Number(precio).toLocaleString('es-CL')}</p>
-                            <button onclick="addToCart('${prod.id}', '${nombreLimpio}', ${precio}, '${imagenSrc}')">
+                            <button onclick="agregarPorIndice(${index})">
                                 Agregar al carrito
                             </button>
                         </div>
@@ -133,7 +131,20 @@
 
             } catch (err) {
                 console.error("Error al cargar productos:", err);
-                contenedor.innerHTML = `<p style="color:red; font-weight:bold;">Error al cargar productos: ${err.message || 'Error de conexión'}</p>`;
+                contenedor.innerHTML = '<p style="color:red; font-weight:bold;">Error al cargar productos.</p>';
+            }
+        }
+
+        // Función que lee el producto desde el arreglo sin exponer strings vulnerables en la etiqueta HTML
+        function agregarPorIndice(index) {
+            const prod = window.catalogoProductos[index];
+            if (!prod) return;
+            
+            const fnAgregar = window.addToCart || window.agregarAlCarrito;
+            if (typeof fnAgregar === 'function') {
+                fnAgregar(prod.id, prod.nombre, prod.precio, prod.imagen);
+            } else {
+                alert("Error: la función de carrito no está disponible.");
             }
         }
 
