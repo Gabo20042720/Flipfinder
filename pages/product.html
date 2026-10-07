@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Detalle del Producto - FlipFinder</title>
+  <title>Detalle del Producto | FlipFinder Chile</title>
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/components.css">
-  <script src="../js/product-detail.js" defer></script>
 </head>
 <body>
 
@@ -14,11 +13,12 @@
     <div class="logo">
       <a href="../index.html">Flip<span>Finder</span></a>
     </div>
+    <a href="../checkout.html" aria-label="Ver carrito">🛒 <span id="cart-count">0</span></a>
   </header>
 
   <main class="main-container">
     <div class="product-detail-layout">
-      
+
       <!-- Galería -->
       <div class="gallery-box">
         <div id="thumbnails-container" class="thumbnails-list"></div>
@@ -33,11 +33,16 @@
         <h2 id="product-price" class="product-detail-price">$0</h2>
         <p id="product-description" class="product-detail-desc"></p>
         <p id="product-stock" class="product-detail-stock"></p>
-        <button class="btn-primary">Agregar al carrito</button>
+        <button class="btn-primary btn-agregar" type="button">Agregar al carrito</button>
       </div>
 
     </div>
   </main>
 
+  <!-- Orden importante: Supabase → config → carrito → detalle -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/product-detail.js"></script>
 </body>
 </html>
