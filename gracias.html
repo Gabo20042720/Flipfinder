@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultado del pago | FlipFinder Chile</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    .gr-wrap { max-width: 560px; margin: 0 auto; padding: 32px 16px 0; }
+    .gr-card { background: #fff; border-radius: 6px; padding: 32px 24px; text-align: center; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+    .gr-card h1 { margin: 0 0 8px; font-size: 1.4rem; }
+    .gr-card p { margin: 8px 0; color: #444; }
+    .gr-ref { display: inline-block; margin: 8px 0; padding: 6px 14px; background: #f3f3f3; border-radius: 4px; font-weight: 700; word-break: break-all; }
+    .gr-btn { display: inline-block; margin-top: 16px; padding: 12px 24px; border-radius: 6px; background: #fff159; color: #2d2a8a; font-weight: 700; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">
+      <a href="index.html">Flip<span>Finder</span></a>
+    </div>
+  </header>
+
+  <main class="gr-wrap">
+    <div class="gr-card" role="status">
+      <h1 id="gr-titulo">Revisando tu pago...</h1>
+      <p id="gr-texto"></p>
+      <div id="gr-ref" class="gr-ref" style="display:none;"></div>
+      <div><a id="gr-link" class="gr-btn" href="index.html">Volver a la tienda</a></div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <p>© 2026 FlipFinder Chile. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const estado = params.get('estado');
+      const ref = params.get('external_reference');
+
+      const titulo = document.getElementById('gr-titulo');
+      const texto = document.getElementById('gr-texto');
+      const link = document.getElementById('gr-link');
+
+      if (estado === 'ok') {
+        titulo.textContent = '¡Gracias por tu compra!';
+        texto.textContent = 'Recibimos tu pago. Te escribiremos al correo y al teléfono que indicaste con los datos del despacho.';
+        localStorage.removeItem('cart');
+        updateCartCount();
+      } else if (estado === 'pendiente') {
+        titulo.textContent = 'Tu pago está pendiente';
+        texto.textContent = 'Mercado Pago aún está procesando el pago. Cuando se confirme, te avisaremos por correo.';
+      } else {
+        titulo.textContent = 'No pudimos procesar tu pago';
+        texto.textContent = 'No se hizo ningún cobro. Tus productos siguen en el carrito para que lo intentes de nuevo.';
+        link.textContent = 'Volver al checkout';
+        link.href = 'checkout.html';
+      }
+
+      if (ref) {
+        const refBox = document.getElementById('gr-ref');
+        refBox.textContent = 'Pedido ' + ref;
+        refBox.style.display = 'inline-block';
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,12 +1,13 @@
-// Checkout: valida el formulario y crea el pedido en Supabase.
-// El total NO se calcula aquí: lo calcula la función crear_pedido() en la base de datos
-// con los precios reales de la tabla products.
+// Checkout: valida el formulario, crea el pedido y redirige a Mercado Pago.
+// Los precios y el total los calcula la función crear-pago en el servidor;
+// aquí solo se envían los ids y cantidades del carrito.
 (function () {
   const form = document.getElementById('checkout-form');
   if (!form) return;
 
   const btn = document.getElementById('ck-submit');
   const errorBox = document.getElementById('ck-error');
+  const TEXTO_BOTON = 'Ir a pagar';
 
   function mostrarError(mensaje) {
     errorBox.textContent = mensaje;
@@ -28,6 +29,11 @@
     if (d.comuna.length < 2) return 'Escribe tu comuna.';
     if (d.direccion.length < 5) return 'Escribe tu dirección completa (calle y número).';
     return null;
+  }
+
+  function restaurarBoton() {
+    btn.disabled = false;
+    btn.textContent = TEXTO_BOTON;
   }
 
   form.addEventListener('submit', async (e) => {
@@ -59,39 +65,36 @@
     }
 
     btn.disabled = true;
-    btn.textContent = 'Enviando...';
+    btn.textContent = 'Preparando tu pago...';
 
-    const { data, error } = await window.supabaseClient.rpc('crear_pedido', {
-      p_nombre: datos.nombre,
-      p_apellido: datos.apellido,
-      p_email: datos.email,
-      p_telefono: datos.telefono,
-      p_region: datos.region,
-      p_comuna: datos.comuna,
-      p_direccion: datos.direccion,
-      p_notas: datos.notas,
-      // Solo mandamos id y cantidad; el precio lo decide el servidor
-      p_items: cart.map(item => ({ id: item.id, quantity: item.quantity || 1 }))
-    });
+    try {
+      const res = await fetch(`${SUPABASE_URL}/functions/v1/crear-pago`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY
+        },
+        body: JSON.stringify({
+          ...datos,
+          items: cart.map(item => ({ id: item.id, quantity: item.quantity || 1 }))
+        })
+      });
 
-    if (error) {
-      console.error('Error creando el pedido:', error);
-      mostrarError(error.message || 'No pudimos crear tu pedido. Inténtalo de nuevo.');
-      btn.disabled = false;
-      btn.textContent = 'Confirmar pedido';
-      return;
+      const respuesta = await res.json().catch(() => ({}));
+
+      if (!res.ok || !respuesta.init_point) {
+        console.error('Error de crear-pago:', respuesta);
+        mostrarError(respuesta.error || 'No pudimos iniciar el pago. Inténtalo de nuevo.');
+        restaurarBoton();
+        return;
+      }
+
+      // El carrito se vacía en gracias.html cuando el pago vuelve aprobado
+      window.location.href = respuesta.init_point;
+    } catch (err) {
+      console.error(err);
+      mostrarError('No pudimos conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.');
+      restaurarBoton();
     }
-
-    const pedido = Array.isArray(data) ? data[0] : data;
-
-    // Pedido creado: vaciamos el carrito y mostramos la confirmación
-    localStorage.removeItem('cart');
-    updateCartCount();
-
-    document.getElementById('cart-content').style.display = 'none';
-    document.getElementById('empty-cart-view').style.display = 'none';
-    document.getElementById('order-ref').textContent = pedido ? pedido.out_ref : '';
-    document.getElementById('order-done').style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 })();
