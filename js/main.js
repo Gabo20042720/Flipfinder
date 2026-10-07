@@ -136,6 +136,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     input.addEventListener('input', () => { textoBusqueda = input.value; renderProductos(); });
   }
 
+  const qInicial = new URLSearchParams(location.search).get('q');
+  if (qInicial && input) { input.value = qInicial; textoBusqueda = qInicial; }
+
   contenedor.innerHTML = '<p class="ff-empty">Cargando productos...</p>';
   productos = await cargarProductos();
   renderChips();

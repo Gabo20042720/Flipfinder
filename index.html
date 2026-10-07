@@ -23,23 +23,16 @@
       <a href="index.html" class="ff-logo" aria-label="FlipFinder, ir al inicio">
         <span class="flip">Flip</span><span class="finder">Finder</span>
       </a>
-
-      <form class="ff-search" id="search-form" role="search">
-        <input type="search" id="search-input" placeholder="Buscar productos, marcas y más..." aria-label="Buscar productos" autocomplete="off">
+      <form class="ff-search" id="search-form" role="search" action="index.html">
+        <input type="search" id="search-input" name="q" placeholder="Buscar productos, marcas y más..." aria-label="Buscar productos" autocomplete="off">
         <button type="submit" aria-label="Buscar">🔍</button>
       </form>
-
       <div class="ff-user">
-        <a href="#" id="admin-link">Admin</a>
         <a href="checkout.html" class="ff-cart" aria-label="Ver carrito">🛒 <span id="cart-count">0</span></a>
       </div>
-
       <nav class="ff-nav" aria-label="Principal">
-        <a href="#productos">Productos</a>
-        <a href="#">Ofertas</a>
-        <a href="#">Historial</a>
-        <a href="#">Vender</a>
-        <a href="#">Contacto</a>
+        <a href="index.html#productos">Productos</a>
+        <a href="contacto.html">Contacto</a>
       </nav>
     </div>
   </header>
@@ -78,7 +71,13 @@
         <span class="ff-logo"><span class="flip">Flip</span><span class="finder">Finder</span></span>
         <p>Tu tienda online en Chile: productos seleccionados, envío incluido y pago seguro.</p>
       </div>
-      <div><p>Pagos procesados por<br><strong>Mercado Pago</strong></p></div>
+      <div>
+        <p><strong>Ayuda</strong></p>
+        <p><a href="contacto.html">Contacto</a></p>
+        <p data-contact><a data-mail href="#"></a></p>
+        <p data-contact><a data-wa href="#" target="_blank" rel="noopener">WhatsApp</a></p>
+        <p>Pagos procesados por <strong>Mercado Pago</strong></p>
+      </div>
     </div>
     <div class="ff-copy">© 2026 FlipFinder Chile. Todos los derechos reservados.</div>
   </footer>
@@ -87,5 +86,6 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

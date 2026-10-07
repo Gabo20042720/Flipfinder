@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resultado del pago | FlipFinder Chile</title>
+  <title>Contacto | FlipFinder Chile</title>
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/theme.css">
@@ -41,11 +41,12 @@
   </header>
 
   <main class="gr-wrap">
-    <div class="gr-card" role="status">
-      <h1 id="gr-titulo">Revisando tu pago...</h1>
-      <p id="gr-texto"></p>
-      <div id="gr-ref" class="gr-ref" style="display:none;"></div>
-      <div><a id="gr-link" class="gr-btn" href="index.html">Volver a la tienda</a></div>
+    <div class="gr-card">
+      <h1>Contacto</h1>
+      <p>¿Dudas sobre un producto, tu pedido o el despacho? Escríbenos y te respondemos lo antes posible.</p>
+      <p data-contact>Correo: <a data-mail href="#"></a></p>
+      <p data-contact><a class="gr-btn" data-wa href="#" target="_blank" rel="noopener">Escribir por WhatsApp</a></p>
+      <p><a href="index.html">Volver a la tienda</a></p>
     </div>
   </main>
 
@@ -67,38 +68,6 @@
   </footer>
 
   <script src="js/cart.js"></script>
-  <script>
-    (function () {
-      const params = new URLSearchParams(window.location.search);
-      const estado = params.get('estado');
-      const ref = params.get('external_reference');
-
-      const titulo = document.getElementById('gr-titulo');
-      const texto = document.getElementById('gr-texto');
-      const link = document.getElementById('gr-link');
-
-      if (estado === 'ok') {
-        titulo.textContent = '¡Gracias por tu compra!';
-        texto.textContent = 'Mercado Pago nos informó tu pago. Te escribiremos al correo y al teléfono que indicaste con los datos del despacho.';
-        localStorage.removeItem('cart');
-        updateCartCount();
-      } else if (estado === 'pendiente') {
-        titulo.textContent = 'Tu pago está pendiente';
-        texto.textContent = 'Mercado Pago aún está procesando el pago. Cuando se confirme, te avisaremos por correo.';
-      } else {
-        titulo.textContent = 'No pudimos procesar tu pago';
-        texto.textContent = 'No se hizo ningún cobro. Tus productos siguen en el carrito para que lo intentes de nuevo.';
-        link.textContent = 'Volver al checkout';
-        link.href = 'checkout.html';
-      }
-
-      if (ref) {
-        const refBox = document.getElementById('gr-ref');
-        refBox.textContent = 'Pedido ' + ref;
-        refBox.style.display = 'inline-block';
-      }
-    })();
-  </script>
   <script src="js/site.js"></script>
 </body>
 </html>
