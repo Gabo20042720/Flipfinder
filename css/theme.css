@@ -102,3 +102,14 @@ a { color: inherit; }
   .ff-trust { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { #productos-container .product-card { transition: none; } }
+/* Evita estilos de imagen heredados de components.css */
+#productos-container .pc-media img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+}
