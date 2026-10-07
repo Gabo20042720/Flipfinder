@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar compra | FlipFinder Chile</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <style>
+    .ck-wrap { max-width: 1000px; margin: 0 auto; padding: 24px 16px 0; }
+    .ck-title { margin: 0 0 16px; font-size: 1.5rem; }
+    .ck-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+    .ck-card { background: #fff; border-radius: 6px; padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+    .ck-card h2 { margin: 0 0 14px; font-size: 1.1rem; }
+    .ck-field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+    .ck-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ck-field label { font-size: .85rem; font-weight: 500; color: #333; }
+    .ck-field input, .ck-field select, .ck-field textarea {
+      padding: 10px 12px; border: 1px solid #ccc; border-radius: 4px; font: inherit; background: #fff;
+    }
+    .ck-field input:focus, .ck-field select:focus, .ck-field textarea:focus { outline: 2px solid #2d2a8a; outline-offset: 1px; }
+    .ck-total { display: flex; justify-content: space-between; font-size: 1.15rem; font-weight: 700; margin-top: 12px; }
+    .ck-submit { width: 100%; margin-top: 8px; padding: 14px; border: 0; border-radius: 6px; background: #fff159; color: #2d2a8a; font: inherit; font-weight: 700; cursor: pointer; }
+    .ck-submit:disabled { opacity: .6; cursor: wait; }
+    .ck-error { display: none; background: #fdecea; color: #b3261e; padding: 10px 12px; border-radius: 4px; margin-bottom: 12px; font-size: .9rem; }
+    .ck-done { display: none; text-align: center; padding: 40px 20px; }
+    .ck-ref { display: inline-block; margin: 8px 0; padding: 6px 14px; background: #f3f3f3; border-radius: 4px; font-weight: 700; letter-spacing: .5px; }
+    .ck-link { color: #2d2a8a; font-weight: 500; }
+    @media (max-width: 760px) { .ck-grid { grid-template-columns: 1fr; } .ck-row { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">
+      <a href="index.html">Flip<span>Finder</span></a>
+    </div>
+  </header>
+
+  <main class="ck-wrap">
+    <h1 class="ck-title">Finalizar compra</h1>
+
+    <!-- Carrito vacío -->
+    <div id="empty-cart-view" class="ck-card" style="display:none; text-align:center;">
+      <p>Tu carrito está vacío.</p>
+      <a class="ck-link" href="index.html">Ver productos</a>
+    </div>
+
+    <!-- Compra -->
+    <div id="cart-content" class="ck-grid">
+
+      <section class="ck-card" aria-labelledby="ck-datos">
+        <h2 id="ck-datos">Datos de envío</h2>
+
+        <div id="ck-error" class="ck-error" role="alert"></div>
+
+        <form id="checkout-form" novalidate>
+          <div class="ck-row">
+            <div class="ck-field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" autocomplete="given-name" required>
+            </div>
+            <div class="ck-field">
+              <label for="apellido">Apellido</label>
+              <input id="apellido" name="apellido" type="text" autocomplete="family-name" required>
+            </div>
+          </div>
+
+          <div class="ck-field">
+            <label for="email">Correo electrónico</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="ck-field">
+            <label for="telefono">Teléfono (celular)</label>
+            <input id="telefono" name="telefono" type="tel" autocomplete="tel" placeholder="+56 9 1234 5678" required>
+          </div>
+
+          <div class="ck-row">
+            <div class="ck-field">
+              <label for="region">Región</label>
+              <select id="region" name="region" autocomplete="address-level1" required>
+                <option value="">Selecciona tu región</option>
+                <option>Arica y Parinacota</option>
+                <option>Tarapacá</option>
+                <option>Antofagasta</option>
+                <option>Atacama</option>
+                <option>Coquimbo</option>
+                <option>Valparaíso</option>
+                <option>Metropolitana de Santiago</option>
+                <option>Libertador General Bernardo O'Higgins</option>
+                <option>Maule</option>
+                <option>Ñuble</option>
+                <option>Biobío</option>
+                <option>La Araucanía</option>
+                <option>Los Ríos</option>
+                <option>Los Lagos</option>
+                <option>Aysén</option>
+                <option>Magallanes y de la Antártica Chilena</option>
+              </select>
+            </div>
+            <div class="ck-field">
+              <label for="comuna">Comuna</label>
+              <input id="comuna" name="comuna" type="text" autocomplete="address-level2" required>
+            </div>
+          </div>
+
+          <div class="ck-field">
+            <label for="direccion">Dirección (calle, número, depto)</label>
+            <input id="direccion" name="direccion" type="text" autocomplete="street-address" required>
+          </div>
+
+          <div class="ck-field">
+            <label for="notas">Referencias para el despacho (opcional)</label>
+            <textarea id="notas" name="notas" rows="2"></textarea>
+          </div>
+
+          <button id="ck-submit" class="ck-submit" type="submit">Confirmar pedido</button>
+        </form>
+      </section>
+
+      <section class="ck-card" aria-labelledby="ck-resumen">
+        <h2 id="ck-resumen">Tu pedido</h2>
+        <div id="cart-items"></div>
+        <div class="ck-total"><span>Total</span><span id="cart-total">$0</span></div>
+      </section>
+    </div>
+
+    <!-- Confirmación -->
+    <div id="order-done" class="ck-card ck-done" role="status">
+      <h2>¡Recibimos tu pedido!</h2>
+      <p>Tu número de pedido es</p>
+      <div class="ck-ref" id="order-ref"></div>
+      <p>Te escribiremos al correo y al teléfono que indicaste para coordinar el pago y el despacho.</p>
+      <a class="ck-link" href="index.html">Seguir comprando</a>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <p>© 2026 FlipFinder Chile. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
