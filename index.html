@@ -2,64 +2,21 @@
 <html lang="es-CL">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>FlipFinder Chile | Encuentra los mejores productos al mejor precio</title>
-  <meta name="description" content="Compra online en Chile con envíos a todo el país. Tecnología, hogar y más al mejor precio.">
+  <meta name="description" content="Compra online en Chile con envío incluido a todo el país. Tecnología, hogar y más al mejor precio.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
-  <!-- Tus hojas de estilo existentes -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-
-  <!-- Estilos del encabezado y portada (usan prefijo ff- para no chocar con tus clases). Puedes moverlos a components.css -->
-  <style>
-    body { margin: 0; font-family: 'Roboto', Arial, sans-serif; background: #ececec; color: #222; }
-
-    .ff-header { background: #fff159; position: sticky; top: 0; z-index: 50; }
-    .ff-header-inner {
-      max-width: 1200px; margin: 0 auto; padding: 10px 16px;
-      display: grid; grid-template-columns: auto 1fr auto; gap: 8px 24px; align-items: center;
-    }
-    .ff-logo { font-size: 1.9rem; font-weight: 900; text-decoration: none; letter-spacing: -0.5px; }
-    .ff-logo .flip { color: #2d2a8a; }
-    .ff-logo .finder { color: #00a650; }
-
-    .ff-search { display: flex; background: #fff; border-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,.2); overflow: hidden; }
-    .ff-search input { flex: 1; border: 0; padding: 12px 16px; font-size: 1rem; font-family: inherit; outline: none; min-width: 0; }
-    .ff-search button { border: 0; border-left: 1px solid #eee; background: #fff; padding: 0 16px; cursor: pointer; font-size: 1.1rem; }
-    .ff-search button:focus-visible, .ff-nav a:focus-visible, .ff-user a:focus-visible, .ff-logo:focus-visible { outline: 2px solid #2d2a8a; outline-offset: 2px; }
-
-    .ff-user { display: flex; gap: 20px; align-items: center; font-weight: 500; font-size: .9rem; }
-    .ff-user a { color: #333; text-decoration: none; }
-
-    .ff-nav { grid-column: 1 / -1; display: flex; gap: 22px; flex-wrap: wrap; font-size: .9rem; }
-    .ff-nav a { color: #333; text-decoration: none; opacity: .85; }
-    .ff-nav a:hover { opacity: 1; }
-
-    .ff-main { max-width: 1200px; margin: 0 auto; padding: 24px 16px 0; }
-    .ff-hero { background: #fff; border-radius: 6px; padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,.08); }
-    .ff-hero h1 { margin: 0 0 4px; font-size: 1.5rem; }
-    .ff-hero p { margin: 0; color: #555; font-size: .95rem; }
-
-    .ff-section-title { margin: 32px 0 12px; font-size: 1.15rem; font-weight: 700; }
-
-    #productos-container {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;
-    }
-    .ff-empty { grid-column: 1 / -1; color: #666; padding: 24px 0; }
-
-    @media (max-width: 720px) {
-      .ff-header-inner { grid-template-columns: 1fr auto; }
-      .ff-search { grid-column: 1 / -1; order: 3; }
-      .ff-user .ff-sell { display: none; }
-      #productos-container { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/theme.css">
 </head>
 <body>
+
+  <div class="ff-top">🚚 <strong>Envío incluido</strong> a todo Chile en cada producto</div>
 
   <header class="ff-header">
     <div class="ff-header-inner">
@@ -74,11 +31,11 @@
 
       <div class="ff-user">
         <a href="#" id="admin-link">Admin</a>
-        <a href="#" id="cart-link" aria-label="Carrito">🛒 <span id="cart-count">0</span></a>
+        <a href="checkout.html" class="ff-cart" aria-label="Ver carrito">🛒 <span id="cart-count">0</span></a>
       </div>
 
       <nav class="ff-nav" aria-label="Principal">
-        <a href="#">Categorías ▾</a>
+        <a href="#productos">Productos</a>
         <a href="#">Ofertas</a>
         <a href="#">Historial</a>
         <a href="#">Vender</a>
@@ -89,48 +46,46 @@
 
   <main class="ff-main">
     <section class="ff-hero">
-      <h1>Encuentra los mejores productos al mejor precio</h1>
-      <p>Envíos a todo Chile con la rapidez que necesitas.</p>
+      <div>
+        <h1>Encuentra los mejores productos al mejor precio</h1>
+        <p>Envíos a todo Chile con la rapidez que necesitas. Compra fácil y paga seguro con Mercado Pago.</p>
+        <a class="ff-cta" href="#productos">Ver productos</a>
+      </div>
+      <div class="ff-perks">
+        <div class="ff-perk"><span class="ic">🚚</span><div><b>Envío incluido</b><small>Sin costos extra al pagar</small></div></div>
+        <div class="ff-perk"><span class="ic">🔒</span><div><b>Pago seguro</b><small>Con Mercado Pago</small></div></div>
+        <div class="ff-perk"><span class="ic">🇨🇱</span><div><b>Todo Chile</b><small>Despachamos a tu comuna</small></div></div>
+      </div>
     </section>
 
-    <h2 class="ff-section-title">Productos Destacados</h2>
+    <div class="ff-section-head" id="productos">
+      <h2 class="ff-section-title">Productos Destacados</h2>
+      <span id="resultados" aria-live="polite"></span>
+    </div>
+    <div class="ff-chips" id="categoria-chips" role="group" aria-label="Filtrar por categoría"></div>
     <div id="productos-container" aria-live="polite"></div>
+
+    <section class="ff-trust" aria-label="Por qué comprar en FlipFinder">
+      <div><span class="ic">💳</span><span><b>Paga como prefieras</b><small>Medios de pago de Mercado Pago</small></span></div>
+      <div><span class="ic">📦</span><span><b>Seguimiento de tu pedido</b><small>Te avisamos por correo</small></span></div>
+      <div><span class="ic">💬</span><span><b>Te acompañamos</b><small>Escríbenos si tienes dudas</small></span></div>
+    </section>
   </main>
 
-  <footer class="main-footer">
-    <p>© 2026 FlipFinder Chile. Todos los derechos reservados.</p>
+  <footer class="ff-footer">
+    <div class="ff-footer-inner">
+      <div>
+        <span class="ff-logo"><span class="flip">Flip</span><span class="finder">Finder</span></span>
+        <p>Tu tienda online en Chile: productos seleccionados, envío incluido y pago seguro.</p>
+      </div>
+      <div><p>Pagos procesados por<br><strong>Mercado Pago</strong></p></div>
+    </div>
+    <div class="ff-copy">© 2026 FlipFinder Chile. Todos los derechos reservados.</div>
   </footer>
 
-  <!-- Orden importante: Supabase → config → carrito → productos -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/supabase-config.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/main.js"></script>
-
-  <script>
-    // Búsqueda: filtra los productos ya cargados por nombre, categoría o descripción
-    (function () {
-      const form = document.getElementById('search-form');
-      const input = document.getElementById('search-input');
-
-      function normalizar(t) {
-        return (t || '').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-      }
-
-      function buscar() {
-        const q = normalizar(input.value.trim());
-        const lista = typeof productos !== 'undefined' ? productos : [];
-        const filtrados = !q ? lista : lista.filter(p =>
-          normalizar(p.nombre).includes(q) ||
-          normalizar(p.categoria).includes(q) ||
-          normalizar(p.descripcion).includes(q)
-        );
-        renderProductos(filtrados);
-      }
-
-      form.addEventListener('submit', e => { e.preventDefault(); buscar(); });
-      input.addEventListener('input', buscar);
-    })();
-  </script>
 </body>
 </html>
